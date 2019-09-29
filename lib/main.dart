@@ -3,6 +3,7 @@ import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'splashScreen.dart';
+import 'languageSelection.dart';
 
 void main() {
   runApp(MyApp());
@@ -57,7 +58,7 @@ class MyAppState extends State<MyApp>  {
       theme: new ThemeData(
         primaryColor: Colors.black,
       ),
-      home: new splashScreen(
+      home: new languageSelection(
       ),
     );
   }

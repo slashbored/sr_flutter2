@@ -5,6 +5,7 @@ import 'main.dart';
 
 import 'splashScreen.dart';
 import 'playerSelector.dart';
+import 'modeSelector.dart';
 
 
 class languageSelection extends StatefulWidget{
@@ -45,9 +46,14 @@ class languageSelectionState extends State<languageSelection>{
                                 new Flexible(
                                     child: new FloatingActionButton.extended(
                                         heroTag: 'FABen',
-                                        label: Text("Online"),
+                                        label: Text("english"),
                                         onPressed: () {
-                                          _showToastComingSoon(context);
+                                          setState(() {
+                                            MyAppState.switchLocale("en");
+                                            S.delegate.load(Locale("en", ""));
+                                          });
+                                          print(Localizations.localeOf(context).toString());
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => splashScreen()));
                                         }
                                     ),
                                     flex: 1
@@ -55,12 +61,14 @@ class languageSelectionState extends State<languageSelection>{
                                 new Flexible(
                                     child: new FloatingActionButton.extended(
                                         heroTag: 'FABde',
-                                        label: Text("Offline"),
+                                        label: Text("deutsch"),
                                         onPressed: () {
                                           setState(() {
                                             MyAppState.switchLocale("de");
+                                            S.delegate.load(Locale("de", ""));
                                           });
                                           print(Localizations.localeOf(context).toString());
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => splashScreen()));
                                         }
                                     )
                                 ),
