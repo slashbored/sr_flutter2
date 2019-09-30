@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'modeSelector.dart';
 import 'languageSelection.dart';
 
 
@@ -19,7 +18,6 @@ class splashScreenState extends State<splashScreen>{
     _pushTomodeSelector(context);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -36,6 +34,6 @@ class splashScreenState extends State<splashScreen>{
 
   _pushTomodeSelector(context) async{
     await Future.delayed(const Duration(seconds: 2  ), (){});
-    Navigator.push(context, MaterialPageRoute(builder: (context) => modeSelector()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => languageSelection()));
   }
 }

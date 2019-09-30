@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sr_flutter2/main.dart';
 import 'generated/i18n.dart';
-import 'main.dart';
 
-import 'splashScreen.dart';
 import 'playerSelector.dart';
 
 
-class modeSelector extends StatefulWidget{
+class modeSelection extends StatefulWidget{
   @override
-  modeSelectorState createState() => new modeSelectorState();
+  modeSelectionState createState() => new modeSelectionState();
 }
 
-class modeSelectorState extends State<modeSelector>{
+class modeSelectionState extends State<modeSelection>{
   
   @override
   void initState()  {
@@ -57,10 +54,6 @@ class modeSelectorState extends State<modeSelector>{
                                     heroTag: 'FABOffline',
                                     label: Text("Offline"),
                                     onPressed: () {
-                                      setState(() {
-                                        MyAppState.switchLocale("de");
-                                      });
-                                      print(Localizations.localeOf(context).toString());
                                     }
                                 )
                             ),
@@ -90,6 +83,4 @@ class modeSelectorState extends State<modeSelector>{
         )
     );
   }
-
-
 }
