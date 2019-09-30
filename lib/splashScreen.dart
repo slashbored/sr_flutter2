@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'languageSelection.dart';
-
+import 'modeSelection.dart';
 
 
 class splashScreen extends StatefulWidget{
@@ -26,14 +28,20 @@ class splashScreenState extends State<splashScreen>{
           style: TextStyle(
             fontSize: 54
           ),
-        textAlign: TextAlign.center,
+          textAlign: TextAlign.center,
         )
       )
     );
   }
 
   _pushTomodeSelector(context) async{
-    await Future.delayed(const Duration(seconds: 2  ), (){});
-    Navigator.push(context, MaterialPageRoute(builder: (context) => languageSelection()));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Future.delayed(const Duration(seconds: 3  ), (){});
+    if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false){
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => languageSelection()));
+    }
+    else  {
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
+    }
   }
 }

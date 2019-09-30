@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sr_flutter2/languageSelection.dart';
 import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,17 +10,32 @@ import 'localizationBloc.dart';
 
 void main() {
   runApp(MyApp());
-  LocalizationBloc bloc = LocalizationBloc();
 }
 
 class MyApp extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => MyAppState();
+
+
 }
 
 class MyAppState extends State<MyApp>  {
   LocalizationBloc localizationBloc = LocalizationBloc();
+
+  static initLocale(LocalizationBloc blocHolder) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
+      await prefs.setString('loc', "en");
+    }
+    await prefs.get('loc')=="en"?blocHolder.dispatch(switchEvent.switchToEn):blocHolder.dispatch(switchEvent.switchToDe);
+  }
+
+  @override
+  void initState()  {
+    super.initState();
+    initLocale(localizationBloc);
+  }
 
   Widget build(BuildContext context) {
    return BlocProvider<LocalizationBloc>(
@@ -41,8 +57,7 @@ class MyAppState extends State<MyApp>  {
            theme: new ThemeData(
              primaryColor: Colors.black,
            ),
-           home: new splashScreen(
-           ),
+           home: new languageSelection(),
          );
        }
      )

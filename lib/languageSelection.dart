@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'generated/i18n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'modeSelection.dart';
 
@@ -16,6 +18,14 @@ class languageSelectionState extends State<languageSelection>{
   @override
   void initState()  {
     super.initState();
+  }
+
+  _setLoc(String loc) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
+      await prefs.setBool('locSet', true);
+    }
+    await prefs.setString('loc', loc);
   }
 
   @override
@@ -33,7 +43,7 @@ class languageSelectionState extends State<languageSelection>{
                   new Expanded(
                     child: new Center(
                       child: new Text(
-                        S.of(context).modeSelector
+                        S.of(context).languageSelector
                       ),
                     ),
                     flex: 1
@@ -48,9 +58,10 @@ class languageSelectionState extends State<languageSelection>{
                             heroTag: 'FABen',
                             label: Text("english"),
                             onPressed: () {
+                              _setLoc('en');
                               localizationBloc.dispatch(switchEvent.switchToEn);
                               print(Localizations.localeOf(context).toString());
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => modeSelection()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
                             }
                           ),
                           flex: 1
@@ -60,9 +71,10 @@ class languageSelectionState extends State<languageSelection>{
                             heroTag: 'FABde',
                             label: Text("deutsch"),
                             onPressed: () {
+                              _setLoc('de');
                               localizationBloc.dispatch(switchEvent.switchToDe);
                               print(Localizations.localeOf(context).toString());
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => modeSelection()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
                             }
                           ),
                           flex: 1,

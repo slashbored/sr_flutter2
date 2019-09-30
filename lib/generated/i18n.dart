@@ -22,6 +22,7 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get comingSoon => "Coming soon!";
+  String get languageSelector => "Please select the language:";
   String get modeSelector => "Please select the gamemode:";
 }
 
@@ -31,6 +32,8 @@ class $de extends S {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  @override
+  String get languageSelector => "Bitte wähle die Sprache:";
   @override
   String get comingSoon => "Kommt demnächst!";
   @override
