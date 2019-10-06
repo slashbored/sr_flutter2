@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:web_socket_channel/io.dart';
 import 'generated/i18n.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'playerSelector.dart';
 
@@ -10,12 +12,21 @@ class modeSelection extends StatefulWidget{
 }
 
 class modeSelectionState extends State<modeSelection>{
+
+  final channel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
+  final myController = TextEditingController();
   
   @override
   void initState()  {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +50,15 @@ class modeSelectionState extends State<modeSelection>{
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
+                            new TextField(
+                              controller: myController,
+                            ),
                             new Flexible(
                                 child: new FloatingActionButton.extended(
                                     heroTag: 'FABOnline',
                                     label: Text("Online"),
                                     onPressed: () {
+                                      channel.sink.add(myController.text);
                                       _showToastComingSoon(context);
                                     }
                                 ),
