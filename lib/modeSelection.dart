@@ -21,24 +21,19 @@ class modeSelection extends StatefulWidget{
 class modeSelectionState extends State<modeSelection>{
 
   IOWebSocketChannel channel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
-
   TextEditingController myController = TextEditingController();
   OnlineTestBloc onlineTestBloc = OnlineTestBloc();
   StreamController mystreamController = new StreamController.broadcast();
   String uuid = '';
   var msg;
+  Package package;
 
   @override
   void initState()  {
     super.initState();
+    channel.stream.asBroadcastStream();
     mystreamController.addStream(channel.stream);
-    //uuid = _requestUUID(channel, mystreamController);
     channel.sink.add('requestUUID');
-    mystreamController.stream.listen((message) {
-      msg = json.decode(message);
-      Package package = Package(msg);
-      uuid = package.uuid;
-    });
   }
 
   @override
@@ -76,8 +71,20 @@ class modeSelectionState extends State<modeSelection>{
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
-                                      new Text(uuid),
-                                      new Text(color),
+                                      new StreamBuilder(
+                                        stream: mystreamController.stream,
+                                        builder: (context, snapShot){
+                                          package = Package(jsonDecode(snapShot.data));
+                                          return Text(snapShot.hasData?package.uuid:"");
+                                        },
+                                      ),
+                                      new StreamBuilder(
+                                        stream: mystreamController.stream,
+                                        builder: (context, snapShot){
+                                          package = Package(jsonDecode(snapShot.data));
+                                          return Text(snapShot.hasData?package.color:"");
+                                        },
+                                      ),
                                       new TextField(
                                         controller: myController,
                                       ),
@@ -87,11 +94,6 @@ class modeSelectionState extends State<modeSelection>{
                                               label: Text("Get new UUID"),
                                               onPressed: () {
                                                 channel.sink.add('requestUUID');
-                                                mystreamController.stream.listen((message) {
-                                                  msg = json.decode(message);
-                                                  Package package = Package(msg);
-                                                  uuid = package.uuid;
-                                                });
                                               }
                                           ),
                                           flex: 1
@@ -111,7 +113,7 @@ class modeSelectionState extends State<modeSelection>{
                                               label: Text("Red"),
                                               onPressed: () {
                                                 channel.sink.add('red');
-                                                mystreamController.stream.listen((message)  {
+                                               /*mystreamController.stream.listen((message)  {
                                                   msg = json.decode(message);
                                                   Package package = Package(msg);
                                                   switch (package.color)  {
@@ -125,7 +127,7 @@ class modeSelectionState extends State<modeSelection>{
                                                       onlineTestBloc.dispatch(switchEvent.switchToBlue);
                                                       break;
                                                   }
-                                                });
+                                                });*/
                                               }
                                           ),
                                           new FloatingActionButton.extended(
@@ -133,7 +135,7 @@ class modeSelectionState extends State<modeSelection>{
                                               label: Text("Blue"),
                                               onPressed: () {
                                                 channel.sink.add('blue');
-                                                mystreamController.stream.listen((message)  {
+                                                /*mystreamController.stream.listen((message)  {
                                                   msg = json.decode(message);
                                                   Package package = Package(msg);
                                                   switch (package.color)  {
@@ -147,7 +149,7 @@ class modeSelectionState extends State<modeSelection>{
                                                       onlineTestBloc.dispatch(switchEvent.switchToBlue);
                                                       break;
                                                   }
-                                                });
+                                                });*/
                                               }
                                           ),
                                           new FloatingActionButton.extended(
@@ -155,7 +157,7 @@ class modeSelectionState extends State<modeSelection>{
                                               label: Text("Green"),
                                               onPressed: () {
                                                 channel.sink.add('green');
-                                                mystreamController.stream.listen((message)  {
+                                                /*channel.stream.listen((message)  {
                                                   msg = json.decode(message);
                                                   Package package = Package(msg);
                                                   switch (package.color)  {
@@ -169,7 +171,7 @@ class modeSelectionState extends State<modeSelection>{
                                                       onlineTestBloc.dispatch(switchEvent.switchToBlue);
                                                       break;
                                                   }
-                                                });
+                                                });*/
                                               }
                                           )
                                         ],
