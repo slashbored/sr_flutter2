@@ -21,6 +21,7 @@ class modeSelection extends StatefulWidget{
 class modeSelectionState extends State<modeSelection>{
 
   IOWebSocketChannel channel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
+
   TextEditingController myController = TextEditingController();
   OnlineTestBloc onlineTestBloc = OnlineTestBloc();
   StreamController mystreamController = new StreamController.broadcast();
@@ -31,8 +32,12 @@ class modeSelectionState extends State<modeSelection>{
   void initState()  {
     super.initState();
     mystreamController.addStream(channel.stream);
-    mystreamController.stream.listen((message)  {
-      uuid = message.toString();
+    //uuid = _requestUUID(channel, mystreamController);
+    channel.sink.add('requestUUID');
+    mystreamController.stream.listen((message) {
+      msg = json.decode(message);
+      Package package = Package(msg);
+      uuid = package.uuid;
     });
   }
 
@@ -81,17 +86,12 @@ class modeSelectionState extends State<modeSelection>{
                                               heroTag: 'FABOnline',
                                               label: Text("Get new UUID"),
                                               onPressed: () {
-                                                channel.sink.add('newuuid');
+                                                channel.sink.add('requestUUID');
                                                 mystreamController.stream.listen((message) {
                                                   msg = json.decode(message);
                                                   Package package = Package(msg);
                                                   uuid = package.uuid;
                                                 });
-                                                setState(() {
-
-                                                });
-                                                //channel.sink.add(myController.text);
-                                                //_showToastComingSoon(context);
                                               }
                                           ),
                                           flex: 1
@@ -199,5 +199,16 @@ class modeSelectionState extends State<modeSelection>{
           duration: Duration(seconds: 3),
         )
     );
+  }
+
+  String _requestUUID(IOWebSocketChannel placeholderChannel, StreamController placeholderController) {
+    String placeholderString;
+    placeholderChannel.sink.add('requestUUID');
+    placeholderController.stream.listen((message) {
+      msg = json.decode(message);
+      Package package = Package(msg);
+      placeholderString = package.uuid;
+    });
+    return placeholderString;
   }
 }
