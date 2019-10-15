@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Package {
   String type;
-  String content;
+  var content;
 
   Package(Map<String, dynamic> data) {
     type = data['type'];

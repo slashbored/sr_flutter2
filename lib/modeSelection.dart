@@ -6,6 +6,8 @@ import 'onlineTestBloc.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
+import 'roomClass.dart';
+import 'playerClass.dart';
 
 
 class modeSelection extends StatefulWidget{
@@ -20,10 +22,13 @@ class modeSelectionState extends State<modeSelection>{
   final TextEditingController joinroomTextfieldController = TextEditingController();
   OnlineTestBloc onlineTestBloc = OnlineTestBloc();
   StreamController mystreamController = new StreamController.broadcast();
+  Map activeRoomMap;
+  Room activeRoom;
   Package packageIn;
   String uuid = '';
-  String thecolor = '';
-  var msg;
+
+  //String thecolor = '';
+  //var msg;
 
   @override
   void initState()  {
@@ -49,22 +54,27 @@ class modeSelectionState extends State<modeSelection>{
           packageIn = Package(jsonDecode(snapShot.data));
           switch(packageIn.type)  {
             case 'uuid':
-              uuid  = packageIn.content;
+              uuid  = packageIn.content.toString();
               break;
             case 'room':
+              activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
+              activeRoom = Room(activeRoomMap);
+              print('RoomID is' + activeRoom.id);
+              //print('The player is' + activeRoom.playerDB[0].name);
               break;
           }
           return Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(
+                Flexible(
                   child: TextField(
                     controller: nameTextfieldController,
                   ),
                 ),
                 FloatingActionButton.extended(
                   heroTag:'setName',
-                  label: Text('Set the name'),
+                  label: Text('Set name'),
                   onPressed: () {
                     channel.sink.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
                   },
@@ -76,14 +86,14 @@ class modeSelectionState extends State<modeSelection>{
                     channel.sink.add(json.encode({'type':'createRoom','content':''}));
                   },
                 ),
-                Expanded(
+                Flexible(
                   child: TextField(
                     controller: joinroomTextfieldController,
                   ),
                 ),
                 FloatingActionButton.extended(
                   heroTag:'joinRoom',
-                  label: Text('Join a room'),
+                  label: Text('Join room'),
                   onPressed: () {
                     channel.sink.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
