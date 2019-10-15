@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 class Package {
-  String uuid;
-  String color;
+  String type;
+  String content;
 
   Package(Map<String, dynamic> data) {
-    uuid = data['id'];
-    color = data['color'];
+    type = data['type'];
+    content = data['content'];
   }
 }

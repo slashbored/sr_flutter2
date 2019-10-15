@@ -7,11 +7,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
 
-import 'package:web_socket_channel/status.dart' as status;
-import 'package:web_socket_channel/web_socket_channel.dart';
-
-import 'playerSelector.dart';
-
 
 class modeSelection extends StatefulWidget{
   @override
@@ -21,31 +16,85 @@ class modeSelection extends StatefulWidget{
 class modeSelectionState extends State<modeSelection>{
 
   IOWebSocketChannel channel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
-  TextEditingController myController = TextEditingController();
+  final TextEditingController nameTextfieldController = TextEditingController();
+  final TextEditingController joinroomTextfieldController = TextEditingController();
   OnlineTestBloc onlineTestBloc = OnlineTestBloc();
   StreamController mystreamController = new StreamController.broadcast();
+  Package packageIn;
   String uuid = '';
+  String thecolor = '';
   var msg;
-  Package package;
 
   @override
   void initState()  {
     super.initState();
     channel.stream.asBroadcastStream();
     mystreamController.addStream(channel.stream);
-    channel.sink.add('requestUUID');
+    channel.sink.add(json.encode({'type':'get','content':'uuid'}));
   }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myController.dispose();
+    nameTextfieldController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<OnlineTestBloc>(
+    return Scaffold(
+      body: StreamBuilder(
+        stream: mystreamController.stream,
+        builder: (context, snapShot){
+          packageIn = Package(jsonDecode(snapShot.data));
+          switch(packageIn.type)  {
+            case 'uuid':
+              uuid  = packageIn.content;
+              break;
+            case 'room':
+              break;
+          }
+          return Center(
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    controller: nameTextfieldController,
+                  ),
+                ),
+                FloatingActionButton.extended(
+                  heroTag:'setName',
+                  label: Text('Set the name'),
+                  onPressed: () {
+                    channel.sink.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
+                  },
+                ),
+                FloatingActionButton.extended(
+                  heroTag:'createRoom',
+                  label: Text('Create a room'),
+                  onPressed: () {
+                    channel.sink.add(json.encode({'type':'createRoom','content':''}));
+                  },
+                ),
+                Expanded(
+                  child: TextField(
+                    controller: joinroomTextfieldController,
+                  ),
+                ),
+                FloatingActionButton.extended(
+                  heroTag:'joinRoom',
+                  label: Text('Join a room'),
+                  onPressed: () {
+                    channel.sink.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      )
+    );
+    /*return BlocProvider<OnlineTestBloc>(
       builder: (BuildContext) => onlineTestBloc,
       child: BlocBuilder(
         bloc: onlineTestBloc,
@@ -75,6 +124,7 @@ class modeSelectionState extends State<modeSelection>{
                                         stream: mystreamController.stream,
                                         builder: (context, snapShot){
                                           package = Package(jsonDecode(snapShot.data));
+                                          uuid = package.uuid;
                                           return Text(snapShot.hasData?package.uuid:"");
                                         },
                                       ),
@@ -82,6 +132,7 @@ class modeSelectionState extends State<modeSelection>{
                                         stream: mystreamController.stream,
                                         builder: (context, snapShot){
                                           package = Package(jsonDecode(snapShot.data));
+                                          thecolor = package.color;
                                           return Text(snapShot.hasData?package.color:"");
                                         },
                                       ),
@@ -188,7 +239,7 @@ class modeSelectionState extends State<modeSelection>{
           );
         }
       ),
-    );
+    );*/
   }
 
   void _showToastComingSoon(BuildContext context) {
@@ -203,14 +254,4 @@ class modeSelectionState extends State<modeSelection>{
     );
   }
 
-  String _requestUUID(IOWebSocketChannel placeholderChannel, StreamController placeholderController) {
-    String placeholderString;
-    placeholderChannel.sink.add('requestUUID');
-    placeholderController.stream.listen((message) {
-      msg = json.decode(message);
-      Package package = Package(msg);
-      placeholderString = package.uuid;
-    });
-    return placeholderString;
-  }
 }
