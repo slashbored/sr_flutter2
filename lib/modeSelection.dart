@@ -17,11 +17,13 @@ class modeSelection extends StatefulWidget{
 
 class modeSelectionState extends State<modeSelection>{
 
-  IOWebSocketChannel channel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
+  IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
   final TextEditingController nameTextfieldController = TextEditingController();
   final TextEditingController joinroomTextfieldController = TextEditingController();
   OnlineTestBloc onlineTestBloc = OnlineTestBloc();
-  StreamController mystreamController = new StreamController.broadcast();
+  StreamController downStreamController = new StreamController.broadcast();
+  Stream downStream;
+  Sink upStream;
   Map activeRoomMap;
   Room activeRoom;
   List activePlayerList;
@@ -35,9 +37,12 @@ class modeSelectionState extends State<modeSelection>{
   @override
   void initState()  {
     super.initState();
-    channel.stream.asBroadcastStream();
-    mystreamController.addStream(channel.stream);
-    channel.sink.add(json.encode({'type':'get','content':'uuid'}));
+    WSChannel.stream.asBroadcastStream();
+    downStreamController.addStream(WSChannel.stream);
+    upStream = WSChannel.sink;
+    downStream = downStreamController.stream;
+    WSChannel.sink.add(json.encode({'type':'get','content':'uuid'}));
+    WSChannel.sink.add(json.encode({'type':'ping','content':''}));
   }
 
   @override
@@ -51,10 +56,13 @@ class modeSelectionState extends State<modeSelection>{
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: mystreamController.stream,
+        stream: downStream,
         builder: (context, snapShot){
           packageIn = Package(jsonDecode(snapShot.data));
           switch(packageIn.type)  {
+            case  'pong':
+              upStream.add(json.encode({'type':'ping','content':''}));
+              break;
             case 'uuid':
               uuid  = packageIn.content.toString();
               break;
@@ -79,14 +87,14 @@ class modeSelectionState extends State<modeSelection>{
                   heroTag:'setName',
                   label: Text('Set name'),
                   onPressed: () {
-                    channel.sink.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
+                    upStream.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
                   },
                 ),
                 FloatingActionButton.extended(
                   heroTag:'createRoom',
                   label: Text('Create a room'),
                   onPressed: () {
-                    channel.sink.add(json.encode({'type':'createRoom','content':''}));
+                    upStream.add(json.encode({'type':'createRoom','content':''}));
                   },
                 ),
                 Flexible(
@@ -98,7 +106,7 @@ class modeSelectionState extends State<modeSelection>{
                   heroTag:'joinRoom',
                   label: Text('Join room'),
                   onPressed: () {
-                    channel.sink.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                    upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 )
               ],

@@ -2,16 +2,19 @@ import 'playerClass.dart';
 
 class Room  {
   String id;
-  //List activePlayerList;
+  List activePlayerList;
   //Player activePlayer;
-  var playerDB;
+  List playerDB = new List();
 
   Room(Map<String, dynamic> data) {
     id = data['id'];
     //playerDB = data['playerDB'];
-    //activePlayerList = new List.from(data['playerDB']);
+    //playerDB = Player(List.from(data['playerDB'])[0]);
+    //List.from(data['playerDB']).forEach((playerPlaceHolder) => playerDB.add(Player(playerPlaceHolder)));
+    //print(playerDB.toString());
+    activePlayerList = new List.from(data['playerDB']);
+    activePlayerList.forEach((playerPlaceHolder) => (playerDB.insert(playerDB.length, Player(playerPlaceHolder))));
     //activePlayer = Player(activePlayerList[0]);
-    //print(activePlayer);
-    playerDB = Player(List.from(data['playerDB'])[0]);
   }
+  
 }
