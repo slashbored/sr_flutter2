@@ -24,6 +24,8 @@ class modeSelectionState extends State<modeSelection>{
   StreamController mystreamController = new StreamController.broadcast();
   Map activeRoomMap;
   Room activeRoom;
+  List activePlayerList;
+  Player activePlayer;
   Package packageIn;
   String uuid = '';
 
@@ -57,10 +59,11 @@ class modeSelectionState extends State<modeSelection>{
               uuid  = packageIn.content.toString();
               break;
             case 'room':
-              activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
-              activeRoom = Room(activeRoomMap);
-              print('RoomID is' + activeRoom.id);
-              //print('The player is' + activeRoom.playerDB[0].name);
+              //activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
+              activeRoom = Room(Map.from(packageIn.content));
+              /*activePlayerList = new List.from(activeRoom.playerDB);
+              activePlayer = Player(activePlayerList[0]);
+              print(activePlayer.toString);*/
               break;
           }
           return Center(

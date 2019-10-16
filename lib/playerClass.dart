@@ -1,11 +1,13 @@
 class Player  {
   String id;
   String name;
-  //String sex;
-  //int points;
+  String sex;
+  int points;
 
-  Player(Map<String, dynamic> data) {
-    id = data['id'];
-    name = data['name'];
+  Player(Map data) {
+    id    = data['id'];
+    name  = data['name'];
+    sex   = data['sex'];
+    points  = data['points'];
   }
 }
