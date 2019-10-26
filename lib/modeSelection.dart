@@ -17,16 +17,16 @@ class modeSelection extends StatefulWidget{
 
 class modeSelectionState extends State<modeSelection>{
 
-  IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
+  final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
   final TextEditingController nameTextfieldController = TextEditingController();
   final TextEditingController joinroomTextfieldController = TextEditingController();
-  OnlineTestBloc onlineTestBloc = OnlineTestBloc();
-  StreamController downStreamController = new StreamController.broadcast();
+  //OnlineTestBloc onlineTestBloc = OnlineTestBloc();
+  final StreamController downStreamController = new StreamController.broadcast();
   Stream downStream;
   Sink upStream;
-  Map activeRoomMap;
+  //Map activeRoomMap;
   Room activeRoom;
-  List activePlayerList;
+  //List activePlayerList;
   Player activePlayer;
   Package packageIn;
   String uuid = '';
@@ -69,6 +69,8 @@ class modeSelectionState extends State<modeSelection>{
             case 'room':
               //activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
               activeRoom = Room(Map.from(packageIn.content));
+              setState(() {
+              });
               /*activePlayerList = new List.from(activeRoom.playerDB);
               activePlayer = Player(activePlayerList[0]);
               print(activePlayer.toString);*/
@@ -108,7 +110,8 @@ class modeSelectionState extends State<modeSelection>{
                   onPressed: () {
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
-                )
+                ),
+                Text(activeRoom!=null?activeRoom.id:"")
               ],
             ),
           );

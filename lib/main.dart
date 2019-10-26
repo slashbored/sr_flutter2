@@ -10,6 +10,7 @@ import 'localizationBloc.dart';
 
 void main() {
   runApp(MyApp());
+  ErrorWidget.builder = (FlutterErrorDetails details) => Container();
 }
 
 class MyApp extends StatefulWidget {
