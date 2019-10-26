@@ -25,6 +25,7 @@ class modeSelectionState extends State<modeSelection>{
   Stream downStream;
   Sink upStream;
   //Map activeRoomMap;
+  List roomList;
   Room activeRoom;
   //List activePlayerList;
   Player activePlayer;
@@ -42,6 +43,7 @@ class modeSelectionState extends State<modeSelection>{
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
     WSChannel.sink.add(json.encode({'type':'get','content':'uuid'}));
+    WSChannel.sink.add(json.encode({'type':'get','content':'roomList'}));
     WSChannel.sink.add(json.encode({'type':'ping','content':''}));
   }
 
@@ -69,11 +71,14 @@ class modeSelectionState extends State<modeSelection>{
             case 'room':
               //activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
               activeRoom = Room(Map.from(packageIn.content));
-              setState(() {
-              });
+              //setState(() {
+              //});
               /*activePlayerList = new List.from(activeRoom.playerDB);
               activePlayer = Player(activePlayerList[0]);
               print(activePlayer.toString);*/
+              break;
+            case  'roomList':
+                roomList = packageIn.content;
               break;
           }
           return Center(
@@ -97,6 +102,7 @@ class modeSelectionState extends State<modeSelection>{
                   label: Text('Create a room'),
                   onPressed: () {
                     upStream.add(json.encode({'type':'createRoom','content':''}));
+                    upStream.add(json.encode({'type':'get','content':'roomList'}));
                   },
                 ),
                 Flexible(
@@ -111,7 +117,8 @@ class modeSelectionState extends State<modeSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 ),
-                Text(activeRoom!=null?activeRoom.id:"")
+                roomListView(context)
+                //Text(activeRoom!=null?activeRoom.playerDB[0].name:""),
               ],
             ),
           );
@@ -276,6 +283,26 @@ class modeSelectionState extends State<modeSelection>{
           duration: Duration(seconds: 3),
         )
     );
+  }
+
+  Widget roomListView(BuildContext context) {
+    if (roomList.length!=0) {
+      return  Expanded(
+        child: ListView(
+          children: <Widget>[
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: roomList.length,
+              itemBuilder: (context, int index){
+                return Text(roomList[index]);
+              })
+          ],
+        ),
+      );
+    }
+    else  {
+      return Text("No rooms yet!");
+    }
   }
 
 }
