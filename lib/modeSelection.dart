@@ -117,7 +117,8 @@ class modeSelectionState extends State<modeSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 ),
-                roomListView(context)
+                roomListView(context),
+                playerListView(context)
                 //Text(activeRoom!=null?activeRoom.playerDB[0].name:""),
               ],
             ),
@@ -285,9 +286,29 @@ class modeSelectionState extends State<modeSelection>{
     );
   }
 
+  Widget playerListView(BuildContext context) {
+    if (activeRoom!=null) {
+      return  Flexible(
+        child: ListView(
+          children: <Widget>[
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: activeRoom.playerDB.length,
+                itemBuilder: (context, int index){
+                  return Text(activeRoom.playerDB[index].name);
+                })
+          ],
+        ),
+      );
+    }
+    else  {
+      return Text("No players yet!");
+    }
+  }
+
   Widget roomListView(BuildContext context) {
     if (roomList.length!=0) {
-      return  Expanded(
+      return  Flexible(
         child: ListView(
           children: <Widget>[
             ListView.builder(
