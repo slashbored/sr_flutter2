@@ -24,6 +24,10 @@ class S implements WidgetsLocalizations {
   String get comingSoon => "Coming soon!";
   String get languageSelector => "Please select the language:";
   String get modeSelector => "Please select the gamemode:";
+  String get pleaseCompleteEntries => "Please complete your entries.";
+  String get sexFemale => "Female";
+  String get sexMale => "Male";
+  String get sexX => "Other";
 }
 
 class $de extends S {
@@ -35,7 +39,15 @@ class $de extends S {
   @override
   String get languageSelector => "Bitte wähle die Sprache:";
   @override
+  String get pleaseCompleteEntries => "Bitte vervollständige deine Angaben.";
+  @override
   String get comingSoon => "Kommt demnächst!";
+  @override
+  String get sexMale => "Männlein";
+  @override
+  String get sexX => "Divers";
+  @override
+  String get sexFemale => "Weiblein";
   @override
   String get modeSelector => "Bitte wähle den Spielmodus:";
 }

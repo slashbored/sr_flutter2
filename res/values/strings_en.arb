@@ -1,5 +1,9 @@
 {
   "languageSelector": "Please select the language:",
   "modeSelector": "Please select the gamemode:",
-  "comingSoon": "Coming soon!"
+  "pleaseCompleteEntries": "Please complete your entries.",
+  "comingSoon": "Coming soon!",
+  "sexMale": "Male",
+  "sexX": "Other",
+  "sexFemale": "Female"
 }

@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'languageSelection.dart';
-import 'modeSelection.dart';
+import 'roomSelection.dart';
 
 
 class splashScreen extends StatefulWidget{
@@ -41,7 +41,7 @@ class splashScreenState extends State<splashScreen>{
       Navigator.push(context, CupertinoPageRoute(builder: (context) => languageSelection()));
     }
     else  {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
     }
   }
 }

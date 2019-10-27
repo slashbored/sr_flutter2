@@ -8,14 +8,15 @@ import 'dart:convert';
 import 'package.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
+import 'playerEditing.dart';
 
 
-class modeSelection extends StatefulWidget{
+class roomSelection extends StatefulWidget{
   @override
-  modeSelectionState createState() => new modeSelectionState();
+  roomSelectionState createState() => new roomSelectionState();
 }
 
-class modeSelectionState extends State<modeSelection>{
+class roomSelectionState extends State<roomSelection>{
 
   final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
   final TextEditingController nameTextfieldController = TextEditingController();
@@ -24,16 +25,11 @@ class modeSelectionState extends State<modeSelection>{
   final StreamController downStreamController = new StreamController.broadcast();
   Stream downStream;
   Sink upStream;
-  //Map activeRoomMap;
   List roomList;
   Room activeRoom;
-  //List activePlayerList;
   Player activePlayer;
   Package packageIn;
   String uuid = '';
-
-  //String thecolor = '';
-  //var msg;
 
   @override
   void initState()  {
@@ -42,9 +38,11 @@ class modeSelectionState extends State<modeSelection>{
     downStreamController.addStream(WSChannel.stream);
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
-    WSChannel.sink.add(json.encode({'type':'get','content':'uuid'}));
-    WSChannel.sink.add(json.encode({'type':'get','content':'roomList'}));
-    WSChannel.sink.add(json.encode({'type':'ping','content':''}));
+    upStream.add(json.encode({'type':'get','content':'uuid'}));
+    upStream.add(json.encode({'type':'get','content':'roomList'}));
+    upStream.add(json.encode({'type':'setName','content':playerEditingState.playerName}));
+    upStream.add(json.encode({'type':'setSex','content':playerEditingState.playerSex}));
+    upStream.add(json.encode({'type':'ping','content':''}));
   }
 
   @override
@@ -69,23 +67,17 @@ class modeSelectionState extends State<modeSelection>{
               uuid  = packageIn.content.toString();
               break;
             case 'room':
-              //activeRoomMap = new Map<String, dynamic>.from(packageIn.content);
               activeRoom = Room(Map.from(packageIn.content));
-              //setState(() {
-              //});
-              /*activePlayerList = new List.from(activeRoom.playerDB);
-              activePlayer = Player(activePlayerList[0]);
-              print(activePlayer.toString);*/
               break;
             case  'roomList':
-                roomList = packageIn.content;
+              roomList = packageIn.content;
               break;
           }
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Flexible(
+                /*Flexible(
                   child: TextField(
                     controller: nameTextfieldController,
                   ),
@@ -96,13 +88,13 @@ class modeSelectionState extends State<modeSelection>{
                   onPressed: () {
                     upStream.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
                   },
-                ),
+                ),*/
                 FloatingActionButton.extended(
                   heroTag:'createRoom',
                   label: Text('Create a room'),
                   onPressed: () {
                     upStream.add(json.encode({'type':'createRoom','content':''}));
-                    upStream.add(json.encode({'type':'get','content':'roomList'}));
+                    //upStream.add(json.encode({'type':'get','content':'roomList'}));
                   },
                 ),
                 Flexible(
@@ -117,7 +109,7 @@ class modeSelectionState extends State<modeSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 ),
-                roomListView(context),
+                //roomListView(context),
                 playerListView(context)
                 //Text(activeRoom!=null?activeRoom.playerDB[0].name:""),
               ],

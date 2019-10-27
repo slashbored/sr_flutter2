@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'modeSelection.dart';
+import 'roomSelection.dart';
+import 'playerEditing.dart';
 
 
 class languageSelection extends StatefulWidget{
@@ -61,7 +62,7 @@ class languageSelectionState extends State<languageSelection>{
                               _setLoc('en');
                               localizationBloc.dispatch(switchEvent.switchToEn);
                               print(Localizations.localeOf(context).toString());
-                              Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
                           ),
                           flex: 1
@@ -74,7 +75,7 @@ class languageSelectionState extends State<languageSelection>{
                               _setLoc('de');
                               localizationBloc.dispatch(switchEvent.switchToDe);
                               print(Localizations.localeOf(context).toString());
-                              Navigator.push(context, CupertinoPageRoute(builder: (context) => modeSelection()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
                           ),
                           flex: 1,
