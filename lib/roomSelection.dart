@@ -69,9 +69,9 @@ class roomSelectionState extends State<roomSelection>{
             case 'room':
               activeRoom = Room(Map.from(packageIn.content));
               break;
-            /*case  'roomList':
+            case  'roomList':
               roomList = packageIn.content;
-              break;*/
+              break;
           }
           return Center(
             child: Column(
@@ -281,14 +281,27 @@ class roomSelectionState extends State<roomSelection>{
   Widget playerListView(BuildContext context) {
     if (activeRoom!=null) {
       return  Flexible(
-        child: ListView(
+        child: Column(
           children: <Widget>[
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: activeRoom.playerDB.length,
-                itemBuilder: (context, int index){
-                  return Text(activeRoom.playerDB[index].name);
-                })
+            Text(
+              activeRoom.id,
+              textAlign: TextAlign.center,
+            ),
+            Flexible(
+              child:  ListView(
+                children: <Widget>[
+                  ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: activeRoom.playerDB.length,
+                      itemBuilder: (context, int index){
+                        return Text(
+                          activeRoom.playerDB[index].name,
+                          textAlign: TextAlign.center,
+                        );
+                      })
+                ],
+              ),
+            )
           ],
         ),
       );
@@ -300,17 +313,25 @@ class roomSelectionState extends State<roomSelection>{
 
   Widget roomListView(BuildContext context) {
     if (roomList.length!=0) {
-      return  Flexible(
-        child: ListView(
-          children: <Widget>[
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: roomList.length,
-              itemBuilder: (context, int index){
-                return Text(roomList[index]);
-              })
-          ],
-        ),
+      return  Column(
+        children: <Widget>[
+          Text(
+            activeRoom.id,
+            textAlign: TextAlign.center
+          ),
+          Flexible(
+            child: ListView(
+              children: <Widget>[
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: roomList.length,
+                    itemBuilder: (context, int index){
+                      return Text(roomList[index]);
+                    })
+              ],
+            ),
+          )
+        ],
       );
     }
     else  {
