@@ -39,7 +39,7 @@ class roomSelectionState extends State<roomSelection>{
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
     upStream.add(json.encode({'type':'get','content':'uuid'}));
-    upStream.add(json.encode({'type':'get','content':'roomList'}));
+    //upStream.add(json.encode({'type':'get','content':'roomList'}));
     upStream.add(json.encode({'type':'setName','content':playerEditingState.playerName}));
     upStream.add(json.encode({'type':'setSex','content':playerEditingState.playerSex}));
     upStream.add(json.encode({'type':'ping','content':''}));
@@ -69,9 +69,9 @@ class roomSelectionState extends State<roomSelection>{
             case 'room':
               activeRoom = Room(Map.from(packageIn.content));
               break;
-            case  'roomList':
+            /*case  'roomList':
               roomList = packageIn.content;
-              break;
+              break;*/
           }
           return Center(
             child: Column(
