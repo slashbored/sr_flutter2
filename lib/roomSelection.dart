@@ -39,15 +39,14 @@ class roomSelectionState extends State<roomSelection>{
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
     upStream.add(json.encode({'type':'get','content':'uuid'}));
-    //upStream.add(json.encode({'type':'get','content':'roomList'}));
     upStream.add(json.encode({'type':'setName','content':playerEditingState.playerName}));
     upStream.add(json.encode({'type':'setSex','content':playerEditingState.playerSex}));
+    upStream.add(json.encode({'type':'constructPlayer','content':''}));
     upStream.add(json.encode({'type':'ping','content':''}));
   }
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     nameTextfieldController.dispose();
     super.dispose();
   }
@@ -77,18 +76,6 @@ class roomSelectionState extends State<roomSelection>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                /*Flexible(
-                  child: TextField(
-                    controller: nameTextfieldController,
-                  ),
-                ),
-                FloatingActionButton.extended(
-                  heroTag:'setName',
-                  label: Text('Set name'),
-                  onPressed: () {
-                    upStream.add(json.encode({'type':'setName','content':nameTextfieldController.text.toString()}));
-                  },
-                ),*/
                 FloatingActionButton.extended(
                   heroTag:'createRoom',
                   label: Text('Create a room'),
@@ -109,9 +96,7 @@ class roomSelectionState extends State<roomSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 ),
-                //roomListView(context),
                 playerListView(context)
-                //Text(activeRoom!=null?activeRoom.playerDB[0].name:""),
               ],
             ),
           );
@@ -291,51 +276,24 @@ class roomSelectionState extends State<roomSelection>{
               child:  ListView(
                 children: <Widget>[
                   ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: activeRoom.playerDB.length,
-                      itemBuilder: (context, int index){
-                        return Text(
-                          activeRoom.playerDB[index].name,
-                          textAlign: TextAlign.center,
-                        );
-                      })
-                ],
-              ),
-            )
-          ],
-        ),
-      );
-    }
-    else  {
-      return Text("No players yet!");
-    }
-  }
-
-  Widget roomListView(BuildContext context) {
-    if (roomList.length!=0) {
-      return  Column(
-        children: <Widget>[
-          Text(
-            activeRoom.id,
-            textAlign: TextAlign.center
-          ),
-          Flexible(
-            child: ListView(
-              children: <Widget>[
-                ListView.builder(
                     shrinkWrap: true,
-                    itemCount: roomList.length,
+                    itemCount: activeRoom.playerDB.length,
                     itemBuilder: (context, int index){
-                      return Text(roomList[index]);
-                    })
-              ],
-            ),
-          )
-        ],
+                      return Text(
+                        activeRoom.playerDB[index].name,
+                        textAlign: TextAlign.center,
+                      );
+                    }
+                  )
+                ]
+              )
+            )
+          ]
+        )
       );
     }
     else  {
-      return Text("No rooms yet!");
+      return Text(S.of(context).noPlayersYet);
     }
   }
 
