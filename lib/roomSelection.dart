@@ -21,12 +21,13 @@ class roomSelectionState extends State<roomSelection>{
   final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
   final TextEditingController nameTextfieldController = TextEditingController();
   final TextEditingController joinroomTextfieldController = TextEditingController();
+  final TextEditingController addToChatTextfieldController = TextEditingController();
   //OnlineTestBloc onlineTestBloc = OnlineTestBloc();
   final StreamController downStreamController = new StreamController.broadcast();
   Stream downStream;
   Sink upStream;
   List roomList;
-  Room activeRoom;
+  static Room activeRoom;
   Player activePlayer;
   Package packageIn;
   String uuid = '';
@@ -41,7 +42,6 @@ class roomSelectionState extends State<roomSelection>{
     upStream.add(json.encode({'type':'get','content':'uuid'}));
     upStream.add(json.encode({'type':'setName','content':playerEditingState.playerName}));
     upStream.add(json.encode({'type':'setSex','content':playerEditingState.playerSex}));
-    upStream.add(json.encode({'type':'constructPlayer','content':''}));
     upStream.add(json.encode({'type':'ping','content':''}));
   }
 
@@ -86,8 +86,8 @@ class roomSelectionState extends State<roomSelection>{
                 ),
                 Flexible(
                   child: TextField(
-                    controller: joinroomTextfieldController,
-                  ),
+                    controller: joinroomTextfieldController
+                  )
                 ),
                 FloatingActionButton.extended(
                   heroTag:'joinRoom',
@@ -96,11 +96,24 @@ class roomSelectionState extends State<roomSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                   },
                 ),
-                playerListView(context)
-              ],
-            ),
+                playerListView(context),
+                Flexible(
+                  child: TextField(
+                    controller: addToChatTextfieldController
+                  )
+                ),
+                FloatingActionButton.extended(
+                  heroTag:'enterChat',
+                  label: Text('Add to chat'),
+                  onPressed: () {
+                    upStream.add(json.encode({'type':'addToChat','content':addToChatTextfieldController.text.toString()}));
+                  }
+                ),
+                chatListView(context)
+              ]
+            )
           );
-        },
+        }
       )
     );
     /*return BlocProvider<OnlineTestBloc>(
@@ -294,6 +307,30 @@ class roomSelectionState extends State<roomSelection>{
     }
     else  {
       return Text(S.of(context).noPlayersYet);
+    }
+  }
+
+  Widget chatListView(BuildContext context) {
+    if (activeRoom!=null) {
+      return  Flexible(
+        child: ListView(
+          children: <Widget>[
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: activeRoom.chatDB.length,
+              itemBuilder: (context, int index){
+                return Text(
+                  activeRoom.chatDB[index],
+                  textAlign: TextAlign.start,
+                );
+              }
+            )
+          ]
+        )
+      );
+    }
+    else  {
+      return Text("");
     }
   }
 
