@@ -3,6 +3,7 @@ import 'localizationBloc.dart';
 import 'generated/i18n.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'playerClass.dart';
 import 'roomSelection.dart';
 
 class playerEditing extends StatefulWidget  {
@@ -51,28 +52,28 @@ class playerEditingState extends State<playerEditing>{
                   label: Text(S.of(context).sexMale),
                   onPressed: (){
                     setState(() {
-                      playerSex = 'm';
+                      Player.activePlayer.sex = 'm';
                     });
                   },
-                  backgroundColor: playerSex=='m'?getSexcolor(playerSex):Colors.grey,
+                  backgroundColor: Player.activePlayer.sex=='m'?getSexcolor(Player.activePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexFemale),
                   onPressed: (){
                     setState(() {
-                      playerSex = 'f';
+                      Player.activePlayer.sex = 'f';
                     });
                   },
-                  backgroundColor: playerSex=='f'?getSexcolor(playerSex):Colors.grey,
+                  backgroundColor: Player.activePlayer.sex=='f'?getSexcolor(Player.activePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexX),
                   onPressed: (){
                     setState(() {
-                      playerSex = 'o';
+                      Player.activePlayer.sex = 'o';
                     });
                   },
-                  backgroundColor: playerSex=='o'?getSexcolor(playerSex):Colors.grey,
+                  backgroundColor: Player.activePlayer.sex=='o'?getSexcolor(Player.activePlayer.sex):Colors.grey,
                 ),
               ],
             )
@@ -81,8 +82,8 @@ class playerEditingState extends State<playerEditing>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          playerName = nameTextfieldController.text.toString();
-          if  (playerName!=""&&playerSex!="") {
+          Player.activePlayer.name = nameTextfieldController.text.toString();
+          if  (Player.activePlayer.name!=""&&Player.activePlayer.sex!="") {
             Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
           }
           else  {
@@ -101,7 +102,6 @@ class playerEditingState extends State<playerEditing>{
   }
 
   Color getSexcolor(String sex) {
-    Color colorplaceholder;
     switch  (sex) {
       case 'm':
         return Colors.blue;

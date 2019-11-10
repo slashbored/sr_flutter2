@@ -6,6 +6,7 @@ class Room  {
   //Player activePlayer;
   List playerDB = new List();
   List chatDB   = new List();
+  static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
     id = data['id'];

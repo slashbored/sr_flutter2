@@ -27,7 +27,6 @@ class roomSelectionState extends State<roomSelection>{
   Stream downStream;
   Sink upStream;
   List roomList;
-  static Room activeRoom;
   Player activePlayer;
   Package packageIn;
   String uuid = '';
@@ -40,8 +39,8 @@ class roomSelectionState extends State<roomSelection>{
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
     upStream.add(json.encode({'type':'get','content':'uuid'}));
-    upStream.add(json.encode({'type':'setName','content':playerEditingState.playerName}));
-    upStream.add(json.encode({'type':'setSex','content':playerEditingState.playerSex}));
+    upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
+    upStream.add(json.encode({'type':'setSex','content':Player.activePlayer.sex}));
     upStream.add(json.encode({'type':'ping','content':''}));
   }
 
@@ -66,7 +65,7 @@ class roomSelectionState extends State<roomSelection>{
               uuid  = packageIn.content.toString();
               break;
             case 'room':
-              activeRoom = Room(Map.from(packageIn.content));
+              Room.activeRoom = Room(Map.from(packageIn.content));
               break;
             case  'roomList':
               roomList = packageIn.content;
@@ -109,7 +108,14 @@ class roomSelectionState extends State<roomSelection>{
                     upStream.add(json.encode({'type':'addToChat','content':addToChatTextfieldController.text.toString()}));
                   }
                 ),
-                chatListView(context)
+                chatListView(context),
+                FloatingActionButton.extended(
+                    heroTag:'enterGame',
+                    label: Text('Enter the game'),
+                    onPressed: () {
+                      upStream.add(json.encode({'type':'addToChat','content':addToChatTextfieldController.text.toString()}));
+                    }
+                )
               ]
             )
           );
@@ -264,25 +270,14 @@ class roomSelectionState extends State<roomSelection>{
     );*/
   }
 
-  void _showToastComingSoon(BuildContext context) {
-    final scaffold = Scaffold.of(context);
-    scaffold.showSnackBar(
-        SnackBar(
-          content: Text(
-            S.of(context).comingSoon,
-            textAlign: TextAlign.center,),
-          duration: Duration(seconds: 3),
-        )
-    );
-  }
 
   Widget playerListView(BuildContext context) {
-    if (activeRoom!=null) {
+    if (Room.activeRoom!=null) {
       return  Flexible(
         child: Column(
           children: <Widget>[
             Text(
-              activeRoom.id,
+              Room.activeRoom.id,
               textAlign: TextAlign.center,
             ),
             Flexible(
@@ -290,10 +285,10 @@ class roomSelectionState extends State<roomSelection>{
                 children: <Widget>[
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: activeRoom.playerDB.length,
+                    itemCount: Room.activeRoom.playerDB.length,
                     itemBuilder: (context, int index){
                       return Text(
-                        activeRoom.playerDB[index].name,
+                        Room.activeRoom.playerDB[index].name,
                         textAlign: TextAlign.center,
                       );
                     }
@@ -311,16 +306,16 @@ class roomSelectionState extends State<roomSelection>{
   }
 
   Widget chatListView(BuildContext context) {
-    if (activeRoom!=null) {
+    if (Room.activeRoom!=null) {
       return  Flexible(
         child: ListView(
           children: <Widget>[
             ListView.builder(
               shrinkWrap: true,
-              itemCount: activeRoom.chatDB.length,
+              itemCount: Room.activeRoom.chatDB.length,
               itemBuilder: (context, int index){
                 return Text(
-                  activeRoom.chatDB[index],
+                  Room.activeRoom.chatDB[index],
                   textAlign: TextAlign.start,
                 );
               }
