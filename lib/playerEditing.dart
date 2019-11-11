@@ -31,7 +31,7 @@ class playerEditingState extends State<playerEditing>{
     downStream = downStreamController.stream;
     upStream.add(json.encode({'type':'get','content':'uuid'}));
     upStream.add(json.encode({'type':'ping','content':''}));*/
-    startStreams();
+    startStreaming();
   }
 
   @override

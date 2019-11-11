@@ -13,7 +13,7 @@ Sink upStream;
 Package packageIn;
 String uuid = '';
 
-void startStreams() {
+void startStreaming() {
   WSChannel.stream.asBroadcastStream();
   downStreamController.addStream(WSChannel.stream);
   upStream = WSChannel.sink;
@@ -32,9 +32,6 @@ void startStreams() {
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
-        break;
-      case  'roomList':
-        Room.roomList = packageIn.content;
         break;
       case  'player':
         Player.activePlayer =Player(packageIn.content);

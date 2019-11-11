@@ -73,7 +73,7 @@ class roomSelectionState extends State<roomSelection>{
                 ),
                 chatListView(context),
                 FloatingActionButton.extended(
-                    heroTag:'enterGame',
+                    heroTag:'randomTask',
                     label: Text('Random task'),
                     onPressed: () {
                       upStream.add(json.encode({'type':'randomTask','content':''}));
