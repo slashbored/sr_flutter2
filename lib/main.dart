@@ -4,7 +4,6 @@ import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'splashScreen.dart';
 import 'localizationBloc.dart';
 
 
@@ -65,5 +64,3 @@ class MyAppState extends State<MyApp>  {
    );
   }
 }
-
-

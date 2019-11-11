@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'localizationBloc.dart';
 import 'generated/i18n.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 
+import 'webSocket.dart';
 import 'playerClass.dart';
 import 'roomSelection.dart';
 
@@ -12,8 +13,6 @@ class playerEditing extends StatefulWidget  {
 }
 
 class playerEditingState extends State<playerEditing>{
-  static String playerName;
-  static String playerSex;
   final TextEditingController nameTextfieldController = TextEditingController();
 
   @override
@@ -21,6 +20,18 @@ class playerEditingState extends State<playerEditing>{
     // Clean up the controller when the widget is disposed.
     nameTextfieldController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    /*WSChannel.stream.asBroadcastStream();
+    downStreamController.addStream(WSChannel.stream);
+    upStream = WSChannel.sink;
+    downStream = downStreamController.stream;
+    upStream.add(json.encode({'type':'get','content':'uuid'}));
+    upStream.add(json.encode({'type':'ping','content':''}));*/
+    startStreams();
   }
 
   @override
@@ -52,29 +63,33 @@ class playerEditingState extends State<playerEditing>{
                   label: Text(S.of(context).sexMale),
                   onPressed: (){
                     setState(() {
+                      upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
+                      upStream.add(json.encode({'type':'setSex','content':'m'}));
                       Player.activePlayer.sex = 'm';
                     });
                   },
-                  backgroundColor: Player.activePlayer.sex=='m'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='m'?getSexcolor(Player.activePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexFemale),
                   onPressed: (){
                     setState(() {
+                      upStream.add(json.encode({'type':'setSex','content':'f'}));
                       Player.activePlayer.sex = 'f';
                     });
                   },
-                  backgroundColor: Player.activePlayer.sex=='f'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='f'?getSexcolor(Player.activePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexX),
                   onPressed: (){
                     setState(() {
+                      upStream.add(json.encode({'type':'setSex','content':'o'}));
                       Player.activePlayer.sex = 'o';
                     });
                   },
-                  backgroundColor: Player.activePlayer.sex=='o'?getSexcolor(Player.activePlayer.sex):Colors.grey,
-                ),
+                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='o'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+    ),
               ],
             )
           ],
@@ -84,6 +99,7 @@ class playerEditingState extends State<playerEditing>{
         onPressed: () {
           Player.activePlayer.name = nameTextfieldController.text.toString();
           if  (Player.activePlayer.name!=""&&Player.activePlayer.sex!="") {
+            upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
             Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
           }
           else  {
@@ -114,5 +130,4 @@ class playerEditingState extends State<playerEditing>{
         break;
     }
   }
-
 }

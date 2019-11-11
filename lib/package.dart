@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Package {
   String type;
   var content;
