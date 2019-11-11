@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
-import 'roomClass.dart';
 
+import 'roomClass.dart';
+import 'taskClass.dart';
 
 class roomSelection extends StatefulWidget{
   @override
@@ -78,6 +79,11 @@ class roomSelectionState extends State<roomSelection>{
                     onPressed: () {
                       upStream.add(json.encode({'type':'randomTask','content':''}));
                     }
+                ),
+                Flexible(
+                  child: Text(
+                    Room.activeTaskID!=null?Room.activeTaskID.toString():""
+                  ),
                 )
               ]
             )

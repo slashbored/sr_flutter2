@@ -2,8 +2,10 @@ import 'package:web_socket_channel/io.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
+
 import 'roomClass.dart';
 import 'playerClass.dart';
+import 'taskClass.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -34,7 +36,7 @@ void startStreaming() {
         Room.activeRoom = Room(Map.from(packageIn.content));
         break;
       case  'player':
-        Player.activePlayer =Player(packageIn.content);
+        Player.activePlayer = Player(packageIn.content);
         break;
     }
   });
