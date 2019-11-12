@@ -80,9 +80,16 @@ class roomSelectionState extends State<roomSelection>{
                       upStream.add(json.encode({'type':'randomTask','content':''}));
                     }
                 ),
+                FloatingActionButton.extended(
+                    heroTag:'randomPlayer',
+                    label: Text('random player'),
+                    onPressed: () {
+                      upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                    }
+                ),
                 Flexible(
                   child: Text(
-                    Room.activeTaskID!=null?Room.activeTaskID.toString():""
+                    Room.activeRoom!=null&&Room.activeRoom.activeTaskID!=null?Room.activeRoom.activeTaskID.toString():""
                   ),
                 )
               ]
@@ -111,7 +118,7 @@ class roomSelectionState extends State<roomSelection>{
                     itemCount: Room.activeRoom.playerDB.length,
                     itemBuilder: (context, int index){
                       return Text(
-                        Room.activeRoom.playerDB[index].name,
+                        Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
                         textAlign: TextAlign.center,
                       );
                     }

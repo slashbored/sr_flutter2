@@ -36,7 +36,7 @@ void startStreaming() {
         Room.activeRoom = Room(Map.from(packageIn.content));
         break;
       case  'player':
-        Player.activePlayer = Player(packageIn.content);
+        Player.mePlayer = Player(packageIn.content);
         break;
     }
   });

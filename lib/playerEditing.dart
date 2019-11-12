@@ -32,6 +32,7 @@ class playerEditingState extends State<playerEditing>{
     upStream.add(json.encode({'type':'get','content':'uuid'}));
     upStream.add(json.encode({'type':'ping','content':''}));*/
     startStreaming();
+    upStream.add(jsonEncode({'type':'get','content':'createPlayer'}));
   }
 
   @override
@@ -63,32 +64,32 @@ class playerEditingState extends State<playerEditing>{
                   label: Text(S.of(context).sexMale),
                   onPressed: (){
                     setState(() {
-                      upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
+                      //upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
                       upStream.add(json.encode({'type':'setSex','content':'m'}));
-                      Player.activePlayer.sex = 'm';
+                      Player.mePlayer.sex = 'm';
                     });
                   },
-                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='m'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+                  backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexFemale),
                   onPressed: (){
                     setState(() {
                       upStream.add(json.encode({'type':'setSex','content':'f'}));
-                      Player.activePlayer.sex = 'f';
+                      Player.mePlayer.sex = 'f';
                     });
                   },
-                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='f'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+                  backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.grey,
                 ),
                 InputChip(
                   label: Text(S.of(context).sexX),
                   onPressed: (){
                     setState(() {
                       upStream.add(json.encode({'type':'setSex','content':'o'}));
-                      Player.activePlayer.sex = 'o';
+                      Player.mePlayer.sex = 'o';
                     });
                   },
-                  backgroundColor: Player.activePlayer!=null&&Player.activePlayer.sex=='o'?getSexcolor(Player.activePlayer.sex):Colors.grey,
+                  backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='o'?getSexcolor(Player.mePlayer.sex):Colors.grey,
     ),
               ],
             )
@@ -97,9 +98,9 @@ class playerEditingState extends State<playerEditing>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Player.activePlayer.name = nameTextfieldController.text.toString();
-          if  (Player.activePlayer.name!=""&&Player.activePlayer.sex!="") {
-            upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
+          Player.mePlayer.name = nameTextfieldController.text.toString();
+          if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+            upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
             Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
           }
           else  {

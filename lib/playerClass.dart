@@ -3,7 +3,7 @@ class Player  {
   String name;
   String sex;
   int points;
-  static Player activePlayer;
+  static Player mePlayer;
 
   Player(Map data) {
     id    = data['id'];

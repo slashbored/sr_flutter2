@@ -6,8 +6,9 @@ class Room  {
   List playerDB = new List();
   List chatDB   = new List();
   List taskDB   = new List();
+  String gmID;
+  int activeTaskID;
   static Room activeRoom;
-  static int activeTaskID;
 
   Room(Map<String, dynamic> data) {
     id = data['id'];
@@ -18,6 +19,7 @@ class Room  {
     if(data['taskDB']!=null) {
       List.from(data['taskDB']).forEach((taskPlaceHolder) => (taskDB.insert(taskDB.length, Task(taskPlaceHolder))));
     }
+    gmID  = data['gmID'];
     activeTaskID  = data['activeTaskID'];
   }
 }
