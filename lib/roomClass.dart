@@ -8,6 +8,7 @@ class Room  {
   List taskDB   = new List();
   String gmID;
   int activeTaskID;
+  String activePlayerID;
   static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
@@ -21,5 +22,6 @@ class Room  {
     }
     gmID  = data['gmID'];
     activeTaskID  = data['activeTaskID'];
+    activePlayerID  = data['activePlayerID'];
   }
 }
