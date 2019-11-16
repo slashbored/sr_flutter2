@@ -2,6 +2,7 @@ import 'package:web_socket_channel/io.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
@@ -15,12 +16,18 @@ Sink upStream;
 Package packageIn;
 String uuid = '';
 
-void startStreaming() {
+void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
   downStreamController.addStream(WSChannel.stream);
   upStream = WSChannel.sink;
   downStream = downStreamController.stream;
-  upStream.add(json.encode({'type':'get','content':'uuid'}));
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  if(prefs.getString('uuid')==null)  {
+    upStream.add(json.encode({'type':'get','content':'uuid'}));
+  }
+  else  {
+    print(prefs.getString('uuid'));
+  }
   upStream.add(json.encode({'type':'ping','content':''}));
 
   downStream.listen((data)  {
@@ -30,7 +37,9 @@ void startStreaming() {
         upStream.add(json.encode({'type':'ping','content':''}));
         break;
       case 'uuid':
-        uuid  = packageIn.content.toString();
+        prefs.setString('uuid', packageIn.content.toString());
+        //uuid  = packageIn.content.toString();
+        print(prefs.getString('uuid'));
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
