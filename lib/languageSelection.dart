@@ -80,6 +80,13 @@ class languageSelectionState extends State<languageSelection>{
                           ),
                           flex: 1,
                         ),
+                        new Flexible(
+                            child: new FloatingActionButton.extended(
+                              heroTag:  'clearPrefs',
+                              label: Text("Clear Prefs"),
+                              onPressed:  ()  {
+                                _clearPrefs();
+                              })),
                         new Spacer(
                           flex: 1
                         )
@@ -95,4 +102,10 @@ class languageSelectionState extends State<languageSelection>{
       )
     );
   }
+
+  _clearPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
+
 }

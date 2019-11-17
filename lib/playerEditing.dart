@@ -32,7 +32,7 @@ class playerEditingState extends State<playerEditing>{
     upStream.add(json.encode({'type':'get','content':'uuid'}));
     upStream.add(json.encode({'type':'ping','content':''}));*/
     startStreaming();
-    upStream.add(jsonEncode({'type':'get','content':'createPlayer'}));
+
   }
 
   @override

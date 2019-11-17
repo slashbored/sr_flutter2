@@ -26,8 +26,9 @@ void startStreaming() async{
     upStream.add(json.encode({'type':'get','content':'uuid'}));
   }
   else  {
-    print(prefs.getString('uuid'));
+    upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
+  upStream.add(jsonEncode({'type':'get','content':'createPlayer'}));
   upStream.add(json.encode({'type':'ping','content':''}));
 
   downStream.listen((data)  {
