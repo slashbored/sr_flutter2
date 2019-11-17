@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
@@ -6,6 +7,7 @@ import 'dart:convert';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
+import 'taskViewPage.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override
@@ -54,17 +56,29 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                         ]
                     )
                 ),
-                FloatingActionButton(
+                /*FloatingActionButton(
                   heroTag:'continueToCats',
                   child: Icon(Icons.arrow_forward_ios),
                   onPressed: () {
                   },
-                )
+                )*/
+                continueToCatsFAB(context)
               ]
           );
     }
     else  {
       return Text(S.of(context).noPlayersYet);
     }
+  }
+
+  Widget continueToCatsFAB(BuildContext context)  {
+    return FloatingActionButton(
+      heroTag:'continueToCats',
+      child: Icon(Icons.arrow_forward_ios),
+      backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
+      onPressed: () {
+        Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage())):null;
+      },
+    );
   }
 }
