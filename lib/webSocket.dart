@@ -14,7 +14,6 @@ final StreamController downStreamController = new StreamController.broadcast();
 Stream downStream;
 Sink upStream;
 Package packageIn;
-String uuid = '';
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -39,6 +38,7 @@ void startStreaming() async{
         break;
       case 'uuid':
         prefs.setString('uuid', packageIn.content.toString());
+        Player.mePlayer.id  = prefs.getString('uuid');
         //uuid  = packageIn.content.toString();
         print(prefs.getString('uuid'));
         break;
