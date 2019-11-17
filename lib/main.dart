@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sr_flutter2/languageSelection.dart';
+import 'package:sr_flutter2/languageSelectionPage.dart';
 import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'languageSelection.dart';
-import 'roomSelection.dart';
+import 'languageSelectionPage.dart';
+import 'roomSelectionPage.dart';
 
 
 class splashScreen extends StatefulWidget{

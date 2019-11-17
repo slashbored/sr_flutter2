@@ -5,7 +5,7 @@ import 'dart:convert';
 
 import 'webSocket.dart';
 import 'playerClass.dart';
-import 'roomSelection.dart';
+import 'roomSelectionPage.dart';
 
 class playerEditing extends StatefulWidget  {
   @override

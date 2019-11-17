@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
 
 import 'roomClass.dart';
+import 'roomOverviewPage.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
@@ -15,9 +17,9 @@ class roomSelection extends StatefulWidget{
 class roomSelectionState extends State<roomSelection>{
 
 
-  final TextEditingController nameTextfieldController = TextEditingController();
+  //final TextEditingController nameTextfieldController = TextEditingController();
   final TextEditingController joinroomTextfieldController = TextEditingController();
-  final TextEditingController addToChatTextfieldController = TextEditingController();
+  //final TextEditingController addToChatTextfieldController = TextEditingController();
 
   @override
   void initState()  {
@@ -26,7 +28,8 @@ class roomSelectionState extends State<roomSelection>{
 
   @override
   void dispose() {
-    nameTextfieldController.dispose();
+    //nameTextfieldController.dispose();
+    joinroomTextfieldController.dispose();
     super.dispose();
   }
 
@@ -45,6 +48,7 @@ class roomSelectionState extends State<roomSelection>{
                   label: Text('Create a room'),
                   onPressed: () {
                     upStream.add(json.encode({'type':'createRoom','content':''}));
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
                     //upStream.add(json.encode({'type':'get','content':'roomList'}));
                   },
                 ),
@@ -58,10 +62,11 @@ class roomSelectionState extends State<roomSelection>{
                   label: Text('Join room'),
                   onPressed: () {
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                  },
+                    joinRoom();
+                    },
                 ),
-                playerListView(context),
-                Flexible(
+                //playerListView(context),
+                /*Flexible(
                   child: TextField(
                     controller: addToChatTextfieldController
                   )
@@ -74,7 +79,7 @@ class roomSelectionState extends State<roomSelection>{
                   }
                 ),
                 chatListView(context),
-                /*FloatingActionButton.extended(
+                FloatingActionButton.extended(
                     heroTag:'randomTask',
                     label: Text('Random task'),
                     onPressed: () {
@@ -147,7 +152,7 @@ class roomSelectionState extends State<roomSelection>{
     }
   }
 
-  Widget chatListView(BuildContext context) {
+  /*Widget chatListView(BuildContext context) {
     if (Room.activeRoom!=null) {
       return  Flexible(
         child: ListView(
@@ -169,7 +174,7 @@ class roomSelectionState extends State<roomSelection>{
     else  {
       return Text("");
     }
-  }
+  }*/
 
   Widget taskStringText(BuildContext context) {
     if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
@@ -192,5 +197,10 @@ class roomSelectionState extends State<roomSelection>{
     else  {
       return Text("");
     }
+  }
+
+  void joinRoom() async{
+    await new Future.delayed(const Duration(milliseconds: 500));
+    Room.activeRoom!=null?Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage())):null;
   }
 }
