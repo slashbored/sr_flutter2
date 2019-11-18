@@ -23,30 +23,31 @@ class taskViewPageState extends State<taskViewPage>{
         stream: downStream,
         builder:  (context, snapShot) {
           return Center(
-            child: Column(
+            child: taskStringColumn(context)
+            /*Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Flexible(
-                  child: taskStringText(context),
+                  child: taskStringColumn(context),
                 ),
-                FloatingActionButton.extended(
+                /*FloatingActionButton.extended(
                     heroTag:'RANDOM',
                     label: Text('RANDOM!'),
                     onPressed: () {
                       upStream.add(json.encode({'type':'randomPlayer','content':''}));
                       upStream.add(json.encode({'type':'randomTask','content':''}));
                     }
-                )
+                )*/
               ],
-            ),
+            )*/
           );
         }
       ),
     );
   }
 
-  Widget taskStringText(BuildContext context) {
+  /*Widget taskStringText(BuildContext context) {
     if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
         Room.activeRoom.activePlayerID != null) {
       int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
@@ -67,5 +68,64 @@ class taskViewPageState extends State<taskViewPage>{
     else  {
       return Text("");
     }
+  }*/
+
+  Widget taskStringColumn(BuildContext context) {
+    if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
+        Room.activeRoom.activePlayerID != null) {
+      int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
+      test.id == Room.activeRoom.activeTaskID);
+      if  (Room.activeRoom.taskDB[taskIDindex].typeID == 9 ||
+          Room.activeRoom.taskDB[taskIDindex].typeID == 10) {
+        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: Text("Taboo or pantomime!"),
+              ),
+              FloatingActionButton.extended(
+                  heroTag:'RANDOM',
+                  label: Text('RANDOM!'),
+                  onPressed: () {
+                    upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                    upStream.add(json.encode({'type':'randomTask','content':''}));
+                  }
+              )
+            ],
+          );
+        }
+        else  {
+          return Text("🤐",
+            style: TextStyle(
+              fontSize:72
+            ),);
+        }
+      }
+      else  {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Flexible(
+              child: Text("Something else"),
+            ),
+            FloatingActionButton.extended(
+                heroTag:'RANDOM',
+                label: Text('RANDOM!'),
+                onPressed: () {
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                }
+            )
+          ],
+        );;
+      }
+    }
+    else  {
+      return Text("");
+    }
   }
+
 }

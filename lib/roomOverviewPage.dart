@@ -4,6 +4,7 @@ import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
 
+import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
@@ -56,12 +57,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                         ]
                     )
                 ),
-                /*FloatingActionButton(
-                  heroTag:'continueToCats',
-                  child: Icon(Icons.arrow_forward_ios),
-                  onPressed: () {
-                  },
-                )*/
                 continueToCatsFAB(context)
               ]
           );
@@ -72,13 +67,32 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   }
 
   Widget continueToCatsFAB(BuildContext context)  {
-    return FloatingActionButton(
-      heroTag:'continueToCats',
-      child: Icon(Icons.arrow_forward_ios),
-      backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
-      onPressed: () {
-        Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage())):null;
-      },
-    );
+    roomOverviewContext = context;
+    if  (Room.activeRoom.gmID==Player.mePlayer.id)  {
+      return FloatingActionButton(
+        heroTag:'continueToCats',
+        child: Icon(Icons.arrow_forward_ios),
+        backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
+        onPressed: () {
+          if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
+            upStream.add(json.encode({'type':'randomPlayer','content':''}));
+            upStream.add(json.encode({'type':'randomTask','content':''}));
+            upStream.add(json.encode({'type':'startGame','content':''}));
+            //goToTaskViewPage();
+          }
+        },
+      );
+    }
+    else  {
+      return Spacer();
+    }
+
   }
+
+  void goToTaskViewPage(theContext) async {
+    await new Future.delayed(const Duration(milliseconds: 500));
+    //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
+    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+  }
+
 }

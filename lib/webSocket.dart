@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -7,6 +10,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
+import 'taskViewPage.dart';
+import 'roomOverviewPage.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -14,6 +19,7 @@ final StreamController downStreamController = new StreamController.broadcast();
 Stream downStream;
 Sink upStream;
 Package packageIn;
+BuildContext roomOverviewContext;
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -48,7 +54,12 @@ void startStreaming() async{
       case  'player':
         Player.mePlayer = Player(packageIn.content);
         break;
+      case  'startGame':
+        print('Game started!');
+        roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
+        break;
     }
   });
 
 }
+
