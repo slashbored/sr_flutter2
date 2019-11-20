@@ -1,3 +1,5 @@
+import 'roomClass.dart';
+
 class Task{
   int id;
   int categoryID;
@@ -61,5 +63,11 @@ class Task{
     winnerString_de = data['winnerString_de'];
     looserString_en = data['looserString_en'];
     looserString_de = data['looserString_de'];
+  }
+
+  static Task getTaskByID(int taskID)  {
+    int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
+    test.id == Room.activeRoom.activeTaskID);
+    return Room.activeRoom.taskDB[taskIDindex];
   }
 }

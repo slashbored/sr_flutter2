@@ -16,6 +16,8 @@ class taskViewPage extends StatefulWidget{
 
 class taskViewPageState extends State<taskViewPage>{
 
+  Task currentTask;
+
   @override
   Widget build(BuildContext context)  {
     return Scaffold(
@@ -24,66 +26,24 @@ class taskViewPageState extends State<taskViewPage>{
         builder:  (context, snapShot) {
           return Center(
             child: taskStringColumn(context)
-            /*Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Flexible(
-                  child: taskStringColumn(context),
-                ),
-                /*FloatingActionButton.extended(
-                    heroTag:'RANDOM',
-                    label: Text('RANDOM!'),
-                    onPressed: () {
-                      upStream.add(json.encode({'type':'randomPlayer','content':''}));
-                      upStream.add(json.encode({'type':'randomTask','content':''}));
-                    }
-                )*/
-              ],
-            )*/
           );
         }
       ),
     );
   }
 
-  /*Widget taskStringText(BuildContext context) {
-    if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) {
-      int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
-      test.id == Room.activeRoom.activeTaskID);
-      if  (Room.activeRoom.taskDB[taskIDindex].typeID == 9 ||
-          Room.activeRoom.taskDB[taskIDindex].typeID == 10) {
-        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) {
-          return Text("Taboo or pantomime!");
-        }
-        else  {
-          return Text("🤐");
-        }
-      }
-      else  {
-        return Text("Something else");
-      }
-    }
-    else  {
-      return Text("");
-    }
-  }*/
-
   Widget taskStringColumn(BuildContext context) {
     if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) {
-      int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
-      test.id == Room.activeRoom.activeTaskID);
-      if  (Room.activeRoom.taskDB[taskIDindex].typeID == 9 ||
-          Room.activeRoom.taskDB[taskIDindex].typeID == 10) {
-        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) {
+        Room.activeRoom.activePlayerID != null) { //does it work?
+      currentTask = Task.getTaskByID(Room.activeRoom.activeTaskID);
+      if(pantoOrTaboo(currentTask)) {
+        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) { // is activeplayer me?
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Flexible(
-                child: Text("Taboo or pantomime!"),
+                child: Text(currentTask.nString_en),
               ),
               FloatingActionButton.extended(
                   heroTag:'RANDOM',
@@ -99,19 +59,39 @@ class taskViewPageState extends State<taskViewPage>{
         else  {
           return Text("🤐",
             style: TextStyle(
-              fontSize:72
+              fontSize:90
             ),);
         }
       }
       else  {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Flexible(
-              child: Text("Something else"),
-            ),
-            FloatingActionButton.extended(
+        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: Text("Something else"),
+              )
+              /*FloatingActionButton.extended(
+                heroTag:'RANDOM',
+                label: Text('RANDOM!'),
+                onPressed: () {
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                }
+            )*/
+            ],
+          );
+        }
+        else  {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Flexible(
+                child: Text("Something else"),
+              ),
+              FloatingActionButton.extended(
                 heroTag:'RANDOM',
                 label: Text('RANDOM!'),
                 onPressed: () {
@@ -119,12 +99,23 @@ class taskViewPageState extends State<taskViewPage>{
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                 }
             )
-          ],
-        );;
+            ],
+          );
+        }
       }
     }
     else  {
-      return Text("");
+      return Text("Something went wrong!");
+    }
+  }
+
+  bool pantoOrTaboo(Task taskplaceholder) {
+    if  (taskplaceholder.typeID == 9 || //9 Panto, 10 Taboo
+        taskplaceholder.typeID == 10) {
+      return true;
+    }
+    else  {
+      return false;
     }
   }
 
