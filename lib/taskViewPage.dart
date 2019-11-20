@@ -108,7 +108,7 @@ class taskViewPageState extends State<taskViewPage>{
       }
     }
     else  {
-      return Text("Something went wrong!");
+      return Text("Something went HORRIBLY wrong!");
     }
   }
 
@@ -122,9 +122,20 @@ class taskViewPageState extends State<taskViewPage>{
     }
   }
 
+  bool isChoice(Task taskplaceholder) {
+    if  ( taskplaceholder.typeID == 4 || //4,5,6 are choicetasks
+          taskplaceholder.typeID == 5 ||
+          taskplaceholder.typeID == 6) {
+      return true;
+    }
+    else  {
+      return false;
+    }
+  }
+
   bool isPantoOrTaboo(Task taskplaceholder) {
-    if  (taskplaceholder.typeID == 9 || //9 Panto, 10 Taboo
-        taskplaceholder.typeID == 10) {
+    if  ( taskplaceholder.typeID == 9 || //9 Panto, 10 Taboo
+          taskplaceholder.typeID == 10) {
       return true;
     }
     else  {
