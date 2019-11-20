@@ -45,7 +45,6 @@ void startStreaming() async{
       case 'uuid':
         prefs.setString('uuid', packageIn.content.toString());
         Player.mePlayer.id  = prefs.getString('uuid');
-        //uuid  = packageIn.content.toString();
         print(prefs.getString('uuid'));
         break;
       case 'room':

@@ -1,3 +1,5 @@
+import 'roomClass.dart';
+
 class Player  {
   String id;
   String name;
@@ -12,5 +14,11 @@ class Player  {
     sex   = data['sex'];
     points  = data['points'];
     roomID  = data['roomID'];
+  }
+
+  static Player getPlayerByID(String playerID)  {
+    int playerIDindex = Room.activeRoom.playerDB.indexWhere((test) =>
+    test.id == Room.activeRoom.activePlayerID);
+    return Room.activeRoom.playerDB[playerIDindex];
   }
 }

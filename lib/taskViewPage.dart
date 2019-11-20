@@ -16,7 +16,9 @@ class taskViewPage extends StatefulWidget{
 
 class taskViewPageState extends State<taskViewPage>{
 
+  Room currentRoom;
   Task currentTask;
+  Player currentPlayer;
 
   @override
   Widget build(BuildContext context)  {
@@ -33,11 +35,12 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   Widget taskStringColumn(BuildContext context) {
-    if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) { //does it work?
-      currentTask = Task.getTaskByID(Room.activeRoom.activeTaskID);
-      if(pantoOrTaboo(currentTask)) {
-        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) { // is activeplayer me?
+    if  (isWorkingAtAll()) { //does it work?
+      currentRoom   = Room.activeRoom;
+      currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
+      currentPlayer = Player.getPlayerByID(currentRoom.activePlayerID);
+      if(isPantoOrTaboo(currentTask)) {
+        if  (currentPlayer.id==Player.mePlayer.id) { // is activeplayer me?
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +67,7 @@ class taskViewPageState extends State<taskViewPage>{
         }
       }
       else  {
-        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
+        if  (currentPlayer.id==Player.mePlayer.id)  {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +112,17 @@ class taskViewPageState extends State<taskViewPage>{
     }
   }
 
-  bool pantoOrTaboo(Task taskplaceholder) {
+  bool isWorkingAtAll() {
+    if(Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
+        Room.activeRoom.activePlayerID != null) {
+      return true;
+    }
+    else  {
+      return false;
+    }
+  }
+
+  bool isPantoOrTaboo(Task taskplaceholder) {
     if  (taskplaceholder.typeID == 9 || //9 Panto, 10 Taboo
         taskplaceholder.typeID == 10) {
       return true;

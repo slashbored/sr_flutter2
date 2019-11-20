@@ -9,6 +9,7 @@ class Room  {
   String gmID;
   int activeTaskID;
   String activePlayerID;
+  String activeSecondPlayerID;
   static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
@@ -23,5 +24,11 @@ class Room  {
     gmID  = data['gmID'];
     activeTaskID  = data['activeTaskID'];
     activePlayerID  = data['activePlayerID'];
+    if(data['activeSecondPlayerID']!=null)  {
+      activeSecondPlayerID  = data['activeSecondPlayerID'];
+    }
+    else  {
+      activeSecondPlayerID=="";
+    }
   }
 }
