@@ -136,9 +136,6 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     return Spacer();
   }
   else  {
-
+    return Spacer();
   }
 }
-
-/*
-* */

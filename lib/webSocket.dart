@@ -9,8 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
-import 'taskClass.dart';
-import 'taskViewPage.dart';
 import 'roomOverviewPage.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
