@@ -7,6 +7,10 @@
   "sexX": "Divers",
   "sexFemale": "Weiblein",
   "noPlayersYet": "Noch keine Spieler vorhanden!",
-  "turn": "ist am Zug"
-
+  "turn": "ist am Zug",
+  "mimeThis": "Pantomimimi folgendes:",
+  "taboop1": "Beschreibe \"",
+  "taboop2": "\" ohne folgende Wörter zu benutzen:",
+  "listThis": "List the following:",
+  "compareThis": "Just between you and me (and the others),"
 }

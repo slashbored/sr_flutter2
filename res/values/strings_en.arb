@@ -7,5 +7,10 @@
   "sexX": "Other",
   "sexFemale": "Female",
   "noPlayersYet": "No players yet!",
-  "turn": "turn"
+  "turn": "turn",
+  "mimeThis": "Pantomime this",
+  "taboop1": "Explain \"",
+  "taboop2": "\" without using the following words:",
+  "listThis": "Listet folgendes auf:",
+  "compareThis": "Mal unter uns beiden (und den anderen),"
 }

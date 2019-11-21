@@ -81,7 +81,7 @@ class playerEditingState extends State<playerEditing>{
                   },
                   backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.grey,
                 ),
-                InputChip(
+                /*InputChip(
                   label: Text(S.of(context).sexX),
                   onPressed: (){
                     setState(() {
@@ -90,7 +90,7 @@ class playerEditingState extends State<playerEditing>{
                     });
                   },
                   backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='o'?getSexcolor(Player.mePlayer.sex):Colors.grey,
-    ),
+    ),*/
               ],
             )
           ],

@@ -22,13 +22,18 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get comingSoon => "Coming soon!";
+  String get compareThis => "Mal unter uns beiden (und den anderen),";
   String get languageSelector => "Please select the language:";
+  String get listThis => "Listet folgendes auf:";
+  String get mimeThis => "Pantomime this";
   String get modeSelector => "Please select the gamemode:";
   String get noPlayersYet => "No players yet!";
   String get pleaseCompleteEntries => "Please complete your entries.";
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
+  String get taboop1 => "Explain \"";
+  String get taboop2 => "\" without using the following words:";
   String get turn => "turn";
 }
 
@@ -43,15 +48,25 @@ class $de extends S {
   @override
   String get pleaseCompleteEntries => "Bitte vervollständige deine Angaben.";
   @override
-  String get comingSoon => "Kommt demnächst!";
+  String get taboop1 => "Beschreibe \"";
   @override
-  String get sexMale => "Männlein";
+  String get taboop2 => "\" ohne folgende Wörter zu benutzen:";
   @override
   String get sexX => "Divers";
   @override
   String get sexFemale => "Weiblein";
   @override
+  String get listThis => "List the following:";
+  @override
   String get turn => "ist am Zug";
+  @override
+  String get compareThis => "Just between you and me (and the others),";
+  @override
+  String get comingSoon => "Kommt demnächst!";
+  @override
+  String get sexMale => "Männlein";
+  @override
+  String get mimeThis => "Pantomimimi folgendes:";
   @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
   @override
