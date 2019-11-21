@@ -28,7 +28,7 @@ class Room  {
       activeSecondPlayerID  = data['activeSecondPlayerID'];
     }
     else  {
-      activeSecondPlayerID=="";
+      activeSecondPlayerID==null;
     }
   }
 }

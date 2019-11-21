@@ -29,6 +29,7 @@ class S implements WidgetsLocalizations {
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
+  String get turn => "turn";
 }
 
 class $de extends S {
@@ -49,6 +50,8 @@ class $de extends S {
   String get sexX => "Divers";
   @override
   String get sexFemale => "Weiblein";
+  @override
+  String get turn => "ist am Zug";
   @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
   @override

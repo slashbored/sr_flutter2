@@ -6,5 +6,6 @@
   "sexMale": "Male",
   "sexX": "Other",
   "sexFemale": "Female",
-  "noPlayersYet": "No players yet!"
+  "noPlayersYet": "No players yet!",
+  "turn": "turn"
 }

@@ -8,6 +8,8 @@ import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
+import 'taskViewFirstRow.dart';
+
 
 class taskViewPage extends StatefulWidget{
   @override
@@ -19,19 +21,57 @@ class taskViewPageState extends State<taskViewPage>{
   Room currentRoom;
   Task currentTask;
   Player currentPlayer;
+  Player currentSecondPlayer;
 
   @override
   Widget build(BuildContext context)  {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: downStream,
-        builder:  (context, snapShot) {
-          return Center(
+    return mainBody(context);
+  }
+
+  Widget mainBody(BuildContext context)  {
+    if  (isWorkingAtAll()) {
+      currentRoom   = Room.activeRoom;
+      currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
+      currentPlayer = Player.getPlayerByID(currentRoom.activePlayerID);
+      if  (currentRoom.activeSecondPlayerID!=null)  {
+        currentSecondPlayer = Player.getPlayerByID(currentRoom.activeSecondPlayerID);
+      }
+        return Scaffold(
+          body: StreamBuilder(
+              stream: downStream,
+              builder:  (context, snapShot) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    new Expanded(
+                      child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                      flex: 310,
+                    ),
+                    new Expanded(
+                        child: null,
+                        flex: 310
+                    ),
+                    new Expanded(
+                        child: null,
+                        flex: 310
+                    ),
+                    new Expanded(
+                        child: null,
+                        flex: 70
+                    )
+                  ],
+                );
+                /*return Center(
             child: taskStringColumn(context)
-          );
-        }
-      ),
-    );
+          );*/
+              }
+          ),
+        );
+
+    }
+    else  {
+      return Text("Something went HORRIBLY wrong!");
+    }
   }
 
   Widget taskStringColumn(BuildContext context) {

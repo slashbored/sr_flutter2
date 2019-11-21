@@ -18,7 +18,7 @@ class Player  {
 
   static Player getPlayerByID(String playerID)  {
     int playerIDindex = Room.activeRoom.playerDB.indexWhere((test) =>
-    test.id == Room.activeRoom.activePlayerID);
+    test.id == playerID);
     return Room.activeRoom.playerDB[playerIDindex];
   }
 }

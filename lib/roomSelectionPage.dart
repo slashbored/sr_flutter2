@@ -93,14 +93,6 @@ class roomSelectionState extends State<roomSelection>{
                       upStream.add(json.encode({'type':'randomPlayer','content':''}));
                     }
                 ),*/
-                FloatingActionButton.extended(
-                    heroTag:'RANDOM',
-                    label: Text('RANDOM!'),
-                    onPressed: () {
-                      upStream.add(json.encode({'type':'randomPlayer','content':''}));
-                      upStream.add(json.encode({'type':'randomTask','content':''}));
-                    }
-                ),
                 /*Flexible(
                   child: Text(
                     Room.activeRoom!=null&&Room.activeRoom.activeTaskID!=null?Room.activeRoom.activeTaskID.toString():""
