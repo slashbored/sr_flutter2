@@ -44,16 +44,17 @@ class MyAppState extends State<MyApp>  {
        bloc: localizationBloc,
        builder: (context, String lelocale)  {
          return MaterialApp(
-           locale: Locale(lelocale),
+           //locale: Locale(lelocale),
            title: 'Shitroulette',
            localizationsDelegates: [
              //_localeOverrideDelegate,
              S.delegate
            ],
-           supportedLocales: [
-             const Locale("de", ""),
-             const Locale("en", "")
-           ],
+           supportedLocales:
+             S.delegate.supportedLocales
+             /*const Locale("de", ""),
+             const Locale("en", "")*/
+           ,
            theme: new ThemeData(
              primaryColor: Colors.black,
            ),

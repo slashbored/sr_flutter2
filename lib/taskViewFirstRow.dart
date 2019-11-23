@@ -114,6 +114,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     if  (Room.activeRoom.activePlayerID==firstPlayer.id)  {
       return Center(
         child: RichText(
+          textAlign: TextAlign.center,
           text: TextSpan(
             style: _titleStyle,
             children: <TextSpan>[
@@ -126,7 +127,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
               TextSpan(
                 text: S.of(context).taboop2
               )
-            ]
+            ],
           ),
         ),
       );

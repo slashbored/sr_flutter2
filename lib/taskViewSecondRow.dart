@@ -7,6 +7,7 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 
 String locale;
+List bannedWords;
 
 final TextStyle _taskStyle = const TextStyle(
     fontSize: 36,
@@ -25,33 +26,34 @@ final TextStyle _femaleTaskStyle = const TextStyle(
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task)  {
   locale  = Localizations.localeOf(context).toString();
-  if (task.typeID==1||task.typeID==2||task.typeID==3||task.typeID==7||task.typeID==8||task.typeID==9||task.typeID==11)  {
+  if  (task.typeID==1||task.typeID==2||task.typeID==3||task.typeID==7||task.typeID==8||task.typeID==9||task.typeID==11)  {
     return Text(
         getStringByLocale(task, locale, "n")
     );
   }
-
+  if  (task.typeID==4||task.typeID==5||task.typeID==6)  {
+    return Text("Later...");
+  }
   if  (task.typeID==10) {
-    return Flexible(
-      child: ListView(
+    bannedWords  = getListByLocale(task, locale) ;
+        return  ListView(
           children: <Widget>[
             ListView.builder(
                 shrinkWrap: true,
-                itemCount: getListByLocale(task, locale).length,
+                itemCount: bannedWords.length,
                 itemBuilder: (context, int index){
                   return Text(
                     //Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
-                    getListByLocale(task, locale)[index],
+                    bannedWords[index].toString(),
                     textAlign: TextAlign.center,
                   );
                 }
             )
           ]
-      ),
-    );
+      );
   }
   else  {
-    return Text("Later..");
+    return Text("Ok, what?!");
   }
 }
 

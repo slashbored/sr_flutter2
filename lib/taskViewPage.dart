@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sr_flutter2/taskViewSecondRow.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
@@ -48,17 +49,17 @@ class taskViewPageState extends State<taskViewPage>{
                       flex: 310,
                     ),
                     new Expanded(
-                        child: null,
+                        child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
                         flex: 310
                     ),
-                    new Expanded(
+                    /*new Expanded(
                         child: null,
                         flex: 310
                     ),
                     new Expanded(
                         child: null,
                         flex: 70
-                    )
+                    )*/
                   ],
                 );
                 /*return Center(
