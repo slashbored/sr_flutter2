@@ -6,6 +6,8 @@ import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
+String locale;
+
 final TextStyle _taskStyle = const TextStyle(
     fontSize: 36,
     color: Colors.black
@@ -22,9 +24,30 @@ final TextStyle _femaleTaskStyle = const TextStyle(
 );
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task)  {
+  locale  = Localizations.localeOf(context).toString();
   if (task.typeID==1||task.typeID==2||task.typeID==3||task.typeID==7||task.typeID==8||task.typeID==9||task.typeID==11)  {
     return Text(
-        getStringByLocale(task, Localizations.localeOf(context).toString(), "n")
+        getStringByLocale(task, locale, "n")
+    );
+  }
+
+  if  (task.typeID==10) {
+    return Flexible(
+      child: ListView(
+          children: <Widget>[
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: getListByLocale(task, locale).length,
+                itemBuilder: (context, int index){
+                  return Text(
+                    //Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
+                    getListByLocale(task, locale)[index],
+                    textAlign: TextAlign.center,
+                  );
+                }
+            )
+          ]
+      ),
     );
   }
   else  {
@@ -47,5 +70,14 @@ String getStringByLocale(Task task, String locale, String stringType)  {
       break;
   }
 
+  }
+}
+
+List getListByLocale(Task task, String locale)  {
+  if  (locale=="en_")  {
+     return task.bannedWords_en;
+  }
+  else  {
+    return task.bannedWords_de;
   }
 }
