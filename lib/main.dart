@@ -44,7 +44,7 @@ class MyAppState extends State<MyApp>  {
        bloc: localizationBloc,
        builder: (context, String lelocale)  {
          return MaterialApp(
-           //locale: Locale(lelocale),
+           locale: Locale(lelocale, ""),
            title: 'Shitroulette',
            localizationsDelegates: [
              //_localeOverrideDelegate,

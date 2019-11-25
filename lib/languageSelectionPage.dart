@@ -62,6 +62,7 @@ class languageSelectionState extends State<languageSelection>{
                               _setLoc('en');
                               localizationBloc.dispatch(switchEvent.switchToEn);
                               print(Localizations.localeOf(context).toString());
+                              S.delegate.load(Locale("en", ""),);
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
                           ),
@@ -75,6 +76,7 @@ class languageSelectionState extends State<languageSelection>{
                               _setLoc('de');
                               localizationBloc.dispatch(switchEvent.switchToDe);
                               print(Localizations.localeOf(context).toString());
+                              S.delegate.load(Locale("de", ""));
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
                           ),

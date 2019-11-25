@@ -4,16 +4,16 @@ enum switchEvent  {switchToDe, switchToEn}
 
 class LocalizationBloc extends Bloc<switchEvent, String>  {
   @override
-  String get initialState => 'en';
+  String get initialState => "en";
 
   @override
   Stream<String> mapEventToState(switchEvent event) async* {
     switch (event) {
       case switchEvent.switchToDe:
-        yield 'de';
+        yield "de";
         break;
       case switchEvent.switchToEn:
-        yield 'en';
+        yield "en";
         break;
     }
   }
