@@ -22,10 +22,10 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get comingSoon => "Coming soon!";
-  String get compareThis => "Mal unter uns beiden (und den anderen),";
+  String get compareThis => "Just between you and me (and the others),";
   String get languageSelector => "Please select the language:";
   String get listThis => "Listet folgendes auf:";
-  String get mimeThis => "Pantomime this";
+  String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get noPlayersYet => "No players yet!";
   String get pleaseCompleteEntries => "Please complete your entries.";
@@ -34,7 +34,7 @@ class S implements WidgetsLocalizations {
   String get sexX => "Other";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
-  String get turn => "turn";
+  String get turn => "s turn";
 }
 
 class $de extends S {
@@ -58,9 +58,9 @@ class $de extends S {
   @override
   String get listThis => "List the following:";
   @override
-  String get turn => "ist am Zug";
+  String get turn => " ist am Zug";
   @override
-  String get compareThis => "Just between you and me (and the others),";
+  String get compareThis => "Mal unter uns beiden (und den anderen),";
   @override
   String get comingSoon => "Kommt demnächst!";
   @override

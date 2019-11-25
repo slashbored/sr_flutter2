@@ -82,16 +82,18 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
   if  (task.typeID==7)  {
     return Center(
       child: Text(
-          S.of(context).compareThis,
-          style: _titleStyle
+        S.of(context).compareThis,
+        style: _titleStyle,
+        textAlign: TextAlign.center,
       ),
     );
   }
   if  (task.typeID==8)  {
     return Center(
       child: Text(
-          S.of(context).listThis,
-          style: _titleStyle
+        S.of(context).listThis,
+        style: _titleStyle,
+        textAlign: TextAlign.center,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sr_flutter2/languageSelectionPage.dart';
 import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,7 +49,9 @@ class MyAppState extends State<MyApp>  {
            title: 'Shitroulette',
            localizationsDelegates: [
              //_localeOverrideDelegate,
-             S.delegate
+             S.delegate,
+             GlobalMaterialLocalizations.delegate,
+             GlobalCupertinoLocalizations.delegate
            ],
            supportedLocales:
              S.delegate.supportedLocales
