@@ -7,67 +7,108 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 
 String locale;
+List splitString;
 List bannedWords;
 
 final TextStyle _taskStyle = const TextStyle(
-    fontSize: 36,
+    fontSize: 18,
     color: Colors.black
 );
 
 final TextStyle _maleTaskStyle = const TextStyle(
-    fontSize: 36,
+    fontSize: 18,
     color: Colors.blue
 );
 
 final TextStyle _femaleTaskStyle = const TextStyle(
-    fontSize: 36,
+    fontSize: 18,
     color: Colors.red
 );
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task)  {
   locale  = Localizations.localeOf(context).toString();
   if  (task.typeID==1||task.typeID==2||task.typeID==3||task.typeID==7||task.typeID==8||task.typeID==11)  {
-    return Text(
-        getStringByLocale(task, locale, "n")
+    return Center(
+      child: Text(
+        getStringByLocale(task, locale, "n"),
+        style: _taskStyle,
+      ),
     );
   }
   if  (task.typeID==4||task.typeID==5||task.typeID==6)  {
-    return Text("Later...");
+    splitString = getStringByLocale(task, locale, "a").split("\$placeholder");
+    return Center(
+      child:  RichText(
+        text: TextSpan(
+            style: _taskStyle,
+            children:<TextSpan>[
+              TextSpan(
+                  text: splitString[0]
+              ),
+              TextSpan(
+                  style: secondPlayer.sex== 'm'
+                      ? _maleTaskStyle
+                      : _femaleTaskStyle,
+                  text: secondPlayer.name
+              ),
+              TextSpan(
+                  text: splitString[1]
+              )
+            ]
+        ),
+      )
+    );
   }
   if  (task.typeID==9) {
-    if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
-      return Text(
-          getStringByLocale(task, locale, "n")
+    if  (firstPlayer.id==Player.mePlayer.id)  {
+      return Center(
+        child: Text(
+            getStringByLocale(task, locale, "n"),
+            style: _taskStyle
+        ),
       );
     }
     else  {
-      return Text(
-        "🤔",
-        style: _taskStyle,);
+      return Center(
+        child: Text(
+          "🤔",
+          style: TextStyle(
+              fontSize: 36
+          ),
+        ),
+      );
     }
   }
   if  (task.typeID==10) {
-    if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
+    if  (firstPlayer.id==Player.mePlayer.id)  {
       bannedWords  = getListByLocale(task, locale) ;
-      return  ListView(
-          children: <Widget>[
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: bannedWords.length,
-                itemBuilder: (context, int index){
-                  return Text(
-                    bannedWords[index].toString(),
-                    textAlign: TextAlign.center,
-                  );
-                }
-            )
-          ]
+      return  Center(
+        child: ListView(
+            children: <Widget>[
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: bannedWords.length,
+                  itemBuilder: (context, int index){
+                    return Text(
+                        bannedWords[index].toString(),
+                        textAlign: TextAlign.center,
+                        style: _taskStyle
+                    );
+                  }
+              )
+            ]
+        ),
       );
     }
     else  {
-      return Text(
-        "🤔",
-        style: _taskStyle,);
+      return Center(
+        child: Text(
+          "🤔",
+          style: TextStyle(
+              fontSize: 36
+          ),
+        ),
+      );
     }
   }
   else  {
@@ -81,12 +122,18 @@ String getStringByLocale(Task task, String locale, String stringType)  {
       case("n"):
         return task.nString_en;
         break;
+      case("a"):
+        return task.aString_en;
+        break;
     }
   }
   else  {
     switch  (stringType)  {
     case("n"):
       return task.nString_de;
+      break;
+    case("a"):
+      return task.aString_de;
       break;
   }
 

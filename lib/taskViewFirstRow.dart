@@ -62,7 +62,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                             : _femaletitleStyle,
                         text: firstPlayer.name
                     ),
-                    TextSpan(
+                    /*TextSpan(
                         text: " & ",
                         style: _titleStyle
                     ),
@@ -71,7 +71,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                             ? _maletitleStyle
                             : _femaletitleStyle,
                         text: secondPlayer.name
-                    )
+                    )*/
                   ]
               ),
           ),
@@ -80,13 +80,14 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     );
   }
   if  (task.typeID==7)  {
-    return Center(
+    return Container();
+    /*Center(
       child: Text(
         S.of(context).compareThis,
         style: _titleStyle,
         textAlign: TextAlign.center,
       ),
-    );
+    );*/
   }
   if  (task.typeID==8)  {
     return Center(
@@ -185,7 +186,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     }
   }
   if  (task.typeID==11) {
-    return Spacer();
+    return Container();
   }
   else  {
     return Spacer();
