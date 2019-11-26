@@ -36,28 +36,33 @@ class roomOverviewPageState extends State<roomOverviewPage>{
             crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Flexible(
+                  flex: 1,
                   child: Text(
                     Room.activeRoom.id,
                     textAlign: TextAlign.center,
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  child:  ListView(
+                      children: <Widget>[
+                        ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: Room.activeRoom.playerDB.length,
+                            itemBuilder: (context, int index){
+                              return Text(
+                                Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
+                                textAlign: TextAlign.center,
+                              );
+                            }
+                        )
+                      ]
                   )
                 ),
                 Flexible(
-                    child:  ListView(
-                        children: <Widget>[
-                          ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: Room.activeRoom.playerDB.length,
-                              itemBuilder: (context, int index){
-                                return Text(
-                                  Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
-                                  textAlign: TextAlign.center,
-                                );
-                              }
-                          )
-                        ]
-                    )
-                ),
-                continueToCatsFAB(context)
+                  flex: 1,
+                  child: continueToCatsFAB(context),
+                )
               ]
           );
     }
@@ -84,7 +89,13 @@ class roomOverviewPageState extends State<roomOverviewPage>{
       );
     }
     else  {
-      return Spacer();
+      return FloatingActionButton(
+        heroTag:'continueToCats_waiting',
+        child: Icon(Icons.hourglass_empty),
+        backgroundColor: Colors.grey,
+        onPressed: () {
+        },
+      );
     }
 
   }

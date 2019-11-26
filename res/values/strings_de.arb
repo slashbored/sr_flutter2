@@ -9,8 +9,10 @@
   "noPlayersYet": "Noch keine Spieler vorhanden!",
   "turn": " ist am Zug",
   "mimeThis": "Pantomimimi folgendes:",
+  "tabooMimeGuessp1": "Was will ",
+  "tabooMimeGuessp2": " uns sagen?",
   "taboop1": "Beschreibe \"",
   "taboop2": "\" ohne folgende Wörter zu benutzen:",
-  "listThis": "List the following:",
+  "listThis": "Listet folgendes auf:",
   "compareThis": "Mal unter uns beiden (und den anderen),"
 }

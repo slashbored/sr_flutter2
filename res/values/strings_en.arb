@@ -9,8 +9,10 @@
   "noPlayersYet": "No players yet!",
   "turn": "s turn",
   "mimeThis": "Pantomime this:",
+  "tabooMimeGuessp1": "What is ",
+  "tabooMimeGuessp2": " trying to tell us?",
   "taboop1": "Explain \"",
   "taboop2": "\" without using the following words:",
-  "listThis": "Listet folgendes auf:",
+  "listThis": "List the following:",
   "compareThis": "Just between you and me (and the others),"
 }

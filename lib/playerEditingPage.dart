@@ -42,7 +42,6 @@ class playerEditingState extends State<playerEditing>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(S.of(context).comingSoon),
             Row(
               children: <Widget>[
                 Spacer(

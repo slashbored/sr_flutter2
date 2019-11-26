@@ -24,7 +24,7 @@ class S implements WidgetsLocalizations {
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get languageSelector => "Please select the language:";
-  String get listThis => "Listet folgendes auf:";
+  String get listThis => "List the following:";
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get noPlayersYet => "No players yet!";
@@ -32,6 +32,8 @@ class S implements WidgetsLocalizations {
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
+  String get tabooMimeGuessp1 => "What is ";
+  String get tabooMimeGuessp2 => " trying to tell us?";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
   String get turn => "s turn";
@@ -56,11 +58,15 @@ class $de extends S {
   @override
   String get sexFemale => "Weiblein";
   @override
-  String get listThis => "List the following:";
+  String get listThis => "Listet folgendes auf:";
   @override
   String get turn => " ist am Zug";
   @override
+  String get tabooMimeGuessp1 => "Was will ";
+  @override
   String get compareThis => "Mal unter uns beiden (und den anderen),";
+  @override
+  String get tabooMimeGuessp2 => " uns sagen?";
   @override
   String get comingSoon => "Kommt demnächst!";
   @override

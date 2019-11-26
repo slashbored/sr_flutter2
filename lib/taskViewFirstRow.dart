@@ -98,7 +98,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     );
   }
   if  (task.typeID==9)  {
-    if  (Room.activeRoom.activePlayerID==firstPlayer.id)  {
+    if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
       return Center(
         child: RichText(
           text: TextSpan(
@@ -109,11 +109,34 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
       );
     }
     else  {
-      return Spacer();
+      return Center(
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+              style: _titleStyle,
+              children:<TextSpan>[
+                TextSpan(
+                style: _titleStyle,
+                text: S.of(context).tabooMimeGuessp1
+                ),
+                TextSpan(
+                    style: firstPlayer.sex== 'm'
+                        ? _maletitleStyle
+                        : _femaletitleStyle,
+                    text: firstPlayer.name
+                ),
+                TextSpan(
+                    style: _titleStyle,
+                    text: S.of(context).tabooMimeGuessp2
+                ),
+              ]
+          ),
+        ),
+      );
     }
   }
   if  (task.typeID==10) {
-    if  (Room.activeRoom.activePlayerID==firstPlayer.id)  {
+    if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
       return Center(
         child: RichText(
           textAlign: TextAlign.center,
@@ -130,6 +153,32 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                 text: S.of(context).taboop2
               )
             ],
+          ),
+        ),
+      );
+    }
+    else  {
+      return Center(
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+              style: _titleStyle,
+              children:<TextSpan>[
+                TextSpan(
+                    style: _titleStyle,
+                    text: S.of(context).tabooMimeGuessp1
+                ),
+                TextSpan(
+                    style: firstPlayer.sex== 'm'
+                        ? _maletitleStyle
+                        : _femaletitleStyle,
+                    text: firstPlayer.name
+                ),
+                TextSpan(
+                    style: _titleStyle,
+                    text: S.of(context).tabooMimeGuessp2
+                ),
+              ]
           ),
         ),
       );
