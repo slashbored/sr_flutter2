@@ -7,12 +7,19 @@
   "sexX": "Divers",
   "sexFemale": "Weiblein",
   "noPlayersYet": "Noch keine Spieler vorhanden!",
+  "ownTurn": "Du bist am Zug!",
   "turn": " ist am Zug",
   "mimeThis": "Pantomimimi folgendes:",
   "tabooMimeGuessp1": "Was will ",
   "tabooMimeGuessp2": " uns sagen?",
   "taboop1": "Beschreibe \"",
   "taboop2": "\" ohne folgende Wörter zu benutzen:",
+  "tabooMimeWinStyle1": "Geht doch!",
+  "tabooMimeFailStyle1": "Keiner n Plan",
   "listThis": "Listet folgendes auf:",
-  "compareThis": "Mal unter uns beiden (und den anderen),"
+  "compareThis": "Mal unter uns beiden (und den anderen),",
+  "yesStyle1": "Jawollek!",
+  "noStyle1": "Nö.",
+  "noStyle2": "I mog net",
+  "listFailedStyle1": "Kein Plan"
 }

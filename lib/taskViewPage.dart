@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/taskViewSecondRow.dart';
+import 'package:sr_flutter2/taskViewThirdRow.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
@@ -30,6 +31,7 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   Widget mainBody(BuildContext context)  {
+    taskOverviewContext = context;
     if  (isWorkingAtAll()) {
       currentRoom   = Room.activeRoom;
       currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
@@ -53,7 +55,7 @@ class taskViewPageState extends State<taskViewPage>{
                         flex: 333
                     ),
                     new Expanded(
-                        child: Container(),
+                        child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
                         flex: 333
                     )
                   ],
@@ -71,7 +73,24 @@ class taskViewPageState extends State<taskViewPage>{
     }
   }
 
-  Widget taskStringColumn(BuildContext context) {
+  bool isWorkingAtAll() {
+    if(Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
+        Room.activeRoom.activePlayerID != null) {
+      return true;
+    }
+    else  {
+      return false;
+    }
+  }
+
+
+  void nextTaskOnThisPage(theContext) async {
+    await new Future.delayed(const Duration(milliseconds: 500));
+    //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
+    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+  }
+
+/*Widget taskStringColumn(BuildContext context) {
     if  (isWorkingAtAll()) { //does it work?
       currentRoom   = Room.activeRoom;
       currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
@@ -149,16 +168,6 @@ class taskViewPageState extends State<taskViewPage>{
     }
   }
 
-  bool isWorkingAtAll() {
-    if(Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) {
-      return true;
-    }
-    else  {
-      return false;
-    }
-  }
-
   bool isChoice(Task taskplaceholder) {
     if  ( taskplaceholder.typeID == 4 || //4,5,6 are choicetasks
           taskplaceholder.typeID == 5 ||
@@ -178,6 +187,6 @@ class taskViewPageState extends State<taskViewPage>{
     else  {
       return false;
     }
-  }
+  }*/
 
 }

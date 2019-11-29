@@ -24,19 +24,26 @@ class S implements WidgetsLocalizations {
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get languageSelector => "Please select the language:";
+  String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get noPlayersYet => "No players yet!";
+  String get noStyle1 => "Just no.";
+  String get noStyle2 => "I don't wanna";
+  String get ownTurn => "Your turn!";
   String get pleaseCompleteEntries => "Please complete your entries.";
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
+  String get tabooMimeFailStyle1 => "Nobody knows";
   String get tabooMimeGuessp1 => "What is ";
   String get tabooMimeGuessp2 => " trying to tell us?";
+  String get tabooMimeWinStyle1 => "There we go!";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
   String get turn => "s turn";
+  String get yesStyle1 => "Yessir!";
 }
 
 class $de extends S {
@@ -66,15 +73,29 @@ class $de extends S {
   @override
   String get compareThis => "Mal unter uns beiden (und den anderen),";
   @override
+  String get tabooMimeWinStyle1 => "Geht doch!";
+  @override
+  String get noStyle2 => "I mog net";
+  @override
   String get tabooMimeGuessp2 => " uns sagen?";
   @override
+  String get noStyle1 => "Nö.";
+  @override
   String get comingSoon => "Kommt demnächst!";
+  @override
+  String get tabooMimeFailStyle1 => "Keiner n Plan";
   @override
   String get sexMale => "Männlein";
   @override
   String get mimeThis => "Pantomimimi folgendes:";
   @override
+  String get ownTurn => "Du bist am Zug!";
+  @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
+  @override
+  String get yesStyle1 => "Jawollek!";
+  @override
+  String get listFailedStyle1 => "Kein Plan";
   @override
   String get modeSelector => "Bitte wähle den Spielmodus:";
 }

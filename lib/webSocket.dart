@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'roomOverviewPage.dart';
+import 'taskViewPage.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -18,6 +19,7 @@ Stream downStream;
 Sink upStream;
 Package packageIn;
 BuildContext roomOverviewContext;
+BuildContext taskOverviewContext;
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -52,9 +54,11 @@ void startStreaming() async{
         Player.mePlayer = Player(packageIn.content);
         break;
       case  'startGame':
-        print('Game started!');
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
         break;
+      case  'nextTask':
+       taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
+       break;
     }
   });
 

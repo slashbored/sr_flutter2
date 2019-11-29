@@ -18,6 +18,10 @@ class Task{
   String completeString_de;
   List bannedWords_en = new List(4);
   List bannedWords_de = new List(4);
+  String aSelectString_en;
+  String aSelectString_de;
+  String bSelectString_en;
+  String bSelectString_de;
   String aWonString_en;
   String aWonString_de;
   String aLostString_en;
@@ -50,6 +54,10 @@ class Task{
     completeString_de = data['completeString_de'];
     bannedWords_en = List.from(data['bannedWords_en']);
     bannedWords_de = List.from(data['bannedWords_de']);
+    aSelectString_en  = data["aSelectString_en"];
+    aSelectString_de  = data["aSelectString_de"];
+    bSelectString_en  = data["bSelectString_en"];
+    bSelectString_de  = data["bSelectString_de"];
     aWonString_en = data['aWonString_en'];
     aWonString_de = data['aWonString_de'];
     aLostString_en  = data['aLostString_en'];
@@ -69,5 +77,50 @@ class Task{
     int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
     test.id == Room.activeRoom.activeTaskID);
     return Room.activeRoom.taskDB[taskIDindex];
+  }
+
+  static String getStringByLocale(Task task, String locale, String stringType)  {
+    if  (locale=="en_") {
+      switch  (stringType)  {
+        case("n"):
+          return task.nString_en;
+          break;
+        case("a"):
+          return task.aString_en;
+          break;
+        case("wyr_a"):
+          return task.aSelectString_en;
+          break;
+        case("wyr_b"):
+          return task.bSelectString_en;
+          break;
+      }
+    }
+    else  {
+      switch  (stringType)  {
+        case("n"):
+          return task.nString_de;
+          break;
+        case("a"):
+          return task.aString_de;
+          break;
+        case("wyr_a"):
+          return task.aSelectString_de;
+          break;
+        case("wyr_b"):
+          return task.bSelectString_de;
+          break;
+      }
+
+    }
+  }
+
+  static List getListByLocale(Task task, String locale)  {
+    if  (locale=="en_")  {
+      return task.bannedWords_en;
+    }
+    else  {
+      return task.bannedWords_de;
+    }
   }
 }

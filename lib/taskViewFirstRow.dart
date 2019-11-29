@@ -32,13 +32,13 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
               text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                        style: firstPlayer.sex== 'm'
+                        style: firstPlayer.id!=Player.mePlayer.id?firstPlayer.sex== 'm'
                             ? _maletitleStyle
-                            : _femaletitleStyle,
-                        text: firstPlayer.name
+                            : _femaletitleStyle:_titleStyle,
+                        text: firstPlayer.id==Player.mePlayer.id?S.of(context).ownTurn:firstPlayer.name
                     ),
                     TextSpan(
-                        text: S.of(context).turn,
+                        text: firstPlayer.id==Player.mePlayer.id?"":S.of(context).turn,
                         style: _titleStyle
                     )
                   ]

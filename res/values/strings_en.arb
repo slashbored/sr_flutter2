@@ -7,12 +7,19 @@
   "sexX": "Other",
   "sexFemale": "Female",
   "noPlayersYet": "No players yet!",
+  "ownTurn": "Your turn!",
   "turn": "s turn",
   "mimeThis": "Pantomime this:",
   "tabooMimeGuessp1": "What is ",
   "tabooMimeGuessp2": " trying to tell us?",
   "taboop1": "Explain \"",
   "taboop2": "\" without using the following words:",
+  "tabooMimeWinStyle1": "There we go!",
+  "tabooMimeFailStyle1": "Nobody knows",
   "listThis": "List the following:",
-  "compareThis": "Just between you and me (and the others),"
+  "compareThis": "Just between you and me (and the others),",
+  "yesStyle1": "Yessir!",
+  "noStyle1": "Just no.",
+  "noStyle2": "I don't wanna",
+  "listFailedStyle1": "Dunno"
 }

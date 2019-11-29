@@ -82,6 +82,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
             upStream.add(json.encode({'type':'randomPlayer','content':''}));
+            //upStream.add(json.encode({'type':'get','content':'randomBlock'}));
             upStream.add(json.encode({'type':'startGame','content':''}));
             //goToTaskViewPage();
           }
