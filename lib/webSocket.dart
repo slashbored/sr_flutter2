@@ -20,6 +20,7 @@ Sink upStream;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
+String timeLeft = "Lego";
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -59,6 +60,12 @@ void startStreaming() async{
       case  'nextTask':
        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
        break;
+      case   'FGTimeLeft':
+        timeLeft  = packageIn.content.toString();
+        if  (timeLeft=='0') {
+          timeLeft='Lego';
+        }
+        break;
     }
   });
 

@@ -143,7 +143,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "starTimer",
-              label: Text("Lego"),
+              label: Text(timeLeft),
               onPressed:  ()  {
                 upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
               },
