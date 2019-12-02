@@ -26,6 +26,7 @@ final TextStyle _femaleTaskStyle = const TextStyle(
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   locale = Localizations.localeOf(context).toString();
+  print("Redrawn!");
   if (task.typeID == 1 || task.typeID == 2 || task.typeID == 3 ||
       task.typeID == 7 || task.typeID == 8 || task.typeID == 11) {
     return Center(
