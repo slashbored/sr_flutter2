@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'generated/i18n.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
@@ -20,7 +21,7 @@ Sink upStream;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
-String timeLeft = "Lego";
+String FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -61,10 +62,12 @@ void startStreaming() async{
        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
        break;
       case   'FGTimeLeft':
-        timeLeft  = packageIn.content.toString();
-        if  (timeLeft=='0') {
-          timeLeft='Lego';
+        FGtimeLeft  = packageIn.content.toString();
+        if  (FGtimeLeft=='0') {
+          FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
         }
+        break;
+      case  'BGTimerPropArray':
         break;
     }
   });

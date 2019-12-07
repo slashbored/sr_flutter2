@@ -21,6 +21,7 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get FGTimerGo => "Go!";
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get languageSelector => "Please select the language:";
@@ -92,6 +93,8 @@ class $de extends S {
   String get ownTurn => "Du bist am Zug!";
   @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
+  @override
+  String get FGTimerGo => "Los!";
   @override
   String get yesStyle1 => "Jawollek!";
   @override

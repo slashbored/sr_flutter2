@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sr_flutter2/taskViewFirstRow.dart';
+import 'package:sr_flutter2/taskViewFourthRow.dart';
 import 'package:sr_flutter2/taskViewSecondRow.dart';
 import 'package:sr_flutter2/taskViewThirdRow.dart';
 import 'package:sr_flutter2/webSocket.dart';
-import 'generated/i18n.dart';
+import 'package:sr_flutter2/generated/i18n.dart';
 import 'dart:convert';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-
-import 'taskViewFirstRow.dart';
 
 
 class taskViewPage extends StatefulWidget{
@@ -48,15 +48,19 @@ class taskViewPageState extends State<taskViewPage>{
                   children: <Widget>[
                     new Expanded(
                       child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 333,
+                      flex: 325
                     ),
                     new Expanded(
-                        child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                        flex: 333
+                      child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                      flex: 325
                     ),
                     new Expanded(
-                        child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                        flex: 333
+                      child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                      flex: 325
+                    ),
+                    new Expanded(
+                      child: taskViewFourthRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                      flex: 25
                     )
                   ],
                 );

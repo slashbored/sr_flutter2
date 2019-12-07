@@ -21,5 +21,6 @@
   "yesStyle1": "Yessir!",
   "noStyle1": "Just no.",
   "noStyle2": "I don't wanna",
-  "listFailedStyle1": "Dunno"
+  "listFailedStyle1": "Dunno",
+  "FGTimerGo": "Go!"
 }

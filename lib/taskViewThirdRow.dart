@@ -14,13 +14,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
 
-  if  (task.typeID==1||task.typeID==2||task.typeID==3)  {
+  if  (task.typeID==1||task.typeID==3)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           FloatingActionButton.extended(
-            heroTag:  "denied_normal",
+            heroTag:  "normal_denied",
             label: Text(S.of(context).noStyle1),
             onPressed: (){
               //firstPlayer.points++;
@@ -32,7 +32,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             }
           ),
           FloatingActionButton.extended(
-            heroTag:  "accepted_normal",
+            heroTag:  "normal_accepted",
             label: Text(S.of(context).yesStyle1),
             onPressed: (){
               upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -45,13 +45,51 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       );
     }
   }
-  if  (task.typeID==4||task.typeID==5||task.typeID==6)  {
+  if  (task.typeID==2)  {
+    if  (firstPlayer.id==Player.mePlayer.id)  {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FloatingActionButton.extended(
+              heroTag:  "normalFGTime_denied",
+              label: Text(S.of(context).noStyle1),
+              onPressed: (){
+                //firstPlayer.points++;
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+                //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+              }
+          ),
+          FloatingActionButton.extended(
+            heroTag:  "normalFGTime_starTimer",
+            label: Text(FGtimeLeft),
+            onPressed:  ()  {
+              upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
+            },
+          ),
+          FloatingActionButton.extended(
+              heroTag:  "normalFGTime_denied",
+              label: Text(S.of(context).yesStyle1),
+              onPressed: (){
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+                //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+              }
+          )
+        ],
+      );
+    }
+  }
+  if  (task.typeID==4||task.typeID==6)  {
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           FloatingActionButton.extended(
-              heroTag:  "denied_choice",
+              heroTag:  "choice_denied",
               label: Text(S.of(context).noStyle2),
               onPressed: (){
                 //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
@@ -62,7 +100,46 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),
           FloatingActionButton.extended(
-              heroTag:  "accepted_choice",
+              heroTag:  "choice_accepted",
+              label: Text(S.of(context).yesStyle1),
+              onPressed: (){
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+              }
+          )
+        ],
+      );
+    }
+    else  {
+      return Container();
+    }
+  }
+  if  (task.typeID==5)  {
+    if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FloatingActionButton.extended(
+              heroTag:  "choiceFGTime_denied",
+              label: Text(S.of(context).noStyle2),
+              onPressed: (){
+                //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+              }
+          ),
+          FloatingActionButton.extended(
+            heroTag:  "choiceFGTime_startTimer",
+            label: Text(FGtimeLeft),
+            onPressed:  ()  {
+              upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
+            },
+          ),
+          FloatingActionButton.extended(
+              heroTag:  "choiceFGTime_accepted",
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
                 upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -142,8 +219,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),
           FloatingActionButton.extended(
-              heroTag:  "starTimer",
-              label: Text(timeLeft),
+              heroTag:  "tabooMime_startTimer",
+              label: Text(FGtimeLeft),
               onPressed:  ()  {
                 upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
               },
