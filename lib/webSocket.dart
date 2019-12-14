@@ -52,7 +52,7 @@ void startStreaming() async{
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         break;
-      case  'player':
+      case  'yourPlayer':
         Player.mePlayer = Player(packageIn.content);
         break;
       case  'startGame':
@@ -66,8 +66,6 @@ void startStreaming() async{
         if  (FGtimeLeft=='0') {
           FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
         }
-        break;
-      case  'BGTimerPropArray':
         break;
     }
   });

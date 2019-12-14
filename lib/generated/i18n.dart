@@ -21,6 +21,7 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get BGTimerGo => "K den!";
   String get FGTimerGo => "Go!";
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
@@ -54,8 +55,6 @@ class $de extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
-  String get languageSelector => "Bitte wähle die Sprache:";
-  @override
   String get pleaseCompleteEntries => "Bitte vervollständige deine Angaben.";
   @override
   String get taboop1 => "Beschreibe \"";
@@ -64,13 +63,7 @@ class $de extends S {
   @override
   String get sexX => "Divers";
   @override
-  String get sexFemale => "Weiblein";
-  @override
-  String get listThis => "Listet folgendes auf:";
-  @override
   String get turn => " ist am Zug";
-  @override
-  String get tabooMimeGuessp1 => "Was will ";
   @override
   String get compareThis => "Mal unter uns beiden (und den anderen),";
   @override
@@ -78,23 +71,33 @@ class $de extends S {
   @override
   String get noStyle2 => "I mog net";
   @override
-  String get tabooMimeGuessp2 => " uns sagen?";
-  @override
   String get noStyle1 => "Nö.";
+  @override
+  String get sexMale => "Männlein";
+  @override
+  String get FGTimerGo => "Los!";
+  @override
+  String get languageSelector => "Bitte wähle die Sprache:";
+  @override
+  String get sexFemale => "Weiblein";
+  @override
+  String get listThis => "Listet folgendes auf:";
+  @override
+  String get tabooMimeGuessp1 => "Was will ";
+  @override
+  String get tabooMimeGuessp2 => " uns sagen?";
   @override
   String get comingSoon => "Kommt demnächst!";
   @override
   String get tabooMimeFailStyle1 => "Keiner n Plan";
   @override
-  String get sexMale => "Männlein";
-  @override
   String get mimeThis => "Pantomimimi folgendes:";
+  @override
+  String get BGTimerGo => "Auffi!";
   @override
   String get ownTurn => "Du bist am Zug!";
   @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
-  @override
-  String get FGTimerGo => "Los!";
   @override
   String get yesStyle1 => "Jawollek!";
   @override

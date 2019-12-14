@@ -1,11 +1,13 @@
 import 'playerClass.dart';
 import 'taskClass.dart';
+import 'timerClass.dart';
 
 class Room  {
   String id;
   List playerDB = new List();
   //List chatDB   = new List();
   List taskDB   = new List();
+  List BGTimerDB  = new List();
   String gmID;
   int activeTaskID;
   String activePlayerID;
@@ -28,7 +30,13 @@ class Room  {
       activeSecondPlayerID  = data['activeSecondPlayerID'];
     }
     else  {
-      activeSecondPlayerID==null;
+      activeSecondPlayerID=null;
+    }
+    if(data['BGTimerDB']!=null) {
+      List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
+    }
+    else  {
+      BGTimerDB=null;
     }
   }
 }

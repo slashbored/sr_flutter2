@@ -14,7 +14,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
 
-  if  (task.typeID==1||task.typeID==3)  {
+  if  (task.typeID==1)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -45,6 +45,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       );
     }
   }
+
   if  (task.typeID==2)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
@@ -70,7 +71,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             },
           ),
           FloatingActionButton.extended(
-              heroTag:  "normalFGTime_denied",
+              heroTag:  "normalFGTime_accepted",
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
                 upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -82,7 +83,47 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         ],
       );
     }
+    else  {
+      return Container();
+    }
   }
+
+  if  (task.typeID==3)  {
+    if  (firstPlayer.id==Player.mePlayer.id)  {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FloatingActionButton.extended(
+              heroTag:  "normalBGTime_denied",
+              label: Text(S.of(context).noStyle1),
+              onPressed: (){
+                //firstPlayer.points++;
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+                //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+              }
+          ),
+          FloatingActionButton.extended(
+              heroTag:  "normalBGTime_accepted",
+              label: Text(S.of(context).BGTimerGo),
+              onPressed: (){
+                upStream.add(json.encode({'type':'startBGTimer','content':''}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+                //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+              }
+          )
+        ],
+      );
+    }
+    else  {
+      return Container();
+    }
+  }
+
   if  (task.typeID==4||task.typeID==6)  {
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
       return Row(
@@ -115,6 +156,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Container();
     }
   }
+
   if  (task.typeID==5)  {
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
       return Row(
@@ -154,6 +196,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Container();
     }
   }
+
   if  (task.typeID==7)  {
     return Column(
       children: <Widget>[
@@ -186,6 +229,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       ],
     );
   }
+
   if  (task.typeID==8)  {
     return Center(
         child: FloatingActionButton.extended(
@@ -204,6 +248,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             })
     );
   }
+
   if  (task.typeID==9||task.typeID==10) {
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
@@ -241,6 +286,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return  Container();
     }
   }
+
   if  (task.typeID==11) {
     locale = Localizations.localeOf(context).toString();
     return Row(
