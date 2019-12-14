@@ -34,6 +34,10 @@ class Room  {
     }
     if(data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
+      print(BGTimerDB.length);
+      if(BGTimerDB.length>0)  {
+        print(BGTimerDB[0].BGTimeLeft.toString());
+      }
     }
     else  {
       BGTimerDB=null;

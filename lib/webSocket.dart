@@ -67,6 +67,9 @@ void startStreaming() async{
           FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
         }
         break;
+      case  'timerUpdate':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        break;
     }
   });
 
