@@ -49,6 +49,7 @@ void startStreaming() async{
         Player.mePlayer.id  = prefs.getString('uuid');
         print(prefs.getString('uuid'));
         break;
+      case  'timerUpdate':
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         break;
@@ -66,9 +67,6 @@ void startStreaming() async{
         if  (FGtimeLeft=='0') {
           FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
         }
-        break;
-      case  'timerUpdate':
-        Room.activeRoom = Room(Map.from(packageIn.content));
         break;
     }
   });

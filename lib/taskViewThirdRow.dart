@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import'webSocket.dart';
 
+import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
@@ -13,6 +14,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
+  int timerIndex;
 
   if  (task.typeID==1)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {
@@ -67,8 +69,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             heroTag:  "normalFGTime_starTimer",
             label: Text(FGtimeLeft),
             onPressed:  ()  {
-              upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
-            },
+              upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
+              timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.id==Room.activeRoom.activeTaskID);
+              if  (Room.activeRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
+                FGtimeLeft  = Room.activeRoom.BGTimerDB[timerIndex].BGTimeLeft;
+              }
+             else {
+               FGtimeLeft = S.of(context).FGTimerGo;
+              }
+            }
           ),
           FloatingActionButton.extended(
               heroTag:  "normalFGTime_accepted",
