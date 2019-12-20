@@ -8,12 +8,16 @@ import'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-
+import 'timerClass.dart'
+;
 
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
+  if  (Timer.activeTimer!=null) {
+    Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
+  }
   int timerIndex;
 
   if  (task.typeID==1)  {
@@ -66,17 +70,19 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),
           FloatingActionButton.extended(
-            heroTag:  "normalFGTime_starTimer",
-            label: Text(FGtimeLeft),
+            heroTag:  "normalFGTime_startTimer",
+            label: Text(Timer.activeTimer!=null?Timer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
             onPressed:  ()  {
+              startBGTimer(context);
+              /*
               upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
-              timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.id==Room.activeRoom.activeTaskID);
+              timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
               if  (Room.activeRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
-                FGtimeLeft  = Room.activeRoom.BGTimerDB[timerIndex].BGTimeLeft;
+                FGTimeLeft  = Room.activeRoom.BGTimerDB[timerIndex].BGTimeLeft;
               }
              else {
-               FGtimeLeft = S.of(context).FGTimerGo;
-              }
+               FGTimeLeft = S.of(context).FGTimerGo;
+              }*/
             }
           ),
           FloatingActionButton.extended(
@@ -183,11 +189,20 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),
           FloatingActionButton.extended(
-            heroTag:  "choiceFGTime_startTimer",
-            label: Text(FGtimeLeft),
-            onPressed:  ()  {
-              upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
-            },
+              heroTag:  "choiceFGTime_startTimer",
+              label: Text(Timer.activeTimer!=null?Timer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
+              onPressed:  ()  {
+                startBGTimer(context);
+                /*
+                upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
+                timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+                if  (Room.activeRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
+                  FGTimeLeft  = Room.activeRoom.BGTimerDB[timerIndex].BGTimeLeft;
+                }
+                else {
+                  FGTimeLeft = S.of(context).FGTimerGo;
+                }*/
+              }
           ),
           FloatingActionButton.extended(
               heroTag:  "choiceFGTime_accepted",
@@ -274,10 +289,19 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "tabooMime_startTimer",
-              label: Text(FGtimeLeft),
+              label: Text(Timer.activeTimer!=null?Timer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
               onPressed:  ()  {
-                upStream.add(jsonEncode({'type':'startFGTimer','content':''}));
-              },
+                startBGTimer(context);
+                /*
+                upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
+                timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+                if  (Room.activeRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
+                  FGTimeLeft  = Room.activeRoom.BGTimerDB[timerIndex].BGTimeLeft;
+                }
+                else {
+                  FGTimeLeft = S.of(context).FGTimerGo;
+                }*/
+              }
           ),
           FloatingActionButton.extended(
               heroTag:  "tabooMime_accepted",
@@ -326,4 +350,21 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   else  {
     return Container();
   }
+
+}
+
+void startBGTimer(BuildContext context) async {
+  upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
+  await new Future.delayed(const Duration(milliseconds: 500));
+  Room.renewActiveTimer(context);
+  /*int timerIndex;
+  timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+  Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+  if  (currentRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
+    Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft;
+  }
+  else {
+    Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
+  }*/
+
 }

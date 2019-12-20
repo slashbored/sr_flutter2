@@ -20,7 +20,7 @@ class taskViewPage extends StatefulWidget{
 
 class taskViewPageState extends State<taskViewPage>{
 
-  Room currentRoom;
+  //Room currentRoom;
   Task currentTask;
   Player currentPlayer;
   Player currentSecondPlayer;
@@ -33,7 +33,7 @@ class taskViewPageState extends State<taskViewPage>{
   Widget mainBody(BuildContext context)  {
     taskOverviewContext = context;
     if  (isWorkingAtAll()) {
-      currentRoom   = Room.activeRoom;
+      //currentRoom   = Room.activeRoom;
       currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
       currentPlayer = Player.getPlayerByID(currentRoom.activePlayerID);
       if  (currentRoom.activeSecondPlayerID!=null)  {
@@ -78,8 +78,8 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   bool isWorkingAtAll() {
-    if(Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) {
+    if(currentRoom != null && currentRoom.activeTaskID != null &&
+        currentRoom.activePlayerID != null) {
       return true;
     }
     else  {

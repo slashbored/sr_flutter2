@@ -10,6 +10,8 @@ import 'generated/i18n.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
+import 'timerClass.dart';
+
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
 
@@ -21,7 +23,8 @@ Sink upStream;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
-String FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
+Room currentRoom;
+//String FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -50,8 +53,15 @@ void startStreaming() async{
         print(prefs.getString('uuid'));
         break;
       case  'timerUpdate':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
+        break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
+        if  (currentRoom.BGTimerDB.length>0)  {
+          Room.renewActiveTimer(taskOverviewContext);
+        }
         break;
       case  'yourPlayer':
         Player.mePlayer = Player(packageIn.content);
@@ -62,12 +72,12 @@ void startStreaming() async{
       case  'nextTask':
        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
        break;
-      case   'FGTimeLeft':
+      /*case   'FGTimeLeft':
         FGtimeLeft  = packageIn.content.toString();
         if  (FGtimeLeft=='0') {
           FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
         }
-        break;
+        break;*/
     }
   });
 

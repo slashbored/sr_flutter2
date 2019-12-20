@@ -1,6 +1,8 @@
+import 'webSocket.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerClass.dart';
+import 'generated/i18n.dart';
 
 class Room  {
   String id;
@@ -43,4 +45,17 @@ class Room  {
       BGTimerDB=null;
     }
   }
+
+  static void renewActiveTimer(context) {
+    int timerIndex;
+    timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+    Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+    if  (currentRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
+      Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft;
+    }
+    else {
+      Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
+    }
+  }
+
 }

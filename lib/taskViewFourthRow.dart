@@ -12,11 +12,11 @@ import 'timerClass.dart';
 
 Widget taskViewFourthRow(BuildContext context, Room room) {
   //print("Redrawn! v2");
-  if(Room.activeRoom.BGTimerDB.length>0) {
+  if(currentRoom.BGTimerDB.length>0) {
     //print(room.BGTimerDB[0].BGTimeLeft.toString());
     return Row(
       children: <Widget>[
-        Text(Room.activeRoom.BGTimerDB[0].BGTimeLeft.toString())
+        Text(currentRoom.BGTimerDB[0].BGTimeLeft.toString())
       ],
     );
   }

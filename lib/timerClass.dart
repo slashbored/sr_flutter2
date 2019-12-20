@@ -4,6 +4,10 @@ class Timer{
   String playerID;
   int taskID;
   int BGTimeLeft;
+  String FGTimeLeft;
+  int indexInDB;
+
+  static Timer activeTimer;
 
   Timer(Map data) {
     id          = data['id'];
