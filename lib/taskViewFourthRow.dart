@@ -11,14 +11,29 @@ import 'taskClass.dart';
 import 'timerClass.dart';
 
 Widget taskViewFourthRow(BuildContext context, Room room) {
-  //print("Redrawn! v2");
+  Room.renewActiveTimer(context);
   if(currentRoom.BGTimerDB.length>0) {
-    //print(room.BGTimerDB[0].BGTimeLeft.toString());
-    return Row(
+    return ListView(
+      children: <Widget>[
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: currentRoom.BGTimerDB.length,
+          itemBuilder: (context, int index) {
+            int typeIDplaceholder = Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID;
+            if(typeIDplaceholder==3||typeIDplaceholder==6)  {
+              return Text(
+                currentRoom.BGTimerDB[index].BGTimeLeft.toString()
+              );
+            }
+          }
+        )
+      ]
+    );
+    /*return Row(
       children: <Widget>[
         Text(currentRoom.BGTimerDB[0].BGTimeLeft.toString())
       ],
-    );
+    );*/
   }
     else  {
       return Container();

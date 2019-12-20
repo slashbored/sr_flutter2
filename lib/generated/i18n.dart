@@ -22,6 +22,7 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get BGTimerGo => "K den!";
+  String get FGTimerDone => "Done!";
   String get FGTimerGo => "Go!";
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
@@ -74,6 +75,8 @@ class $de extends S {
   String get noStyle1 => "Nö.";
   @override
   String get sexMale => "Männlein";
+  @override
+  String get FGTimerDone => "Fertig!";
   @override
   String get FGTimerGo => "Los!";
   @override

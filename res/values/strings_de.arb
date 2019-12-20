@@ -23,5 +23,6 @@
   "noStyle2": "I mog net",
   "listFailedStyle1": "Kein Plan",
   "FGTimerGo": "Los!",
-  "BGTimerGo": "Auffi!"
+  "BGTimerGo": "Auffi!",
+  "FGTimerDone": "Fertig!"
 }

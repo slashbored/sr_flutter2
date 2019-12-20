@@ -23,5 +23,6 @@
   "noStyle2": "I don't wanna",
   "listFailedStyle1": "Dunno",
   "FGTimerGo": "Go!",
-  "BGTimerGo": "K den!"
+  "BGTimerGo": "K den!",
+  "FGTimerDone": "Done!"
 }

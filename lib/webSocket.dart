@@ -55,13 +55,12 @@ void startStreaming() async{
       case  'timerUpdate':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
+        //currentRoom.BGTimerDB.length>0?Room.renewActiveTimer(taskOverviewContext):null;
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
-        if  (currentRoom.BGTimerDB.length>0)  {
-          Room.renewActiveTimer(taskOverviewContext);
-        }
+        //currentRoom.BGTimerDB.length>0?Room.renewActiveTimer(taskOverviewContext):null;
         break;
       case  'yourPlayer':
         Player.mePlayer = Player(packageIn.content);

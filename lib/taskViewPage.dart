@@ -39,7 +39,8 @@ class taskViewPageState extends State<taskViewPage>{
       if  (currentRoom.activeSecondPlayerID!=null)  {
         currentSecondPlayer = Player.getPlayerByID(currentRoom.activeSecondPlayerID);
       }
-        return Scaffold(
+      print("All redrawn!");
+      return Scaffold(
           body: StreamBuilder(
               stream: downStream,
               builder:  (context, snapShot) {
@@ -58,10 +59,10 @@ class taskViewPageState extends State<taskViewPage>{
                       child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
                       flex: 325
                     ),
-                    /*new Expanded(
+                    new Expanded(
                       child: taskViewFourthRow(context, currentRoom),
                       flex: 25
-                    )*/
+                    )
                   ],
                 );
                 /*return Center(

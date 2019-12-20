@@ -18,7 +18,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   if  (Timer.activeTimer!=null) {
     Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
   }
-  int timerIndex;
+  print("3rd Row Redrwawn!");
 
   if  (task.typeID==1)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {
@@ -53,6 +53,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   }
 
   if  (task.typeID==2)  {
+    Room.renewActiveTimer(context);
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -173,6 +174,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   }
 
   if  (task.typeID==5)  {
+    Room.renewActiveTimer(context);
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -212,7 +214,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          )
+          ),
         ],
       );
     }
@@ -274,6 +276,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   }
 
   if  (task.typeID==9||task.typeID==10) {
+    Room.renewActiveTimer(context);
     if  (firstPlayer.id==Player.mePlayer.id)  {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -311,7 +314,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          )
+          ),
         ],
       );
     }

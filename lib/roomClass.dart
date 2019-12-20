@@ -36,10 +36,6 @@ class Room  {
     }
     if(data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
-      print(BGTimerDB.length);
-      if(BGTimerDB.length>0)  {
-        print(BGTimerDB[0].BGTimeLeft.toString());
-      }
     }
     else  {
       BGTimerDB=null;
@@ -47,11 +43,16 @@ class Room  {
   }
 
   static void renewActiveTimer(context) {
-    int timerIndex;
-    timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
-    Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
-    if  (currentRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
-      Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft;
+    if(currentRoom.BGTimerDB.length>0)  {
+      int timerIndex;
+      timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+      Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+      if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft!=0) {
+        Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
+      }
+      if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft==0) {
+        Timer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
+      }
     }
     else {
       Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
