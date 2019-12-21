@@ -12,7 +12,7 @@ import 'timerClass.dart';
 import 'timerWidget.dart';
 
 Widget taskViewFourthRow(BuildContext context, Room room) {
-  Room.renewActiveTimer(context);
+  //Room.renewActiveTimer(context);
   if(currentRoom.BGTimerDB.length>0) {
     return Align(
       child: ListView.builder(

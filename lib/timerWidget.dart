@@ -11,8 +11,6 @@ import 'taskClass.dart';
 import 'timerClass.dart';
 
 Widget timerWidget(BuildContext context, Timer correspondingTimer) {
-  print(correspondingTimer.BGTimeLeft.toString());
-  print(convertTime(correspondingTimer.BGTimeLeft));
   return InputChip(
     avatar: CircleAvatar(
       child: Text(
@@ -20,8 +18,11 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
       ),
     ),
     label: Text(
-        convertTime(correspondingTimer.BGTimeLeft)
+        convertTime(correspondingTimer.BGTimeLeft),
     ),
+    isEnabled: true,
+    backgroundColor: Colors.white,
+    onPressed: () {},
   );
 }
 

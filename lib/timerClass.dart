@@ -5,7 +5,7 @@ class Timer{
   int taskID;
   int BGTimeLeft;
   String FGTimeLeft;
-  int indexInDB;
+  String viewState;
 
   static Timer activeTimer;
 
