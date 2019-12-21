@@ -18,7 +18,6 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   if  (Timer.activeTimer!=null) {
     Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
   }
-  print("3rd Row Redrwawn!");
 
   if  (task.typeID==1)  {
     if  (firstPlayer.id==Player.mePlayer.id)  {

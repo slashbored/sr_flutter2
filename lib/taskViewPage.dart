@@ -39,7 +39,6 @@ class taskViewPageState extends State<taskViewPage>{
       if  (currentRoom.activeSecondPlayerID!=null)  {
         currentSecondPlayer = Player.getPlayerByID(currentRoom.activeSecondPlayerID);
       }
-      print("All redrawn!");
       return Scaffold(
           body: StreamBuilder(
               stream: downStream,

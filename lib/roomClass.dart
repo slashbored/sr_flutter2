@@ -50,12 +50,14 @@ class Room  {
       if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft!=0) {
         Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
       }
-      if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft==0) {
-        Timer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
+      else  {
+        if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft==0) {
+          Timer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
+        }
+        else  {
+          Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
+        }
       }
-    }
-    else {
-      Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
     }
   }
 
