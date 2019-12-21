@@ -48,19 +48,19 @@ class taskViewPageState extends State<taskViewPage>{
                   children: <Widget>[
                     new Expanded(
                       child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 325
+                      flex: 315
                     ),
                     new Expanded(
                       child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 325
+                      flex: 315
                     ),
                     new Expanded(
                       child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 325
+                      flex: 315
                     ),
                     new Expanded(
                       child: taskViewFourthRow(context, currentRoom),
-                      flex: 25
+                      flex: 55
                     )
                   ],
                 );
