@@ -124,7 +124,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "normalBGTime_accepted",
               label: Text(S.of(context).BGTimerGo),
               onPressed: (){
-                upStream.add(json.encode({'type':'startBGTimer','content':''}));
+                //upStream.add(json.encode({'type':'startBGTimer','content':''}));
+                startBGTimer(context);
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -358,7 +359,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 void startBGTimer(BuildContext context) async {
   upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
   await new Future.delayed(const Duration(milliseconds: 500));
-  Room.renewActiveTimer(context);
+  //Room.renewActiveTimer(context);
   /*int timerIndex;
   timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
   Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];

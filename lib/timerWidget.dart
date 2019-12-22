@@ -11,6 +11,8 @@ import 'taskClass.dart';
 import 'timerClass.dart';
 
 Widget timerWidget(BuildContext context, Timer correspondingTimer) {
+  String timerID  = correspondingTimer.id;
+  changeView(correspondingTimer, '');
   return InputChip(
     avatar: CircleAvatar(
       child: Text(
@@ -18,11 +20,17 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
       ),
     ),
     label: Text(
-        convertTime(correspondingTimer.BGTimeLeft),
+        //correspondingTimer.viewState=='time'?convertTime(correspondingTimer.BGTimeLeft):correspondingTimer.taskID.toString(),
+      Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):correspondingTimer.taskID.toString()
     ),
     isEnabled: true,
     backgroundColor: Colors.white,
-    onPressed: () {},
+    onPressed: () {
+      Timer.stateMap[timerID]=='time'?
+      changeView(correspondingTimer, 'task'):
+      changeView(correspondingTimer, 'time');
+      print(Timer.stateMap[timerID]);
+    },
   );
 }
 
@@ -39,4 +47,24 @@ String convertTime(int timeToConvert) {
   //timeToConvert>60?seconds=timeToConvert-minutes*60:seconds=timeToConvert;
   String convertedTime  = minutes.toString() + ":" + (seconds<10?"0"+seconds.toString():seconds.toString());
   return convertedTime;
+}
+
+String changeView(Timer timerToChange, String newView) {
+  
+  if  (Timer.stateMap.containsKey(timerToChange.id)==true) {
+    var key  = Timer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
+    if  (Timer.stateMap[key]==null) {
+      Timer.stateMap[key]='time';
+    }
+    else  {
+      switch (newView) {
+        case 'time':
+          Timer.stateMap[key]='time';
+          break;
+        case 'task':
+          Timer.stateMap[key]='task';
+          break;
+      }
+    }
+  }
 }

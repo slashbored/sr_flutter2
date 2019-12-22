@@ -36,6 +36,9 @@ class Room  {
     }
     if(data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
+      if  (BGTimerDB.length>0)  {
+        Timer.updateStateMap();
+      }
     }
     else  {
       BGTimerDB=null;
