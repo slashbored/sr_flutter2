@@ -102,6 +102,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     if  (Room.activeRoom.activePlayerID==Player.mePlayer.id)  {
       return Center(
         child: RichText(
+          textAlign: TextAlign.center,
           text: TextSpan(
             style: _titleStyle,
             text: S.of(context).mimeThis

@@ -21,7 +21,7 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
     ),
     label: Text(
         //correspondingTimer.viewState=='time'?convertTime(correspondingTimer.BGTimeLeft):correspondingTimer.taskID.toString(),
-      Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):correspondingTimer.taskID.toString()
+      Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):Task.getTaskByID(correspondingTimer.taskID).descr
     ),
     isEnabled: true,
     backgroundColor: Colors.white,

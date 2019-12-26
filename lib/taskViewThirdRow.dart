@@ -71,9 +71,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
             heroTag:  "normalFGTime_startTimer",
-            label: Text(Timer.activeTimer!=null?Timer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
+            label: Text(Timer.activeTimer!=null?
+            Timer.activeTimer.FGTimeLeft:
+            S.of(context).FGTimerGo),
             onPressed:  ()  {
               startBGTimer(context);
+              Room.renewActiveTimer(context);
+              //Room.renewActiveTimer(context);
               /*
               upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
               timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
@@ -89,6 +93,18 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "normalFGTime_accepted",
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
+                if (Timer.activeTimer!=null)  {
+                  if (Timer.activeTimer.isRunning==true)  {
+                    upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id}));
+                    print("Lenght before \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  Timer.activeTimer.id);
+                    print("Lenght after \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                  }
+                  Timer.activeTimer.isRunning=false;
+                }
+                /*Timer.activeTimer!=null?
+                upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id})):
+                null;*/
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -174,7 +190,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   }
 
   if  (task.typeID==5)  {
-    Room.renewActiveTimer(context);
+    //Room.renewActiveTimer(context);
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -210,6 +226,20 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "choiceFGTime_accepted",
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
+                /*Room.renewActiveTimer(context);
+                if (Timer.activeTimer!=null)  {
+                  if (Timer.activeTimer.isRunning==true)  {
+                    upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id}));
+                    print("Lenght before \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  Timer.activeTimer.id);
+                    print("Lenght after \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                    print(currentRoom.BGTimerDB.length.toString());
+                    Timer.activeTimer.isRunning=false;
+                  }
+                }*/
+                /*Timer.activeTimer!=null?
+                upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id})):
+                null;*/
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -292,9 +322,12 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "tabooMime_startTimer",
-              label: Text(Timer.activeTimer!=null?Timer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
+              label: Text(Timer.activeTimer!=null?
+              Timer.activeTimer.FGTimeLeft:
+              S.of(context).FGTimerGo),
               onPressed:  ()  {
                 startBGTimer(context);
+                Room.renewActiveTimer(context);
                 /*
                 upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
                 timerIndex  = Room.activeRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
@@ -310,6 +343,18 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "tabooMime_accepted",
               label: Text(S.of(context).tabooMimeWinStyle1),
               onPressed: () {
+                if (Timer.activeTimer!=null)  {
+                  if (Timer.activeTimer.isRunning==true)  {
+                    upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id}));
+                    print("Lenght before \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  Timer.activeTimer.id);
+                    print("Lenght after \"deleting\": " + currentRoom.BGTimerDB.length.toString());
+                  }
+                  Timer.activeTimer.isRunning=false;
+                }
+                /*Timer.activeTimer!=null?
+                upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id})):
+                null;*/
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -359,15 +404,4 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 void startBGTimer(BuildContext context) async {
   upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
   await new Future.delayed(const Duration(milliseconds: 500));
-  //Room.renewActiveTimer(context);
-  /*int timerIndex;
-  timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
-  Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
-  if  (currentRoom.BGTimerDB[timerIndex].BGTimeleft!=0) {
-    Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft;
-  }
-  else {
-    Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
-  }*/
-
 }

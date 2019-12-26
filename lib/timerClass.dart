@@ -8,6 +8,7 @@ class Timer{
   int BGTimeLeft;
   String FGTimeLeft;
   String viewState;
+  bool isRunning;
 
   static Timer activeTimer;
   static Map stateMap;
@@ -18,6 +19,7 @@ class Timer{
     playerID    = data['playerID'];
     taskID      = data['taskID'];
     BGTimeLeft  = data['BGTimeLeft'];
+    isRunning   = data['isRunning'];
   }
 
   static void updateStateMap()  {

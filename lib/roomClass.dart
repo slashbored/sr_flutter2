@@ -47,9 +47,9 @@ class Room  {
 
   static void renewActiveTimer(context) {
     if(currentRoom.BGTimerDB.length>0)  {
-      int timerIndex;
-      timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
+      int timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
       Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+      print(Timer.activeTimer.id.toString());
       if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft!=0) {
         Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
       }
@@ -61,6 +61,9 @@ class Room  {
           Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
         }
       }
+    }
+    else  {
+      Timer.activeTimer=null;
     }
   }
 

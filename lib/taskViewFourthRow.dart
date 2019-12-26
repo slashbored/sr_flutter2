@@ -21,21 +21,17 @@ Widget taskViewFourthRow(BuildContext context, Room room) {
           itemCount: currentRoom.BGTimerDB.length,
           itemBuilder: (context, int index) {
             int typeIDplaceholder = Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID;
+            print(
+                "Index" + index.toString() + "\n" +
+                "Current BGTimerDB.length: " + currentRoom.BGTimerDB.length.toString() + "\n" +
+                "Current typeID: " + Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID.toString()
+            );
             if(typeIDplaceholder==3||typeIDplaceholder==6)  {
-              /*print("\nItemcount: " + currentRoom.BGTimerDB.length.toString() +
-                    "\nTimerID: " + currentRoom.BGTimerDB[index].id.toString() +
-                    "\nTime left:" + currentRoom.BGTimerDB[index].BGTimeLeft.toString());*/
-              //print(currentRoom.BGTimerDB[index].BGTimeLeft.toString());
-              return timerWidget(context,currentRoom.BGTimerDB[index]);
-              /*return new Text(
-            currentRoom.BGTimerDB[index].BGTimeLeft.toString(),
-            textAlign: TextAlign.center,
-          );*/
-            }
-            else {
-              return Text(
-                  "Somethings wrong here..."
+              print(
+                  "Current BGTimerDB.length: " + currentRoom.BGTimerDB.length.toString() + "\n" +
+                  "Current TaskID: " + Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID.toString()
               );
+              return timerWidget(context,currentRoom.BGTimerDB[index]);
             }
           }
       ),
