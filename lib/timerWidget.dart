@@ -21,7 +21,7 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
     ),
     label: Text(
       Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-      currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID).descr
+      currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID).descr
     ),
     isEnabled: true,
     backgroundColor: Colors.white,
@@ -29,7 +29,6 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
       Timer.stateMap[timerID]=='time'?
       changeView(correspondingTimer, 'task'):
       changeView(correspondingTimer, 'time');
-      print(Timer.stateMap[timerID]);
     },
   );
 }
