@@ -346,9 +346,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 if (Timer.activeTimer!=null)  {
                   if (Timer.activeTimer.isRunning==true)  {
                     upStream.add(json.encode({'type':'cancelTimer','content':Timer.activeTimer.id}));
-                    print("Lenght before \"deleting\": " + currentRoom.BGTimerDB.length.toString());
                     currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  Timer.activeTimer.id);
-                    print("Lenght after \"deleting\": " + currentRoom.BGTimerDB.length.toString());
                   }
                   Timer.activeTimer.isRunning=false;
                 }

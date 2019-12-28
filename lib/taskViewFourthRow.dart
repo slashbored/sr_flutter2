@@ -23,9 +23,7 @@ Widget taskViewFourthRow(BuildContext context, Room room) {
           itemCount: currentRoom.BGTimerDB.length,
           itemBuilder: (context, int index) {
             int typeIDplaceholder = Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID;
-            print(typeIDplaceholder);
             if(typeIDplaceholder==3||typeIDplaceholder==6)  {
-              print("Ok?");
               return timerWidget(context,currentRoom.BGTimerDB[index]);
             }
           }
