@@ -55,12 +55,10 @@ void startStreaming() async{
       case  'timerUpdate':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
-        //currentRoom.BGTimerDB.length>0?Room.renewActiveTimer(taskOverviewContext):null;
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
-        //currentRoom.BGTimerDB.length>0?Room.renewActiveTimer(taskOverviewContext):null;
         break;
       case  'yourPlayer':
         Player.mePlayer = Player(packageIn.content);
@@ -71,12 +69,6 @@ void startStreaming() async{
       case  'nextTask':
        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
        break;
-      /*case   'FGTimeLeft':
-        FGtimeLeft  = packageIn.content.toString();
-        if  (FGtimeLeft=='0') {
-          FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
-        }
-        break;*/
     }
   });
 

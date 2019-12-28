@@ -73,12 +73,6 @@ class Task{
     looserString_de = data['looserString_de'];
   }
 
-  static Task getTaskByID(int taskID)  {
-    int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
-    test.id == taskID);
-    return Room.activeRoom.taskDB[taskIDindex];
-  }
-
   static String getStringByLocale(Task task, String locale, String stringType)  {
     if  (locale=="en_") {
       switch  (stringType)  {

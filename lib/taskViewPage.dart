@@ -20,7 +20,6 @@ class taskViewPage extends StatefulWidget{
 
 class taskViewPageState extends State<taskViewPage>{
 
-  //Room currentRoom;
   Task currentTask;
   Player currentPlayer;
   Player currentSecondPlayer;
@@ -33,13 +32,15 @@ class taskViewPageState extends State<taskViewPage>{
   Widget mainBody(BuildContext context)  {
     taskOverviewContext = context;
     if  (isWorkingAtAll()) {
-      //currentRoom   = Room.activeRoom;
-      currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
-      currentPlayer = Player.getPlayerByID(currentRoom.activePlayerID);
+      //currentTask   = Task.getTaskByID(currentRoom.activeTaskID);
+      currentTask   = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID);
+      currentPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activePlayerID);
       if  (currentRoom.activeSecondPlayerID!=null)  {
-        currentSecondPlayer = Player.getPlayerByID(currentRoom.activeSecondPlayerID);
+        currentSecondPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activeSecondPlayerID);
       }
-      return Scaffold(
+      return WillPopScope(
+        onWillPop: () =>  null,
+        child: Scaffold(
           body: StreamBuilder(
               stream: downStream,
               builder:  (context, snapShot) {
@@ -47,29 +48,27 @@ class taskViewPageState extends State<taskViewPage>{
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     new Expanded(
-                      child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 315
+                        child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                        flex: 315
                     ),
                     new Expanded(
-                      child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 315
+                        child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                        flex: 315
                     ),
                     new Expanded(
-                      child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                      flex: 315
+                        child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                        flex: 315
                     ),
                     new Expanded(
-                      child: taskViewFourthRow(context, currentRoom),
-                      flex: 55
+                        child: taskViewFourthRow(context, currentRoom),
+                        flex: 55
                     )
                   ],
                 );
-                /*return Center(
-            child: taskStringColumn(context)
-          );*/
               }
           ),
-        );
+        )
+      );
 
     }
     else  {

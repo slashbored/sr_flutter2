@@ -16,12 +16,12 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
   return InputChip(
     avatar: CircleAvatar(
       child: Text(
-          Player.getPlayerByID(correspondingTimer.playerID).name.substring(0, 1).toUpperCase()
+          Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID).name.substring(0, 1).toUpperCase()
       ),
     ),
     label: Text(
-        //correspondingTimer.viewState=='time'?convertTime(correspondingTimer.BGTimeLeft):correspondingTimer.taskID.toString(),
-      Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):Task.getTaskByID(correspondingTimer.taskID).descr
+      Timer.stateMap[timerID]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+      currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID).descr
     ),
     isEnabled: true,
     backgroundColor: Colors.white,
@@ -44,13 +44,11 @@ String convertTime(int timeToConvert) {
   else  {
     seconds=timeToConvert;
   }
-  //timeToConvert>60?seconds=timeToConvert-minutes*60:seconds=timeToConvert;
   String convertedTime  = minutes.toString() + ":" + (seconds<10?"0"+seconds.toString():seconds.toString());
   return convertedTime;
 }
 
-String changeView(Timer timerToChange, String newView) {
-  
+void changeView(Timer timerToChange, String newView) {
   if  (Timer.stateMap.containsKey(timerToChange.id)==true) {
     var key  = Timer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
     if  (Timer.stateMap[key]==null) {
