@@ -14,6 +14,8 @@ import 'timerWidget.dart';
 Widget taskViewFourthRow(BuildContext context, Room room) {
   //Room.renewActiveTimer(context);
   if(currentRoom.BGTimerDB.length>0) {
+    /*Iterable possibleItemCount = currentRoom.BGTimerDB.where((timerPlaceholder)  =>
+    (Task.getTaskByID(timerPlaceholder.taskID).typeID ==  3)||(Task.getTaskByID(timerPlaceholder.taskID).typeID ==  6));*/
     return Align(
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -21,16 +23,9 @@ Widget taskViewFourthRow(BuildContext context, Room room) {
           itemCount: currentRoom.BGTimerDB.length,
           itemBuilder: (context, int index) {
             int typeIDplaceholder = Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID;
-            print(
-                "Index" + index.toString() + "\n" +
-                "Current BGTimerDB.length: " + currentRoom.BGTimerDB.length.toString() + "\n" +
-                "Current typeID: " + Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID.toString()
-            );
+            print(typeIDplaceholder);
             if(typeIDplaceholder==3||typeIDplaceholder==6)  {
-              print(
-                  "Current BGTimerDB.length: " + currentRoom.BGTimerDB.length.toString() + "\n" +
-                  "Current TaskID: " + Task.getTaskByID(currentRoom.BGTimerDB[index].taskID).typeID.toString()
-              );
+              print("Ok?");
               return timerWidget(context,currentRoom.BGTimerDB[index]);
             }
           }

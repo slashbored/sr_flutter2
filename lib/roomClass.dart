@@ -46,7 +46,7 @@ class Room  {
   }
 
   static void renewActiveTimer(context) {
-    if(currentRoom.BGTimerDB.length>0)  {
+    if(currentRoom.BGTimerDB.length>0&&currentRoom.BGTimerDB.contains((element)  =>  element.taskID  ==  currentRoom.activeTaskID))  {
       int timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
       Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
       print(Timer.activeTimer.id.toString());

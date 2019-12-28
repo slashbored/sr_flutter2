@@ -75,7 +75,7 @@ class Task{
 
   static Task getTaskByID(int taskID)  {
     int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
-    test.id == Room.activeRoom.activeTaskID);
+    test.id == taskID);
     return Room.activeRoom.taskDB[taskIDindex];
   }
 
