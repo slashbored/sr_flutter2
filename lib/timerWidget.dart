@@ -8,33 +8,71 @@ import 'taskClass.dart';
 import 'timerClass.dart';
 
 Widget timerWidget(BuildContext context, Timer correspondingTimer) {
-  Player correspondingPlayer  = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
-  Task correspondingTask      = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID);
   changeView(correspondingTimer, '');
-  return InputChip(
-    avatar: CircleAvatar(
-      child: Text(
-          correspondingPlayer.name.substring(0, 1).toUpperCase()
+  Player correspondingFirstPlayer  = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
+  Player correspondingSecondPlayer;
+  Task correspondingTask      = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID);
+  if (correspondingTimer.secondPlayerID!=null)  {
+    correspondingSecondPlayer  = Room.activeRoom.playerDB.firstWhere((player)  =>  player.id == correspondingTimer.secondPlayerID);
+    return InputChip(
+      avatar: CircleAvatar(
+        child: RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: correspondingFirstPlayer.name.substring(0, 1).toUpperCase(),
+                style: TextStyle(
+                  color: correspondingFirstPlayer.color
+                )
+              ),
+              TextSpan(
+                text: "&"
+              ),
+              TextSpan(
+                  text: correspondingSecondPlayer.name.substring(0, 1).toUpperCase(),
+                  style: TextStyle(
+                      color: correspondingSecondPlayer.color
+                  )
+              )
+            ]
+          ),
+        ),
+        backgroundColor: correspondingFirstPlayer.color,
       ),
-      backgroundColor: correspondingPlayer.color,
-    ),
-    label: Text(
-      Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-      correspondingTask.descr
-    ),
-    isEnabled: true,
-    backgroundColor: correspondingPlayer.color,
-    onPressed: () {
-      Timer.stateMap[correspondingTimer.id]=='time'?
-      changeView(correspondingTimer, 'task'):
-      changeView(correspondingTimer, 'time');
-    },
-  );
+      label: Text(
+          Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+          correspondingTask.descr
+      ),
+      isEnabled: true,
+      backgroundColor: Colors.black,
+      onPressed: () {
+        onPressInputChip(correspondingTimer);
+      },
+    );
+  }
+  else  {
+    return InputChip(
+      avatar: CircleAvatar(
+        child: Text(
+            correspondingFirstPlayer.name.substring(0, 1).toUpperCase()
+        ),
+        backgroundColor: correspondingFirstPlayer.color,
+      ),
+      label: Text(
+          Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+          correspondingTask.descr
+      ),
+      isEnabled: true,
+      backgroundColor: correspondingFirstPlayer.color,
+      onPressed: () {
+        onPressInputChip(correspondingTimer);
+      },
+    );
+  }
 }
 
 
 String convertTime(int timeToConvert) {
-  String convertedTime;
   int minutes = timeToConvert ~/ 60;
   int seconds;
   if  (timeToConvert>60)  {
@@ -43,8 +81,14 @@ String convertTime(int timeToConvert) {
   else  {
     seconds=timeToConvert;
   }
-  convertedTime  = minutes.toString() + ":" + (seconds<10?"0"+seconds.toString():seconds.toString());
-  return convertedTime;
+  return minutes.toString() + ":" + (seconds<10?"0"+seconds.toString():seconds.toString());
+}
+
+
+void onPressInputChip(Timer correspondingTimer) {
+  Timer.stateMap[correspondingTimer.id]=='time'?
+  changeView(correspondingTimer, 'task'):
+  changeView(correspondingTimer, 'time');
 }
 
 void changeView(Timer timerToChange, String newView) {

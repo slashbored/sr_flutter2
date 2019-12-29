@@ -4,6 +4,7 @@ class Timer{
   String id;
   String roomID;
   String playerID;
+  String secondPlayerID;
   int taskID;
   int BGTimeLeft;
   String FGTimeLeft;
@@ -20,6 +21,12 @@ class Timer{
     taskID      = data['taskID'];
     BGTimeLeft  = data['BGTimeLeft'];
     isRunning   = data['isRunning'];
+    if (data['activeSecondPlayerID']!=null) {
+      secondPlayerID  = data['activeSecondPlayerID'];
+    }
+    else  {
+      secondPlayerID  = null;
+    }
   }
 
   static void updateStateMap()  {
