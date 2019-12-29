@@ -1,5 +1,3 @@
-import 'roomClass.dart';
-
 class Task{
   int id;
   int categoryID;

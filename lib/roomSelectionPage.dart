@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'roomClass.dart';
 import 'roomOverviewPage.dart';
 import 'playerClass.dart';
-import 'taskClass.dart';
 
 class roomSelection extends StatefulWidget{
   @override
@@ -16,10 +15,7 @@ class roomSelection extends StatefulWidget{
 
 class roomSelectionState extends State<roomSelection>{
 
-
-  //final TextEditingController nameTextfieldController = TextEditingController();
   final TextEditingController joinroomTextfieldController = TextEditingController();
-  //final TextEditingController addToChatTextfieldController = TextEditingController();
 
   @override
   void initState()  {
@@ -28,7 +24,6 @@ class roomSelectionState extends State<roomSelection>{
 
   @override
   void dispose() {
-    //nameTextfieldController.dispose();
     joinroomTextfieldController.dispose();
     super.dispose();
   }
@@ -49,7 +44,6 @@ class roomSelectionState extends State<roomSelection>{
                   onPressed: () {
                     upStream.add(json.encode({'type':'createRoom','content':''}));
                     Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                    //upStream.add(json.encode({'type':'get','content':'roomList'}));
                   },
                 ),
                 Flexible(
@@ -65,39 +59,6 @@ class roomSelectionState extends State<roomSelection>{
                     joinRoom();
                     },
                 ),
-                //playerListView(context),
-                /*Flexible(
-                  child: TextField(
-                    controller: addToChatTextfieldController
-                  )
-                ),
-                FloatingActionButton.extended(
-                  heroTag:'enterChat',
-                  label: Text('Add to chat'),
-                  onPressed: () {
-                    upStream.add(json.encode({'type':'addToChat','content':addToChatTextfieldController.text.toString()}));
-                  }
-                ),
-                chatListView(context),
-                FloatingActionButton.extended(
-                    heroTag:'randomTask',
-                    label: Text('Random task'),
-                    onPressed: () {
-                      upStream.add(json.encode({'type':'randomTask','content':''}));
-                    }
-                ),
-                FloatingActionButton.extended(
-                    heroTag:'randomPlayer',
-                    label: Text('random player'),
-                    onPressed: () {
-                      upStream.add(json.encode({'type':'randomPlayer','content':''}));
-                    }
-                ),*/
-                /*Flexible(
-                  child: Text(
-                    Room.activeRoom!=null&&Room.activeRoom.activeTaskID!=null?Room.activeRoom.activeTaskID.toString():""
-                  ),
-                )*/
                 Flexible(
                   child: taskStringText(context),
                 )
@@ -143,30 +104,6 @@ class roomSelectionState extends State<roomSelection>{
       return Text(S.of(context).noPlayersYet);
     }
   }
-
-  /*Widget chatListView(BuildContext context) {
-    if (Room.activeRoom!=null) {
-      return  Flexible(
-        child: ListView(
-          children: <Widget>[
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: Room.activeRoom.chatDB.length,
-              itemBuilder: (context, int index){
-                return Text(
-                  Room.activeRoom.chatDB[index],
-                  textAlign: TextAlign.start,
-                );
-              }
-            )
-          ]
-        )
-      );
-    }
-    else  {
-      return Text("");
-    }
-  }*/
 
   Widget taskStringText(BuildContext context) {
     if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&

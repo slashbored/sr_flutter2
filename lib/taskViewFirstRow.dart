@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import "generated/i18n.dart";
 
-import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
@@ -26,7 +25,10 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                     children: <TextSpan>[
                       TextSpan(
                           style: firstPlayer.id!=Player.mePlayer.id?
-                          Player.getPlayerSexStyleByID(firstPlayer.id, 36):
+                          TextStyle(
+                            color: firstPlayer.color,
+                            fontSize: 36
+                          ):
                           _titleStyle,
                           text: firstPlayer.id==Player.mePlayer.id?S.of(context).ownTurn:firstPlayer.name
                       ),
@@ -52,7 +54,10 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
               text: TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                        style: Player.getPlayerSexStyleByID(firstPlayer.id, 36),
+                        style: TextStyle(
+                            color: firstPlayer.color,
+                            fontSize: 36
+                        ),
                         text: firstPlayer.name
                     ),
                   ]
@@ -76,36 +81,90 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
       );
       break;
     case 9:
-      return Center(
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-              style: _titleStyle,
-              text: S.of(context).mimeThis
+      if (firstPlayer.id==Player.mePlayer.id) {
+        return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: _titleStyle,
+                text: S.of(context).mimeThis
+            ),
           ),
-        ),
-      );
+        );
+      }
+      else  {
+        return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: _titleStyle,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: S.of(context).tabooMimeGuessp1
+                  ),
+                  TextSpan(
+                    text: firstPlayer.name,
+                    style: TextStyle(
+                      color: firstPlayer.color,
+                      fontSize: 36
+                    )
+                  ),
+                  TextSpan(
+                      text: S.of(context).tabooMimeGuessp2
+                  )
+                ]
+            ),
+          ),
+        );
+      }
       break;
     case 10:
-      return Center(
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            style: _titleStyle,
-            children: <TextSpan>[
-              TextSpan(
-                  text: S.of(context).taboop1
-              ),
-              TextSpan(
-                  text: Localizations.localeOf(context).toString()=="en_"?task.nString_en:task.nString_de
-              ),
-              TextSpan(
-                  text: S.of(context).taboop2
-              )
-            ],
+      if (firstPlayer.id==Player.mePlayer.id) {
+        return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              style: _titleStyle,
+              children: <TextSpan>[
+                TextSpan(
+                    text: S.of(context).taboop1
+                ),
+                TextSpan(
+                    text: Localizations.localeOf(context).toString()=="en_"?task.nString_en:task.nString_de
+                ),
+                TextSpan(
+                    text: S.of(context).taboop2
+                )
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
+      else  {
+        return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: _titleStyle,
+                children: <TextSpan>[
+                  TextSpan(
+                      text: S.of(context).tabooMimeGuessp1
+                  ),
+                  TextSpan(
+                      text: firstPlayer.name,
+                      style: TextStyle(
+                          color: firstPlayer.color,
+                          fontSize: 36
+                      )
+                  ),
+                  TextSpan(
+                      text: S.of(context).tabooMimeGuessp2
+                  )
+                ]
+            ),
+          ),
+        );
+      }
       break;
     default:
       return Spacer();

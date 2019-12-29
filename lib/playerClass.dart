@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'roomClass.dart';
 
 class Player  {
   String id;
@@ -7,6 +6,7 @@ class Player  {
   String sex;
   int points;
   String roomID;
+  MaterialColor color;
   static Player mePlayer;
 
   Player(Map data) {
@@ -17,20 +17,56 @@ class Player  {
     roomID  = data['roomID'];
   }
 
-  static TextStyle getPlayerSexStyleByID(String playerID, double size)  {
-    switch (Room.activeRoom.playerDB.firstWhere((player) =>  player.id == playerID).sex) {
-      case ('m'):
-        return TextStyle(
-            fontSize: size,
-            color: Colors.blue
-        );
+  static MaterialColor setPlayerColor(int positionInDB)  {
+    switch (positionInDB)  {
+      case 0:
+        return Colors.blue;
         break;
-      case ('f'):
-        return TextStyle(
-            fontSize: size,
-            color: Colors.red
-        );
+      case 1:
+        return Colors.green;
         break;
+      case 2:
+        return Colors.yellow;
+        break;
+      case 3:
+        return Colors.deepOrange;
+        break;
+      case 4:
+        return Colors.purple;
+        break;
+      case 5:
+        return Colors.brown;
+        break;
+      case 6:
+        return Colors.indigo;
+        break;
+      case 7:
+        return Colors.red;
+        break;
+      case 8:
+        return Colors.teal;
+        break;
+      case 9:
+        return Colors.lightGreen;
+        break;
+      case 10:
+        return Colors.lime;
+        break;
+      case 11:
+        return Colors.orange;
+        break;
+      case 12:
+        return Colors.pink;
+        break;
+      case 13:
+        return Colors.amber;
+      case 14:
+        return Colors.cyan;
+        break;
+      case 15:
+      return Colors.grey;
+      break;
+
     }
   }
 }

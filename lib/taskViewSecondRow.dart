@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
@@ -76,6 +75,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
           style: TextStyle(
               fontSize: 36
           ),
+          textAlign: TextAlign.center,
         ),
       );
     }

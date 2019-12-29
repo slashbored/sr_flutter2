@@ -6,11 +6,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'generated/i18n.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
-import 'timerClass.dart';
 
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
@@ -24,7 +22,6 @@ Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
 Room currentRoom;
-//String FGtimeLeft  = S.of(taskOverviewContext).FGTimerGo;
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();

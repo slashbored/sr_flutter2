@@ -25,12 +25,6 @@ class playerEditingState extends State<playerEditing>{
   @override
   void initState() {
     super.initState();
-    /*WSChannel.stream.asBroadcastStream();
-    downStreamController.addStream(WSChannel.stream);
-    upStream = WSChannel.sink;
-    downStream = downStreamController.stream;
-    upStream.add(json.encode({'type':'get','content':'uuid'}));
-    upStream.add(json.encode({'type':'ping','content':''}));*/
     startStreaming();
 
   }
@@ -81,16 +75,6 @@ class playerEditingState extends State<playerEditing>{
                   },
                   backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.grey,
                 ),
-                /*InputChip(
-                  label: Text(S.of(context).sexX),
-                  onPressed: (){
-                    setState(() {
-                      upStream.add(json.encode({'type':'setSex','content':'o'}));
-                      Player.mePlayer.sex = 'o';
-                    });
-                  },
-                  backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='o'?getSexcolor(Player.mePlayer.sex):Colors.grey,
-    ),*/
               ],
             )
           ],

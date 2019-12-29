@@ -7,7 +7,6 @@ import 'dart:convert';
 import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
-import 'taskClass.dart';
 import 'taskViewPage.dart';
 
 class roomOverviewPage extends StatefulWidget{
@@ -31,6 +30,9 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   Widget playerListView(BuildContext context) {
     if (Room.activeRoom!=null) {
+      for (int i=0;i<currentRoom.playerDB.length;i++) {
+        currentRoom.playerDB[i].color = Player.setPlayerColor(i);
+      }
       return  Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,6 +55,9 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                               return Text(
                                 Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: currentRoom.playerDB[index].color
+                                ),
                               );
                             }
                         )
@@ -61,7 +66,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                 ),
                 Flexible(
                   flex: 1,
-                  child: continueToCatsFAB(context),
+                  child: startGameFAB(context),
                 )
               ]
           );
@@ -71,7 +76,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
     }
   }
 
-  Widget continueToCatsFAB(BuildContext context)  {
+  Widget startGameFAB(BuildContext context)  {
     roomOverviewContext = context;
     if  (Room.activeRoom.gmID==Player.mePlayer.id)  {
       return FloatingActionButton(
@@ -82,9 +87,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
             upStream.add(json.encode({'type':'randomPlayer','content':''}));
-            //upStream.add(json.encode({'type':'get','content':'randomBlock'}));
             upStream.add(json.encode({'type':'startGame','content':''}));
-            //goToTaskViewPage();
           }
         },
       );
