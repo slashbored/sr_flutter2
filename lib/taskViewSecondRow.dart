@@ -34,6 +34,14 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       ),
     );
   }
+  if (task.typeID == 7) {
+    return Center(
+      child: Text(
+        Task.getStringByLocale(task, locale, "n"),
+        style: _taskStyle,
+      ),
+    );
+  }
   if (task.typeID == 4 || task.typeID == 5 || task.typeID == 6) {
     splitString =
         Task.getStringByLocale(task, locale, "a").split("\$placeholder");

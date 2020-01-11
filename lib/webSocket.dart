@@ -53,6 +53,10 @@ void startStreaming() async{
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
         break;
+      case  'winnerIDArrayUpdate':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
+        break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;

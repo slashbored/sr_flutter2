@@ -8,13 +8,15 @@ import'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerClass.dart'
-;
+import 'timerClass.dart';
+
+import 'betweenViewPage.dart';
 
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
+  int numberToCompare;
   if  (Timer.activeTimer!=null) {
     Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
   }
@@ -261,6 +263,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               Flexible(
                 child: TextField(
                   controller: comparisonTextController,
+                  keyboardType: TextInputType.numberWithOptions(
+                    decimal: true,
+                    signed: false
+                  ),
                 ),
               ),
               Spacer(
@@ -272,11 +278,23 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             heroTag: "comparison_submit",
             label:  Text("Ok"),
             onPressed: () {
-              comparisonTextController.clear();
-              upStream.add(json.encode({'type':'randomTask','content':''}));
-              upStream.add(json.encode({'type':'randomPlayer','content':''}));
-              upStream.add(json.encode({'type':'nextTask','content':''}));
-
+              if (comparisonTextController.text=="")  {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => CupertinoAlertDialog(
+                        content: Text(S.of(context).pleaseEnterValidNumber)
+                    )
+                );
+              }
+              else  {
+                numberToCompare = int.parse(comparisonTextController.text);
+                comparisonTextController.clear;
+                //upStream.add(json.encode({'type':'randomTask','content':''}));
+                //upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                //upStream.add(json.encode({'type':'nextTask','content':''}));
+                upStream.add(json.encode({'type':'compareNumber','content':numberToCompare}));
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
+              }
             },
           )
         ],

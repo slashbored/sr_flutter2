@@ -24,5 +24,7 @@
   "listFailedStyle1": "Kein Plan",
   "FGTimerGo": "Los!",
   "BGTimerGo": "Auffi!",
-  "FGTimerDone": "Fertig!"
+  "FGTimerDone": "Fertig!",
+  "pleaseEnterValidNumber": "Bitte gib eine korrekte Zahl an.",
+  "waitingForOthersToInput": "Warte auf Eingaben der anderen Spieler.."
 }

@@ -86,6 +86,12 @@ class Task{
         case("wyr_b"):
           return task.bSelectString_en;
           break;
+        case('compare_win'):
+          return task.winnerString_en;
+          break;
+        case('compare_loose'):
+          return task.looserString_en;
+          break;
       }
     }
     else  {
@@ -101,6 +107,12 @@ class Task{
           break;
         case("wyr_b"):
           return task.bSelectString_de;
+          break;
+        case('compare_win'):
+          return task.winnerString_de;
+          break;
+        case('compare_loose'):
+          return task.looserString_de;
           break;
       }
 

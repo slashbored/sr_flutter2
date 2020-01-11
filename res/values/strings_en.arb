@@ -24,5 +24,7 @@
   "listFailedStyle1": "Dunno",
   "FGTimerGo": "Go!",
   "BGTimerGo": "K den!",
-  "FGTimerDone": "Done!"
+  "FGTimerDone": "Done!",
+  "pleaseEnterValidNumber": "Please enter a valid number.",
+  "waitingForOthersToInput": "Waiting for the others to input.."
 }

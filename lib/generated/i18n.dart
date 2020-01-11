@@ -36,6 +36,7 @@ class S implements WidgetsLocalizations {
   String get noStyle2 => "I don't wanna";
   String get ownTurn => "Your turn!";
   String get pleaseCompleteEntries => "Please complete your entries.";
+  String get pleaseEnterValidNumber => "Please enter a valid number.";
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
@@ -46,6 +47,7 @@ class S implements WidgetsLocalizations {
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
   String get turn => "s turn";
+  String get waitingForOthersToInput => "Waiting for the others to input..";
   String get yesStyle1 => "Yessir!";
 }
 
@@ -60,11 +62,15 @@ class $de extends S {
   @override
   String get taboop1 => "Beschreibe \"";
   @override
+  String get pleaseEnterValidNumber => "Bitte gib eine korrekte Zahl an.";
+  @override
   String get taboop2 => "\" ohne folgende Wörter zu benutzen:";
   @override
   String get sexX => "Divers";
   @override
   String get turn => " ist am Zug";
+  @override
+  String get waitingForOthersToInput => "Warte auf Eingaben der anderen Spieler..";
   @override
   String get compareThis => "Mal unter uns beiden (und den anderen),";
   @override

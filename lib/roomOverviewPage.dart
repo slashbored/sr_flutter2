@@ -101,7 +101,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         },
       );
     }
-
   }
 
   void goToTaskViewPage(theContext) async {

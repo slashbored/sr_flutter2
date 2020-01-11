@@ -14,24 +14,26 @@ class Room  {
   int activeTaskID;
   String activePlayerID;
   String activeSecondPlayerID;
+  bool  isWaiting = true;
+  List winnerIDArray = new List();
   static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
     id = data['id'];
     List.from(data['playerDB']).forEach((playerPlaceHolder) => (playerDB.insert(playerDB.length, Player(playerPlaceHolder))));
-    if(data['taskDB']!=null) {
+    if (data['taskDB']!=null) {
       List.from(data['taskDB']).forEach((taskPlaceHolder) => (taskDB.insert(taskDB.length, Task(taskPlaceHolder))));
     }
     gmID  = data['gmID'];
     activeTaskID  = data['activeTaskID'];
     activePlayerID  = data['activePlayerID'];
-    if(data['activeSecondPlayerID']!=null)  {
+    if (data['activeSecondPlayerID']!=null)  {
       activeSecondPlayerID  = data['activeSecondPlayerID'];
     }
     else  {
       activeSecondPlayerID=null;
     }
-    if(data['BGTimerDB']!=null) {
+    if (data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
       if  (BGTimerDB.length>0)  {
         Timer.updateStateMap();
@@ -39,6 +41,13 @@ class Room  {
     }
     else  {
       BGTimerDB=null;
+    }
+    isWaiting = data['isWaiting'];
+    if (data['winnerIDArray']!=null)  {
+      List.from(data['winnerIDArray']).forEach((playerplaceholder)  =>(winnerIDArray.insert(winnerIDArray.length, Player(playerplaceholder))));
+    }
+    else  {
+      winnerIDArray = null;
     }
   }
 

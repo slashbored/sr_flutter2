@@ -56,7 +56,7 @@ class taskViewPageState extends State<taskViewPage>{
                         flex: 315
                     ),
                     new Expanded(
-                        child: taskViewFourthRow(context, currentRoom),
+                        child: taskViewFourthRow(context),
                         flex: 55
                     )
                   ],
