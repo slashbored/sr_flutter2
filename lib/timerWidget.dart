@@ -26,9 +26,6 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
                 )
               ),
               TextSpan(
-                text: "&"
-              ),
-              TextSpan(
                   text: correspondingSecondPlayer.name.substring(0, 1).toUpperCase(),
                   style: TextStyle(
                       color: correspondingSecondPlayer.color
@@ -37,11 +34,14 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
             ]
           ),
         ),
-        backgroundColor: correspondingFirstPlayer.color,
+        backgroundColor: Colors.black,
       ),
       label: Text(
-          Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-          correspondingTask.descr
+        Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+        correspondingTask.descr,
+        style: TextStyle(
+          color: Colors.white
+        ),
       ),
       isEnabled: true,
       backgroundColor: Colors.black,
@@ -77,6 +77,7 @@ String convertTime(int timeToConvert) {
   int seconds;
   if  (timeToConvert>60)  {
     seconds=timeToConvert-minutes*60;
+    seconds==60?seconds=0:seconds=seconds;
   }
   else  {
     seconds=timeToConvert;

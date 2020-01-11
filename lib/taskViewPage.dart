@@ -83,7 +83,7 @@ class taskViewPageState extends State<taskViewPage>{
 
 
   void nextTaskOnThisPage(theContext) async {
-    await new Future.delayed(const Duration(milliseconds: 500));
+    await new Future.delayed(const Duration(milliseconds: 50));
     //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
   }

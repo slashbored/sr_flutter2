@@ -48,7 +48,11 @@ class roomSelectionState extends State<roomSelection>{
                 ),
                 Flexible(
                   child: TextField(
-                    controller: joinroomTextfieldController
+                    controller: joinroomTextfieldController,
+                    keyboardType: TextInputType.numberWithOptions(
+                        decimal: true,
+                        signed: false
+                    ),
                   )
                 ),
                 FloatingActionButton.extended(

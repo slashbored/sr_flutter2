@@ -17,8 +17,14 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
   int numberToCompare;
+
   if  (Timer.activeTimer!=null) {
     Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
+  }
+
+  if (Player.mePlayer.compareString!=null)  {
+    comparisonTextController.value=TextEditingValue(text: Player.mePlayer.compareString);
+    comparisonTextController.selection  = TextSelection(baseOffset: comparisonTextController.text.length, extentOffset: comparisonTextController.text.length);
   }
 
   switch (task.typeID)  {
@@ -122,24 +128,20 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "normalBGTime_denied",
                 label: Text(S.of(context).noStyle1),
                 onPressed: (){
-                  //firstPlayer.points++;
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
-                  //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
             ),
             FloatingActionButton.extended(
                 heroTag:  "normalBGTime_accepted",
                 label: Text(S.of(context).BGTimerGo),
                 onPressed: (){
-                  //upStream.add(json.encode({'type':'startBGTimer','content':''}));
                   startBGTimer(context);
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
-                  //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
             )
           ],
@@ -183,7 +185,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 5:
       if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
-        //Room.renewActiveTimer(context);
+        Room.renewActiveTimer(context);
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -222,14 +224,14 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 6:
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
+
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           FloatingActionButton.extended(
-              heroTag:  "choice_denied",
+              heroTag:  "choiceBGTime_denied",
               label: Text(S.of(context).noStyle2),
               onPressed: (){
-                //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
@@ -237,9 +239,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),
           FloatingActionButton.extended(
-              heroTag:  "choice_accepted",
+              heroTag:  "choiceBGTime_accepted",
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
+                startBGTimer(context);
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -267,6 +270,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                     decimal: true,
                     signed: false
                   ),
+                  onChanged: (value) {
+                    Player.mePlayer.compareString=value;
+                  },
                 ),
               ),
               Spacer(
@@ -288,10 +294,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
               else  {
                 numberToCompare = int.parse(comparisonTextController.text);
-                comparisonTextController.clear;
-                //upStream.add(json.encode({'type':'randomTask','content':''}));
-                //upStream.add(json.encode({'type':'randomPlayer','content':''}));
-                //upStream.add(json.encode({'type':'nextTask','content':''}));
+                comparisonTextController.clear();
+                Player.mePlayer.compareString="";
                 upStream.add(json.encode({'type':'compareNumber','content':numberToCompare}));
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
               }
