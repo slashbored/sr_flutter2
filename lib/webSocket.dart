@@ -57,6 +57,10 @@ void startStreaming() async{
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
         break;
+      case  'compareWinnerSideUpdate':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
+        break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
@@ -68,8 +72,9 @@ void startStreaming() async{
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
         break;
       case  'nextTask':
-       taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
-       break;
+        Player.mePlayer.compareValue=null;
+        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
+        break;
     }
   });
 

@@ -26,5 +26,6 @@
   "BGTimerGo": "K den!",
   "FGTimerDone": "Done!",
   "pleaseEnterValidNumber": "Please enter a valid number.",
-  "waitingForOthersToInput": "Waiting for the others to input.."
+  "waitingForOthersToInput": "Waiting for the others to input..",
+  "comparisonDraw": "It's a draw!"
 }

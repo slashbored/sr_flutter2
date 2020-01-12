@@ -7,7 +7,7 @@ class Player  {
   int points;
   String roomID;
   MaterialColor color;
-  String compareString;
+  double compareValue;
   static Player mePlayer;
 
   Player(Map data) {

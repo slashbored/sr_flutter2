@@ -26,6 +26,7 @@ class S implements WidgetsLocalizations {
   String get FGTimerGo => "Go!";
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
+  String get comparisonDraw => "It's a draw!";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
@@ -83,6 +84,8 @@ class $de extends S {
   String get sexMale => "Männlein";
   @override
   String get FGTimerDone => "Fertig!";
+  @override
+  String get comparisonDraw => "Unentschieden!";
   @override
   String get FGTimerGo => "Los!";
   @override

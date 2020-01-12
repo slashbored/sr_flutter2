@@ -16,6 +16,7 @@ class Room  {
   String activeSecondPlayerID;
   bool  isWaiting = true;
   List winnerIDArray = new List();
+  int compareWinnerSide;
   static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
@@ -49,6 +50,7 @@ class Room  {
     else  {
       winnerIDArray = null;
     }
+    compareWinnerSide = data['compareWinnerSide'];
   }
 
   static void renewActiveTimer(context) {

@@ -72,7 +72,12 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           );
     }
     else  {
-      return Text(S.of(context).noPlayersYet);
+      return Center(
+        child: Text(
+          S.of(context).noPlayersYet,
+          textAlign: TextAlign.center,
+        ),
+      );
     }
   }
 

@@ -22,8 +22,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
     Timer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
   }
 
-  if (Player.mePlayer.compareString!=null)  {
-    comparisonTextController.value=TextEditingValue(text: Player.mePlayer.compareString);
+  if (Player.mePlayer.compareValue!=null)  {
+    comparisonTextController.value=TextEditingValue(text: Player.mePlayer.compareValue.toString());
     comparisonTextController.selection  = TextSelection(baseOffset: comparisonTextController.text.length, extentOffset: comparisonTextController.text.length);
   }
 
@@ -271,7 +271,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                     signed: false
                   ),
                   onChanged: (value) {
-                    Player.mePlayer.compareString=value;
+                    Player.mePlayer.compareValue=double.parse(value);
                   },
                 ),
               ),
@@ -284,7 +284,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             heroTag: "comparison_submit",
             label:  Text("Ok"),
             onPressed: () {
-              if (comparisonTextController.text=="")  {
+              if (comparisonTextController.text==""||comparisonTextController.text==null)  {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => CupertinoAlertDialog(
@@ -293,10 +293,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 );
               }
               else  {
-                numberToCompare = int.parse(comparisonTextController.text);
+                Player.mePlayer.compareValue=double.parse(comparisonTextController.text);
+                upStream.add(json.encode({'type':'compareNumber','content':Player.mePlayer.compareValue}));
                 comparisonTextController.clear();
-                Player.mePlayer.compareString="";
-                upStream.add(json.encode({'type':'compareNumber','content':numberToCompare}));
+                //Player.mePlayer.compareValue=null;
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
               }
             },
@@ -385,21 +385,21 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           FloatingActionButton.extended(
-            heroTag: "wyr_a",
+            heroTag: "wyr_a_submit",
             label: Text(Task.getStringByLocale(task, locale, "wyr_a")),
             onPressed: () {
-              upStream.add(json.encode({'type':'randomTask','content':''}));
-              upStream.add(json.encode({'type':'randomPlayer','content':''}));
-              upStream.add(json.encode({'type':'nextTask','content':''}));
+              Player.mePlayer.compareValue = 1;
+              upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
+              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
             },
           ),
           FloatingActionButton.extended(
-            heroTag: "wyr_b",
+            heroTag: "wyr_b_submit",
             label: Text(Task.getStringByLocale(task, locale, "wyr_b")),
             onPressed: () {
-              upStream.add(json.encode({'type':'randomTask','content':''}));
-              upStream.add(json.encode({'type':'randomPlayer','content':''}));
-              upStream.add(json.encode({'type':'nextTask','content':''}));
+              Player.mePlayer.compareValue = 2;
+              upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
+              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
             },
           )
         ],

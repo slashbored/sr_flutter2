@@ -92,6 +92,18 @@ class Task{
         case('compare_loose'):
           return task.looserString_en;
           break;
+        case('wyr_a_won'):
+          return task.aWonString_en;
+          break;
+        case('wyr_a_lost'):
+          return task.aLostString_en;
+          break;
+        case('wyr_b_won'):
+          return task.bWonString_en;
+          break;
+        case('wyr_b_lost'):
+          return task.bLostString_en;
+          break;
       }
     }
     else  {
@@ -113,6 +125,18 @@ class Task{
           break;
         case('compare_loose'):
           return task.looserString_de;
+          break;
+        case('wyr_a_won'):
+          return task.aWonString_de;
+          break;
+        case('wyr_a_lost'):
+          return task.aLostString_de;
+          break;
+        case('wyr_b_won'):
+          return task.bWonString_de;
+          break;
+        case('wyr_b_lost'):
+          return task.bLostString_de;
           break;
       }
 

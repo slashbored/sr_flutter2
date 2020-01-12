@@ -26,5 +26,6 @@
   "BGTimerGo": "Auffi!",
   "FGTimerDone": "Fertig!",
   "pleaseEnterValidNumber": "Bitte gib eine korrekte Zahl an.",
-  "waitingForOthersToInput": "Warte auf Eingaben der anderen Spieler.."
+  "waitingForOthersToInput": "Warte auf Eingaben der anderen Spieler..",
+  "comparisonDraw": "Unentschieden!"
 }
