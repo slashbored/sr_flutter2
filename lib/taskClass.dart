@@ -3,11 +3,19 @@ class Task{
   int categoryID;
   int typeID;
   String descr;
+  String timerDescr_en;
+  String timerDescr_de;
   int duration;
-  String nString_en;
-  String nString_de;
-  String aString_en;
-  String aString_de;
+  String nString_en_active;
+  String nString_de_active;
+  String nString_en_spectate;
+  String nString_de_spectate;
+  String aString_en_active;
+  String aString_de_active;
+  String aString_en_passive;
+  String aString_de_passive;
+  String aString_en_spectate;
+  String aString_de_spectate;
   String oString_en;
   String oString_de;
   String gString_en;
@@ -39,11 +47,17 @@ class Task{
     categoryID  = data['categoryID'];
     typeID      = data['typeID'];
     descr       = data['descr'];
+    timerDescr_en = data['timerDescr_en'];
+    timerDescr_de = data['timerDescr_de'];
     duration    = data['duration'];
-    nString_en  = data['nString_en'];
-    nString_de  = data['nString_de'];
-    aString_en  = data['aString_en'];
-    aString_de  = data['aString_de'];
+    nString_en_active  = data['nString_en_active'];
+    nString_de_active  = data['nString_de_active'];
+    nString_en_spectate  = data['nString_en_spectate'];
+    nString_de_spectate  = data['nString_de_spectate'];
+    aString_en_active  = data['aString_en_active'];
+    aString_de_active  = data['aString_de_active'];
+    aString_en_passive  = data['aString_en_passive'];
+    aString_de_passive  = data['aString_de_passive'];
     oString_en  = data['oString_en'];
     oString_de  = data['oString_de'];
     gString_en  = data['gString_en'];
@@ -74,11 +88,23 @@ class Task{
   static String getStringByLocale(Task task, String locale, String stringType)  {
     if  (locale=="en_") {
       switch  (stringType)  {
-        case("n"):
-          return task.nString_en;
+        case("n_active"):
+          return task.nString_en_active;
           break;
-        case("a"):
-          return task.aString_en;
+        case("n_spectate"):
+          return task.nString_en_spectate;
+          break;
+        case("a_active"):
+          return task.aString_en_active;
+          break;
+        case("a_passive"):
+          return task.aString_en_passive;
+          break;
+        case("a_spectate"):
+          return task.aString_en_spectate;
+          break;
+        case('timerDescr'):
+          return task.timerDescr_en;
           break;
         case("wyr_a"):
           return task.aSelectString_en;
@@ -108,11 +134,23 @@ class Task{
     }
     else  {
       switch  (stringType)  {
-        case("n"):
-          return task.nString_de;
+        case("n_active"):
+          return task.nString_de_active;
           break;
-        case("a"):
-          return task.aString_de;
+        case("n_spectate"):
+          return task.nString_de_spectate;
+          break;
+        case("a_active"):
+          return task.aString_de_active;
+          break;
+        case("a_passive"):
+          return task.aString_de_passive;
+          break;
+        case("a_spectate"):
+          return task.aString_de_spectate;
+          break;
+        case('timerDescr'):
+          return task.timerDescr_de;
           break;
         case("wyr_a"):
           return task.aSelectString_de;

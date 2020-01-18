@@ -38,7 +38,8 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
       ),
       label: Text(
         Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-        correspondingTask.descr,
+        Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
+        //correspondingTask.descr,
         style: TextStyle(
           color: Colors.white
         ),
@@ -60,7 +61,8 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
       ),
       label: Text(
           Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-          correspondingTask.descr
+          Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
+          //correspondingTask.descr
       ),
       isEnabled: true,
       backgroundColor: correspondingFirstPlayer.color,

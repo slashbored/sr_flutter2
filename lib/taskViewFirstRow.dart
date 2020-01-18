@@ -58,7 +58,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                             color: firstPlayer.color,
                             fontSize: 36
                         ),
-                        text: firstPlayer.name
+                        text: firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id?Player.mePlayer.name:firstPlayer.name+" & "+secondPlayer.name
                     ),
                   ]
               ),
@@ -130,7 +130,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                     text: S.of(context).taboop1
                 ),
                 TextSpan(
-                    text: Localizations.localeOf(context).toString()=="en_"?task.nString_en:task.nString_de
+                    text: Localizations.localeOf(context).toString()=="en_"?task.nString_en_active:task.nString_de_active
                 ),
                 TextSpan(
                     text: S.of(context).taboop2
