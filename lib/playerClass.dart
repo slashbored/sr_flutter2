@@ -4,10 +4,11 @@ class Player  {
   String id;
   String name;
   String sex;
-  int points;
-  String roomID;
   MaterialColor color;
+  int points;
   double compareValue;
+  int weightModifier;
+  String roomID;
   static Player mePlayer;
 
   Player(Map data) {
@@ -15,6 +16,7 @@ class Player  {
     name  = data['name'];
     sex   = data['sex'];
     points  = data['points'];
+    weightModifier  = data['weightModifier'];
     roomID  = data['roomID'];
   }
 

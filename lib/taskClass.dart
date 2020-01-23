@@ -2,6 +2,7 @@ class Task{
   int id;
   int categoryID;
   int typeID;
+  int weight;
   String descr;
   String timerDescr_en;
   String timerDescr_de;
@@ -46,6 +47,7 @@ class Task{
     id          = data['id'];
     categoryID  = data['categoryID'];
     typeID      = data['typeID'];
+    weight      = data['weight'];
     descr       = data['descr'];
     timerDescr_en = data['timerDescr_en'];
     timerDescr_de = data['timerDescr_de'];
@@ -58,6 +60,8 @@ class Task{
     aString_de_active  = data['aString_de_active'];
     aString_en_passive  = data['aString_en_passive'];
     aString_de_passive  = data['aString_de_passive'];
+    aString_en_spectate = data['aString_en_spectate'];
+    aString_de_spectate = data['aString_de_spectate'];
     oString_en  = data['oString_en'];
     oString_de  = data['oString_de'];
     gString_en  = data['gString_en'];

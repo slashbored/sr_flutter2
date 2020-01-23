@@ -17,19 +17,21 @@ final TextStyle _taskStyle = const TextStyle(
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   locale = Localizations.localeOf(context).toString();
   if (task.typeID == 1 || task.typeID == 2 || task.typeID == 3) {
-    if (firstPlayer==Player.mePlayer) {
+    if (firstPlayer.id==Player.mePlayer.id) {
       return Center(
         child: Text(
           Task.getStringByLocale(task, locale, "n_active"),
           style: _taskStyle,
+          textAlign: TextAlign.center,
         ),
       );
     }
-    else if (secondPlayer==Player.mePlayer) {
+    else {
       return Center(
         child: Text(
           Task.getStringByLocale(task, locale, "n_spectate"),
           style: _taskStyle,
+          textAlign: TextAlign.center,
         ),
       );
     }
@@ -51,19 +53,20 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     );
   }
   if (task.typeID == 4 || task.typeID == 5 || task.typeID == 6) {
-    if (firstPlayer==Player.mePlayer) {
+    if (firstPlayer.id==Player.mePlayer.id) {
       splitStringList = Task.getStringByLocale(task, locale, "a_active").split("\$placeholder");
     }
-    else if (secondPlayer==Player.mePlayer)  {
+    else if (secondPlayer.id==Player.mePlayer.id)  {
       splitStringList = Task.getStringByLocale(task, locale, "a_passive").split("\$placeholder");
     }
     else  {
       splitString = Task.getStringByLocale(task, locale, "a_spectate").replaceAll("\$placeholderone", "");
       splitStringList  = splitString.split("\$placeholdertwo");
     }
-    if (firstPlayer==Player.mePlayer||secondPlayer==Player.mePlayer)  {
+    if (firstPlayer.id==Player.mePlayer.id)  {
       return Center(
           child: RichText(
+            textAlign: TextAlign.center,
             text: TextSpan(
                 style: _taskStyle,
                 children: <TextSpan>[
@@ -73,10 +76,36 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                   ),
                   TextSpan(
                       style: TextStyle(
-                        color: firstPlayer==Player.mePlayer?secondPlayer.color:firstPlayer.color,
+                        color: secondPlayer.color,
                         fontSize: 18
                       ),
-                      text: firstPlayer==Player.mePlayer?secondPlayer.name:firstPlayer.name
+                      text: secondPlayer.name
+                  ),
+                  TextSpan(
+                      text: splitStringList[1]
+                  )
+                ]
+            ),
+          )
+      );
+    }
+    if (secondPlayer.id==Player.mePlayer.id)  {
+      return Center(
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+                style: _taskStyle,
+                children: <TextSpan>[
+                  TextSpan(
+                      style: _taskStyle,
+                      text: splitStringList[0]
+                  ),
+                  TextSpan(
+                      style: TextStyle(
+                          color: firstPlayer.color,
+                          fontSize: 18
+                      ),
+                      text: firstPlayer.name
                   ),
                   TextSpan(
                       text: splitStringList[1]

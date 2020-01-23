@@ -32,10 +32,10 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                           _titleStyle,
                           text: firstPlayer.id==Player.mePlayer.id?S.of(context).ownTurn:firstPlayer.name
                       ),
-                      TextSpan(
+                      /*TextSpan(
                           text: firstPlayer.id==Player.mePlayer.id?"":S.of(context).turn,
                           style: _titleStyle
-                      )
+                      )*/
                     ]
                 )
             ),
@@ -46,26 +46,64 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     case 4:
     case 5:
     case 6:
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Center(
-            child: RichText(
-              text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        style: TextStyle(
-                            color: firstPlayer.color,
-                            fontSize: 36
-                        ),
-                        text: firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id?Player.mePlayer.name:firstPlayer.name+" & "+secondPlayer.name
-                    ),
-                  ]
+      if (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: RichText(
+                text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          style: TextStyle(
+                              color: Player.mePlayer.color,
+                              fontSize: 36
+                          ),
+                          text: Player.mePlayer.name
+                      ),
+                    ]
+                ),
               ),
-            ),
-          )
-        ],
-      );
+            )
+          ],
+        );
+      }
+      else  {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: RichText(
+                text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        style: TextStyle(
+                          color: firstPlayer.color,
+                          fontSize: 36
+                        ),
+                        text: firstPlayer.name
+                      ),
+                      TextSpan(
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 36
+                        ),
+                        text: " & "
+                      ),
+                      TextSpan(
+                          style: TextStyle(
+                              color: secondPlayer.color,
+                              fontSize: 36
+                          ),
+                          text: secondPlayer.name
+                      ),
+                    ]
+                ),
+              ),
+            )
+          ],
+        );
+      }
       break;
     case 7:
     case 11:

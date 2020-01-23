@@ -33,6 +33,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
       for (int i=0;i<currentRoom.playerDB.length;i++) {
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
       }
+      Player.mePlayer = currentRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
       return  Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
