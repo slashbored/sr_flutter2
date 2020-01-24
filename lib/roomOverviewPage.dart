@@ -8,6 +8,7 @@ import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskViewPage.dart';
+import 'modeSelectionPage.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override
@@ -90,11 +91,12 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         child: Icon(Icons.arrow_forward_ios),
         backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
         onPressed: () {
-          if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
+          /*if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
             upStream.add(json.encode({'type':'randomPlayer','content':''}));
             upStream.add(json.encode({'type':'startGame','content':''}));
-          }
+          }*/
+          Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));
         },
       );
     }
@@ -114,5 +116,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
     //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
   }
+
 
 }

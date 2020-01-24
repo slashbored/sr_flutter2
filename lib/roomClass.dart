@@ -11,6 +11,7 @@ class Room  {
   List taskDB   = new List();
   List BGTimerDB  = new List();
   String gmID;
+  String mode;
   int activeTaskID;
   String activePlayerID;
   String activeSecondPlayerID;
@@ -26,6 +27,7 @@ class Room  {
       List.from(data['taskDB']).forEach((taskPlaceHolder) => (taskDB.insert(taskDB.length, Task(taskPlaceHolder))));
     }
     gmID  = data['gmID'];
+    mode  = data['mode'];
     activeTaskID  = data['activeTaskID'];
     activePlayerID  = data['activePlayerID'];
     if (data['activeSecondPlayerID']!=null)  {
