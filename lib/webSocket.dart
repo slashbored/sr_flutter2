@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
@@ -16,18 +18,23 @@ import 'taskViewPage.dart';
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
 
-Stream downStream;
 Sink upStream;
+Stream downStream;
+Stream pingPongStream;
+Timer heartBeatTimer;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
 Room currentRoom;
+
+
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
   downStreamController.addStream(WSChannel.stream);
   upStream = WSChannel.sink;
   downStream = downStreamController.stream;
+  pingPongStream  = downStreamController.stream;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if(prefs.getString('uuid')==null)  {
     upStream.add(json.encode({'type':'get','content':'uuid'}));
@@ -35,8 +42,8 @@ void startStreaming() async{
   else  {
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
-  upStream.add(jsonEncode({'type':'get','content':'createPlayer'}));
-  upStream.add(json.encode({'type':'ping','content':''}));
+  upStream.add(json.encode({'type':'createPlayer','content':''}));
+  heartBeatTimer = Timer.periodic(Duration(seconds:15), (Timer t) => upStream.add(json.encode({'type':'ping','content':''})));
 
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
@@ -75,6 +82,13 @@ void startStreaming() async{
         Player.mePlayer.compareValue=null;
         taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
         break;
+    }
+  });
+
+  pingPongStream.listen((data) {
+    if (Package(jsonDecode(data)).type=='pong')  {
+      upStream.add(jsonEncode({'type':'ping'}));
+      print('pinged!');
     }
   });
 

@@ -31,6 +31,7 @@ class playerEditingState extends State<playerEditing>{
 
   @override
   Widget build(BuildContext context){
+    print("Rebuilt!");
     return Scaffold(
       body: Center(
         child: Column(

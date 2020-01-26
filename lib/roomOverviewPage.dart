@@ -30,6 +30,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   }
 
   Widget playerListView(BuildContext context) {
+    print("Rebuiltv2");
     if (Room.activeRoom!=null) {
       for (int i=0;i<currentRoom.playerDB.length;i++) {
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
@@ -91,12 +92,12 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         child: Icon(Icons.arrow_forward_ios),
         backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
         onPressed: () {
-          /*if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
+          if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
             upStream.add(json.encode({'type':'randomPlayer','content':''}));
             upStream.add(json.encode({'type':'startGame','content':''}));
-          }*/
-          Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));
+          }
+          //Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));
         },
       );
     }

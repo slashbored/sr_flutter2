@@ -17,11 +17,13 @@ class modeSelectionPage extends StatefulWidget{
 class modeSelectionPageState extends State<modeSelectionPage> {
   @override
   Widget build(BuildContext context) {
+    print("Rebuilt");
     return Scaffold(
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new FloatingActionButton.extended(
+            heroTag: "endless",
             onPressed: () {
               upStream.add(json.encode({'type':'setMode','content':'endless'}));
               upStream.add(json.encode({'type':'startGame','content':''}));
@@ -31,6 +33,7 @@ class modeSelectionPageState extends State<modeSelectionPage> {
             )
           ),
           new FloatingActionButton.extended(
+            heroTag: "reachPoints",
             onPressed: () {
               upStream.add(json.encode({'type':'startGame','content':'reachPoints'}));
               upStream.add(json.encode({'type':'startGame','content':''}));
@@ -40,6 +43,7 @@ class modeSelectionPageState extends State<modeSelectionPage> {
             )
           ),
           new FloatingActionButton.extended(
+              heroTag: "losePoints",
             onPressed: () {
               upStream.add(json.encode({'type':'startGame','content':'losePoints'}));
               upStream.add(json.encode({'type':'startGame','content':''}));
