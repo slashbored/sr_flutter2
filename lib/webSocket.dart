@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:async/async.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
@@ -20,11 +21,16 @@ final StreamController downStreamController = new StreamController.broadcast();
 
 Sink upStream;
 Stream downStream;
-Timer heartBeatTimer;
+RestartableTimer heartBeatTimer;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
 Room currentRoom;
+
+void heartBeat()  {
+  upStream.add(json.encode({'type':'hb','content':''}));
+  heartBeatTimer.reset();
+}
 
 void startStreaming() async{
   WSChannel.stream.asBroadcastStream();
@@ -39,7 +45,7 @@ void startStreaming() async{
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
   upStream.add(json.encode({'type':'createPlayer','content':''}));
-  heartBeatTimer = Timer.periodic(Duration(seconds:30), (Timer t) => upStream.add(json.encode({'type':'hb','content':''})));
+  heartBeatTimer = RestartableTimer(Duration(seconds:30), () => heartBeat());
 
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
@@ -93,6 +99,7 @@ void startStreaming() async{
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
         break;
       case  'nextTask':
+        heartBeatTimer.reset();
         currentRoom.winnerIDArray.clear();
         currentRoom.compareWinnerSide=null;
         Player.mePlayer.compareValue=null;
