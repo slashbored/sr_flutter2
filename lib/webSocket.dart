@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:async/async.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
@@ -21,7 +20,7 @@ final StreamController downStreamController = new StreamController.broadcast();
 
 Sink upStream;
 Stream downStream;
-RestartableTimer heartBeatTimer;
+Timer heartBeatTimer;
 Package packageIn;
 BuildContext roomOverviewContext;
 BuildContext taskOverviewContext;
@@ -94,7 +93,6 @@ void startStreaming() async{
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
         break;
       case  'nextTask':
-        heartBeatTimer.reset();
         currentRoom.winnerIDArray.clear();
         currentRoom.compareWinnerSide=null;
         Player.mePlayer.compareValue=null;
