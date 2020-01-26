@@ -39,6 +39,9 @@ Widget betweenViewBody(BuildContext context){
           );
         }
       }
+      else  {
+        return Container();
+      }
     }
     if (currentRoom.taskDB
         .firstWhere((task) => task.id == currentRoom.activeTaskID)

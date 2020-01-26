@@ -1,4 +1,5 @@
 import 'webSocket.dart';
+import 'package.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerClass.dart';
@@ -7,7 +8,6 @@ import 'generated/i18n.dart';
 class Room  {
   String id;
   List playerDB = new List();
-  //List chatDB   = new List();
   List taskDB   = new List();
   List BGTimerDB  = new List();
   String gmID;
@@ -37,9 +37,9 @@ class Room  {
       activeSecondPlayerID=null;
     }
     if (data['BGTimerDB']!=null) {
-      List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, Timer(timerPlaceHolder))));
+      List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, customTimer(timerPlaceHolder))));
       if  (BGTimerDB.length>0)  {
-        Timer.updateStateMap();
+        customTimer.updateStateMap();
       }
     }
     else  {
@@ -58,21 +58,21 @@ class Room  {
   static void renewActiveTimer(context) {
     if (currentRoom.BGTimerDB.length>0&&currentRoom.BGTimerDB.any((element)  =>  element.taskID==currentRoom.activeTaskID))  {
       int timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
-      Timer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+      customTimer.activeTimer = currentRoom.BGTimerDB[timerIndex];
       if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft!=0) {
-        Timer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
+        customTimer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
       }
       else  {
         if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft==0) {
-          Timer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
+          customTimer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
         }
         else  {
-          Timer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
+          customTimer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
         }
       }
     }
     else  {
-      Timer.activeTimer=null;
+      customTimer.activeTimer=null;
     }
   }
 

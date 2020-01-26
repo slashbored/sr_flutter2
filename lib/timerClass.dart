@@ -1,6 +1,6 @@
 import 'roomClass.dart';
 
-class Timer{
+class customTimer{
   String id;
   String roomID;
   String playerID;
@@ -11,10 +11,10 @@ class Timer{
   String viewState;
   bool isRunning;
 
-  static Timer activeTimer;
+  static customTimer activeTimer;
   static Map stateMap;
 
-  Timer(Map data) {
+  customTimer(Map data) {
     id          = data['id'];
     roomID      = data['roomID'];
     playerID    = data['playerID'];
@@ -34,7 +34,7 @@ class Timer{
       stateMap = Map.fromIterable(Room.activeRoom.BGTimerDB,key:  (element)  => element.id, value:  (element)  =>  element.viewState);
     }
     else  {
-      for (Timer timerplaceholder in Room.activeRoom.BGTimerDB) {
+      for (customTimer timerplaceholder in Room.activeRoom.BGTimerDB) {
         stateMap.putIfAbsent(timerplaceholder.id, ()  =>  timerplaceholder.viewState);
       }
     }

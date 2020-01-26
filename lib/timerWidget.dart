@@ -7,7 +7,7 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerClass.dart';
 
-Widget timerWidget(BuildContext context, Timer correspondingTimer) {
+Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
   changeView(correspondingTimer, '');
   Player correspondingFirstPlayer  = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
   Player correspondingSecondPlayer;
@@ -37,7 +37,7 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
         backgroundColor: Colors.black,
       ),
       label: Text(
-        Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+        customTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
         Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
         //correspondingTask.descr,
         style: TextStyle(
@@ -60,7 +60,7 @@ Widget timerWidget(BuildContext context, Timer correspondingTimer) {
         backgroundColor: correspondingFirstPlayer.color,
       ),
       label: Text(
-          Timer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+          customTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
           Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
           //correspondingTask.descr
       ),
@@ -88,25 +88,25 @@ String convertTime(int timeToConvert) {
 }
 
 
-void onPressInputChip(Timer correspondingTimer) {
-  Timer.stateMap[correspondingTimer.id]=='time'?
+void onPressInputChip(customTimer correspondingTimer) {
+  customTimer.stateMap[correspondingTimer.id]=='time'?
   changeView(correspondingTimer, 'task'):
   changeView(correspondingTimer, 'time');
 }
 
-void changeView(Timer timerToChange, String newView) {
-  if  (Timer.stateMap.containsKey(timerToChange.id)==true) {
-    String key  = Timer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
-    if  (Timer.stateMap[key]==null) {
-      Timer.stateMap[key]='time';
+void changeView(customTimer timerToChange, String newView) {
+  if  (customTimer.stateMap.containsKey(timerToChange.id)==true) {
+    String key  = customTimer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
+    if  (customTimer.stateMap[key]==null) {
+      customTimer.stateMap[key]='time';
     }
     else  {
       switch (newView) {
         case 'time':
-          Timer.stateMap[key]='time';
+          customTimer.stateMap[key]='time';
           break;
         case 'task':
-          Timer.stateMap[key]='task';
+          customTimer.stateMap[key]='task';
           break;
       }
     }

@@ -133,7 +133,9 @@ class roomSelectionState extends State<roomSelection>{
   }
 
   void joinRoom() async{
-    await new Future.delayed(const Duration(milliseconds: 500));
+    while (currentRoom==null){
+      await new Future.delayed(const Duration(milliseconds: 100));
+    }
     Room.activeRoom!=null?Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage())):null;
   }
 }
