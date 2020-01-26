@@ -17,7 +17,6 @@ class modeSelectionPage extends StatefulWidget{
 class modeSelectionPageState extends State<modeSelectionPage> {
   @override
   Widget build(BuildContext context) {
-    print("Rebuilt");
     return Scaffold(
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,

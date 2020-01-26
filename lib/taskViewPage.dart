@@ -72,10 +72,6 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   bool isWorkingAtAll() {
-
-    print(currentRoom.activeTaskID);
-    print(currentRoom.activePlayerID);
-    print(currentRoom.activeSecondPlayerID);
     if(currentRoom != null && currentRoom.activeTaskID != null &&
         currentRoom.activePlayerID != null) {
       return true;

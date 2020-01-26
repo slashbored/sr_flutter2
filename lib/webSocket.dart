@@ -39,7 +39,7 @@ void startStreaming() async{
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
   upStream.add(json.encode({'type':'createPlayer','content':''}));
-  heartBeatTimer = Timer.periodic(Duration(seconds:15), (Timer t) => upStream.add(json.encode({'type':'hb','content':''})));
+  heartBeatTimer = Timer.periodic(Duration(seconds:30), (Timer t) => upStream.add(json.encode({'type':'hb','content':''})));
 
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
@@ -90,9 +90,6 @@ void startStreaming() async{
         Player.mePlayer = Player(packageIn.content);
         break;
       case  'startGame':
-        print(currentRoom.activeTaskID);
-        print(currentRoom.activePlayerID);
-        print(currentRoom.activeSecondPlayerID);
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
         break;
       case  'nextTask':

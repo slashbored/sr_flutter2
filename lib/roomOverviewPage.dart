@@ -30,7 +30,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   }
 
   Widget playerListView(BuildContext context) {
-    print("Rebuiltv2");
     if (Room.activeRoom!=null) {
       for (int i=0;i<currentRoom.playerDB.length;i++) {
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
