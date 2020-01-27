@@ -47,6 +47,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "normal_drink",
               label: Text(createDrinkString(task)),
               onPressed: ()  {
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -97,6 +98,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "normalFGTime_drink",
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
+                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -154,6 +156,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "normalBGTime_drink",
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
+                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -196,6 +199,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "choice_drink",
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
+                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -237,6 +241,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "choiceFGTime_drink",
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
+                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -284,6 +289,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "choiceBGTime_drink",
               label: Text(createDrinkString(task)),
               onPressed: ()  {
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -401,6 +407,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "tabooMime_drink",
               label: Text(createDrinkString(task)),
               onPressed: ()  {
+                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -475,8 +482,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 
 String createDrinkString(Task task) {
   String drinkAmountString = "";
-  for (int i = 0; i < task.weight; i++) {
-    drinkAmountString = drinkAmountString + "🍺 ";
+  for (int i = 0; i < (task.weight + Player.mePlayer.weightModifier); i++) {
+    if (i<=5) {
+      drinkAmountString = drinkAmountString + "🍺 ";
+    }
+    else  {
+      drinkAmountString = "🍺 x " + i.toString();
+    }
   }
   drinkAmountString.trim();
   return drinkAmountString;
