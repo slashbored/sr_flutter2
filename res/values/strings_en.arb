@@ -27,5 +27,9 @@
   "FGTimerDone": "Done!",
   "pleaseEnterValidNumber": "Please enter a valid number.",
   "waitingForOthersToInput": "Waiting for the others to input..",
-  "comparisonDraw": "It's a draw!"
+  "comparisonDraw": "It's a draw!",
+  "modeTitle_headline": "Please select your gamemode:",
+  "modeTitle_endless": "Endless",
+  "modeTitle_reach": "Gather points",
+  "modeTitle_lose": "Lose points"
 }

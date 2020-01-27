@@ -16,7 +16,6 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
-  int numberToCompare;
 
   if  (customTimer.activeTimer!=null) {
     customTimer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
@@ -33,7 +32,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "normal_denied",
                 label: Text(S.of(context).noStyle1),
                 onPressed: (){
@@ -42,9 +41,17 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
-                  //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
-            ),
+            ),*/
+            FloatingActionButton.extended(
+              heroTag:  "normal_drink",
+              label: Text(createDrinkString(task)),
+              onPressed: ()  {
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+              }
+              ),
             FloatingActionButton.extended(
                 heroTag:  "normal_accepted",
                 label: Text(S.of(context).yesStyle1),
@@ -68,7 +75,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "normalFGTime_denied",
                 label: Text(S.of(context).noStyle1),
                 onPressed: (){
@@ -84,6 +91,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+                }
+            ),*/
+            FloatingActionButton.extended(
+                heroTag:  "normalFGTime_drink",
+                label: Text(createDrinkString(task)),
+                onPressed: ()  {
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
             FloatingActionButton.extended(
@@ -124,11 +140,20 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "normalBGTime_denied",
                 label: Text(S.of(context).noStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'nextTask','content':''}));
+                }
+            ),*/
+            FloatingActionButton.extended(
+                heroTag:  "normalBGTime_drink",
+                label: Text(createDrinkString(task)),
+                onPressed: ()  {
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -156,12 +181,21 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "choice_denied",
                 label: Text(S.of(context).noStyle2),
                 onPressed: (){
                   //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'nextTask','content':''}));
+                }
+            ),*/
+            FloatingActionButton.extended(
+                heroTag:  "choice_drink",
+                label: Text(createDrinkString(task)),
+                onPressed: ()  {
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -189,11 +223,20 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "choiceFGTime_denied",
                 label: Text(S.of(context).noStyle2),
                 onPressed: (){
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'randomTask','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'nextTask','content':''}));
+                }
+            ),*/
+            FloatingActionButton.extended(
+                heroTag:  "choiceFGTime_drink",
+                label: Text(createDrinkString(task)),
+                onPressed: ()  {
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayer','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -224,15 +267,23 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 6:
     if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
-
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          FloatingActionButton.extended(
+          /*FloatingActionButton.extended(
               heroTag:  "choiceBGTime_denied",
               label: Text(S.of(context).noStyle2),
               onPressed: (){
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+              }
+          ),*/
+          FloatingActionButton.extended(
+              heroTag:  "choiceBGTime_drink",
+              label: Text(createDrinkString(task)),
+              onPressed: ()  {
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -329,7 +380,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          FloatingActionButton.extended(
+          /*FloatingActionButton.extended(
               heroTag:  "tabooMime_denied",
               label: Text(S.of(context).tabooMimeFailStyle1),
               onPressed: () {
@@ -341,6 +392,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   customTimer.activeTimer.isRunning=false;
                 }
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'randomTask','content':''}));
+                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'nextTask','content':''}));
+              }
+          ),*/
+          FloatingActionButton.extended(
+              heroTag:  "tabooMime_drink",
+              label: Text(createDrinkString(task)),
+              onPressed: ()  {
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayer','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -411,6 +471,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
 
   }
+}
+
+String createDrinkString(Task task) {
+  String drinkAmountString = "";
+  for (int i = 0; i < task.weight; i++) {
+    drinkAmountString = drinkAmountString + "🍺 ";
+  }
+  drinkAmountString.trim();
+  return drinkAmountString;
 }
 
 void startBGTimer(BuildContext context) async {

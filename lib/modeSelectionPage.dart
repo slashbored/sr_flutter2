@@ -21,6 +21,13 @@ class modeSelectionPageState extends State<modeSelectionPage> {
       body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          new Text(
+            S.of(context).modeTitle_headline,
+            style: TextStyle(
+              fontSize: 36
+            ),
+            textAlign: TextAlign.center,
+          ),
           new FloatingActionButton.extended(
             heroTag: "endless",
             onPressed: () {
@@ -28,27 +35,27 @@ class modeSelectionPageState extends State<modeSelectionPage> {
               upStream.add(json.encode({'type':'startGame','content':''}));
             },
             label: Text(
-              "Endless mode"
+              S.of(context).modeTitle_endless
             )
           ),
           new FloatingActionButton.extended(
             heroTag: "reachPoints",
             onPressed: () {
-              upStream.add(json.encode({'type':'startGame','content':'reachPoints'}));
-              upStream.add(json.encode({'type':'startGame','content':''}));
+              //upStream.add(json.encode({'type':'setMode','content':'reachPoints'}));
+              //upStream.add(json.encode({'type':'startGame','content':''}));
             },
             label: Text(
-              "Getting points"
+              S.of(context).modeTitle_reach
             )
           ),
           new FloatingActionButton.extended(
               heroTag: "losePoints",
             onPressed: () {
-              upStream.add(json.encode({'type':'startGame','content':'losePoints'}));
-              upStream.add(json.encode({'type':'startGame','content':''}));
+              //upStream.add(json.encode({'type':'setMode','content':'losePoints'}));
+              //upStream.add(json.encode({'type':'startGame','content':''}));
             },
             label: Text(
-              "Losing points"
+              S.of(context).modeTitle_lose
             )
           )
         ],

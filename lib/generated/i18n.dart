@@ -32,6 +32,10 @@ class S implements WidgetsLocalizations {
   String get listThis => "List the following:";
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
+  String get modeTitle_endless => "Endless";
+  String get modeTitle_headline => "Please select your gamemode:";
+  String get modeTitle_lose => "Lose points";
+  String get modeTitle_reach => "Gather points";
   String get noPlayersYet => "No players yet!";
   String get noStyle1 => "Just no.";
   String get noStyle2 => "I don't wanna";
@@ -69,6 +73,8 @@ class $de extends S {
   @override
   String get sexX => "Divers";
   @override
+  String get modeTitle_reach => "Punkte sammeln";
+  @override
   String get turn => " ist am Zug";
   @override
   String get waitingForOthersToInput => "Warte auf Eingaben der anderen Spieler..";
@@ -91,9 +97,15 @@ class $de extends S {
   @override
   String get languageSelector => "Bitte wähle die Sprache:";
   @override
+  String get modeTitle_endless => "Endlos";
+  @override
   String get sexFemale => "Weiblein";
   @override
+  String get modeTitle_lose => "Punkte loswerden";
+  @override
   String get listThis => "Listet folgendes auf:";
+  @override
+  String get modeTitle_headline => "Bitte wähle euren Spielmodus aus:";
   @override
   String get tabooMimeGuessp1 => "Was will ";
   @override

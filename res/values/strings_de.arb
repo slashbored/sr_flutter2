@@ -27,5 +27,9 @@
   "FGTimerDone": "Fertig!",
   "pleaseEnterValidNumber": "Bitte gib eine korrekte Zahl an.",
   "waitingForOthersToInput": "Warte auf Eingaben der anderen Spieler..",
-  "comparisonDraw": "Unentschieden!"
+  "comparisonDraw": "Unentschieden!",
+  "modeTitle_headline": "Bitte wähle euren Spielmodus aus:",
+  "modeTitle_endless": "Endlos",
+  "modeTitle_reach": "Punkte sammeln",
+  "modeTitle_lose": "Punkte loswerden"
 }
