@@ -24,7 +24,7 @@ Stream downStream;
 RestartableTimer heartBeatTimer;
 Package packageIn;
 BuildContext roomOverviewContext;
-BuildContext taskOverviewContext;
+BuildContext taskViewPageContext;
 Room currentRoom;
 
 void heartBeat()  {
@@ -103,8 +103,26 @@ void startStreaming() async{
         currentRoom.winnerIDArray.clear();
         currentRoom.compareWinnerSide=null;
         Player.mePlayer.compareValue=null;
-        taskViewPageState().nextTaskOnThisPage(taskOverviewContext);
+        taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;
+      case 'gameOver':
+        showDialog(
+          context: taskViewPageContext,
+            builder: (BuildContext context) => CupertinoAlertDialog(
+                content: Text("You won, yay."),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text(
+                    "K"
+                  ),
+                  onPressed: () {
+                    taskViewPageState().goHome(taskViewPageContext);
+                    currentRoom = null;
+                  },
+                )
+              ],
+            )
+        );
     }
   });
 }

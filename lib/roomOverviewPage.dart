@@ -30,7 +30,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   }
 
   Widget playerListView(BuildContext context) {
-    if (Room.activeRoom!=null) {
+    if (currentRoom!=null) {
       for (int i=0;i<currentRoom.playerDB.length;i++) {
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
       }
@@ -52,10 +52,10 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                       children: <Widget>[
                         ListView.builder(
                             shrinkWrap: true,
-                            itemCount: Room.activeRoom.playerDB.length,
+                            itemCount: currentRoom.playerDB.length,
                             itemBuilder: (context, int index){
                               return Text(
-                                Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
+                                currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: currentRoom.playerDB[index].color
@@ -85,15 +85,16 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   Widget startGameFAB(BuildContext context)  {
     roomOverviewContext = context;
-    if  (Room.activeRoom.gmID==Player.mePlayer.id)  {
+    if  (currentRoom.gmID==Player.mePlayer.id)  {
       return FloatingActionButton(
         heroTag:'continueToCats',
         child: Icon(Icons.arrow_forward_ios),
-        backgroundColor: Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1?Colors.green:Colors.grey,
+        backgroundColor: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
         onPressed: () {
-          if  (Room.activeRoom!=null&&Room.activeRoom.playerDB.length>1)  {
+          if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
             upStream.add(json.encode({'type':'randomPlayer','content':''}));
+            upStream.add(json.encode({'type':'setMode','content':'endless'}));
             upStream.add(json.encode({'type':'startGame','content':''}));
           }
           //Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));

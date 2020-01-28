@@ -10,10 +10,10 @@ import 'playerClass.dart';
 
 class roomSelection extends StatefulWidget{
   @override
-  roomSelectionState createState() => new roomSelectionState();
+  roomSelectionPage createState() => new roomSelectionPage();
 }
 
-class roomSelectionState extends State<roomSelection>{
+class roomSelectionPage extends State<roomSelection>{
 
   final TextEditingController joinroomTextfieldController = TextEditingController();
 
@@ -63,9 +63,9 @@ class roomSelectionState extends State<roomSelection>{
                     joinRoom();
                     },
                 ),
-                Flexible(
+                /*Flexible(
                   child: taskStringText(context),
-                )
+                )*/
               ]
             )
           );

@@ -5,6 +5,7 @@ import 'package:sr_flutter2/taskViewFourthRow.dart';
 import 'package:sr_flutter2/taskViewSecondRow.dart';
 import 'package:sr_flutter2/taskViewThirdRow.dart';
 import 'package:sr_flutter2/webSocket.dart';
+import 'roomSelectionPage.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
@@ -27,7 +28,7 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   Widget mainBody(BuildContext context)  {
-    taskOverviewContext = context;
+    taskViewPageContext = context;
     if  (isWorkingAtAll()) {
       currentTask   = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID);
       currentPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activePlayerID);
@@ -86,5 +87,9 @@ class taskViewPageState extends State<taskViewPage>{
     await new Future.delayed(const Duration(milliseconds: 50));
     //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+  }
+
+  void goHome(theContext) {
+    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => roomSelection()));
   }
 }

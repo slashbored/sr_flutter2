@@ -18,7 +18,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   String locale;
 
   if  (customTimer.activeTimer!=null) {
-    customTimer.activeTimer.FGTimeLeft  = S.of(taskOverviewContext).FGTimerGo;
+    customTimer.activeTimer.FGTimeLeft  = S.of(taskViewPageContext).FGTimerGo;
   }
 
   if (Player.mePlayer.compareValue!=null)  {
@@ -483,14 +483,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 String createDrinkString(Task task) {
   String drinkAmountString = "";
   for (int i = 0; i < (task.weight + Player.mePlayer.weightModifier); i++) {
-    if (i<=5) {
+    if (i<=3) {
       drinkAmountString = drinkAmountString + "🍺 ";
     }
     else  {
-      drinkAmountString = "🍺 x " + i.toString();
+      drinkAmountString = "🍺 x " + (task.weight + Player.mePlayer.weightModifier).toString();
     }
   }
   drinkAmountString.trim();
+  print(Player.mePlayer.weightModifier.toString());
   return drinkAmountString;
 }
 
