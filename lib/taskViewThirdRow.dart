@@ -39,7 +39,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   //firstPlayer.points++;
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
@@ -49,7 +49,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
               ),
@@ -58,7 +58,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
@@ -89,7 +89,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   }
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
@@ -100,7 +100,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
@@ -126,7 +126,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                     customTimer.activeTimer.isRunning=false;
                   }
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
@@ -148,7 +148,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: (){
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
@@ -158,7 +158,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
@@ -168,7 +168,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: (){
                   startBGTimer(context);
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
@@ -191,7 +191,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
@@ -201,7 +201,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
@@ -210,7 +210,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
@@ -233,7 +233,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: (){
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
@@ -243,7 +243,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
@@ -259,7 +259,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),
@@ -281,7 +281,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed: (){
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),*/
@@ -291,7 +291,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),
@@ -301,7 +301,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed: (){
                 startBGTimer(context);
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           )
@@ -374,7 +374,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed:  ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               })
       );
@@ -399,7 +399,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 }
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),*/
@@ -409,7 +409,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),
@@ -435,7 +435,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   customTimer.activeTimer.isRunning=false;
                 }
                 upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayer','content':''}));
+                upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),

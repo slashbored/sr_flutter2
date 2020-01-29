@@ -27,6 +27,7 @@ class S implements WidgetsLocalizations {
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
+  String get hasLeftGame => " has left the game.";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
@@ -106,6 +107,8 @@ class $de extends S {
   String get listThis => "Listet folgendes auf:";
   @override
   String get modeTitle_headline => "Bitte wähle euren Spielmodus aus:";
+  @override
+  String get hasLeftGame => " hat das Spiel verlassen.";
   @override
   String get tabooMimeGuessp1 => "Was will ";
   @override

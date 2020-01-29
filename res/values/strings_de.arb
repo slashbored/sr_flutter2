@@ -31,5 +31,6 @@
   "modeTitle_headline": "Bitte wähle euren Spielmodus aus:",
   "modeTitle_endless": "Endlos",
   "modeTitle_reach": "Punkte sammeln",
-  "modeTitle_lose": "Punkte loswerden"
+  "modeTitle_lose": "Punkte loswerden",
+  "hasLeftGame": " hat das Spiel verlassen."
 }

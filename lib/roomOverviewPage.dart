@@ -93,7 +93,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         onPressed: () {
           if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
-            upStream.add(json.encode({'type':'randomPlayer','content':''}));
+            upStream.add(json.encode({'type':'randomPlayers','content':''}));
             upStream.add(json.encode({'type':'setMode','content':'endless'}));
             upStream.add(json.encode({'type':'startGame','content':''}));
           }
@@ -114,7 +114,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   void goToTaskViewPage(theContext) async {
     await new Future.delayed(const Duration(milliseconds: 500));
-    //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
   }
 

@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sr_flutter2/languageSelectionPage.dart';
@@ -44,24 +45,27 @@ class MyAppState extends State<MyApp>  {
      child: BlocBuilder(
        bloc: localizationBloc,
        builder: (context, String lelocale)  {
-         return MaterialApp(
-           locale: Locale(lelocale, ""),
-           title: 'Shitroulette',
-           localizationsDelegates: [
-             //_localeOverrideDelegate,
-             S.delegate,
-             GlobalMaterialLocalizations.delegate,
-             GlobalCupertinoLocalizations.delegate
-           ],
-           supportedLocales:
+         return BotToastInit(
+           child: MaterialApp(
+             navigatorObservers: [BotToastNavigatorObserver()],
+             locale: Locale(lelocale, ""),
+             title: 'Shitroulette',
+             localizationsDelegates: [
+               //_localeOverrideDelegate,
+               S.delegate,
+               GlobalMaterialLocalizations.delegate,
+               GlobalCupertinoLocalizations.delegate
+             ],
+             supportedLocales:
              S.delegate.supportedLocales
              /*const Locale("de", ""),
              const Locale("en", "")*/
-           ,
-           theme: new ThemeData(
-             primaryColor: Colors.black,
+             ,
+             theme: new ThemeData(
+               primaryColor: Colors.black,
+             ),
+             home: new languageSelection(),
            ),
-           home: new languageSelection(),
          );
        }
      )

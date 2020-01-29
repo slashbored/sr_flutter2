@@ -31,5 +31,6 @@
   "modeTitle_headline": "Please select your gamemode:",
   "modeTitle_endless": "Endless",
   "modeTitle_reach": "Gather points",
-  "modeTitle_lose": "Lose points"
+  "modeTitle_lose": "Lose points",
+  "hasLeftGame": " has left the game."
 }

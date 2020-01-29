@@ -27,7 +27,7 @@ Widget betweenViewButton(BuildContext context)  {
       onPressed: () {
         upStream.add(json.encode({'type':'clearComparison','content':''}));
         upStream.add(json.encode({'type':'randomTask','content':''}));
-        upStream.add(json.encode({'type':'randomPlayer','content':''}));
+        upStream.add(json.encode({'type':'randomPlayers','content':''}));
         upStream.add(json.encode({'type':'nextTask','content':''}));
       },
     );

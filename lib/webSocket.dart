@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:async/async.dart';
+import 'generated/i18n.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
@@ -105,7 +107,48 @@ void startStreaming() async{
         Player.mePlayer.compareValue=null;
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;
-      case 'gameOver':
+      case 'playerLeft':
+        Player leftPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
+        BotToast.showCustomText(
+          duration: Duration(seconds: 5),
+          backgroundColor: Colors.transparent,
+          toastBuilder: (_) => LayoutBuilder(
+            builder: (BuildContext context,  BoxConstraints constraints)  {
+              return Container(
+                padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+                child: RichText(
+                  text: TextSpan(
+                    children:[
+                      TextSpan(
+                        text: leftPlayer.name,
+                        style: TextStyle(
+                          color: leftPlayer.color
+                        )
+                      ),
+                      TextSpan(
+                        text: S.of(context).hasLeftGame,
+                      )
+                    ],
+                    style: TextStyle(
+                      fontSize: 18
+                    )
+                  )
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(8)
+                  ),
+                ),
+                constraints: constraints.copyWith(
+                  maxWidth: constraints.biggest.width * 0.6
+                ),
+              );
+            },
+          )
+        );
+        break;
+      case 'youWon':
         showDialog(
           context: taskViewPageContext,
             builder: (BuildContext context) => CupertinoAlertDialog(
