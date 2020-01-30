@@ -15,6 +15,7 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerClass.dart';
 
+import 'roomSelectionPage.dart';
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
 
@@ -25,6 +26,7 @@ Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
 Package packageIn;
+BuildContext roomSelectionContext;
 BuildContext roomOverviewContext;
 BuildContext taskViewPageContext;
 Room currentRoom;
@@ -32,6 +34,51 @@ Room currentRoom;
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
   heartBeatTimer.reset();
+}
+
+void wait5s () async{
+  new Future.delayed(Duration(seconds: 5));
+}
+
+void showPlayerLeftToast(Player leftPlayer) {
+  BotToast.showCustomText(
+      duration: Duration(seconds: 5),
+      backgroundColor: Colors.transparent,
+      toastBuilder: (_) => LayoutBuilder(
+        builder: (BuildContext context,  BoxConstraints constraints)  {
+          return Container(
+            padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+            child: RichText(
+                text: TextSpan(
+                    children:[
+                      TextSpan(
+                          text: leftPlayer.name,
+                          style: TextStyle(
+                              color: leftPlayer.color
+                          )
+                      ),
+                      TextSpan(
+                        text: S.of(context).hasLeftGame,
+                      )
+                    ],
+                    style: TextStyle(
+                        fontSize: 18
+                    )
+                )
+            ),
+            decoration: BoxDecoration(
+              color: Colors.black54,
+              borderRadius: BorderRadius.all(
+                  Radius.circular(8)
+              ),
+            ),
+            constraints: constraints.copyWith(
+                maxWidth: constraints.biggest.width * 0.6
+            ),
+          );
+        },
+      )
+  );
 }
 
 void startStreaming() async{
@@ -59,6 +106,16 @@ void startStreaming() async{
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
+        break;
+      case 'error':
+        switch (packageIn.content)  {
+          case 'gameAlreadyRunning':
+            BotToast.showText(
+              text: S.of(roomSelectionContext).gameAlreadyRunning,
+              duration: Duration(seconds: 5)
+            );
+            break;
+        }
         break;
       case  'timerUpdate':
         currentRoom.BGTimerDB.clear();
@@ -146,6 +203,49 @@ void startStreaming() async{
               );
             },
           )
+        );
+        break;
+      case 'newGM':
+        currentRoom.gmID  = packageIn.content;
+        Player newGM=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
+        wait5s();
+        BotToast.showCustomText(
+            duration: Duration(seconds: 5),
+            backgroundColor: Colors.transparent,
+            toastBuilder: (_) => LayoutBuilder(
+              builder: (BuildContext context,  BoxConstraints constraints)  {
+                return Container(
+                  padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+                  child: RichText(
+                      text: TextSpan(
+                          children:[
+                            TextSpan(
+                                text: newGM.name,
+                                style: TextStyle(
+                                    color: newGM.color
+                                )
+                            ),
+                            TextSpan(
+                              text: S.of(context).isNewGM,
+                            )
+                          ],
+                          style: TextStyle(
+                              fontSize: 18
+                          )
+                      )
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(8)
+                    ),
+                  ),
+                  constraints: constraints.copyWith(
+                      maxWidth: constraints.biggest.width * 0.6
+                  ),
+                );
+              },
+            )
         );
         break;
       case 'youWon':

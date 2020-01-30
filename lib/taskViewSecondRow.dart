@@ -141,7 +141,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                   ),
                   TextSpan(
                     style: _taskStyle,
-                    text: splitString[1]
+                    text: splitStringList[1]
                   )
                 ]
             ),

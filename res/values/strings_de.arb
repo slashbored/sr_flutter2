@@ -32,5 +32,7 @@
   "modeTitle_endless": "Endlos",
   "modeTitle_reach": "Punkte sammeln",
   "modeTitle_lose": "Punkte loswerden",
-  "hasLeftGame": " hat das Spiel verlassen."
+  "hasLeftGame": " hat das Spiel verlassen.",
+  "isNewGM": " ist der neue GM.",
+  "gameAlreadyRunning": "Sorry, aber in diesem Raum wird bereits gespielt."
 }

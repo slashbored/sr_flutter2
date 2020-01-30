@@ -27,7 +27,9 @@ class S implements WidgetsLocalizations {
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
+  String get gameAlreadyRunning => "Sorry, but there's already a game being player in this room.";
   String get hasLeftGame => " has left the game.";
+  String get isNewGM => " is the new GM.";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
@@ -88,11 +90,15 @@ class $de extends S {
   @override
   String get noStyle1 => "Nö.";
   @override
+  String get gameAlreadyRunning => "Sorry, aber in diesem Raum wird bereits gespielt.";
+  @override
   String get sexMale => "Männlein";
   @override
   String get FGTimerDone => "Fertig!";
   @override
   String get comparisonDraw => "Unentschieden!";
+  @override
+  String get isNewGM => " ist der neue GM.";
   @override
   String get FGTimerGo => "Los!";
   @override

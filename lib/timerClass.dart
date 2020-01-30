@@ -1,4 +1,4 @@
-import 'roomClass.dart';
+import 'webSocket.dart';
 
 class customTimer{
   String id;
@@ -31,10 +31,10 @@ class customTimer{
 
   static void updateStateMap()  {
     if  (stateMap==null)  {
-      stateMap = Map.fromIterable(Room.activeRoom.BGTimerDB,key:  (element)  => element.id, value:  (element)  =>  element.viewState);
+      stateMap = Map.fromIterable(currentRoom.BGTimerDB,key:  (element)  => element.id, value:  (element)  =>  element.viewState);
     }
     else  {
-      for (customTimer timerplaceholder in Room.activeRoom.BGTimerDB) {
+      for (customTimer timerplaceholder in currentRoom.BGTimerDB) {
         stateMap.putIfAbsent(timerplaceholder.id, ()  =>  timerplaceholder.viewState);
       }
     }

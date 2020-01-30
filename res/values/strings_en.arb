@@ -32,5 +32,7 @@
   "modeTitle_endless": "Endless",
   "modeTitle_reach": "Gather points",
   "modeTitle_lose": "Lose points",
-  "hasLeftGame": " has left the game."
+  "hasLeftGame": " has left the game.",
+  "isNewGM": " is the new GM.",
+  "gameAlreadyRunning": "Sorry, but there's already a game being player in this room."
 }

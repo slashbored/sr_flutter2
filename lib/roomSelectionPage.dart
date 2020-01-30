@@ -4,6 +4,7 @@ import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
 
+import 'webSocket.dart';
 import 'roomClass.dart';
 import 'roomOverviewPage.dart';
 import 'playerClass.dart';
@@ -30,6 +31,7 @@ class roomSelectionPage extends State<roomSelection>{
 
   @override
   Widget build(BuildContext context) {
+    roomSelectionContext = context;
     return Scaffold(
       body: StreamBuilder(
         stream: downStream,

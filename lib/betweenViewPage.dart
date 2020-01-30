@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/taskViewFourthRow.dart';
-import 'generated/i18n.dart';
 
 import 'package:sr_flutter2/betweenViewBody.dart';
 import 'package:sr_flutter2/betweenViewButton.dart';
