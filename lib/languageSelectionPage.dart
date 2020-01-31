@@ -16,6 +16,8 @@ class languageSelection extends StatefulWidget{
 
 class languageSelectionState extends State<languageSelection>{
 
+  static LocalizationBloc localizationBloc;
+
   @override
   void initState()  {
     super.initState();
@@ -31,7 +33,7 @@ class languageSelectionState extends State<languageSelection>{
 
   @override
   Widget build(BuildContext context) {
-    final LocalizationBloc localizationBloc= BlocProvider.of<LocalizationBloc>(context);
+    localizationBloc= BlocProvider.of<LocalizationBloc>(context);
     return new BlocProvider<LocalizationBloc>(
       builder: (BuildContext) => localizationBloc,
       child: Scaffold(

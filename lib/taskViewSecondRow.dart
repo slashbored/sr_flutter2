@@ -118,6 +118,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     else  {
       return Center(
           child: RichText(
+            textAlign: TextAlign.center,
             text: TextSpan(
                 style: _taskStyle,
                 children: <TextSpan>[

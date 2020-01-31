@@ -48,6 +48,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               label: Text(createDrinkString(task)),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -99,6 +100,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -157,6 +159,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -200,6 +203,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -242,6 +246,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 label: Text(createDrinkString(task)),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -290,6 +295,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               label: Text(createDrinkString(task)),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
@@ -408,6 +414,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               label: Text(createDrinkString(task)),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
+                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));

@@ -2,6 +2,8 @@
   "languageSelector": "Bitte wähle die Sprache:",
   "modeSelector": "Bitte wähle den Spielmodus:",
   "pleaseCompleteEntries": "Bitte vervollständige deine Angaben.",
+  "createRoom": "Erstelle ein Spiel",
+  "joinRoom": "Tritt einem Spiel bei",
   "comingSoon": "Kommt demnächst!",
   "sexMale": "Männlein",
   "sexX": "Divers",
@@ -34,5 +36,6 @@
   "modeTitle_lose": "Punkte loswerden",
   "hasLeftGame": " hat das Spiel verlassen.",
   "isNewGM": " ist der neue GM.",
-  "gameAlreadyRunning": "Sorry, aber in diesem Raum wird bereits gespielt."
+  "gameAlreadyRunning": "Sorry, aber hier wird bereits gespielt.",
+  "choseToDrink": " wollte stattdessen lieber trinken."
 }

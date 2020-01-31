@@ -2,6 +2,8 @@
   "languageSelector": "Please select the language:",
   "modeSelector": "Please select the gamemode:",
   "pleaseCompleteEntries": "Please complete your entries.",
+  "createRoom": "Create a game",
+  "joinRoom": "Join a game",
   "comingSoon": "Coming soon!",
   "sexMale": "Male",
   "sexX": "Other",
@@ -34,5 +36,6 @@
   "modeTitle_lose": "Lose points",
   "hasLeftGame": " has left the game.",
   "isNewGM": " is the new GM.",
-  "gameAlreadyRunning": "Sorry, but there's already a game being player in this room."
+  "gameAlreadyRunning": "Sorry, but there's already a game being played here.",
+  "choseToDrink": " chose to drink instead."
 }

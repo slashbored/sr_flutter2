@@ -24,12 +24,15 @@ class S implements WidgetsLocalizations {
   String get BGTimerGo => "K den!";
   String get FGTimerDone => "Done!";
   String get FGTimerGo => "Go!";
+  String get choseToDrink => " chose to drink instead.";
   String get comingSoon => "Coming soon!";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
-  String get gameAlreadyRunning => "Sorry, but there's already a game being player in this room.";
+  String get createRoom => "Create a game";
+  String get gameAlreadyRunning => "Sorry, but there's already a game being played here.";
   String get hasLeftGame => " has left the game.";
   String get isNewGM => " is the new GM.";
+  String get joinRoom => "Join a game";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
@@ -90,9 +93,11 @@ class $de extends S {
   @override
   String get noStyle1 => "Nö.";
   @override
-  String get gameAlreadyRunning => "Sorry, aber in diesem Raum wird bereits gespielt.";
+  String get gameAlreadyRunning => "Sorry, aber hier wird bereits gespielt.";
   @override
   String get sexMale => "Männlein";
+  @override
+  String get joinRoom => "Tritt einem Spiel bei";
   @override
   String get FGTimerDone => "Fertig!";
   @override
@@ -116,7 +121,11 @@ class $de extends S {
   @override
   String get hasLeftGame => " hat das Spiel verlassen.";
   @override
+  String get createRoom => "Erstelle ein Spiel";
+  @override
   String get tabooMimeGuessp1 => "Was will ";
+  @override
+  String get choseToDrink => " wollte stattdessen lieber trinken.";
   @override
   String get tabooMimeGuessp2 => " uns sagen?";
   @override

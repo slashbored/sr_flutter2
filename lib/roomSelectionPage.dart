@@ -42,7 +42,7 @@ class roomSelectionPage extends State<roomSelection>{
               children: <Widget>[
                 FloatingActionButton.extended(
                   heroTag:'createRoom',
-                  label: Text('Create a room'),
+                  label: Text(S.of(context).createRoom),
                   onPressed: () {
                     upStream.add(json.encode({'type':'createRoom','content':''}));
                     Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
@@ -59,79 +59,18 @@ class roomSelectionPage extends State<roomSelection>{
                 ),
                 FloatingActionButton.extended(
                   heroTag:'joinRoom',
-                  label: Text('Join room'),
+                  label: Text(S.of(context).joinRoom),
                   onPressed: () {
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                     joinRoom();
                     },
                 ),
-                /*Flexible(
-                  child: taskStringText(context),
-                )*/
               ]
             )
           );
         }
       )
     );
-  }
-
-
-  Widget playerListView(BuildContext context) {
-    if (Room.activeRoom!=null) {
-      return  Flexible(
-        child: Column(
-          children: <Widget>[
-            Text(
-              Room.activeRoom.id,
-              textAlign: TextAlign.center,
-            ),
-            Flexible(
-              child:  ListView(
-                children: <Widget>[
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: Room.activeRoom.playerDB.length,
-                    itemBuilder: (context, int index){
-                      return Text(
-                        Room.activeRoom.playerDB[index].id==Room.activeRoom.gmID?Room.activeRoom.playerDB[index].name + " 👑":Room.activeRoom.playerDB[index].name,
-                        textAlign: TextAlign.center,
-                      );
-                    }
-                  )
-                ]
-              )
-            )
-          ]
-        )
-      );
-    }
-    else  {
-      return Text(S.of(context).noPlayersYet);
-    }
-  }
-
-  Widget taskStringText(BuildContext context) {
-    if  (Room.activeRoom != null && Room.activeRoom.activeTaskID != null &&
-        Room.activeRoom.activePlayerID != null) {
-      int taskIDindex = Room.activeRoom.taskDB.indexWhere((test) =>
-      test.id == Room.activeRoom.activeTaskID);
-      if  (Room.activeRoom.taskDB[taskIDindex].typeID == 9 ||
-          Room.activeRoom.taskDB[taskIDindex].typeID == 10) {
-        if  (Room.activeRoom.activePlayerID==Player.mePlayer.id) {
-          return Text("Taboo or pantomime!");
-        }
-        else  {
-          return Text("🤐");
-        }
-      }
-      else  {
-        return Text("Something else");
-      }
-    }
-    else  {
-      return Text("");
-    }
   }
 
   void joinRoom() async{

@@ -77,7 +77,7 @@ class Task{
     aWonString_en = data['aWonString_en'];
     aWonString_de = data['aWonString_de'];
     aLostString_en  = data['aLostString_en'];
-    aLostString_en  = data['aLostString_de'];
+    aLostString_de  = data['aLostString_de'];
     bWonString_en = data['bWonString_en'];
     bWonString_de = data['bWonString_de'];
     bLostString_en = data['bLostString_en'];

@@ -39,7 +39,7 @@ Widget betweenViewBody(BuildContext context){
         return Container();
       }
     }
-    if (currentRoom.taskDB
+    else if (currentRoom.taskDB
         .firstWhere((task) => task.id == currentRoom.activeTaskID)
         .typeID == 11) {                                          //would you rather
         switch (currentRoom.compareWinnerSide)  {
@@ -67,7 +67,7 @@ Widget betweenViewBody(BuildContext context){
                 child: Text(
                   Task.getStringByLocale(
                       currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_a_lost'),
+                          currentRoom.activeTaskID), locale, 'wyr_b_lost'),
                   textAlign: TextAlign.center,
                 ),
               );
@@ -89,13 +89,16 @@ Widget betweenViewBody(BuildContext context){
                 child: Text(
                   Task.getStringByLocale(
                       currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_b_lost'),
+                          currentRoom.activeTaskID), locale, 'wyr_a_lost'),
                   textAlign: TextAlign.center,
                 ),
               );
             }
             break;
         }
+    }
+    else  {
+      return Container();
     }
   }
   else  {
