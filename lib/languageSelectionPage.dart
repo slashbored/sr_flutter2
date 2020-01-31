@@ -4,6 +4,7 @@ import 'generated/i18n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 import 'playerEditingPage.dart';
 
@@ -85,6 +86,16 @@ class languageSelectionState extends State<languageSelection>{
                               label: Text("Clear Prefs"),
                               onPressed:  ()  {
                                 _clearPrefs();
+                                BotToast.showText(
+                                  text: "Text 1",
+                                  duration: (Duration(seconds: 5))
+                                );
+                                Future.delayed(Duration(seconds: 5), (){
+                                  BotToast.showText(
+                                      text: "Text 2"
+                                  );
+                                }
+                                );
                               })),
                         new Spacer(
                           flex: 1
