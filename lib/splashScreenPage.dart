@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sr_flutter2/playerEditingPage.dart';
+import 'package:sr_flutter2/networkModeSelectionPage.dart';
 import 'generated/i18n.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
@@ -34,7 +34,7 @@ class splashScreenState extends State<splashScreen>{
   @override
   void initState()  {
     super.initState();
-    pushToPlayerEditing(context);
+    pushToNetworkModeSelection(context);
   }
 
   @override
@@ -47,7 +47,7 @@ class splashScreenState extends State<splashScreen>{
         body: Center(
           child: new Text('💩',
             style: TextStyle(
-              fontSize: 54
+              fontSize: 72
             ),
             textAlign: TextAlign.center,
           )
@@ -107,9 +107,9 @@ class splashScreenState extends State<splashScreen>{
     }
   }
 
-  pushToPlayerEditing(context) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await Future.delayed(const Duration(seconds: 3  ), (){});
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
+  pushToNetworkModeSelection(context) async{
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Future.delayed(const Duration(seconds: 1  ), (){});
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
   }
 }

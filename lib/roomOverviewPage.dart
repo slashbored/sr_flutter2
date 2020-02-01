@@ -8,7 +8,7 @@ import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskViewPage.dart';
-import 'modeSelectionPage.dart';
+import 'gameModeSelectionPage.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override

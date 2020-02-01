@@ -40,7 +40,80 @@ class roomSelectionPage extends State<roomSelection>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FloatingActionButton.extended(
+                Flexible(
+                  flex: 2,
+                  child: Center(
+                    child: FloatingActionButton.extended(
+                      heroTag:'createRoom',
+                      label: Text(S.of(context).createRoom),
+                      onPressed: () {
+                        upStream.add(json.encode({'type':'createRoom','content':''}));
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
+                      },
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  //fit: FlexFit.tight,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 10.0, right: 20.0),
+                          child: Divider(
+                              color: Colors.black,
+                              thickness: 2
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "or",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18
+                        ),
+                      ),
+                      Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 20.0, right: 10.0),
+                            child: Divider(
+                                color: Colors.black,
+                                thickness: 2
+                            ),
+                          )
+                      )
+                    ],
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Center(
+                        child: FloatingActionButton.extended(
+                          heroTag:'joinRoom',
+                          label: Text(S.of(context).joinRoom),
+                          onPressed: () {
+                            upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                            joinRoom();
+                          },
+                        ),
+                      ),
+                      Center(
+                        child: TextField(
+                          controller: joinroomTextfieldController,
+                          keyboardType: TextInputType.numberWithOptions(
+                              decimal: true,
+                              signed: false
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+                /*FloatingActionButton.extended(
                   heroTag:'createRoom',
                   label: Text(S.of(context).createRoom),
                   onPressed: () {
@@ -64,7 +137,7 @@ class roomSelectionPage extends State<roomSelection>{
                     upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                     joinRoom();
                     },
-                ),
+                ),*/
               ]
             )
           );

@@ -25,7 +25,7 @@ class S implements WidgetsLocalizations {
   String get FGTimerDone => "Done!";
   String get FGTimerGo => "Go!";
   String get choseToDrink => " chose to drink instead.";
-  String get comingSoon => "Coming soon!";
+  String get comingSoon => "Coming soon!\n( ͡° ͜ʖ ͡°)";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
   String get createRoom => "Create a game";
@@ -40,9 +40,10 @@ class S implements WidgetsLocalizations {
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get modeTitle_endless => "Endless";
-  String get modeTitle_headline => "Please select your gamemode:";
+  String get modeTitle_headline => "Please select your gamestyle:";
   String get modeTitle_lose => "Lose points";
   String get modeTitle_reach => "Gather points";
+  String get networkMode_headline => "Please select your gamemode:";
   String get noPlayersYet => "No players yet!";
   String get noStyle1 => "Just no.";
   String get noStyle2 => "I don't wanna";
@@ -82,6 +83,8 @@ class $de extends S {
   @override
   String get modeTitle_reach => "Punkte sammeln";
   @override
+  String get networkMode_headline => "Bitte wähle den Spielmodus aus:";
+  @override
   String get turn => " ist am Zug";
   @override
   String get waitingForOthersToInput => "Warte auf Eingaben der anderen Spieler..";
@@ -120,7 +123,7 @@ class $de extends S {
   @override
   String get listThis => "Listet folgendes auf:";
   @override
-  String get modeTitle_headline => "Bitte wähle euren Spielmodus aus:";
+  String get modeTitle_headline => "Bitte wähle eure Spielart aus:";
   @override
   String get hasLeftGame => " hat das Spiel verlassen.";
   @override
@@ -132,7 +135,7 @@ class $de extends S {
   @override
   String get tabooMimeGuessp2 => " uns sagen?";
   @override
-  String get comingSoon => "Kommt demnächst!";
+  String get comingSoon => "Kommt demnächst!\n( ͡° ͜ʖ ͡°)";
   @override
   String get tabooMimeFailStyle1 => "Keiner n Plan";
   @override
