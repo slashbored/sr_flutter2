@@ -2,6 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sr_flutter2/languageSelectionPage.dart';
+import 'package:sr_flutter2/playerEditingPage.dart';
+import 'package:sr_flutter2/splashScreenPage.dart';
 import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,7 +66,7 @@ class MyAppState extends State<MyApp>  {
              theme: new ThemeData(
                primaryColor: Colors.black,
              ),
-             home: new languageSelection(),
+             home: new splashScreen(),
            ),
          );
        }

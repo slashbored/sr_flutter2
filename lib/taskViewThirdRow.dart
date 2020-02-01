@@ -498,7 +498,6 @@ String createDrinkString(Task task) {
     }
   }
   drinkAmountString.trim();
-  print(Player.mePlayer.weightModifier.toString());
   return drinkAmountString;
 }
 

@@ -29,6 +29,7 @@ class S implements WidgetsLocalizations {
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
   String get createRoom => "Create a game";
+  String get enterName => "Please enter your name and gender:";
   String get gameAlreadyRunning => "Sorry, but there's already a game being played here.";
   String get hasLeftGame => " has left the game.";
   String get isNewGM => " is the new GM.";
@@ -104,6 +105,8 @@ class $de extends S {
   String get comparisonDraw => "Unentschieden!";
   @override
   String get isNewGM => " ist der neue GM.";
+  @override
+  String get enterName => "Bitte gib deinen Namen und Geschlecht an:";
   @override
   String get FGTimerGo => "Los!";
   @override

@@ -1,6 +1,7 @@
 {
   "languageSelector": "Bitte wähle die Sprache:",
   "modeSelector": "Bitte wähle den Spielmodus:",
+  "enterName": "Bitte gib deinen Namen und Geschlecht an:",
   "pleaseCompleteEntries": "Bitte vervollständige deine Angaben.",
   "createRoom": "Erstelle ein Spiel",
   "joinRoom": "Tritt einem Spiel bei",
