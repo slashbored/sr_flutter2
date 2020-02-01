@@ -194,12 +194,15 @@ class playerEditingState extends State<playerEditing>{
           height: 56,
           top: 36,
           left: size.width - 72,
-          child: Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () => switchLanguage(context),
-              child: Container(
-                child: svg_germanFlag,
+          child: Transform.scale(
+            scale: 0.5,
+            child: Material(
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: () => switchLanguage(context),
+                child: Container(
+                  child: svg_germanFlag,
+                ),
               ),
             ),
           ),
