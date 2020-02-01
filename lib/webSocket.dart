@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
@@ -49,7 +50,7 @@ void startStreaming() async{
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
   upStream.add(json.encode({'type':'createPlayer','content':''}));
-  heartBeatTimer = RestartableTimer(Duration(seconds:30), () => heartBeat());
+  heartBeatTimer = RestartableTimer(Duration(seconds:20), () => heartBeat());
 
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
