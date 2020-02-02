@@ -54,6 +54,8 @@ class S implements WidgetsLocalizations {
   String get ownTurn => "Your turn!";
   String get pleaseCompleteEntries => "Please complete your entries.";
   String get pleaseEnterValidNumber => "Please enter a valid number.";
+  String get settings_headline => "Settings";
+  String get settings_language => "Language:";
   String get sexFemale => "Female";
   String get sexMale => "Male";
   String get sexX => "Other";
@@ -123,6 +125,8 @@ class $de extends S {
   @override
   String get modeTitle_endless => "Endlos";
   @override
+  String get settings_language => "Sprache:";
+  @override
   String get sexFemale => "Weiblein";
   @override
   String get modeTitle_lose => "Punkte loswerden";
@@ -152,6 +156,8 @@ class $de extends S {
   String get mimeThis => "Pantomimimi folgendes:";
   @override
   String get BGTimerGo => "Auffi!";
+  @override
+  String get settings_headline => "Einstellungen";
   @override
   String get ownTurn => "Du bist am Zug!";
   @override

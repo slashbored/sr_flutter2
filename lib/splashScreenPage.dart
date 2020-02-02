@@ -6,6 +6,7 @@ import 'localizationBloc.dart';
 import 'languageSelectionPage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'menuWidget.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -17,10 +18,10 @@ class splashScreenState extends State<splashScreen>{
   static LocalizationBloc localizationBloc;
 
 
-  final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
+  /*final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
   final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
   final Widget svg_male = SvgPicture.asset('assets/man.svg');
-  final Widget svg_female = SvgPicture.asset('assets/woman.svg');
+  final Widget svg_female = SvgPicture.asset('assets/woman.svg');*/
 
   @override
   void initState()  {
@@ -47,7 +48,7 @@ class splashScreenState extends State<splashScreen>{
     );
   }
 
-  void switchLanguage(BuildContext context) async{
+  /*void switchLanguage(BuildContext context) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
       await prefs.setString('loc', "en");
@@ -62,7 +63,7 @@ class splashScreenState extends State<splashScreen>{
       localizationBloc.dispatch(switchEvent.switchToEn);
       prefs.setString('loc', 'en');
     }
-  }
+  }*/
 
   void _insertOverlay(BuildContext context) {
     return Overlay.of(context).insert(
@@ -76,12 +77,17 @@ class splashScreenState extends State<splashScreen>{
           top: 27,
           left: size.width - 72,
           child: Transform.scale(
-            scale: 0.5,
+            scale: 1,
             child: Material(
               color: Colors.transparent,
               child: GestureDetector(
-                onTap: () => switchLanguage(context),
-                child: otherFlag(),
+                onTap: () =>  showDialog(
+                  barrierDismissible: true,
+                  context: context,
+                  builder: (BuildContext context) => menuDialog(context)
+                ),
+                //onTap: () => switchLanguage(context),
+                child: Icon(Icons.settings),
               ),
             ),
           ),
@@ -90,7 +96,7 @@ class splashScreenState extends State<splashScreen>{
     );
   }
 
-  Container otherFlag() {
+  /*Container otherFlag() {
     if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
       return Container(
           child: svg_britishFlag
@@ -101,7 +107,7 @@ class splashScreenState extends State<splashScreen>{
           child: svg_germanFlag
       );
     }
-  }
+  }*/
 
   pushToNetworkOrLanguageSelection(context) async{
     //SharedPreferences prefs = await SharedPreferences.getInstance();

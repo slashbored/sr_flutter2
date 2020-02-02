@@ -10,6 +10,8 @@
   "joinRoom_enterNumber": "Please enter a gamecode.",
   "joinRoom_roomAlreadyRunning": "Sorry, but there's already a game being played here.",
   "joinRoom_roomNotFound": "No game found.",
+  "settings_headline": "Settings",
+  "settings_language": "Language:",
   "comingSoon": "Coming soon!™\n( ͡° ͜ʖ ͡°)",
   "sexMale": "Male",
   "sexX": "Other",
