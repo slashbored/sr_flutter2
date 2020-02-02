@@ -29,7 +29,7 @@ class Player  {
         return Colors.green;
         break;
       case 2:
-        return Colors.yellow;
+        return Colors.red;
         break;
       case 3:
         return Colors.deepOrange;
@@ -44,7 +44,7 @@ class Player  {
         return Colors.indigo;
         break;
       case 7:
-        return Colors.red;
+        return Colors.pink;
         break;
       case 8:
         return Colors.teal;
@@ -59,16 +59,17 @@ class Player  {
         return Colors.orange;
         break;
       case 12:
-        return Colors.pink;
+        return Colors.yellow;
         break;
       case 13:
         return Colors.amber;
+        break;
       case 14:
         return Colors.cyan;
         break;
       case 15:
-      return Colors.grey;
-      break;
+        return Colors.grey;
+        break;
 
     }
   }

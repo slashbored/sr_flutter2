@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
+import 'package:bot_toast/bot_toast.dart';
+
 
 import 'webSocket.dart';
 import 'roomClass.dart';
 import 'roomOverviewPage.dart';
-import 'playerClass.dart';
 
 class roomSelection extends StatefulWidget{
   @override
@@ -43,13 +44,40 @@ class roomSelectionPage extends State<roomSelection>{
                 Flexible(
                   flex: 2,
                   child: Center(
-                    child: FloatingActionButton.extended(
-                      heroTag:'createRoom',
-                      label: Text(S.of(context).createRoom),
-                      onPressed: () {
-                        upStream.add(json.encode({'type':'createRoom','content':''}));
-                        Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                      },
+                    child: Row(
+                      children: <Widget>[
+                        Spacer(
+                          flex: 1,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text(
+                            S.of(context).createRoom,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: FloatingActionButton.extended(
+                            heroTag:'fab_createRoom',
+                            label: Icon(
+                              Icons.add,
+                              color: Colors.green,
+                            ),
+                            onPressed: () {
+                              upStream.add(json.encode({'type':'createRoom','content':''}));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
+                            },
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            highlightElevation: 0,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -68,7 +96,7 @@ class roomSelectionPage extends State<roomSelection>{
                         ),
                       ),
                       Text(
-                        "or",
+                        S.of(context).or,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18
@@ -91,53 +119,73 @@ class roomSelectionPage extends State<roomSelection>{
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Center(
-                        child: FloatingActionButton.extended(
-                          heroTag:'joinRoom',
-                          label: Text(S.of(context).joinRoom),
-                          onPressed: () {
-                            upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                            joinRoom();
-                          },
-                        ),
+                      Row(
+                        children: <Widget>[
+                          Spacer(
+                            flex: 1,
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Text(
+                                S.of(context).joinRoom,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18
+                                )
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: FloatingActionButton.extended(
+                              heroTag:'fab_joinRoom',
+                              label:  Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
+                                  BotToast.showText(
+                                      text: S.of(context).joinRoom_enterNumber,
+                                      duration: Duration(seconds: 5)
+                                  );
+                                }
+                                else  {
+                                  upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                                  joinRoom();
+                                }
+                              },
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              highlightElevation: 0,
+                            ),
+                          )
+                        ],
                       ),
                       Center(
-                        child: TextField(
-                          controller: joinroomTextfieldController,
-                          keyboardType: TextInputType.numberWithOptions(
-                              decimal: true,
-                              signed: false
-                          ),
+                        child: Row(
+                          children: <Widget>[
+                            Spacer(),
+                            Expanded(
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                controller: joinroomTextfieldController,
+                                keyboardType: TextInputType.numberWithOptions(
+                                    decimal: true,
+                                    signed: false
+                                ),
+                                decoration: InputDecoration(
+                                  hintText: S.of(context).joinRoom_hintText,
+                                ),
+                              ),
+                            ),
+                            Spacer()
+                          ],
                         ),
                       )
                     ],
                   ),
                 )
-                /*FloatingActionButton.extended(
-                  heroTag:'createRoom',
-                  label: Text(S.of(context).createRoom),
-                  onPressed: () {
-                    upStream.add(json.encode({'type':'createRoom','content':''}));
-                    Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                  },
-                ),
-                Flexible(
-                  child: TextField(
-                    controller: joinroomTextfieldController,
-                    keyboardType: TextInputType.numberWithOptions(
-                        decimal: true,
-                        signed: false
-                    ),
-                  )
-                ),
-                FloatingActionButton.extended(
-                  heroTag:'joinRoom',
-                  label: Text(S.of(context).joinRoom),
-                  onPressed: () {
-                    upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                    joinRoom();
-                    },
-                ),*/
               ]
             )
           );

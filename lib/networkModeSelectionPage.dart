@@ -45,13 +45,14 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
               ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            highlightElevation: 0,
           ),
           new FloatingActionButton.extended(
               heroTag: "fab_offline",
               onPressed: () {
                 BotToast.showText(
                   text: S.of(context).comingSoon,
-                  duration: Duration(seconds: 2)
+                  duration: Duration(seconds: 5)
                 );
               },
               label: Text(
@@ -73,7 +74,10 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
 
   pushToPlayerEditing(context) async{
     //SharedPreferences prefs = await SharedPreferences.getInstance();
-    await Future.delayed(const Duration(seconds: 1  ), (){});
+    BotToast.showLoading(
+      duration: Duration(seconds: 1,),
+    );
+    await Future.delayed(Duration(seconds: 1  ), (){});
     Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
   }
 }

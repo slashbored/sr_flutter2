@@ -55,21 +55,25 @@ class playerEditingState extends State<playerEditing>{
                   S.of(context).enterName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 27,
                   ),
                 ),
               ),
               Flexible(
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child:               Row(
+                  child: Row(
                     children: <Widget>[
                       Spacer(
                         flex: 1
                       ),
-                      Flexible(
-                        flex: 1,
+                      Expanded(
+                        flex: 3,
                         child:  TextField(
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18
+                          ),
                           autofocus: true,
                           controller: nameTextfieldController,
                           textAlign: TextAlign.center,
@@ -82,8 +86,30 @@ class playerEditingState extends State<playerEditing>{
                           },
                         ),
                       ),
-                      Spacer(
+                      Expanded(
                         flex: 1,
+                        child: FloatingActionButton(
+                            onPressed: () {
+                              Player.mePlayer.name = nameTextfieldController.text.toString();
+                              if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                                upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
+                                Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
+                              }
+                              else  {
+                                BotToast.showText(
+                                    duration: Duration(seconds: 2),
+                                    text: S.of(context).pleaseCompleteEntries
+                                );
+                              }
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
+                            ),
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            highlightElevation: 0,
+                          ),
                       )
                     ],
                   ),
@@ -105,7 +131,6 @@ class playerEditingState extends State<playerEditing>{
                             label: Transform.scale(scale: 0.5, child: svg_male),
                             onPressed: (){
                               setState(() {
-                                //upStream.add(json.encode({'type':'setName','content':Player.activePlayer.name}));
                                 upStream.add(json.encode({'type':'setSex','content':'m'}));
                                 Player.mePlayer.sex = 'm';
                               });
@@ -182,76 +207,8 @@ class playerEditingState extends State<playerEditing>{
           ),
 
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Player.mePlayer.name = nameTextfieldController.text.toString();
-          if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
-            upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
-            Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
-          }
-          else  {
-            BotToast.showText(
-              duration: Duration(seconds: 2),
-              text: S.of(context).pleaseCompleteEntries
-            );
-          }
-        },
-        child: Icon(Icons.arrow_forward_ios),
-        backgroundColor: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
-      ),
     );
   }
-
-  /*void switchLanguage(BuildContext context) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
-      languageSelectionState.localizationBloc.dispatch(switchEvent.switchToDe);
-      prefs.setString('loc', 'de');
-    }
-    else  {
-      languageSelectionState.localizationBloc.dispatch(switchEvent.switchToEn);
-      prefs.setString('loc', 'en');
-    }
-  }
-
-  void _insertOverlay(BuildContext context) {
-    return Overlay.of(context).insert(
-      OverlayEntry(builder: (context) {
-        final size = MediaQuery
-            .of(context)
-            .size;
-        return Positioned(
-          width: 56,
-          height: 56,
-          top: 36,
-          left: size.width - 72,
-          child: Transform.scale(
-            scale: 0.5,
-            child: Material(
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () => switchLanguage(context),
-                child: otherFlag(),
-              ),
-            ),
-          ),
-        );
-      }),
-    );
-  }
-
-  Container otherFlag() {
-    if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
-      return Container(
-          child: svg_britishFlag
-      );
-    }
-    else  {
-      return Container(
-          child: svg_germanFlag
-      );
-    }
-  }*/
 
   Color getSexcolor(String sex) {
     switch  (sex) {

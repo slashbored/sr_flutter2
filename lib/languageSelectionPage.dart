@@ -9,12 +9,12 @@ import 'package:bot_toast/bot_toast.dart';
 import 'playerEditingPage.dart';
 
 
-class languageSelection extends StatefulWidget{
+class languageSelectionPage extends StatefulWidget{
   @override
-  languageSelectionState createState() => new languageSelectionState();
+  languageSelectionPageState createState() => new languageSelectionPageState();
 }
 
-class languageSelectionState extends State<languageSelection>{
+class languageSelectionPageState extends State<languageSelectionPage>{
 
   static LocalizationBloc localizationBloc;
 

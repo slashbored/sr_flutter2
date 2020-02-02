@@ -65,10 +65,16 @@ void startStreaming() async{
         break;
       case 'error':
         switch (packageIn.content)  {
-          case 'gameAlreadyRunning':
+          case 'roomAlreadyRunning':
             BotToast.showText(
-              text: S.of(roomSelectionContext).gameAlreadyRunning,
+              text: S.of(roomSelectionContext).joinRoom_roomAlreadyRunning,
               duration: Duration(seconds: 5)
+            );
+            break;
+          case 'roomNotFound':
+            BotToast.showText(
+                text: S.of(roomSelectionContext).joinRoom_roomNotFound,
+                duration: Duration(seconds: 5)
             );
             break;
         }
@@ -131,6 +137,7 @@ void startStreaming() async{
                   return Container(
                     padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
                     child: RichText(
+                      textAlign: TextAlign.center,
                         text: TextSpan(
                             children:[
                               TextSpan(

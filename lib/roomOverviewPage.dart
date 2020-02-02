@@ -35,18 +35,23 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
       }
       Player.mePlayer = currentRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
-      return  Column(
+      return  WillPopScope(
+        onWillPop: () =>  null,
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  child: Text(
-                    Room.activeRoom.id,
-                    textAlign: TextAlign.center,
+            children: <Widget>[
+              Flexible(
+                flex: 1,
+                child: Text(
+                  Room.activeRoom.id,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 27
                   ),
                 ),
-                Flexible(
+              ),
+              Flexible(
                   flex: 1,
                   child:  ListView(
                       children: <Widget>[
@@ -58,27 +63,32 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                                 currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: currentRoom.playerDB[index].color
+                                  color: currentRoom.playerDB[index].color,
+                                  fontSize: 18
                                 ),
                               );
                             }
                         )
                       ]
                   )
-                ),
-                Flexible(
-                  flex: 1,
-                  child: startGameFAB(context),
-                )
-              ]
-          );
+              ),
+              Flexible(
+                flex: 1,
+                child: startGameFAB(context),
+              )
+            ]
+        )
+      );
     }
     else  {
-      return Center(
-        child: Text(
-          S.of(context).noPlayersYet,
-          textAlign: TextAlign.center,
-        ),
+      return WillPopScope(
+        onWillPop: () =>  null,
+        child: Center(
+          child: Text(
+            S.of(context).noPlayersYet,
+            textAlign: TextAlign.center,
+          )
+        )
       );
     }
   }
@@ -87,9 +97,12 @@ class roomOverviewPageState extends State<roomOverviewPage>{
     roomOverviewContext = context;
     if  (currentRoom.gmID==Player.mePlayer.id)  {
       return FloatingActionButton(
-        heroTag:'continueToCats',
-        child: Icon(Icons.arrow_forward_ios),
-        backgroundColor: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
+        heroTag:'fab_continueToCats',
+        child: Icon(
+          Icons.arrow_forward_ios,
+          color: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
+        ),
+        backgroundColor: Colors.transparent,
         onPressed: () {
           if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
             upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -99,15 +112,22 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           }
           //Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));
         },
+        elevation: 0,
+        highlightElevation: 0,
       );
     }
     else  {
       return FloatingActionButton(
         heroTag:'continueToCats_waiting',
-        child: Icon(Icons.hourglass_empty),
-        backgroundColor: Colors.grey,
+        child: Icon(
+            Icons.hourglass_empty,
+            color: Colors.grey,
+        ),
+        backgroundColor: Colors.transparent,
         onPressed: () {
         },
+        elevation: 0,
+        highlightElevation: 0,
       );
     }
   }

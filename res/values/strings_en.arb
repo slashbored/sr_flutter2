@@ -1,11 +1,16 @@
 {
   "languageSelector": "Please select the language:",
+  "or": "or",
   "modeSelector": "Please select the gamemode:",
   "enterName": "Please enter your name and gender:",
   "pleaseCompleteEntries": "Please complete your entries.",
   "createRoom": "Create a game",
   "joinRoom": "Join a game",
-  "comingSoon": "Coming soon!\n( ͡° ͜ʖ ͡°)",
+  "joinRoom_hintText": "Gamecode",
+  "joinRoom_enterNumber": "Please enter a gamecode.",
+  "joinRoom_roomAlreadyRunning": "Sorry, but there's already a game being played here.",
+  "joinRoom_roomNotFound": "No game found.",
+  "comingSoon": "Coming soon!™\n( ͡° ͜ʖ ͡°)",
   "sexMale": "Male",
   "sexX": "Other",
   "sexFemale": "Female",
@@ -38,6 +43,5 @@
   "modeTitle_lose": "Lose points",
   "hasLeftGame": " has left the game.",
   "isNewGM": " is the new GM.",
-  "gameAlreadyRunning": "Sorry, but there's already a game being played here.",
   "choseToDrink": " chose to drink instead."
 }

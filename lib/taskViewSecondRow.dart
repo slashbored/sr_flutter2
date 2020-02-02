@@ -160,13 +160,15 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
     else {
-      return Center(
-        child: Text(
-          "🤔",
-          style: TextStyle(
-              fontSize: 36
+      return Expanded(
+        child: Center(
+          child: Text(
+            "🤔",
+            style: TextStyle(
+                fontSize: 36
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
       );
     }

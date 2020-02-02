@@ -1,20 +1,11 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sr_flutter2/networkModeSelectionPage.dart';
-import 'generated/i18n.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'languageSelectionPage.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'webSocket.dart';
-import 'playerClass.dart';
-import 'roomSelectionPage.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -34,7 +25,7 @@ class splashScreenState extends State<splashScreen>{
   @override
   void initState()  {
     super.initState();
-    pushToNetworkModeSelection(context);
+    pushToNetworkOrLanguageSelection(context);
   }
 
   @override
@@ -107,9 +98,14 @@ class splashScreenState extends State<splashScreen>{
     }
   }
 
-  pushToNetworkModeSelection(context) async{
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
+  pushToNetworkOrLanguageSelection(context) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     await Future.delayed(const Duration(seconds: 1  ), (){});
+    if (prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
+      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  languageSelectionPage()));
+    }
+    else  {
       Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
+    }
   }
 }

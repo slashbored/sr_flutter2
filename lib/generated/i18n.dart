@@ -25,15 +25,18 @@ class S implements WidgetsLocalizations {
   String get FGTimerDone => "Done!";
   String get FGTimerGo => "Go!";
   String get choseToDrink => " chose to drink instead.";
-  String get comingSoon => "Coming soon!\n( ͡° ͜ʖ ͡°)";
+  String get comingSoon => "Coming soon!™\n( ͡° ͜ʖ ͡°)";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
   String get createRoom => "Create a game";
   String get enterName => "Please enter your name and gender:";
-  String get gameAlreadyRunning => "Sorry, but there's already a game being played here.";
   String get hasLeftGame => " has left the game.";
   String get isNewGM => " is the new GM.";
   String get joinRoom => "Join a game";
+  String get joinRoom_enterNumber => "Please enter a gamecode.";
+  String get joinRoom_hintText => "Gamecode";
+  String get joinRoom_roomAlreadyRunning => "Sorry, but there's already a game being played here.";
+  String get joinRoom_roomNotFound => "No game found.";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listThis => "List the following:";
@@ -47,6 +50,7 @@ class S implements WidgetsLocalizations {
   String get noPlayersYet => "No players yet!";
   String get noStyle1 => "Just no.";
   String get noStyle2 => "I don't wanna";
+  String get or => "or";
   String get ownTurn => "Your turn!";
   String get pleaseCompleteEntries => "Please complete your entries.";
   String get pleaseEnterValidNumber => "Please enter a valid number.";
@@ -97,13 +101,13 @@ class $de extends S {
   @override
   String get noStyle1 => "Nö.";
   @override
-  String get gameAlreadyRunning => "Sorry, aber hier wird bereits gespielt.";
-  @override
   String get sexMale => "Männlein";
   @override
   String get joinRoom => "Tritt einem Spiel bei";
   @override
   String get FGTimerDone => "Fertig!";
+  @override
+  String get joinRoom_roomNotFound => "Kein Spiel gefunden.";
   @override
   String get comparisonDraw => "Unentschieden!";
   @override
@@ -114,6 +118,8 @@ class $de extends S {
   String get FGTimerGo => "Los!";
   @override
   String get languageSelector => "Bitte wähle die Sprache:";
+  @override
+  String get or => "oder";
   @override
   String get modeTitle_endless => "Endlos";
   @override
@@ -127,6 +133,8 @@ class $de extends S {
   @override
   String get hasLeftGame => " hat das Spiel verlassen.";
   @override
+  String get joinRoom_roomAlreadyRunning => "Sorry, aber hier wird bereits gespielt.";
+  @override
   String get createRoom => "Erstelle ein Spiel";
   @override
   String get tabooMimeGuessp1 => "Was will ";
@@ -135,7 +143,9 @@ class $de extends S {
   @override
   String get tabooMimeGuessp2 => " uns sagen?";
   @override
-  String get comingSoon => "Kommt demnächst!\n( ͡° ͜ʖ ͡°)";
+  String get joinRoom_hintText => "Spielcode";
+  @override
+  String get comingSoon => "Kommt demnächst!™\n( ͡° ͜ʖ ͡°)";
   @override
   String get tabooMimeFailStyle1 => "Keiner n Plan";
   @override
@@ -146,6 +156,8 @@ class $de extends S {
   String get ownTurn => "Du bist am Zug!";
   @override
   String get noPlayersYet => "Noch keine Spieler vorhanden!";
+  @override
+  String get joinRoom_enterNumber => "Bitte gib einen Spielcode an.";
   @override
   String get yesStyle1 => "Jawollek!";
   @override
