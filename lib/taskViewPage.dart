@@ -60,10 +60,10 @@ class taskViewPageState extends State<taskViewPage>{
                         child: taskViewFourthRow(context),
                         flex: 55
                     )
-                  ],
+                  ]
                 );
               }
-          ),
+          )
         )
       );
     }

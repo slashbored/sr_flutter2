@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import "generated/i18n.dart";
@@ -45,7 +46,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),*/
             FloatingActionButton.extended(
               heroTag:  "normal_drink",
-              label: Text(createDrinkString(task)),
+              backgroundColor: Colors.red,
+              label: createDrinkText(task),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -56,6 +58,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               ),
             FloatingActionButton.extended(
                 heroTag:  "normal_accepted",
+                backgroundColor: Colors.green,
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -64,7 +67,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
             )
-          ],
+          ]
         );
       }
       else  {
@@ -97,7 +100,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),*/
             FloatingActionButton.extended(
                 heroTag:  "normalFGTime_drink",
-                label: Text(createDrinkString(task)),
+                backgroundColor: Colors.red,
+                label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -118,6 +122,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "normalFGTime_accepted",
+                backgroundColor: Colors.green,
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   if (customTimer.activeTimer!=null)  {
@@ -132,7 +137,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
-          ],
+          ]
         );
       }
       else  {
@@ -156,7 +161,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),*/
             FloatingActionButton.extended(
                 heroTag:  "normalBGTime_drink",
-                label: Text(createDrinkString(task)),
+                backgroundColor: Colors.red,
+                label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -167,6 +173,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "normalBGTime_accepted",
+                backgroundColor: Colors.green,
                 label: Text(S.of(context).BGTimerGo),
                 onPressed: (){
                   startBGTimer(context);
@@ -175,7 +182,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
-          ],
+          ]
         );
       }
       else  {
@@ -200,7 +207,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),*/
             FloatingActionButton.extended(
                 heroTag:  "choice_drink",
-                label: Text(createDrinkString(task)),
+                backgroundColor: Colors.red,
+                label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -211,6 +219,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "choice_accepted",
+                backgroundColor: Colors.green,
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -218,7 +227,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             )
-          ],
+          ]
         );
       }
       else  {
@@ -243,7 +252,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),*/
             FloatingActionButton.extended(
                 heroTag:  "choiceFGTime_drink",
-                label: Text(createDrinkString(task)),
+                backgroundColor: Colors.red,
+                label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                   upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -261,14 +271,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "choiceFGTime_accepted",
+                backgroundColor: Colors.green,
                 label: Text(S.of(context).yesStyle1),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            ),
-          ],
+            )
+          ]
         );
       }
       else  {
@@ -292,7 +303,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),*/
           FloatingActionButton.extended(
               heroTag:  "choiceBGTime_drink",
-              label: Text(createDrinkString(task)),
+              backgroundColor: Colors.red,
+              label: createDrinkText(task),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -303,6 +315,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "choiceBGTime_accepted",
+              backgroundColor: Colors.green,
               label: Text(S.of(context).yesStyle1),
               onPressed: (){
                 startBGTimer(context);
@@ -311,7 +324,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           )
-        ],
+        ]
       );
     }
     else  {
@@ -335,13 +348,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   ),
                   onChanged: (value) {
                     Player.mePlayer.compareValue=double.parse(value);
-                  },
-                ),
+                  }
+                )
               ),
               Spacer(
                 flex: 2,
               )
-            ],
+            ]
           ),
           FloatingActionButton.extended(
             heroTag: "comparison_submit",
@@ -362,9 +375,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 //Player.mePlayer.compareValue=null;
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
               }
-            },
+            }
           )
-        ],
+        ]
       );
       break;
     case 8:
@@ -373,9 +386,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "listFailed",
               label:  Text(
                 "️🤷🏼‍♀️",
-                style: TextStyle(
-                    fontSize: 27
-                ),
+                style: normalStyle,
               ),
               onPressed:  ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -411,7 +422,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),*/
           FloatingActionButton.extended(
               heroTag:  "tabooMime_drink",
-              label: Text(createDrinkString(task)),
+              backgroundColor: Colors.red,
+              shape: CircleBorder(),
+              label: createDrinkText(task),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
                 upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
@@ -432,6 +445,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "tabooMime_accepted",
+              backgroundColor: Colors.green,
               label: Text(S.of(context).tabooMimeWinStyle1),
               onPressed: () {
                 if (customTimer.activeTimer!=null)  {
@@ -445,8 +459,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          ),
-        ],
+          )
+        ]
       );
     }
     else  {
@@ -460,6 +474,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         children: <Widget>[
           FloatingActionButton.extended(
             heroTag: "wyr_a_submit",
+            backgroundColor: Colors.green,
             label: Text(Task.getStringByLocale(task, locale, "wyr_a")),
             onPressed: () {
               Player.mePlayer.compareValue = 1;
@@ -469,15 +484,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
             heroTag: "wyr_b_submit",
+            backgroundColor: Colors.red,
             label: Text(Task.getStringByLocale(task, locale, "wyr_b")),
             onPressed: () {
               Player.mePlayer.compareValue = 2;
               upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
               Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
-            },
+            }
           )
-        ],
-
+        ]
       );
     break;
     default:
@@ -487,18 +502,21 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   }
 }
 
-String createDrinkString(Task task) {
+Text createDrinkText(Task task) {
   String drinkAmountString = "";
   for (int i = 0; i < (task.weight + Player.mePlayer.weightModifier); i++) {
-    if (i<=3) {
+    if (i<=2) {
       drinkAmountString = drinkAmountString + "🍺 ";
     }
     else  {
-      drinkAmountString = "🍺 x " + (task.weight + Player.mePlayer.weightModifier).toString();
+      drinkAmountString = "🍺x" + (task.weight + Player.mePlayer.weightModifier).toString();
     }
   }
   drinkAmountString.trim();
-  return drinkAmountString;
+  return Text(
+    drinkAmountString,
+    style: normalStyle,
+  );
 }
 
 void startBGTimer(BuildContext context) async {

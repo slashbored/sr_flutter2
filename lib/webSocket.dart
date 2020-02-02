@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
@@ -9,14 +10,12 @@ import 'dart:convert';
 import 'package.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerClass.dart';
 
-import 'roomSelectionPage.dart';
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
 
@@ -139,6 +138,7 @@ void startStreaming() async{
                     child: RichText(
                       textAlign: TextAlign.center,
                         text: TextSpan(
+                            style: normalStyle,
                             children:[
                               TextSpan(
                                   text: drinkingPlayer.name,
@@ -147,25 +147,22 @@ void startStreaming() async{
                                   )
                               ),
                               TextSpan(
-                                text: S.of(context).choseToDrink,
+                                text: S.of(context).choseToDrink
                               )
-                            ],
-                            style: TextStyle(
-                                fontSize: 18
-                            )
+                            ]
                         )
                     ),
                     decoration: BoxDecoration(
                       color: Colors.black54,
                       borderRadius: BorderRadius.all(
                           Radius.circular(8)
-                      ),
+                      )
                     ),
                     constraints: constraints.copyWith(
                         maxWidth: constraints.biggest.width * 0.6
-                    ),
+                    )
                   );
-                },
+                }
               )
           );
         }
@@ -181,6 +178,7 @@ void startStreaming() async{
                 padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
                 child: RichText(
                   text: TextSpan(
+                    style: normalStyle,
                     children:[
                       TextSpan(
                         text: leftPlayer.name,
@@ -189,25 +187,22 @@ void startStreaming() async{
                         )
                       ),
                       TextSpan(
-                        text: S.of(context).hasLeftGame,
+                        text: S.of(context).hasLeftGame
                       )
-                    ],
-                    style: TextStyle(
-                      fontSize: 18
-                    )
+                    ]
                   )
                 ),
                 decoration: BoxDecoration(
                   color: Colors.black54,
                   borderRadius: BorderRadius.all(
                       Radius.circular(8)
-                  ),
+                  )
                 ),
                 constraints: constraints.copyWith(
                   maxWidth: constraints.biggest.width * 0.6
-                ),
+                )
               );
-            },
+            }
           )
         );
         break;
@@ -224,7 +219,8 @@ void startStreaming() async{
                     padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
                     child: RichText(
                         text: TextSpan(
-                            children:[
+                          style: normalStyle,
+                          children:[
                               TextSpan(
                                   text: newGM.name,
                                   style: TextStyle(
@@ -232,25 +228,22 @@ void startStreaming() async{
                                   )
                               ),
                               TextSpan(
-                                text: S.of(context).isNewGM,
+                                text: S.of(context).isNewGM
                               )
-                            ],
-                            style: TextStyle(
-                                fontSize: 18
-                            )
+                            ]
                         )
                     ),
                     decoration: BoxDecoration(
                       color: Colors.black54,
                       borderRadius: BorderRadius.all(
                           Radius.circular(8)
-                      ),
+                      )
                     ),
                     constraints: constraints.copyWith(
                         maxWidth: constraints.biggest.width * 0.6
-                    ),
+                    )
                   );
-                },
+                }
               )
           );
         });
@@ -268,9 +261,9 @@ void startStreaming() async{
                   onPressed: () {
                     taskViewPageState().goHome(taskViewPageContext);
                     currentRoom = null;
-                  },
+                  }
                 )
-              ],
+              ]
             )
         );
     }

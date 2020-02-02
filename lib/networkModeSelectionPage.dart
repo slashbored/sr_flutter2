@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sr_flutter2/languageSelectionPage.dart';
@@ -26,58 +27,50 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
         children: <Widget>[
           new Text(
             S.of(context).networkMode_headline,
-            style: TextStyle(
-                fontSize: 36
-            ),
             textAlign: TextAlign.center,
+            style: headlineStyle
           ),
           new FloatingActionButton.extended(
               heroTag: "fab_online",
+              label: Text(
+                "⚡ Online",
+                style: bigStyle
+                ),
               onPressed: () {
                 pushToPlayerEditing(context);
               },
-              label: Text(
-                  "⚡ Online",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 27
-                ),
-              ),
             backgroundColor: Colors.transparent,
             elevation: 0,
             highlightElevation: 0,
           ),
           new FloatingActionButton.extended(
               heroTag: "fab_offline",
+              label: Text(
+                "💤 Offline",
+                style: bigStyle
+              ),
               onPressed: () {
                 BotToast.showText(
                   text: S.of(context).comingSoon,
                   duration: Duration(seconds: 5)
                 );
               },
-              label: Text(
-                  "💤 Offline",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 27
-                ),
-              ),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
           new Container(
           )
-        ],
-      ),
+        ]
+      )
     );
   }
 
   pushToPlayerEditing(context) async{
     //SharedPreferences prefs = await SharedPreferences.getInstance();
     BotToast.showLoading(
-      duration: Duration(seconds: 1,),
+      duration: Duration(seconds: 1)
     );
-    await Future.delayed(Duration(seconds: 1  ), (){});
+    await Future.delayed(Duration(seconds: 1  ),  ()  {});
     Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
   }
 }

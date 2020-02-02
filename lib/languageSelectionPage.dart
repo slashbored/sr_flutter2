@@ -44,12 +44,10 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   new Expanded(
+                    flex: 1,
                     child: new Center(
-                      child: new Text(
-                        S.of(context).languageSelector
-                      ),
-                    ),
-                    flex: 1
+                      child: new Text(S.of(context).languageSelector)
+                    )
                   ),
                   new Expanded(
                     child: new Column(
@@ -57,6 +55,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         new Flexible(
+                          flex: 1,
                           child: new FloatingActionButton.extended(
                             heroTag: 'FABen',
                             label: Text("english"),
@@ -66,10 +65,10 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                               S.delegate.load(Locale("en", ""),);
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
-                          ),
-                          flex: 1
+                          )
                         ),
                         new Flexible(
+                          flex: 1,
                           child: new FloatingActionButton.extended(
                             heroTag: 'FABde',
                             label: Text("deutsch"),
@@ -79,8 +78,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                               S.delegate.load(Locale("de", ""));
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
                             }
-                          ),
-                          flex: 1,
+                          )
                         ),
                         new Flexible(
                             child: new FloatingActionButton.extended(

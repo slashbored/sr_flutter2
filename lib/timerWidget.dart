@@ -32,7 +32,7 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
                   )
               )
             ]
-          ),
+          )
         ),
         backgroundColor: Colors.black,
       ),
@@ -42,7 +42,7 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
         //correspondingTask.descr,
         style: TextStyle(
           color: Colors.white
-        ),
+        )
       ),
       isEnabled: true,
       backgroundColor: Colors.black,
@@ -68,7 +68,7 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
       backgroundColor: correspondingFirstPlayer.color,
       onPressed: () {
         onPressInputChip(correspondingTimer);
-      },
+      }
     );
   }
 }

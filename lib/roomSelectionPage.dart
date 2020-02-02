@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
@@ -54,11 +55,8 @@ class roomSelectionPage extends State<roomSelection>{
                           child: Text(
                             S.of(context).createRoom,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18
-                            ),
-                          ),
+                            style: normalStyle,
+                          )
                         ),
                         Expanded(
                           flex: 1,
@@ -97,10 +95,7 @@ class roomSelectionPage extends State<roomSelection>{
                       ),
                       Text(
                         S.of(context).or,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18
-                        ),
+                        style: normalStyle
                       ),
                       Expanded(
                           child: Container(
@@ -127,13 +122,10 @@ class roomSelectionPage extends State<roomSelection>{
                           Expanded(
                             flex: 3,
                             child: Text(
-                                S.of(context).joinRoom,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18
-                                )
-                            ),
+                              S.of(context).joinRoom,
+                              textAlign: TextAlign.center,
+                              style: normalStyle
+                            )
                           ),
                           Expanded(
                             flex: 1,
@@ -157,10 +149,10 @@ class roomSelectionPage extends State<roomSelection>{
                               },
                               backgroundColor: Colors.transparent,
                               elevation: 0,
-                              highlightElevation: 0,
-                            ),
+                              highlightElevation: 0
+                            )
                           )
-                        ],
+                        ]
                       ),
                       Center(
                         child: Row(

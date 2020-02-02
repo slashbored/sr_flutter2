@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
-import 'generated/i18n.dart';
 import 'dart:convert';
 
 import 'webSocket.dart';
-import 'roomClass.dart';
-import 'playerClass.dart';
-import 'taskViewPage.dart';
 
 Widget betweenViewButton(BuildContext context)  {
   if  (currentRoom.isWaiting)  {

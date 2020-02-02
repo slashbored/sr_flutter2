@@ -49,6 +49,11 @@ class splashScreenState extends State<splashScreen>{
 
   void switchLanguage(BuildContext context) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
+      await prefs.setString('loc', "en");
+      await prefs.setBool('locSet', true);
+    }
+    await prefs.get('loc')=="en"?localizationBloc.dispatch(switchEvent.switchToEn):localizationBloc.dispatch(switchEvent.switchToDe);
     if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
       localizationBloc.dispatch(switchEvent.switchToDe);
       prefs.setString('loc', 'de');
@@ -68,7 +73,7 @@ class splashScreenState extends State<splashScreen>{
         return Positioned(
           width: 56,
           height: 56,
-          top: 36,
+          top: 27,
           left: size.width - 72,
           child: Transform.scale(
             scale: 0.5,
@@ -99,13 +104,14 @@ class splashScreenState extends State<splashScreen>{
   }
 
   pushToNetworkOrLanguageSelection(context) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
     await Future.delayed(const Duration(seconds: 1  ), (){});
-    if (prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
+    Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
+    /*if (prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
       Navigator.push(context, CupertinoPageRoute(builder: (context) =>  languageSelectionPage()));
     }
     else  {
       Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
-    }
+    }*/
   }
 }

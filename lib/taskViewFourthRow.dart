@@ -4,7 +4,7 @@ import'webSocket.dart';
 
 import 'timerWidget.dart';
 
-Widget taskViewFourthRow(BuildContext context, /*Room room*/) {
+Widget taskViewFourthRow(BuildContext context) {
   if(currentRoom.BGTimerDB.length>0) {
     return Align(
       child: ListView.builder(
@@ -21,7 +21,7 @@ Widget taskViewFourthRow(BuildContext context, /*Room room*/) {
             }
           }
       ),
-      alignment: Alignment.topLeft,
+      alignment: Alignment.topLeft
     );
   }
     else  {

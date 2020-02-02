@@ -49,6 +49,7 @@ class MyAppState extends State<MyApp>  {
        builder: (context, String lelocale)  {
          return BotToastInit(
            child: MaterialApp(
+             debugShowCheckedModeBanner: false,
              navigatorObservers: [BotToastNavigatorObserver()],
              locale: Locale(lelocale, ""),
              title: 'Shitroulette',

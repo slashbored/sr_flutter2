@@ -1,15 +1,10 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import "generated/i18n.dart";
 
 import 'playerClass.dart';
 import 'taskClass.dart';
-
-
-final TextStyle _titleStyle = const TextStyle(
-  fontSize: 36,
-  color: Colors.black
-);
 
 Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   switch (task.typeID)  {
@@ -29,18 +24,14 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                             color: firstPlayer.color,
                             fontSize: 36
                           ):
-                          _titleStyle,
+                          headlineStyle,
                           text: firstPlayer.id==Player.mePlayer.id?S.of(context).ownTurn:firstPlayer.name
-                      ),
-                      /*TextSpan(
-                          text: firstPlayer.id==Player.mePlayer.id?"":S.of(context).turn,
-                          style: _titleStyle
-                      )*/
+                      )
                     ]
                 )
-            ),
+            )
           )
-        ],
+        ]
       );
       break;
     case 4:
@@ -60,12 +51,12 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                               fontSize: 36
                           ),
                           text: Player.mePlayer.name
-                      ),
+                      )
                     ]
-                ),
-              ),
+                )
+              )
             )
-          ],
+          ]
         );
       }
       else  {
@@ -84,10 +75,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                         text: firstPlayer.name
                       ),
                       TextSpan(
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 36
-                        ),
+                        style: headlineStyle,
                         text: " & "
                       ),
                       TextSpan(
@@ -96,12 +84,12 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                               fontSize: 36
                           ),
                           text: secondPlayer.name
-                      ),
+                      )
                     ]
-                ),
-              ),
+                )
+              )
             )
-          ],
+          ]
         );
       }
       break;
@@ -113,9 +101,9 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
       return Center(
         child: Text(
           S.of(context).listThis,
-          style: _titleStyle,
-          textAlign: TextAlign.center,
-        ),
+          style: headlineStyle,
+          textAlign: TextAlign.center
+        )
       );
       break;
     case 9:
@@ -124,10 +112,10 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _titleStyle,
+                style: headlineStyle,
                 text: S.of(context).mimeThis
-            ),
-          ),
+            )
+          )
         );
       }
       else  {
@@ -135,7 +123,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _titleStyle,
+                style: headlineStyle,
                 children: <TextSpan>[
                   TextSpan(
                     text: S.of(context).tabooMimeGuessp1
@@ -151,8 +139,8 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                       text: S.of(context).tabooMimeGuessp2
                   )
                 ]
-            ),
-          ),
+            )
+          )
         );
       }
       break;
@@ -162,7 +150,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              style: _titleStyle,
+              style: headlineStyle,
               children: <TextSpan>[
                 TextSpan(
                     text: S.of(context).taboop1
@@ -173,9 +161,9 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                 TextSpan(
                     text: S.of(context).taboop2
                 )
-              ],
-            ),
-          ),
+              ]
+            )
+          )
         );
       }
       else  {
@@ -183,7 +171,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _titleStyle,
+                style: headlineStyle,
                 children: <TextSpan>[
                   TextSpan(
                       text: S.of(context).tabooMimeGuessp1
@@ -199,8 +187,8 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                       text: S.of(context).tabooMimeGuessp2
                   )
                 ]
-            ),
-          ),
+            )
+          )
         );
       }
       break;

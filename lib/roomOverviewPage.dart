@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
@@ -46,10 +47,8 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                 child: Text(
                   Room.activeRoom.id,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 27
-                  ),
-                ),
+                  style: bigStyle,
+                )
               ),
               Flexible(
                   flex: 1,
@@ -62,10 +61,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                               return Text(
                                 currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: currentRoom.playerDB[index].color,
-                                  fontSize: 18
-                                ),
+                                style: normalStyle,
                               );
                             }
                         )

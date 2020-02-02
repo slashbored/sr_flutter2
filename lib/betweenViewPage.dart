@@ -38,11 +38,11 @@ class betweenViewPageState extends State<betweenViewPage>{
                   child: taskViewFourthRow(context),
                     flex: 55
                 )
-              ],
+              ]
             );
-          },
-        ),
-      ),
+          }
+        )
+      )
     );
   }
 }

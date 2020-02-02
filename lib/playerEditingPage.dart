@@ -1,15 +1,12 @@
+import 'textStyles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'generated/i18n.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'localizationBloc.dart';
-import 'languageSelectionPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'webSocket.dart';
 import 'playerClass.dart';
@@ -43,7 +40,6 @@ class playerEditingState extends State<playerEditing>{
 
   @override
   Widget build(BuildContext context){
-    //WidgetsBinding.instance.addPostFrameCallback((_) => _insertOverlay(context));
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -54,10 +50,8 @@ class playerEditingState extends State<playerEditing>{
                 child: Text(
                   S.of(context).enterName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 27,
-                  ),
-                ),
+                  style: bigStyle
+                )
               ),
               Flexible(
                 child: Align(
@@ -70,10 +64,7 @@ class playerEditingState extends State<playerEditing>{
                       Expanded(
                         flex: 3,
                         child:  TextField(
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18
-                          ),
+                          style: normalStyle,
                           autofocus: true,
                           controller: nameTextfieldController,
                           textAlign: TextAlign.center,
@@ -165,7 +156,7 @@ class playerEditingState extends State<playerEditing>{
                   text: TextSpan(
                     style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 12
+                      fontSize: 10
                     ),
                     children: [
                       TextSpan(

@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'generated/i18n.dart';
@@ -18,20 +19,22 @@ Widget betweenViewBody(BuildContext context){
           return Center(
             child: Text(
               Task.getStringByLocale(
-                  currentRoom.taskDB.firstWhere((task) => task.id ==
-                      currentRoom.activeTaskID), locale, 'compare_win'),
-              textAlign: TextAlign.center,
-            ),
+                currentRoom.taskDB.firstWhere((task) => task.id ==
+                currentRoom.activeTaskID), locale, 'compare_win'),
+                textAlign: TextAlign.center,
+                style: normalStyle
+            )
           );
         }
         else {
           return Center(
             child: Text(
               Task.getStringByLocale(
-                  currentRoom.taskDB.firstWhere((task) => task.id ==
-                      currentRoom.activeTaskID), locale, 'compare_loose'),
-              textAlign: TextAlign.center,
-            ),
+                currentRoom.taskDB.firstWhere((task) => task.id ==
+                currentRoom.activeTaskID), locale, 'compare_loose'),
+                textAlign: TextAlign.center,
+                style: normalStyle
+            )
           );
         }
       }
@@ -48,7 +51,7 @@ Widget betweenViewBody(BuildContext context){
               child: Text(
                 S.of(context).comparisonDraw,
                 textAlign: TextAlign.center,
-              ),
+              )
             );
             break;
           case 1:
@@ -56,20 +59,22 @@ Widget betweenViewBody(BuildContext context){
               return Center(
                 child: Text(
                   Task.getStringByLocale(
-                      currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_a_won'),
+                    currentRoom.taskDB.firstWhere((task) => task.id ==
+                    currentRoom.activeTaskID), locale, 'wyr_a_won'),
                   textAlign: TextAlign.center,
-                ),
+                  style: normalStyle
+                )
               );
             }
             else  {
               return Center(
                 child: Text(
                   Task.getStringByLocale(
-                      currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_b_lost'),
+                    currentRoom.taskDB.firstWhere((task) => task.id ==
+                    currentRoom.activeTaskID), locale, 'wyr_b_lost'),
                   textAlign: TextAlign.center,
-                ),
+                  style: normalStyle
+                )
               );
             }
             break;
@@ -78,20 +83,22 @@ Widget betweenViewBody(BuildContext context){
               return Center(
                 child: Text(
                   Task.getStringByLocale(
-                      currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_b_won'),
+                    currentRoom.taskDB.firstWhere((task) => task.id ==
+                    currentRoom.activeTaskID), locale, 'wyr_b_won'),
                   textAlign: TextAlign.center,
-                ),
+                  style: normalStyle
+                )
               );
             }
             else  {
               return Center(
                 child: Text(
                   Task.getStringByLocale(
-                      currentRoom.taskDB.firstWhere((task) => task.id ==
-                          currentRoom.activeTaskID), locale, 'wyr_a_lost'),
+                    currentRoom.taskDB.firstWhere((task) => task.id ==
+                    currentRoom.activeTaskID), locale, 'wyr_a_lost'),
                   textAlign: TextAlign.center,
-                ),
+                    style: normalStyle
+                )
               );
             }
             break;
@@ -103,7 +110,10 @@ Widget betweenViewBody(BuildContext context){
   }
   else  {
     return Center(
-      child: Text(S.of(context).waitingForOthersToInput),
+      child: Text(
+        S.of(context).waitingForOthersToInput,
+        style: normalStyle
+      )
     );
   }
 }

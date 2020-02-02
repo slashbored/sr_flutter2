@@ -1,3 +1,4 @@
+import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -9,11 +10,6 @@ String splitString;
 List splitStringList;
 List bannedWords;
 
-final TextStyle _taskStyle = const TextStyle(
-    fontSize: 18,
-    color: Colors.black
-);
-
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   locale = Localizations.localeOf(context).toString();
   if (task.typeID == 1 || task.typeID == 2 || task.typeID == 3) {
@@ -21,8 +17,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       return Center(
         child: Text(
           Task.getStringByLocale(task, locale, "n_active"),
-          style: _taskStyle,
           textAlign: TextAlign.center,
+          style: normalStyle,
         ),
       );
     }
@@ -30,8 +26,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       return Center(
         child: Text(
           Task.getStringByLocale(task, locale, "n_spectate"),
-          style: _taskStyle,
           textAlign: TextAlign.center,
+          style: normalStyle,
         ),
       );
     }
@@ -40,7 +36,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     return Center(
       child: Text(
         Task.getStringByLocale(task, locale, "n_active"),
-        style: _taskStyle,
+        textAlign: TextAlign.center,
+        style: normalStyle,
       ),
     );
   }
@@ -48,7 +45,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     return Center(
       child: Text(
         Task.getStringByLocale(task, locale, "n_active"),
-        style: _taskStyle,
+        textAlign: TextAlign.center,
+        style: normalStyle,
       ),
     );
   }
@@ -68,10 +66,9 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _taskStyle,
+                style: normalStyle,
                 children: <TextSpan>[
                   TextSpan(
-                    style: _taskStyle,
                     text: splitStringList[0]
                   ),
                   TextSpan(
@@ -85,7 +82,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                       text: splitStringList[1]
                   )
                 ]
-            ),
+            )
           )
       );
     }
@@ -94,10 +91,9 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _taskStyle,
+                style: normalStyle,
                 children: <TextSpan>[
                   TextSpan(
-                      style: _taskStyle,
                       text: splitStringList[0]
                   ),
                   TextSpan(
@@ -111,7 +107,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                       text: splitStringList[1]
                   )
                 ]
-            ),
+            )
           )
       );
     }
@@ -120,7 +116,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-                style: _taskStyle,
+                style: normalStyle,
                 children: <TextSpan>[
                  TextSpan(
                    style: TextStyle(
@@ -130,7 +126,6 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                    text: firstPlayer.name
                  ),
                   TextSpan(
-                    style: _taskStyle,
                     text: splitStringList[0]
                   ),
                   TextSpan(
@@ -141,11 +136,10 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                     text: secondPlayer.name
                   ),
                   TextSpan(
-                    style: _taskStyle,
                     text: splitStringList[1]
                   )
                 ]
-            ),
+            )
           )
       );
     }
@@ -154,23 +148,20 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     if (firstPlayer.id == Player.mePlayer.id) {
       return Center(
         child: Text(
-            Task.getStringByLocale(task, locale, "n_active"),
-            style: _taskStyle
-        ),
+          Task.getStringByLocale(task, locale, "n_active"),
+          textAlign: TextAlign.center,
+          style: normalStyle
+        )
       );
     }
     else {
-      return Expanded(
-        child: Center(
+      return Center(
           child: Text(
             "🤔",
-            style: TextStyle(
-                fontSize: 36
-            ),
             textAlign: TextAlign.center,
-          ),
-        ),
-      );
+            style: headlineStyle
+          )
+        );
     }
   }
   if (task.typeID == 10) {
@@ -186,22 +177,20 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                     return Text(
                         bannedWords[index].toString(),
                         textAlign: TextAlign.center,
-                        style: _taskStyle
+                        style: normalStyle
                     );
                   }
               )
             ]
-        ),
+        )
       );
     }
     else {
       return Center(
         child: Text(
           "🤔",
-          style: TextStyle(
-              fontSize: 36
-          ),
-        ),
+          style: headlineStyle
+        )
       );
     }
   }
