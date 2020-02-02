@@ -81,11 +81,16 @@ class splashScreenState extends State<splashScreen>{
             child: Material(
               color: Colors.transparent,
               child: GestureDetector(
-                onTap: () =>  showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (BuildContext context) => menuDialog(context)
-                ),
+                onTap: () {
+                  if (menuOpen!=true) {
+                    menuOpen=true;
+                    showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) => menuDialog(context)
+                    );
+                  }
+                },
                 //onTap: () => switchLanguage(context),
                 child: Icon(Icons.settings),
               ),

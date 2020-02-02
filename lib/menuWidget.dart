@@ -11,7 +11,7 @@ final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
 final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
 final Widget svg_male = SvgPicture.asset('assets/man.svg');
 final Widget svg_female = SvgPicture.asset('assets/woman.svg');
-
+bool menuOpen=false;
 
 Widget menuDialog(BuildContext context) {
   final LocalizationBloc localizationBloc= BlocProvider.of<LocalizationBloc>(context);
@@ -58,6 +58,7 @@ Widget menuDialog(BuildContext context) {
           style: normalStyle,
         ),
         onPressed: () {
+          menuOpen=false;
           Navigator.pop(context);
         },
       )
