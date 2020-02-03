@@ -9,6 +9,7 @@ import 'roomSelectionPage.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
+import 'timerDialogWidget.dart';
 
 
 class taskViewPage extends StatefulWidget{
@@ -24,7 +25,45 @@ class taskViewPageState extends State<taskViewPage>{
 
   @override
   Widget build(BuildContext context)  {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _insertOverlay(context));
     return mainBody(context);
+  }
+
+  void _insertOverlay(BuildContext context) {
+    return Overlay.of(context).insert(
+        OverlayEntry(
+            builder: (context) {
+              final size = MediaQuery
+                  .of(context)
+                  .size;
+              return Positioned(
+                  width: 56,
+                  height: 56,
+                  bottom: 28,
+                  right: size.width - 72,
+                  child: Transform.scale(
+                      scale: 1,
+                      child: Material(
+                          color: Colors.transparent,
+                          child: GestureDetector(
+                            onTap: () {
+                              //if (settingsMenuOpen!=true) {
+                                //settingsMenuOpen=true;
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) => timerDialog(context)
+                                );
+                              },
+                            //},
+                            child: Icon(Icons.watch),
+                          )
+                      )
+                  )
+              );
+            }
+        )
+    );
   }
 
   Widget mainBody(BuildContext context)  {
@@ -56,10 +95,10 @@ class taskViewPageState extends State<taskViewPage>{
                         child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
                         flex: 315
                     ),
-                    new Expanded(
+                    /*new Expanded(
                         child: taskViewFourthRow(context),
                         flex: 55
-                    )
+                    )*/
                   ]
                 );
               }

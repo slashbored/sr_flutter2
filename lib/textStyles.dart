@@ -7,13 +7,18 @@ final TextStyle headlineStyle = new TextStyle(
 );
 
 final TextStyle bigStyle = new TextStyle(
-    fontSize: 27,
-    color: Colors.black
+  fontSize: 27,
+  color: Colors.black
 );
 
 final TextStyle normalStyle = new TextStyle(
-    fontSize: 18,
-    color: Colors.black
+  fontSize: 18,
+  color: Colors.black
+);
+
+final TextStyle normalStyleWhite  = new TextStyle(
+  fontSize: 18,
+  color: Colors.white
 );
 
 final TextStyle smallStyle  = new TextStyle(

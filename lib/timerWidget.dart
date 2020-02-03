@@ -14,6 +14,48 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
   Task correspondingTask      = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID);
   if (correspondingTimer.secondPlayerID!=null)  {
     correspondingSecondPlayer  = Room.activeRoom.playerDB.firstWhere((player)  =>  player.id == correspondingTimer.secondPlayerID);
+    /*return Container(
+      width: 56,
+      height: 56,
+      decoration: ShapeDecoration(
+        shape: CircleBorder(),
+        gradient: LinearGradient(
+          colors:[
+            correspondingFirstPlayer.color,
+            correspondingSecondPlayer.color
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight
+        )
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {},
+          child: Center(
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: correspondingFirstPlayer.name.substring(0, 1).toUpperCase(),
+                          style: TextStyle(
+                              color: correspondingFirstPlayer.color
+                          )
+                      ),
+                      TextSpan(
+                          text: correspondingSecondPlayer.name.substring(0, 1).toUpperCase(),
+                          style: TextStyle(
+                              color: correspondingSecondPlayer.color
+                          )
+                      )
+                    ]
+                )
+            ),
+          )
+        ),
+      ),
+    );*/
     return InputChip(
       avatar: CircleAvatar(
         child: RichText(
@@ -62,7 +104,6 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
       label: Text(
           customTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
           Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
-          //correspondingTask.descr
       ),
       isEnabled: true,
       backgroundColor: correspondingFirstPlayer.color,

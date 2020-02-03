@@ -3,10 +3,7 @@ import 'package:sr_flutter2/networkModeSelectionPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
-import 'languageSelectionPage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'menuWidget.dart';
+import 'menuDialogWidget.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -16,12 +13,6 @@ class splashScreen extends StatefulWidget{
 class splashScreenState extends State<splashScreen>{
 
   static LocalizationBloc localizationBloc;
-
-
-  /*final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
-  final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
-  final Widget svg_male = SvgPicture.asset('assets/man.svg');
-  final Widget svg_female = SvgPicture.asset('assets/woman.svg');*/
 
   @override
   void initState()  {
@@ -48,81 +39,45 @@ class splashScreenState extends State<splashScreen>{
     );
   }
 
-  /*void switchLanguage(BuildContext context) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
-      await prefs.setString('loc', "en");
-      await prefs.setBool('locSet', true);
-    }
-    await prefs.get('loc')=="en"?localizationBloc.dispatch(switchEvent.switchToEn):localizationBloc.dispatch(switchEvent.switchToDe);
-    if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
-      localizationBloc.dispatch(switchEvent.switchToDe);
-      prefs.setString('loc', 'de');
-    }
-    else  {
-      localizationBloc.dispatch(switchEvent.switchToEn);
-      prefs.setString('loc', 'en');
-    }
-  }*/
-
   void _insertOverlay(BuildContext context) {
     return Overlay.of(context).insert(
-      OverlayEntry(builder: (context) {
-        final size = MediaQuery
-            .of(context)
-            .size;
-        return Positioned(
-          width: 56,
-          height: 56,
-          top: 27,
-          left: size.width - 72,
-          child: Transform.scale(
-            scale: 1,
-            child: Material(
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  if (menuOpen!=true) {
-                    menuOpen=true;
-                    showDialog(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (BuildContext context) => menuDialog(context)
-                    );
-                  }
-                },
-                //onTap: () => switchLanguage(context),
-                child: Icon(Icons.settings),
-              ),
-            ),
-          ),
-        );
-      }),
+      OverlayEntry(
+        builder: (context) {
+          final size = MediaQuery
+              .of(context)
+              .size;
+          return Positioned(
+            width: 56,
+            height: 56,
+            bottom: 28,
+            left: size.width - 72,
+            child: Transform.scale(
+              scale: 1,
+              child: Material(
+                color: Colors.transparent,
+                child: GestureDetector(
+                  onTap: () {
+                    if (settingsMenuOpen!=true) {
+                      settingsMenuOpen=true;
+                      showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) => menuDialog(context)
+                      );
+                    }
+                  },
+                  child: Icon(Icons.settings),
+                )
+              )
+            )
+          );
+        }
+      )
     );
   }
 
-  /*Container otherFlag() {
-    if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
-      return Container(
-          child: svg_britishFlag
-      );
-    }
-    else  {
-      return Container(
-          child: svg_germanFlag
-      );
-    }
-  }*/
-
   pushToNetworkOrLanguageSelection(context) async{
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
     await Future.delayed(const Duration(seconds: 1  ), (){});
     Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
-    /*if (prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  languageSelectionPage()));
-    }
-    else  {
-      Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
-    }*/
   }
 }

@@ -47,6 +47,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
               heroTag:  "fab_normal_drink",
               backgroundColor: Colors.red,
+              shape: CircleBorder(),
               label: createDrinkText(task),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -59,7 +60,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_normal_accepted",
                 backgroundColor: Colors.green,
-                label: Text(S.of(context).yesStyle1),
+                shape: CircleBorder(),
+                label: Text(
+                  S.of(context).yesStyle1,
+                  style: normalStyleWhite
+                  ),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
@@ -101,6 +106,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_drink",
                 backgroundColor: Colors.red,
+                shape: CircleBorder(),
                 label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -112,9 +118,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_startTimer",
-                label: Text(customTimer.activeTimer!=null?
-                customTimer.activeTimer.FGTimeLeft:
-                S.of(context).FGTimerGo),
+                shape: CircleBorder(),
+                label: Text(
+                  customTimer.activeTimer!=null?
+                  customTimer.activeTimer.FGTimeLeft:
+                  S.of(context).FGTimerGo,
+                  style: normalStyleWhite
+                ),
                 onPressed:  ()  {
                   startBGTimer(context);
                   Room.renewActiveTimer(context);
@@ -123,7 +133,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_accepted",
                 backgroundColor: Colors.green,
-                label: Text(S.of(context).yesStyle1),
+                shape: CircleBorder(),
+                label: Text(
+                  S.of(context).yesStyle1,
+                  style: normalStyleWhite),
                 onPressed: (){
                   if (customTimer.activeTimer!=null)  {
                     if (customTimer.activeTimer.isRunning==true)  {
@@ -162,6 +175,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_normalBGTime_drink",
                 backgroundColor: Colors.red,
+                shape: CircleBorder(),
                 label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -174,7 +188,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_normalBGTime_accepted",
                 backgroundColor: Colors.green,
-                label: Text(S.of(context).BGTimerGo),
+                shape: CircleBorder(),
+                label: Text(
+                  S.of(context).BGTimerGo,
+                  style: normalStyleWhite
+                ),
                 onPressed: (){
                   startBGTimer(context);
                   upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -208,6 +226,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_choice_drink",
                 backgroundColor: Colors.red,
+                shape: CircleBorder(),
                 label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -220,7 +239,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_choice_accepted",
                 backgroundColor: Colors.green,
-                label: Text(S.of(context).yesStyle1),
+                shape: CircleBorder(),
+                label: Text(
+                  S.of(context).yesStyle1,
+                  style: normalStyleWhite
+                ),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
@@ -253,6 +276,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_drink",
                 backgroundColor: Colors.red,
+                shape: CircleBorder(),
                 label: createDrinkText(task),
                 onPressed: ()  {
                   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -264,7 +288,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             ),
             FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_startTimer",
-                label: Text(customTimer.activeTimer!=null?customTimer.activeTimer.FGTimeLeft:S.of(context).FGTimerGo),
+                shape: CircleBorder(),
+                label: Text(
+                  customTimer.activeTimer!=null?
+                  customTimer.activeTimer.FGTimeLeft:
+                  S.of(context).FGTimerGo,
+                  style: normalStyleWhite
+                ),
                 onPressed:  ()  {
                   startBGTimer(context);
                 }
@@ -272,7 +302,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_accepted",
                 backgroundColor: Colors.green,
-                label: Text(S.of(context).yesStyle1),
+                shape: CircleBorder(),
+                label: Text(
+                  S.of(context).yesStyle1,
+                  style: normalStyleWhite
+                ),
                 onPressed: (){
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
@@ -304,6 +338,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           FloatingActionButton.extended(
               heroTag:  "fab_choiceBGTime_drink",
               backgroundColor: Colors.red,
+              shape: CircleBorder(),
               label: createDrinkText(task),
               onPressed: ()  {
                 upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -316,7 +351,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           FloatingActionButton.extended(
               heroTag:  "fab_choiceBGTime_accepted",
               backgroundColor: Colors.green,
-              label: Text(S.of(context).yesStyle1),
+              shape: CircleBorder(),
+              label: Text(
+                S.of(context).yesStyle1,
+                style: normalStyleWhite
+              ),
               onPressed: (){
                 startBGTimer(context);
                 upStream.add(json.encode({'type':'randomTask','content':''}));
@@ -358,6 +397,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
             heroTag: "fab_comparison_submit",
+            shape: CircleBorder(),
             label:  Icon(
               Icons.arrow_forward_ios,
               color: Colors.green,),
@@ -389,9 +429,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Center(
           child: FloatingActionButton.extended(
             heroTag:  "fab_listFailed",
+            backgroundColor: Colors.red,
+            shape: CircleBorder(),
             label:  Text(
-              S.of(context).listFailedStyle1 + "️🤷🏼‍♀️",
-              style: normalStyle,
+              "️🤷🏼‍♀️",
+              style: normalStyleWhite,
             ),
             onPressed:  ()  {
               upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
@@ -399,7 +441,6 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               upStream.add(json.encode({'type':'randomPlayers','content':''}));
               upStream.add(json.encode({'type':'nextTask','content':''}));
             },
-            backgroundColor: Colors.red,
               )
       );
       break;
@@ -442,9 +483,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           ),
           FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_startTimer",
-              label: Text(customTimer.activeTimer!=null?
-              customTimer.activeTimer.FGTimeLeft:
-              S.of(context).FGTimerGo),
+              shape: CircleBorder(),
+              label: Text(
+                customTimer.activeTimer!=null?
+                customTimer.activeTimer.FGTimeLeft:
+                S.of(context).FGTimerGo,
+                style: normalStyleWhite
+              ),
               onPressed:  ()  {
                 startBGTimer(context);
                 Room.renewActiveTimer(context);
@@ -453,7 +498,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_accepted",
               backgroundColor: Colors.green,
-              label: Text(S.of(context).tabooMimeWinStyle1),
+              shape: CircleBorder(),
+              label: Text(
+                S.of(context).tabooMimeWinStyle1,
+                style: normalStyleWhite
+              ),
               onPressed: () {
                 if (customTimer.activeTimer!=null)  {
                   if (customTimer.activeTimer.isRunning==true)  {
@@ -482,7 +531,11 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           FloatingActionButton.extended(
             heroTag: "fab_wyr_a_submit",
             backgroundColor: Colors.green,
-            label: Text(Task.getStringByLocale(task, locale, "wyr_a")),
+            shape: CircleBorder(),
+            label: Text(
+              Task.getStringByLocale(task, locale, "wyr_a"),
+              style: normalStyleWhite
+            ),
             onPressed: () {
               Player.mePlayer.compareValue = 1;
               upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
@@ -492,7 +545,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           FloatingActionButton.extended(
             heroTag: "fab_wyr_b_submit",
             backgroundColor: Colors.red,
-            label: Text(Task.getStringByLocale(task, locale, "wyr_b")),
+            label: Text(
+              Task.getStringByLocale(task, locale, "wyr_b"),
+              style: normalStyleWhite
+            ),
             onPressed: () {
               Player.mePlayer.compareValue = 2;
               upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
@@ -512,8 +568,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
 Text createDrinkText(Task task) {
   String drinkAmountString = "";
   for (int i = 0; i < (task.weight + Player.mePlayer.weightModifier); i++) {
-    if (i<=2) {
-      drinkAmountString = drinkAmountString + "🍺 ";
+    if (i<=1) {
+      drinkAmountString = drinkAmountString + "🍺";
     }
     else  {
       drinkAmountString = "🍺x" + (task.weight + Player.mePlayer.weightModifier).toString();
@@ -522,7 +578,7 @@ Text createDrinkText(Task task) {
   drinkAmountString.trim();
   return Text(
     drinkAmountString,
-    style: normalStyle,
+    style: normalStyleWhite,
   );
 }
 

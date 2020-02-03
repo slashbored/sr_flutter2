@@ -61,7 +61,10 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                               return Text(
                                 currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
-                                style: normalStyle,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color:  currentRoom.playerDB[index].color
+                                ),
                               );
                             }
                         )

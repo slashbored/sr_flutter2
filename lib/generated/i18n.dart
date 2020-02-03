@@ -21,10 +21,11 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
-  String get BGTimerGo => "K den!";
-  String get FGTimerDone => "Done!";
+  String get BGTimerGo => "K!";
+  String get FGTimerDone => "\uD83D\uDC4D\uD83C\uDFFB";
   String get FGTimerGo => "Go!";
   String get choseToDrink => " chose to drink instead.";
+  String get close => "Schließen";
   String get comingSoon => "Coming soon!™\n( ͡° ͜ʖ ͡°)";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
@@ -48,7 +49,7 @@ class S implements WidgetsLocalizations {
   String get modeTitle_reach => "Gather points";
   String get networkMode_headline => "Please select your gamemode:";
   String get noPlayersYet => "No players yet!";
-  String get noStyle1 => "Just no.";
+  String get noStyle1 => "Nope.";
   String get noStyle2 => "I don't wanna";
   String get or => "or";
   String get ownTurn => "Your turn!";
@@ -62,12 +63,13 @@ class S implements WidgetsLocalizations {
   String get tabooMimeFailStyle1 => "Nobody knows";
   String get tabooMimeGuessp1 => "What is ";
   String get tabooMimeGuessp2 => " trying to tell us?";
-  String get tabooMimeWinStyle1 => "There we go!";
+  String get tabooMimeWinStyle1 => "EZ";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
+  String get timerDialog_title => "Aktive Timer";
   String get turn => "s turn";
   String get waitingForOthersToInput => "Waiting for the others to input..";
-  String get yesStyle1 => "Yessir!";
+  String get yesStyle1 => "Ye";
 }
 
 class $de extends S {
@@ -79,13 +81,51 @@ class $de extends S {
   @override
   String get pleaseCompleteEntries => "Bitte vervollständige deine Angaben.";
   @override
-  String get taboop1 => "Beschreibe \"";
-  @override
   String get pleaseEnterValidNumber => "Bitte gib eine korrekte Zahl an.";
   @override
-  String get taboop2 => "\" ohne folgende Wörter zu benutzen:";
-  @override
   String get sexX => "Divers";
+  @override
+  String get tabooMimeWinStyle1 => "EZ";
+  @override
+  String get noStyle2 => "I mog net";
+  @override
+  String get noStyle1 => "Nö";
+  @override
+  String get sexMale => "Männlein";
+  @override
+  String get comparisonDraw => "Unentschieden!";
+  @override
+  String get FGTimerGo => "Los!";
+  @override
+  String get languageSelector => "Bitte wähle die Sprache:";
+  @override
+  String get modeTitle_endless => "Endlos";
+  @override
+  String get joinRoom_roomAlreadyRunning => "Sorry, aber hier wird bereits gespielt.";
+  @override
+  String get tabooMimeGuessp1 => "Was will ";
+  @override
+  String get choseToDrink => " wollte stattdessen lieber trinken.";
+  @override
+  String get timerDialog_title => "Active Timers";
+  @override
+  String get tabooMimeGuessp2 => " uns sagen?";
+  @override
+  String get tabooMimeFailStyle1 => "Keiner n Plan";
+  @override
+  String get settings_headline => "Einstellungen";
+  @override
+  String get ownTurn => "Du bist am Zug!";
+  @override
+  String get noPlayersYet => "Noch keine Spieler vorhanden!";
+  @override
+  String get yesStyle1 => "Ja";
+  @override
+  String get listFailedStyle1 => "Kein Plan";
+  @override
+  String get taboop1 => "Beschreibe \"";
+  @override
+  String get taboop2 => "\" ohne folgende Wörter zu benutzen:";
   @override
   String get modeTitle_reach => "Punkte sammeln";
   @override
@@ -97,33 +137,19 @@ class $de extends S {
   @override
   String get compareThis => "Mal unter uns beiden (und den anderen),";
   @override
-  String get tabooMimeWinStyle1 => "Geht doch!";
-  @override
-  String get noStyle2 => "I mog net";
-  @override
-  String get noStyle1 => "Nö.";
-  @override
-  String get sexMale => "Männlein";
-  @override
   String get joinRoom => "Tritt einem Spiel bei";
   @override
-  String get FGTimerDone => "Fertig!";
+  String get FGTimerDone => "\uD83D\uDC4D\uD83C\uDFFB";
   @override
   String get joinRoom_roomNotFound => "Kein Spiel gefunden.";
-  @override
-  String get comparisonDraw => "Unentschieden!";
   @override
   String get isNewGM => " ist der neue GM.";
   @override
   String get enterName => "Bitte gib deinen Namen und Geschlecht an:";
   @override
-  String get FGTimerGo => "Los!";
-  @override
-  String get languageSelector => "Bitte wähle die Sprache:";
+  String get close => "Close";
   @override
   String get or => "oder";
-  @override
-  String get modeTitle_endless => "Endlos";
   @override
   String get settings_language => "Sprache:";
   @override
@@ -137,37 +163,17 @@ class $de extends S {
   @override
   String get hasLeftGame => " hat das Spiel verlassen.";
   @override
-  String get joinRoom_roomAlreadyRunning => "Sorry, aber hier wird bereits gespielt.";
-  @override
   String get createRoom => "Erstelle ein Spiel";
-  @override
-  String get tabooMimeGuessp1 => "Was will ";
-  @override
-  String get choseToDrink => " wollte stattdessen lieber trinken.";
-  @override
-  String get tabooMimeGuessp2 => " uns sagen?";
   @override
   String get joinRoom_hintText => "Spielcode";
   @override
   String get comingSoon => "Kommt demnächst!™\n( ͡° ͜ʖ ͡°)";
   @override
-  String get tabooMimeFailStyle1 => "Keiner n Plan";
-  @override
   String get mimeThis => "Pantomimimi folgendes:";
   @override
   String get BGTimerGo => "Auffi!";
   @override
-  String get settings_headline => "Einstellungen";
-  @override
-  String get ownTurn => "Du bist am Zug!";
-  @override
-  String get noPlayersYet => "Noch keine Spieler vorhanden!";
-  @override
   String get joinRoom_enterNumber => "Bitte gib einen Spielcode an.";
-  @override
-  String get yesStyle1 => "Jawollek!";
-  @override
-  String get listFailedStyle1 => "Kein Plan";
   @override
   String get modeSelector => "Bitte wähle den Spielmodus:";
 }
