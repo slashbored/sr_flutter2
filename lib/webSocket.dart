@@ -14,7 +14,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerClass.dart';
+import 'customTimerClass.dart';
 
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
@@ -80,9 +80,9 @@ void startStreaming() async{
         break;
       case  'timerUpdate':
         currentRoom.BGTimerDB.clear();
-        List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, customTimer(timerPlaceHolder))));
+        List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
         if  (currentRoom.BGTimerDB.length>0)  {
-          customTimer.updateStateMap();
+          CustomTimer.updateStateMap();
         }
         break;
       case 'isWaiting':

@@ -34,10 +34,10 @@ class betweenViewPageState extends State<betweenViewPage>{
                   child: betweenViewButton(context),
                   flex: 315
                 ),
-                Expanded(
+                /*Expanded(
                   child: taskViewFourthRow(context),
                     flex: 55
-                )
+                )*/
               ]
             );
           }

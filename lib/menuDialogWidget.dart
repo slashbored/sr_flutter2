@@ -16,6 +16,9 @@ bool settingsMenuOpen=false;
 Widget menuDialog(BuildContext context) {
   final LocalizationBloc localizationBloc= BlocProvider.of<LocalizationBloc>(context);
   return SimpleDialog(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(20))
+    ),
     title: Text(
       S.of(context).settings_headline,
       textAlign: TextAlign.center,

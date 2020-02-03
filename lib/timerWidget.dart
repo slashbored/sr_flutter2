@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import'webSocket.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerClass.dart';
+import 'customTimerClass.dart';
 
-Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
+Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
   changeView(correspondingTimer, '');
   Player correspondingFirstPlayer  = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
   Player correspondingSecondPlayer;
@@ -56,7 +57,7 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
         ),
       ),
     );*/
-    return InputChip(
+    /*return InputChip(
       avatar: CircleAvatar(
         child: RichText(
           text: TextSpan(
@@ -91,6 +92,16 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
       onPressed: () {
         onPressInputChip(correspondingTimer);
       },
+    );*/
+    return LinearPercentIndicator(
+      //width: ,
+      //animation: true,
+      lineHeight: 20.0,
+      animationDuration: 2000,
+      percent: calculatePercent(correspondingTask, correspondingTimer),
+      center: Text(convertTime(correspondingTimer.BGTimeLeft)),
+      linearStrokeCap: LinearStrokeCap.roundAll,
+      progressColor: calculatePercent(correspondingTask, correspondingTimer)>=0.5?Colors.green:Colors.red,
     );
   }
   else  {
@@ -102,7 +113,7 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
         backgroundColor: correspondingFirstPlayer.color,
       ),
       label: Text(
-          customTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
+          CustomTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
           Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
       ),
       isEnabled: true,
@@ -114,6 +125,9 @@ Widget timerWidget(BuildContext context, customTimer correspondingTimer) {
   }
 }
 
+double calculatePercent(Task taskToGetDurationFrom, CustomTimer timerToCalculateFrom) {
+  return timerToCalculateFrom.BGTimeLeft/(taskToGetDurationFrom.duration.toDouble());
+}
 
 String convertTime(int timeToConvert) {
   int minutes = timeToConvert ~/ 60;
@@ -129,25 +143,25 @@ String convertTime(int timeToConvert) {
 }
 
 
-void onPressInputChip(customTimer correspondingTimer) {
-  customTimer.stateMap[correspondingTimer.id]=='time'?
+void onPressInputChip(CustomTimer correspondingTimer) {
+  CustomTimer.stateMap[correspondingTimer.id]=='time'?
   changeView(correspondingTimer, 'task'):
   changeView(correspondingTimer, 'time');
 }
 
-void changeView(customTimer timerToChange, String newView) {
-  if  (customTimer.stateMap.containsKey(timerToChange.id)==true) {
-    String key  = customTimer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
-    if  (customTimer.stateMap[key]==null) {
-      customTimer.stateMap[key]='time';
+void changeView(CustomTimer timerToChange, String newView) {
+  if  (CustomTimer.stateMap.containsKey(timerToChange.id)==true) {
+    String key  = CustomTimer.stateMap.keys.firstWhere((element) => element==timerToChange.id).toString();
+    if  (CustomTimer.stateMap[key]==null) {
+      CustomTimer.stateMap[key]='time';
     }
     else  {
       switch (newView) {
         case 'time':
-          customTimer.stateMap[key]='time';
+          CustomTimer.stateMap[key]='time';
           break;
         case 'task':
-          customTimer.stateMap[key]='task';
+          CustomTimer.stateMap[key]='task';
           break;
       }
     }

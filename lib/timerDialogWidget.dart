@@ -16,6 +16,9 @@ Widget timerDialog(BuildContext context)  {
     stream: downStream,
     builder: (context, snapShot)  {
       return SimpleDialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
         title: Text(
           S.of(context).timerDialog_title,
           textAlign: TextAlign.center,
@@ -24,18 +27,32 @@ Widget timerDialog(BuildContext context)  {
         children: <Widget>[
           Container(
             width: double.maxFinite,
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: currentRoom.BGTimerDB.length,
-                itemBuilder: (context, int index) {
-                  int typeIDplaceholder = currentRoom.taskDB.firstWhere((placeholder) =>  placeholder.id == currentRoom.BGTimerDB[index].taskID).typeID;
-                  if(typeIDplaceholder==3||typeIDplaceholder==6)  {
-                    return timerWidget(context,currentRoom.BGTimerDB[index]);
+            child: FractionallySizedBox(
+              widthFactor: 0.75,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: currentRoom.BGTimerDB.length,
+                  itemBuilder: (context, int index) {
+                    int typeIDplaceholder = currentRoom.taskDB.firstWhere(
+                            (placeholder) =>  placeholder.id == currentRoom.BGTimerDB[index].taskID).typeID;
+                    if(typeIDplaceholder==3||typeIDplaceholder==6)  {
+                      return timerWidget(context,currentRoom.BGTimerDB[index]);
+                      /*return LinearPercentIndicator(
+                      //width: ,
+                      animation: true,
+                      lineHeight: 20.0,
+                      animationDuration: 2000,
+                      percent: 0.9,
+                      center: Text("90.0%"),
+                      linearStrokeCap: LinearStrokeCap.roundAll,
+                      progressColor: Colors.greenAccent,
+                  );*/
+                    }
+                    else  {
+                      return Container();
+                    }
                   }
-                  else  {
-                    return Container();
-                  }
-                }
+              ),
             ),
           ),
           SimpleDialogOption(
@@ -49,8 +66,8 @@ Widget timerDialog(BuildContext context)  {
                 Navigator.pop(context);
               }
           )
-        ],
+        ]
       );
-    },
+    }
   );
 }

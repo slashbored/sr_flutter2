@@ -9,7 +9,7 @@ import'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerClass.dart';
+import 'customTimerClass.dart';
 
 import 'betweenViewPage.dart';
 
@@ -18,8 +18,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
   final TextEditingController comparisonTextController  = new TextEditingController();
   String locale;
 
-  if  (customTimer.activeTimer!=null) {
-    customTimer.activeTimer.FGTimeLeft  = S.of(taskViewPageContext).FGTimerGo;
+  if  (CustomTimer.activeTimer!=null) {
+    CustomTimer.activeTimer.FGTimeLeft  = S.of(taskViewPageContext).FGTimerGo;
   }
 
   if (Player.mePlayer.compareValue!=null)  {
@@ -120,8 +120,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "fab_normalFGTime_startTimer",
                 shape: CircleBorder(),
                 label: Text(
-                  customTimer.activeTimer!=null?
-                  customTimer.activeTimer.FGTimeLeft:
+                  CustomTimer.activeTimer!=null?
+                  CustomTimer.activeTimer.FGTimeLeft:
                   S.of(context).FGTimerGo,
                   style: normalStyleWhite
                 ),
@@ -138,12 +138,12 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   S.of(context).yesStyle1,
                   style: normalStyleWhite),
                 onPressed: (){
-                  if (customTimer.activeTimer!=null)  {
-                    if (customTimer.activeTimer.isRunning==true)  {
-                      upStream.add(json.encode({'type':'cancelTimer','content':customTimer.activeTimer.id}));
-                      currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  customTimer.activeTimer.id);
+                  if (CustomTimer.activeTimer!=null)  {
+                    if (CustomTimer.activeTimer.isRunning==true)  {
+                      upStream.add(json.encode({'type':'cancelTimer','content':CustomTimer.activeTimer.id}));
+                      currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  CustomTimer.activeTimer.id);
                     }
-                    customTimer.activeTimer.isRunning=false;
+                    CustomTimer.activeTimer.isRunning=false;
                   }
                   upStream.add(json.encode({'type':'randomTask','content':''}));
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
@@ -290,8 +290,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 heroTag:  "fab_choiceFGTime_startTimer",
                 shape: CircleBorder(),
                 label: Text(
-                  customTimer.activeTimer!=null?
-                  customTimer.activeTimer.FGTimeLeft:
+                  CustomTimer.activeTimer!=null?
+                  CustomTimer.activeTimer.FGTimeLeft:
                   S.of(context).FGTimerGo,
                   style: normalStyleWhite
                 ),
@@ -485,8 +485,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               heroTag:  "fab_tabooMime_startTimer",
               shape: CircleBorder(),
               label: Text(
-                customTimer.activeTimer!=null?
-                customTimer.activeTimer.FGTimeLeft:
+                CustomTimer.activeTimer!=null?
+                CustomTimer.activeTimer.FGTimeLeft:
                 S.of(context).FGTimerGo,
                 style: normalStyleWhite
               ),
@@ -504,12 +504,12 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 style: normalStyleWhite
               ),
               onPressed: () {
-                if (customTimer.activeTimer!=null)  {
-                  if (customTimer.activeTimer.isRunning==true)  {
-                    upStream.add(json.encode({'type':'cancelTimer','content':customTimer.activeTimer.id}));
-                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  customTimer.activeTimer.id);
+                if (CustomTimer.activeTimer!=null)  {
+                  if (CustomTimer.activeTimer.isRunning==true)  {
+                    upStream.add(json.encode({'type':'cancelTimer','content':CustomTimer.activeTimer.id}));
+                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  CustomTimer.activeTimer.id);
                   }
-                  customTimer.activeTimer.isRunning=false;
+                  CustomTimer.activeTimer.isRunning=false;
                 }
                 upStream.add(json.encode({'type':'randomTask','content':''}));
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));

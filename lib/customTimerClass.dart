@@ -1,6 +1,6 @@
 import 'webSocket.dart';
 
-class customTimer{
+class CustomTimer{
   String id;
   String roomID;
   String playerID;
@@ -11,10 +11,10 @@ class customTimer{
   String viewState;
   bool isRunning;
 
-  static customTimer activeTimer;
+  static CustomTimer activeTimer;
   static Map stateMap;
 
-  customTimer(Map data) {
+  CustomTimer(Map data) {
     id          = data['id'];
     roomID      = data['roomID'];
     playerID    = data['playerID'];
@@ -34,7 +34,7 @@ class customTimer{
       stateMap = Map.fromIterable(currentRoom.BGTimerDB,key:  (element)  => element.id, value:  (element)  =>  element.viewState);
     }
     else  {
-      for (customTimer timerplaceholder in currentRoom.BGTimerDB) {
+      for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
         stateMap.putIfAbsent(timerplaceholder.id, ()  =>  timerplaceholder.viewState);
       }
     }

@@ -1,7 +1,7 @@
 import 'webSocket.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerClass.dart';
+import 'customTimerClass.dart';
 import 'generated/i18n.dart';
 
 class Room  {
@@ -36,9 +36,9 @@ class Room  {
       activeSecondPlayerID=null;
     }
     if (data['BGTimerDB']!=null) {
-      List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, customTimer(timerPlaceHolder))));
+      List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, CustomTimer(timerPlaceHolder))));
       if  (BGTimerDB.length>0)  {
-        customTimer.updateStateMap();
+        CustomTimer.updateStateMap();
       }
     }
     else  {
@@ -57,21 +57,21 @@ class Room  {
   static void renewActiveTimer(context) {
     if (currentRoom.BGTimerDB.length>0&&currentRoom.BGTimerDB.any((element)  =>  element.taskID==currentRoom.activeTaskID))  {
       int timerIndex  = currentRoom.BGTimerDB.indexWhere((element)  =>  element.taskID==currentRoom.activeTaskID);
-      customTimer.activeTimer = currentRoom.BGTimerDB[timerIndex];
+      CustomTimer.activeTimer = currentRoom.BGTimerDB[timerIndex];
       if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft!=0) {
-        customTimer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
+        CustomTimer.activeTimer.FGTimeLeft  = currentRoom.BGTimerDB[timerIndex].BGTimeLeft.toString();
       }
       else  {
         if  (currentRoom.BGTimerDB[timerIndex].BGTimeLeft==0) {
-          customTimer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
+          CustomTimer.activeTimer.FGTimeLeft  = S.of(context).FGTimerDone;
         }
         else  {
-          customTimer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
+          CustomTimer.activeTimer.FGTimeLeft = S.of(context).FGTimerGo;
         }
       }
     }
     else  {
-      customTimer.activeTimer=null;
+      CustomTimer.activeTimer=null;
     }
   }
 
