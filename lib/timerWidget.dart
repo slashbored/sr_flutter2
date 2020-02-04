@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+import 'package:sr_flutter2/textStyles.dart';
+import 'timerWidgetBloc.dart';
+import 'switchEventClass.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import'webSocket.dart';
 
@@ -9,12 +14,16 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
-  changeView(correspondingTimer, '');
-  Player correspondingFirstPlayer  = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
+
+  /*TimerWidgetBloc timerWidgetBloc = TimerWidgetBloc(correspondingTimer);
+  timerWidgetBloc.dispatch(switchEvent('playerNames',correspondingTimer));*/
+  //changeView(correspondingTimer, '');
+  Player correspondingFirstPlayer  = currentRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
   Player correspondingSecondPlayer;
   Task correspondingTask      = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID);
   if (correspondingTimer.secondPlayerID!=null)  {
-    correspondingSecondPlayer  = Room.activeRoom.playerDB.firstWhere((player)  =>  player.id == correspondingTimer.secondPlayerID);
+    correspondingSecondPlayer  = currentRoom.playerDB.firstWhere((player)  =>  player.id == correspondingTimer.secondPlayerID);
+    }
     /*return Container(
       width: 56,
       height: 56,
@@ -93,9 +102,77 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
         onPressInputChip(correspondingTimer);
       },
     );*/
+  return LinearPercentIndicator(
+    lineHeight: 36.0,
+    animationDuration: 2000,
+    percent: calculatePercent(correspondingTask, correspondingTimer),
+    center: Column(
+      //mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          correspondingFirstPlayer.name
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Flexible(
+                flex: 1,
+                child: Text(
+                    correspondingSecondPlayer!=null?
+                    correspondingFirstPlayer.name.substring(0,1).toUpperCase() + " & " + correspondingSecondPlayer.name.substring(0,1).toUpperCase():
+                    correspondingFirstPlayer.name.substring(0,1).toUpperCase(),
+                    textAlign: TextAlign.left,
+                    style: smallStyleWhite
+                )
+            ),
+            Flexible(
+              flex: 5,
+              child: Text(
+                  Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
+                  textAlign: TextAlign.center,
+                  style: smallStyleWhite
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Text(
+                  convertTime(correspondingTimer.BGTimeLeft),
+                  textAlign: TextAlign.right,
+                  style: smallStyleWhite
+              ),
+            ),
+
+          ],
+        )
+      ],
+    )
+    /*RichText(
+      text: TextSpan(
+        style: TextStyle(
+          fontSize: 12,
+          color: Colors.white
+        ),
+        children: [
+          TextSpan(
+            text: correspondingSecondPlayer!=null?
+                correspondingFirstPlayer.name + " & " + correspondingSecondPlayer.name:
+                correspondingFirstPlayer.name
+          ),
+          TextSpan(
+            text: Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
+          ),
+          TextSpan(
+              text: convertTime(correspondingTimer.BGTimeLeft)
+          ),
+        ]
+      ),
+    )*/,
+    linearStrokeCap: LinearStrokeCap.roundAll,
+    progressColor: Colors.green,
+    backgroundColor: Colors.red,
+  );
+  /*else  {
     return LinearPercentIndicator(
-      //width: ,
-      //animation: true,
       lineHeight: 20.0,
       animationDuration: 2000,
       percent: calculatePercent(correspondingTask, correspondingTimer),
@@ -103,9 +180,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
       linearStrokeCap: LinearStrokeCap.roundAll,
       progressColor: calculatePercent(correspondingTask, correspondingTimer)>=0.5?Colors.green:Colors.red,
     );
-  }
-  else  {
-    return InputChip(
+    /*return InputChip(
       avatar: CircleAvatar(
         child: Text(
             correspondingFirstPlayer.name.substring(0, 1).toUpperCase()
@@ -121,8 +196,8 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
       onPressed: () {
         onPressInputChip(correspondingTimer);
       }
-    );
-  }
+    );*/
+  }*/
 }
 
 double calculatePercent(Task taskToGetDurationFrom, CustomTimer timerToCalculateFrom) {

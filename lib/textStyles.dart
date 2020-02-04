@@ -25,3 +25,8 @@ final TextStyle smallStyle  = new TextStyle(
   fontSize: 12,
   color: Colors.black
 );
+
+final TextStyle smallStyleWhite = new TextStyle(
+  fontSize: 12,
+  color: Colors.white
+);

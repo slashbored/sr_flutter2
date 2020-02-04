@@ -66,7 +66,7 @@ class S implements WidgetsLocalizations {
   String get tabooMimeWinStyle1 => "EZ";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
-  String get timerDialog_title => "Aktive Timer";
+  String get timerDialog_title => "Active timers";
   String get turn => "s turn";
   String get waitingForOthersToInput => "Waiting for the others to input..";
   String get yesStyle1 => "Ye";
@@ -107,7 +107,7 @@ class $de extends S {
   @override
   String get choseToDrink => " wollte stattdessen lieber trinken.";
   @override
-  String get timerDialog_title => "Active Timers";
+  String get timerDialog_title => "Aktive Timer";
   @override
   String get tabooMimeGuessp2 => " uns sagen?";
   @override

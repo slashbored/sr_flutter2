@@ -3,6 +3,7 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 import 'customTimerClass.dart';
 import 'generated/i18n.dart';
+import 'package:quiver/collection.dart';
 
 class Room  {
   String id;

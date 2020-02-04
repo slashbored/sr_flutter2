@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/taskViewFirstRow.dart';
-import 'package:sr_flutter2/taskViewFourthRow.dart';
+//import 'package:sr_flutter2/taskViewFourthRow.dart';
 import 'package:sr_flutter2/taskViewSecondRow.dart';
 import 'package:sr_flutter2/taskViewThirdRow.dart';
 import 'package:sr_flutter2/webSocket.dart';
@@ -47,16 +47,16 @@ class taskViewPageState extends State<taskViewPage>{
                           color: Colors.transparent,
                           child: GestureDetector(
                             onTap: () {
-                              //if (settingsMenuOpen!=true) {
-                                //settingsMenuOpen=true;
+                              if (timerMenuOpen!=true) {
+                                timerMenuOpen=true;
                                 showDialog(
                                     barrierDismissible: false,
                                     context: context,
                                     builder: (BuildContext context) => timerDialog(context)
                                 );
-                              },
-                            //},
-                            child: Icon(Icons.watch),
+                              }
+                            },
+                            child: Icon(Icons.watch)
                           )
                       )
                   )

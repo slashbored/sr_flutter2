@@ -20,8 +20,6 @@ class MyApp extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => MyAppState();
-
-
 }
 
 class MyAppState extends State<MyApp>  {
@@ -65,10 +63,10 @@ class MyAppState extends State<MyApp>  {
              const Locale("en", "")*/
              ,
              theme: new ThemeData(
-               primaryColor: Colors.black,
+               primaryColor: Colors.black
              ),
-             home: new splashScreen(),
-           ),
+             home: new splashScreen()
+           )
          );
        }
      )
