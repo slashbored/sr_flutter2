@@ -17,7 +17,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 bool timerMenuOpen  = false;
 
 Widget timerDialog(BuildContext context)  {
-  Set singlePlayerBGTimerDBSet = countSinglePlayerTimersInBGTimerDB();
+  //Set singlePlayerBGTimerDBSet = countSinglePlayerTimersInBGTimerDB();
   return StreamBuilder(
     stream: downStream,
     builder: (context, snapShot)  {
@@ -35,7 +35,8 @@ Widget timerDialog(BuildContext context)  {
             width: double.maxFinite,
             child: FractionallySizedBox(
               widthFactor: 0.9,
-              child: /*ListView.builder(
+              child:
+              /*ListView.builder(
                 shrinkWrap: true,
                 itemCount: singlePlayerBGTimerDBSet.length,
                 itemBuilder: (context, int outterIndex) {
@@ -111,7 +112,7 @@ Widget timerDialog(BuildContext context)  {
   );
 }
 
-Set countSinglePlayerTimersInBGTimerDB()  {
+/*Set countSinglePlayerTimersInBGTimerDB()  {
   Set differentPlayerListInBGTimerDB = new Set();
   for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
     if (timerplaceholder.secondPlayerID==null||timerplaceholder.secondPlayerID=="") {
@@ -139,4 +140,4 @@ Multimap countDifferentTimersForPlayerCombos()  {
 
     }
   }
-}
+}*/
