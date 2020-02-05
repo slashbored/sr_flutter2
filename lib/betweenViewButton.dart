@@ -9,8 +9,12 @@ Widget betweenViewButton(BuildContext context)  {
   if  (currentRoom.isWaiting)  {
     return FloatingActionButton(
       heroTag:'comparison_waiting',
-      child: Icon(Icons.hourglass_empty),
-      backgroundColor: Colors.grey,
+      child: Icon(
+        Icons.hourglass_empty,
+        color: Colors.grey,),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      highlightElevation: 0,
       onPressed: () {
       },
     );
@@ -18,8 +22,13 @@ Widget betweenViewButton(BuildContext context)  {
   else  {
     return FloatingActionButton(
       heroTag:'comparison_done',
-      child: Icon(Icons.arrow_forward_ios),
-      backgroundColor: Colors.green,
+      child: Icon(
+        Icons.arrow_forward_ios,
+        color: Colors.green,
+      ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      highlightElevation: 0,
       onPressed: () {
         upStream.add(json.encode({'type':'clearComparison','content':''}));
         upStream.add(json.encode({'type':'randomTask','content':''}));

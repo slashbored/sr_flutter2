@@ -30,3 +30,13 @@ final TextStyle smallStyleWhite = new TextStyle(
   fontSize: 12,
   color: Colors.white
 );
+
+final TextStyle tinyStyle  = new TextStyle(
+    fontSize: 9,
+    color: Colors.black
+);
+
+final TextStyle tinyStyleWhite = new TextStyle(
+    fontSize: 9,
+    color: Colors.white
+);

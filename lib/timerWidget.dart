@@ -107,11 +107,8 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
     animationDuration: 2000,
     percent: calculatePercent(correspondingTask, correspondingTimer),
     center: Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          correspondingFirstPlayer.name
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -119,10 +116,10 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
                 flex: 1,
                 child: Text(
                     correspondingSecondPlayer!=null?
-                    correspondingFirstPlayer.name.substring(0,1).toUpperCase() + " & " + correspondingSecondPlayer.name.substring(0,1).toUpperCase():
-                    correspondingFirstPlayer.name.substring(0,1).toUpperCase(),
+                    correspondingFirstPlayer.name+ " & " + correspondingSecondPlayer.name:
+                    correspondingFirstPlayer.name,
                     textAlign: TextAlign.left,
-                    style: smallStyleWhite
+                    style: tinyStyleWhite
                 )
             ),
             Flexible(
@@ -130,7 +127,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
               child: Text(
                   Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
                   textAlign: TextAlign.center,
-                  style: smallStyleWhite
+                  style: tinyStyleWhite
               ),
             ),
             Flexible(
@@ -138,12 +135,11 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
               child: Text(
                   convertTime(correspondingTimer.BGTimeLeft),
                   textAlign: TextAlign.right,
-                  style: smallStyleWhite
+                  style: tinyStyleWhite
               ),
             ),
-
           ],
-        )
+        ),
       ],
     )
     /*RichText(
