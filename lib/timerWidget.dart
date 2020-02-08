@@ -112,29 +112,19 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Flexible(
-                flex: 1,
-                child: Text(
-                    correspondingSecondPlayer!=null?
-                    correspondingFirstPlayer.name+ " & " + correspondingSecondPlayer.name:
-                    correspondingFirstPlayer.name,
-                    textAlign: TextAlign.left,
-                    style: tinyStyleWhite
-                )
-            ),
-            Flexible(
-              flex: 5,
+            Expanded(
+              flex: 1,
               child: Text(
                   Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
                   textAlign: TextAlign.center,
                   style: tinyStyleWhite
               ),
             ),
-            Flexible(
+            Expanded(
               flex: 1,
               child: Text(
                   convertTime(correspondingTimer.BGTimeLeft),
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                   style: tinyStyleWhite
               ),
             ),

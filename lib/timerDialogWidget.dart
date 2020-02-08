@@ -5,6 +5,7 @@ import 'generated/i18n.dart';
 import 'webSocket.dart';
 import 'timerWidget.dart';
 import 'customTimerClass.dart';
+import 'roomClass.dart';
 import 'playerClass.dart';
 import 'package:quiver/collection.dart';
 import 'package:quiver/collection.dart';
@@ -31,12 +32,165 @@ Widget timerDialog(BuildContext context)  {
           style: normalStyle,
         ),
         children: <Widget>[
-          Container(
-            width: double.maxFinite,
-            child: FractionallySizedBox(
-              widthFactor: 0.9,
-              child:
-              /*ListView.builder(
+          DefaultTabController(
+            length: 2,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TabBar(
+                  tabs: <Widget>[
+                    Icon(
+                      Icons.accessibility_new,
+                      color: Colors.black,
+                    ),
+                    Icon(
+                      Icons.wc,
+                      color: Colors.black,)
+                  ],
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: MediaQuery.of(context).size.height*0.5,
+                  child: TabBarView(
+                    children: <Widget>[
+                      ListView.builder( //singleplayerView
+                          shrinkWrap: true,
+                          itemCount: sortedSinglePlayerMultimap().keys.length,
+                          itemBuilder: (context, int outterIndex) {
+                            return Column(
+                              children: <Widget>[
+                                Text(
+                                  currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).name + ":",
+                                  style: smallStyle,
+                                ),
+                                FractionallySizedBox(
+                                  widthFactor: 0.75,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: listForSinglePlayer(sortedSinglePlayerMultimap(), currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id).length,
+                                      itemBuilder: (context, int innerIndex)  {
+                                        return timerWidget(context, listForSinglePlayer(sortedSinglePlayerMultimap(), currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id)[innerIndex]);
+                                      }),
+                                ),
+                                Container(
+                                  height: 10,
+                                )
+                              ],
+                            );
+                          }
+                      ),
+                      ListView.builder( //singleplayerView
+                          shrinkWrap: true,
+                          itemCount: sortedMultiPlayerMultimap().keys.length,
+                          itemBuilder: (context, int outterIndex) {
+                            return Column(
+                              children: <Widget>[
+                                Text(
+                                  currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).name + ":",
+                                  style: smallStyle,
+                                ),
+                                FractionallySizedBox(
+                                  widthFactor: 0.75,
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: listForSinglePlayer(sortedSinglePlayerMultimap(), currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id).length,
+                                      itemBuilder: (context, int innerIndex)  {
+                                        return timerWidget(context, listForSinglePlayer(sortedSinglePlayerMultimap(), currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id)[innerIndex]);
+                                      }),
+                                ),
+                                Container(
+                                  height: 10,
+                                )
+                              ],
+                            );
+                          }
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          SimpleDialogOption(
+              child: Text(
+                "OK",
+                textAlign: TextAlign.center,
+                style: normalStyle
+              ),
+              onPressed: () {
+                timerMenuOpen=false;
+                Navigator.pop(context);
+              }
+          )
+        ]
+      );
+    }
+  );
+}
+
+Multimap sortedSinglePlayerMultimap() {
+  Multimap singlePlayerMultiMapPlaceholder  = new Multimap();
+  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
+    if (timerplaceholder.secondPlayerID==null||timerplaceholder.secondPlayerID=="") {
+      singlePlayerMultiMapPlaceholder.add(timerplaceholder.playerID, timerplaceholder);
+    }
+  }
+  return singlePlayerMultiMapPlaceholder;
+}
+
+List listForSinglePlayer(Multimap multimap, String foreignKey) {
+  List listPlaceholder  = new List();
+  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey));
+  return listPlaceholder;
+}
+
+Multimap sortedMultiPlayerMultimap()  {
+  Multimap multiPlayerMultiMapPlaceholder  = new Multimap();
+  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
+    if ((timerplaceholder.secondPlayerID!=null||timerplaceholder.secondPlayerID!="") /*&& (!multiPlayerMultiMapPlaceholder.containsKey(timerplaceholder.playerID + timerplaceholder.secondPlayerID))*/)  {
+     multiPlayerMultiMapPlaceholder.add(timerplaceholder.playerID + timerplaceholder.secondPlayerID, timerplaceholder);
+    }
+  }
+  return multiPlayerMultiMapPlaceholder;
+}
+
+List listForMultiPlayer(Multimap multimap, String foreignKey) {
+  List listPlaceholder  = new List();
+  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey));
+  return listPlaceholder;
+}
+
+/*Set countSinglePlayerTimersInBGTimerDB()  {
+  Set differentPlayerListInBGTimerDB = new Set();
+  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
+    if (timerplaceholder.secondPlayerID==null||timerplaceholder.secondPlayerID=="") {
+      differentPlayerListInBGTimerDB.add(timerplaceholder.playerID);
+    }
+  }
+  print(differentPlayerListInBGTimerDB);
+  return differentPlayerListInBGTimerDB;
+}
+
+List differentTimersForSinglePlayer(String playerID)  {
+  List differentTimersForPlayer = new List();
+  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
+    if (timerplaceholder.playerID==playerID)  {
+      differentTimersForPlayer.add(timerplaceholder);
+    }
+  }
+  return differentTimersForPlayer;
+}
+
+Multimap countDifferentTimersForPlayerCombos()  {
+  Multimap differentTimersForPlayerCombos = new Multimap();
+  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
+    if (timerplaceholder.secondPlayerID!=""||timerplaceholder.secondPlayerID!=null) {
+
+    }
+  }
+}*/
+
+/*ListView.builder(
                 shrinkWrap: true,
                 itemCount: singlePlayerBGTimerDBSet.length,
                 itemBuilder: (context, int outterIndex) {
@@ -70,74 +224,3 @@ Widget timerDialog(BuildContext context)  {
                   );
                 }
               )*/
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: currentRoom.BGTimerDB.length,
-                  //itemCount: differentPlayersInTimerDBList.length,
-                  itemBuilder: (context, int index) {
-                    int typeIDplaceholder = currentRoom.taskDB.firstWhere(
-                            (placeholder) =>  placeholder.id == currentRoom.BGTimerDB[index].taskID).typeID;
-                    if(typeIDplaceholder==3||typeIDplaceholder==6)  {
-                      return Column(
-                        children: <Widget>[
-                          timerWidget(context,currentRoom.BGTimerDB[index]),
-                          Divider(
-                              color: Colors.transparent,
-                              thickness: 2
-                          )
-                        ],
-                      );
-                    }
-                    else  {
-                      return Container();
-                    }
-                  }
-              ),
-            ),
-          ),
-          SimpleDialogOption(
-              child: Text(
-                "OK",
-                textAlign: TextAlign.center,
-                style: normalStyle
-              ),
-              onPressed: () {
-                timerMenuOpen=false;
-                Navigator.pop(context);
-              }
-          )
-        ]
-      );
-    }
-  );
-}
-
-/*Set countSinglePlayerTimersInBGTimerDB()  {
-  Set differentPlayerListInBGTimerDB = new Set();
-  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
-    if (timerplaceholder.secondPlayerID==null||timerplaceholder.secondPlayerID=="") {
-      differentPlayerListInBGTimerDB.add(timerplaceholder.playerID);
-    }
-  }
-  print(differentPlayerListInBGTimerDB);
-  return differentPlayerListInBGTimerDB;
-}
-
-List differentTimersForSinglePlayer(String playerID)  {
-  List differentTimersForPlayer = new List();
-  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
-    if (timerplaceholder.playerID==playerID)  {
-      differentTimersForPlayer.add(timerplaceholder);
-    }
-  }
-  return differentTimersForPlayer;
-}
-
-Multimap countDifferentTimersForPlayerCombos()  {
-  Multimap differentTimersForPlayerCombos = new Multimap();
-  for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
-    if (timerplaceholder.secondPlayerID!=""||timerplaceholder.secondPlayerID!=null) {
-
-    }
-  }
-}*/
