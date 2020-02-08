@@ -112,78 +112,30 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-              flex: 1,
+            Flexible(
+              flex: 5,
               child: Text(
                   Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
                   textAlign: TextAlign.center,
-                  style: tinyStyleWhite
+                  style: smallStyleWhite
               ),
             ),
-            Expanded(
+            Flexible(
               flex: 1,
               child: Text(
                   convertTime(correspondingTimer.BGTimeLeft),
-                  textAlign: TextAlign.center,
-                  style: tinyStyleWhite
+                  textAlign: TextAlign.right,
+                  style: smallStyleWhite
               ),
             ),
           ],
         ),
       ],
-    )
-    /*RichText(
-      text: TextSpan(
-        style: TextStyle(
-          fontSize: 12,
-          color: Colors.white
-        ),
-        children: [
-          TextSpan(
-            text: correspondingSecondPlayer!=null?
-                correspondingFirstPlayer.name + " & " + correspondingSecondPlayer.name:
-                correspondingFirstPlayer.name
-          ),
-          TextSpan(
-            text: Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
-          ),
-          TextSpan(
-              text: convertTime(correspondingTimer.BGTimeLeft)
-          ),
-        ]
-      ),
-    )*/,
+    ),
     linearStrokeCap: LinearStrokeCap.roundAll,
     progressColor: Colors.green,
     backgroundColor: Colors.red,
   );
-  /*else  {
-    return LinearPercentIndicator(
-      lineHeight: 20.0,
-      animationDuration: 2000,
-      percent: calculatePercent(correspondingTask, correspondingTimer),
-      center: Text(convertTime(correspondingTimer.BGTimeLeft)),
-      linearStrokeCap: LinearStrokeCap.roundAll,
-      progressColor: calculatePercent(correspondingTask, correspondingTimer)>=0.5?Colors.green:Colors.red,
-    );
-    /*return InputChip(
-      avatar: CircleAvatar(
-        child: Text(
-            correspondingFirstPlayer.name.substring(0, 1).toUpperCase()
-        ),
-        backgroundColor: correspondingFirstPlayer.color,
-      ),
-      label: Text(
-          CustomTimer.stateMap[correspondingTimer.id]=='time'?convertTime(correspondingTimer.BGTimeLeft):
-          Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr')
-      ),
-      isEnabled: true,
-      backgroundColor: correspondingFirstPlayer.color,
-      onPressed: () {
-        onPressInputChip(correspondingTimer);
-      }
-    );*/
-  }*/
 }
 
 double calculatePercent(Task taskToGetDurationFrom, CustomTimer timerToCalculateFrom) {

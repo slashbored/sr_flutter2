@@ -16,6 +16,16 @@ final TextStyle normalStyle = new TextStyle(
   color: Colors.black
 );
 
+final TextStyle normalStyleGreen = new TextStyle(
+    fontSize: 18,
+    color: Colors.green
+);
+
+final TextStyle normalStyleRed = new TextStyle(
+    fontSize: 18,
+    color: Colors.red
+);
+
 final TextStyle normalStyleWhite  = new TextStyle(
   fontSize: 18,
   color: Colors.white

@@ -12,6 +12,7 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 import 'betweenViewPage.dart';
+import 'outlineButtonNormal.dart';
 
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
@@ -44,7 +45,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
               heroTag:  "fab_normal_drink",
               backgroundColor: Colors.red,
               shape: CircleBorder(),
@@ -56,8 +57,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-              ),
-            FloatingActionButton.extended(
+              ),*/
+            customOutlineButton(context, task, false, 'normal'),
+            customOutlineButton(context, task, true, 'normal'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normal_accepted",
                 backgroundColor: Colors.green,
                 shape: CircleBorder(),
@@ -71,7 +74,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
-            )
+            )*/
           ]
         );
       }
@@ -103,7 +106,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
                 }
             ),*/
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, false, 'FGtimed'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_drink",
                 backgroundColor: Colors.red,
                 shape: CircleBorder(),
@@ -115,7 +119,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            ),
+            ),*/
             FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_startTimer",
                 shape: CircleBorder(),
@@ -130,7 +134,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   Room.renewActiveTimer(context);
                 }
             ),
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, true, 'FGtimed')
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_accepted",
                 backgroundColor: Colors.green,
                 shape: CircleBorder(),
@@ -149,7 +154,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            )
+            )*/
           ]
         );
       }
@@ -172,7 +177,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, false, 'BGtimed'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normalBGTime_drink",
                 backgroundColor: Colors.red,
                 shape: CircleBorder(),
@@ -184,8 +190,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            ),
-            FloatingActionButton.extended(
+            ),*/
+            customOutlineButton(context, task, true, 'BGtimed')
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normalBGTime_accepted",
                 backgroundColor: Colors.green,
                 shape: CircleBorder(),
@@ -199,7 +206,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            )
+            )*/
           ]
         );
       }
@@ -223,7 +230,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, false, 'normal'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_choice_drink",
                 backgroundColor: Colors.red,
                 shape: CircleBorder(),
@@ -235,8 +243,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            ),
-            FloatingActionButton.extended(
+            ),*/
+            customOutlineButton(context, task, true, 'normal')
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_choice_accepted",
                 backgroundColor: Colors.green,
                 shape: CircleBorder(),
@@ -249,7 +258,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            )
+            )*/
           ]
         );
       }
@@ -263,6 +272,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            customOutlineButton(context, task, false, 'FGtimed'),
             /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_denied",
                 label: Text(S.of(context).noStyle2),
@@ -273,7 +283,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_drink",
                 backgroundColor: Colors.red,
                 shape: CircleBorder(),
@@ -285,7 +295,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            ),
+            ),*/
             FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_startTimer",
                 shape: CircleBorder(),
@@ -299,7 +309,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   startBGTimer(context);
                 }
             ),
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, true, 'FGtimed'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_accepted",
                 backgroundColor: Colors.green,
                 shape: CircleBorder(),
@@ -312,7 +323,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'randomPlayers','content':''}));
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
-            )
+            )*/
           ]
         );
       }
@@ -335,7 +346,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),*/
-          FloatingActionButton.extended(
+          /*FloatingActionButton.extended(
               heroTag:  "fab_choiceBGTime_drink",
               backgroundColor: Colors.red,
               shape: CircleBorder(),
@@ -347,14 +358,17 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          ),
-          FloatingActionButton.extended(
+          ),*/
+          customOutlineButton(context, task, false, 'BGtimed'),
+          customOutlineButton(context, task, true, 'BGtimed'),
+          /*FloatingActionButton.extended(
               heroTag:  "fab_choiceBGTime_accepted",
               backgroundColor: Colors.green,
-              shape: CircleBorder(),
+              //shape: CircleBorder(),
               label: Text(
-                S.of(context).yesStyle1,
-                style: normalStyleWhite
+                  S.of(context).yesStyle1,
+                  textAlign: TextAlign.center,
+                  style: normalStyleWhite
               ),
               onPressed: (){
                 startBGTimer(context);
@@ -362,7 +376,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          )
+          )*/
         ]
       );
     }
@@ -468,7 +482,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
           ),*/
-          FloatingActionButton.extended(
+          /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_drink",
               backgroundColor: Colors.red,
               shape: CircleBorder(),
@@ -480,7 +494,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          ),
+          ),*/
+          customOutlineButton(context, task, false, 'FGtimed'),
           FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_startTimer",
               shape: CircleBorder(),
@@ -495,7 +510,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 Room.renewActiveTimer(context);
               }
           ),
-          FloatingActionButton.extended(
+          customOutlineButton(context, task, true, 'FGtimed'),
+          /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_accepted",
               backgroundColor: Colors.green,
               shape: CircleBorder(),
@@ -515,7 +531,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 upStream.add(json.encode({'type':'randomPlayers','content':''}));
                 upStream.add(json.encode({'type':'nextTask','content':''}));
               }
-          )
+          )*/
         ]
       );
     }
