@@ -16,8 +16,10 @@ import 'localizationBloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 bool timerMenuOpen  = false;
+BuildContext timerDialogContext;
 
 Widget timerDialog(BuildContext context)  {
+  timerDialogContext = context;
   return StreamBuilder(
     stream: downStream,
     builder: (context, snapShot)  {
@@ -52,7 +54,7 @@ Widget timerDialog(BuildContext context)  {
                   height: MediaQuery.of(context).size.height*0.5,
                   child: TabBarView(
                     children: <Widget>[
-                      ListView.builder(//singleplayerView
+                      ListView.builder(//singlePlayerView
                           //physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: sortedSinglePlayerMultimap().keys.length,
@@ -80,7 +82,7 @@ Widget timerDialog(BuildContext context)  {
                             );
                           }
                       ),
-                      ListView.builder( //singleplayerView
+                      ListView.builder( //multiPlayerView
                           //physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: sortedMultiPlayerMultimap().keys.length,
@@ -156,7 +158,6 @@ Multimap sortedMultiPlayerMultimap()  { //key = combo, value = iterable of timer
   Multimap multiPlayerMultiMapPlaceholder  = new Multimap();
   for (CustomTimer timerplaceholder in currentRoom.BGTimerDB) {
     if ((timerplaceholder.secondPlayerID!=null&&timerplaceholder.secondPlayerID!="") /*&& (!multiPlayerMultiMapPlaceholder.containsKey(timerplaceholder.playerID + timerplaceholder.secondPlayerID))*/)  {
-      print(timerplaceholder.secondPlayerID);
       if (multiPlayerMultiMapPlaceholder.containsKey(timerplaceholder.secondPlayerID + timerplaceholder.playerID))  {
         multiPlayerMultiMapPlaceholder.add(timerplaceholder.secondPlayerID + timerplaceholder.playerID, timerplaceholder);
       }

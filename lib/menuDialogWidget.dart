@@ -11,9 +11,12 @@ final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
 final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
 final Widget svg_male = SvgPicture.asset('assets/man.svg');
 final Widget svg_female = SvgPicture.asset('assets/woman.svg');
+
 bool settingsMenuOpen=false;
+BuildContext menuDialogContext;
 
 Widget menuDialog(BuildContext context) {
+  menuDialogContext = context;
   final LocalizationBloc localizationBloc= BlocProvider.of<LocalizationBloc>(context);
   return SimpleDialog(
     shape: RoundedRectangleBorder(

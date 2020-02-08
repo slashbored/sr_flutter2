@@ -25,7 +25,7 @@ class S implements WidgetsLocalizations {
   String get FGTimerDone => "\uD83D\uDC4D\uD83C\uDFFB";
   String get FGTimerGo => "Go!";
   String get choseToDrink => " chose to drink instead.";
-  String get close => "Schließen";
+  String get close => "Close";
   String get comingSoon => "Coming soon!™\n( ͡° ͜ʖ ͡°)";
   String get compareThis => "Just between you and me (and the others),";
   String get comparisonDraw => "It's a draw!";
@@ -40,7 +40,9 @@ class S implements WidgetsLocalizations {
   String get joinRoom_roomNotFound => "No game found.";
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
-  String get listThis => "List the following:";
+  String get listNotYouStart => " starts!";
+  String get listThis => "List the following, ";
+  String get listYouStart => "you start!";
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get modeTitle_endless => "Endless";
@@ -84,6 +86,10 @@ class $de extends S {
   String get pleaseEnterValidNumber => "Bitte gib eine korrekte Zahl an.";
   @override
   String get sexX => "Divers";
+  @override
+  String get listYouStart => "du fängst an!";
+  @override
+  String get listNotYouStart => " fängt an!";
   @override
   String get tabooMimeWinStyle1 => "EZ";
   @override
@@ -147,7 +153,7 @@ class $de extends S {
   @override
   String get enterName => "Bitte gib deinen Namen und Geschlecht an:";
   @override
-  String get close => "Close";
+  String get close => "Schließen";
   @override
   String get or => "oder";
   @override
@@ -157,7 +163,7 @@ class $de extends S {
   @override
   String get modeTitle_lose => "Punkte loswerden";
   @override
-  String get listThis => "Listet folgendes auf:";
+  String get listThis => "Listet folgendes auf, ";
   @override
   String get modeTitle_headline => "Bitte wähle eure Spielart aus:";
   @override

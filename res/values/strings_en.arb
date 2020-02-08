@@ -26,7 +26,7 @@
   "taboop2": "\" without using the following words:",
   "tabooMimeWinStyle1": "EZ",
   "tabooMimeFailStyle1": "Nobody knows",
-  "listThis": "List the following:",
+  "listThis": "List the following, ",
   "compareThis": "Just between you and me (and the others),",
   "yesStyle1": "Ye",
   "noStyle1": "Nope.",
@@ -47,5 +47,7 @@
   "isNewGM": " is the new GM.",
   "choseToDrink": " chose to drink instead.",
   "timerDialog_title": "Active timers",
-  "close": "Schließen"
+  "close": "Close",
+  "listYouStart": "you start!",
+  "listNotYouStart": " starts!"
 }

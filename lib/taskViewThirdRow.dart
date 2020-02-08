@@ -12,7 +12,7 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 import 'betweenViewPage.dart';
-import 'outlineButtonNormal.dart';
+import 'customOutlineButton.dart';
 
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
@@ -120,7 +120,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, true, 'isActiveTimer'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_startTimer",
                 shape: CircleBorder(),
                 label: Text(
@@ -133,7 +134,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   startBGTimer(context);
                   Room.renewActiveTimer(context);
                 }
-            ),
+            ),*/
             customOutlineButton(context, task, true, 'FGtimed')
             /*FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_accepted",
@@ -296,7 +297,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            FloatingActionButton.extended(
+            customOutlineButton(context, task, true, 'isActiveTimer'),
+            /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_startTimer",
                 shape: CircleBorder(),
                 label: Text(
@@ -308,7 +310,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 onPressed:  ()  {
                   startBGTimer(context);
                 }
-            ),
+            ),*/
             customOutlineButton(context, task, true, 'FGtimed'),
             /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_accepted",
@@ -441,7 +443,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 8:
       return Center(
-          child: FloatingActionButton.extended(
+        child: customOutlineButton(context, task, false, 'list'),
+          /*child: FloatingActionButton.extended(
             heroTag:  "fab_listFailed",
             backgroundColor: Colors.red,
             shape: CircleBorder(),
@@ -455,7 +458,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               upStream.add(json.encode({'type':'randomPlayers','content':''}));
               upStream.add(json.encode({'type':'nextTask','content':''}));
             },
-              )
+          )*/
       );
       break;
     case 9:
@@ -496,7 +499,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),*/
           customOutlineButton(context, task, false, 'FGtimed'),
-          FloatingActionButton.extended(
+          customOutlineButton(context, task, true, 'isActiveTimer'),
+          /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_startTimer",
               shape: CircleBorder(),
               label: Text(
@@ -509,7 +513,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 startBGTimer(context);
                 Room.renewActiveTimer(context);
               }
-          ),
+          ),*/
           customOutlineButton(context, task, true, 'FGtimed'),
           /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_accepted",
@@ -544,7 +548,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          FloatingActionButton.extended(
+          customOutlineButton(context, task, false, 'wyr'),
+          customOutlineButton(context, task, true, 'wyr')
+          /*FloatingActionButton.extended(
             heroTag: "fab_wyr_a_submit",
             backgroundColor: Colors.green,
             shape: CircleBorder(),
@@ -570,7 +576,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
               Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
             }
-          )
+          )*/
         ]
       );
     break;

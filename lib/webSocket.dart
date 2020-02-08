@@ -1,3 +1,5 @@
+import 'package:sr_flutter2/menuDialogWidget.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +20,7 @@ import 'customTimerClass.dart';
 
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
+import 'timerDialogWidget.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -123,6 +126,14 @@ void startStreaming() async{
         currentRoom.winnerIDArray.clear();
         currentRoom.compareWinnerSide=null;
         Player.mePlayer.compareValue=null;
+        if (timerMenuOpen)  {
+          Navigator.of(taskViewPageContext).pop();
+          timerMenuOpen=false;
+        }
+        if (settingsMenuOpen) {
+          Navigator.of(menuDialogContext).pop();
+          settingsMenuOpen=false;
+        }
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;
       case 'choseToDrink':

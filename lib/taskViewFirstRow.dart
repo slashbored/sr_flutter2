@@ -1,3 +1,5 @@
+import 'package:sr_flutter2/webSocket.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -99,10 +101,42 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 8:
       return Center(
-        child: Text(
-          S.of(context).listThis,
-          style: headlineStyle,
-          textAlign: TextAlign.center
+        child: firstPlayer.id==Player.mePlayer.id?
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            style: headlineStyle,
+            children:[
+              TextSpan(
+                text: S.of(context).listThis,
+                  style: headlineStyle
+              ),
+              TextSpan(
+                text: S.of(context).listYouStart,
+              )
+            ]
+          )
+        ):
+        RichText(
+          textAlign: TextAlign.center,
+            text: TextSpan(
+                style: headlineStyle,
+                children:[
+                  TextSpan(
+                      text: S.of(context).listThis,
+                      style: headlineStyle
+                  ),
+                  TextSpan(
+                    text: currentRoom.playerDB.firstWhere((element) => element.id == currentRoom.activePlayerID).name,
+                    style: TextStyle(
+                      color: currentRoom.playerDB.firstWhere((element) => element.id == currentRoom.activePlayerID).color
+                    )
+                  ),
+                  TextSpan(
+                    text: S.of(context).listNotYouStart
+                  )
+                ]
+            )
         )
       );
       break;

@@ -187,9 +187,11 @@ class roomSelectionPage extends State<roomSelection>{
   }
 
   void joinRoom() async{
-    while (currentRoom==null){
+    int i = 0;
+    while (currentRoom==null&&i<50){
       await new Future.delayed(const Duration(milliseconds: 100));
+      i++;
     }
-    Room.activeRoom!=null?Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage())):null;
+    currentRoom!=null&&i<50?Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage())):null;
   }
 }

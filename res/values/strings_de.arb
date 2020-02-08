@@ -26,7 +26,7 @@
   "taboop2": "\" ohne folgende Wörter zu benutzen:",
   "tabooMimeWinStyle1": "EZ",
   "tabooMimeFailStyle1": "Keiner n Plan",
-  "listThis": "Listet folgendes auf:",
+  "listThis": "Listet folgendes auf, ",
   "compareThis": "Mal unter uns beiden (und den anderen),",
   "yesStyle1": "Ja",
   "noStyle1": "Nö",
@@ -47,5 +47,7 @@
   "isNewGM": " ist der neue GM.",
   "choseToDrink": " wollte stattdessen lieber trinken.",
   "timerDialog_title": "Aktive Timer",
-  "close": "Close"
+  "close": "Schließen",
+  "listYouStart": "du fängst an!",
+  "listNotYouStart": " fängt an!"
 }
