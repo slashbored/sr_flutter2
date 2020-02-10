@@ -15,11 +15,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-bool timerMenuOpen  = false;
-BuildContext timerDialogContext;
+bool timerViewDialogOpen  = false;
+BuildContext timerViewDialogContext;
 
-Widget timerDialog(BuildContext context)  {
-  timerDialogContext = context;
+Widget timerViewDialog(BuildContext context)  {
+  timerViewDialogContext = context;
   return StreamBuilder(
     stream: downStream,
     builder: (context, snapShot)  {
@@ -28,9 +28,9 @@ Widget timerDialog(BuildContext context)  {
             borderRadius: BorderRadius.all(Radius.circular(20))
         ),
         title: Text(
-          S.of(context).timerDialog_title,
+          S.of(context).timerViewDialog_title,
           textAlign: TextAlign.center,
-          style: normalStyle,
+          style: normalStyle
         ),
         children: <Widget>[
           DefaultTabController(
@@ -42,12 +42,13 @@ Widget timerDialog(BuildContext context)  {
                   tabs: <Widget>[
                     Icon(
                       Icons.accessibility_new,
-                      color: Colors.black,
+                      color: Colors.black
                     ),
                     Icon(
                       Icons.wc,
-                      color: Colors.black,)
-                  ],
+                      color: Colors.black
+                    )
+                  ]
                 ),
                 Container(
                   width: double.maxFinite,
@@ -128,7 +129,7 @@ Widget timerDialog(BuildContext context)  {
                 style: normalStyle
               ),
               onPressed: () {
-                timerMenuOpen=false;
+                timerViewDialogOpen = false;
                 Navigator.pop(context);
               }
           )

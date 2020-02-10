@@ -20,7 +20,8 @@ import 'customTimerClass.dart';
 
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
-import 'timerDialogWidget.dart';
+import 'timerViewDialogWidget.dart';
+import 'timerDoneDialogWidget.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -88,6 +89,17 @@ void startStreaming() async{
           CustomTimer.updateStateMap();
         }
         break;
+      case 'timerDone':
+        CustomTimer endedTimer;
+        endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
+        if (endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id) {
+          timerDoneDialogOpen = true;
+          showDialog(
+              context: taskViewPageContext,
+              barrierDismissible: false,
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext));
+        }
+        break;
       case 'isWaiting':
         currentRoom.isWaiting = packageIn.content;
         break;
@@ -124,15 +136,19 @@ void startStreaming() async{
       case  'nextTask':
         heartBeatTimer.reset();
         currentRoom.winnerIDArray.clear();
-        currentRoom.compareWinnerSide=null;
-        Player.mePlayer.compareValue=null;
-        if (timerMenuOpen)  {
+        currentRoom.compareWinnerSide = null;
+        Player.mePlayer.compareValue  = null;
+        if (timerViewDialogOpen)  {
           Navigator.of(taskViewPageContext).pop();
-          timerMenuOpen=false;
+          timerViewDialogOpen = false;
         }
         if (settingsMenuOpen) {
           Navigator.of(menuDialogContext).pop();
-          settingsMenuOpen=false;
+          settingsMenuOpen  = false;
+        }
+        if (timerDoneDialogOpen)  {
+          Navigator.of(timerDoneDialogContext).pop();
+          timerDoneDialogOpen = false;
         }
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;

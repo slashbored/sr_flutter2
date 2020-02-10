@@ -9,7 +9,7 @@ import 'roomSelectionPage.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
-import 'timerDialogWidget.dart';
+import 'timerViewDialogWidget.dart';
 
 
 class taskViewPage extends StatefulWidget{
@@ -47,12 +47,12 @@ class taskViewPageState extends State<taskViewPage>{
                           color: Colors.transparent,
                           child: GestureDetector(
                             onTap: () {
-                              if (timerMenuOpen!=true) {
-                                timerMenuOpen=true;
+                              if (timerViewDialogOpen!=true) {
+                                timerViewDialogOpen=true;
                                 showDialog(
                                     barrierDismissible: false,
                                     context: context,
-                                    builder: (BuildContext context) => timerDialog(context)
+                                    builder: (BuildContext context) => timerViewDialog(context)
                                 );
                               }
                             },

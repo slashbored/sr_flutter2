@@ -8,7 +8,7 @@ import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerWidget.dart';
-import 'timerDialogWidget.dart';
+import 'timerViewDialogWidget.dart';
 
 
 class TimerWidgetBloc extends Bloc<switchEvent, Container>  {

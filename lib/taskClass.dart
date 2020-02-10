@@ -21,8 +21,8 @@ class Task{
   String oString_de;
   String gString_en;
   String gString_de;
-  String completeString_en;
-  String completeString_de;
+  String completeString_en_active;
+  String completeString_de_active;
   List bannedWords_en = new List(4);
   List bannedWords_de = new List(4);
   String aSelectString_en;
@@ -66,8 +66,8 @@ class Task{
     oString_de  = data['oString_de'];
     gString_en  = data['gString_en'];
     gString_de  = data['gString_de'];
-    completeString_en = data['completeString_en'];
-    completeString_de = data['completeString_de'];
+    completeString_en_active = data['completeString_en_active'];
+    completeString_de_active = data['completeString_de_active'];
     bannedWords_en = List.from(data['bannedWords_en']);
     bannedWords_de = List.from(data['bannedWords_de']);
     aSelectString_en  = data["aSelectString_en"];
@@ -134,6 +134,9 @@ class Task{
         case('wyr_b_lost'):
           return task.bLostString_en;
           break;
+        case('completeString'):
+          return task.completeString_en_active;
+          break;
       }
     }
     else  {
@@ -179,6 +182,9 @@ class Task{
           break;
         case('wyr_b_lost'):
           return task.bLostString_de;
+          break;
+        case('completeString'):
+          return task.completeString_de_active;
           break;
       }
 

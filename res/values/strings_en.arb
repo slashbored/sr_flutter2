@@ -46,7 +46,8 @@
   "hasLeftGame": " has left the game.",
   "isNewGM": " is the new GM.",
   "choseToDrink": " chose to drink instead.",
-  "timerDialog_title": "Active timers",
+  "timerViewDialog_title": "Active timers",
+  "timerDoneDialog_title": "You is done!",
   "close": "Close",
   "listYouStart": "you start!",
   "listNotYouStart": " starts!"
