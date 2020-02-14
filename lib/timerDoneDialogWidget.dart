@@ -16,12 +16,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-bool timerDoneDialogOpen  = false;
+bool timerDoneDialogOpen;
 BuildContext timerDoneDialogContext;
-Task currentTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  currentRoom.activeTaskID);
 String locale = Localizations.localeOf(timerDoneDialogContext).toString();
 
-Widget timerDoneDialog(BuildContext context)  {
+Widget timerDoneDialog(BuildContext context, Task completedTask)  {
   timerDoneDialogContext  = context;
   return StreamBuilder(
     stream: downStream,
@@ -37,7 +36,7 @@ Widget timerDoneDialog(BuildContext context)  {
         ),
         children: <Widget>[
         Text(
-          Task.getStringByLocale(currentTask, locale, 'completeString'),
+          Task.getStringByLocale(completedTask, locale, 'completeString'),
           textAlign: TextAlign.center,
           style: normalStyle
         ),

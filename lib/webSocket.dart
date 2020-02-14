@@ -90,14 +90,15 @@ void startStreaming() async{
         }
         break;
       case 'timerDone':
-        CustomTimer endedTimer;
-        endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
+        print("Timer" + packageIn.content +  "done!");
+        CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
+        Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
         if (endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id) {
           timerDoneDialogOpen = true;
           showDialog(
               context: taskViewPageContext,
               barrierDismissible: false,
-              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext));
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask));
         }
         break;
       case 'isWaiting':
@@ -146,9 +147,11 @@ void startStreaming() async{
           Navigator.of(menuDialogContext).pop();
           settingsMenuOpen  = false;
         }
-        if (timerDoneDialogOpen)  {
-          Navigator.of(timerDoneDialogContext).pop();
-          timerDoneDialogOpen = false;
+        if (timerDoneDialogOpen!=null)  {
+          if (timerDoneDialogOpen)  {
+            Navigator.of(timerDoneDialogContext).pop();
+            timerDoneDialogOpen = false;
+          }
         }
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;

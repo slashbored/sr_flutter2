@@ -86,7 +86,7 @@ class roomSelectionPage extends State<roomSelection>{
                     children: <Widget>[
                       Expanded(
                         child: Container(
-                          margin: EdgeInsets.only(left: 10.0, right: 20.0),
+                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Divider(
                               color: Colors.black,
                               thickness: 2
@@ -99,7 +99,7 @@ class roomSelectionPage extends State<roomSelection>{
                       ),
                       Expanded(
                           child: Container(
-                            margin: EdgeInsets.only(left: 20.0, right: 10.0),
+                            margin: EdgeInsets.only(left: 20.0, right: 20.0),
                             child: Divider(
                                 color: Colors.black,
                                 thickness: 2

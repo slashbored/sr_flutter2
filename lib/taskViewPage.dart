@@ -88,8 +88,26 @@ class taskViewPageState extends State<taskViewPage>{
                         flex: 315
                     ),
                     new Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                          child: Divider(
+                              color: Colors.black,
+                              thickness: 2
+                          ),
+                        )
+                    ),
+                    new Expanded(
                         child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
                         flex: 315
+                    ),
+                    new Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                          child: Divider(
+                              color: Colors.black,
+                              thickness: 2
+                          ),
+                        )
                     ),
                     new Expanded(
                         child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),

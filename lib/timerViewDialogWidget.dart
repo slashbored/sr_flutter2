@@ -39,6 +39,7 @@ Widget timerViewDialog(BuildContext context)  {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 TabBar(
+                  indicatorColor: Colors.black,
                   tabs: <Widget>[
                     Icon(
                       Icons.accessibility_new,

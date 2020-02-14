@@ -388,13 +388,15 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
     break;
     case 7:
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
             children: <Widget>[
               Spacer(
-                flex: 2,
+                flex: 1,
               ),
               Flexible(
+                flex: 1,
                 child: TextField(
                   controller: comparisonTextController,
                   keyboardType: TextInputType.numberWithOptions(
@@ -407,7 +409,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 )
               ),
               Spacer(
-                flex: 2,
+                flex: 1,
               )
             ]
           ),

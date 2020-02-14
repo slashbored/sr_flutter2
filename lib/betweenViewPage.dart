@@ -27,11 +27,31 @@ class betweenViewPageState extends State<betweenViewPage>{
                   flex: 315
                 ),
                 Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Divider(
+                          color: Colors.black,
+                          thickness: 2
+                      ),
+                    )
+                ),
+                Expanded(
                   flex: 315,
                   child: betweenViewBody(context),
                 ),
+                new Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Divider(
+                          color: Colors.black,
+                          thickness: 2
+                      ),
+                    )
+                ),
                 Expanded(
-                  child: betweenViewButton(context),
+                  child: Center(
+                    child: betweenViewButton(context),
+                  ),
                   flex: 315
                 ),
                 /*Expanded(
