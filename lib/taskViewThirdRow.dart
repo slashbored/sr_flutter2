@@ -476,7 +476,16 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 8:
       return Center(
-        child: customOutlineButton(context, task, false, 'list'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            customOutlineButton(context, task, false, 'list'),
+            Text(
+              S.of(context).list_expl,
+              style: tinyStyle,
+            )
+          ],
+        )
           /*child: FloatingActionButton.extended(
             heroTag:  "fab_listFailed",
             backgroundColor: Colors.red,
@@ -532,7 +541,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),*/
           customOutlineButton(context, task, false, 'FGtimed'),
-          customOutlineButton(context, task, true, 'isActiveTimer'),
+          //customOutlineButton(context, task, true, 'isActiveTimer'),
           /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_startTimer",
               shape: CircleBorder(),
@@ -573,7 +582,12 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       );
     }
     else  {
-      return  Container();
+      return  Center(
+        child: Text(
+          S.of(context).tabooMime_expl,
+          style: tinyStyle,
+        ),
+      );
     }
     break;
     case 11:

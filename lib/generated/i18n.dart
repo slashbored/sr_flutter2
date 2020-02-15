@@ -42,8 +42,9 @@ class S implements WidgetsLocalizations {
   String get languageSelector => "Please select the language:";
   String get listFailedStyle1 => "Dunno";
   String get listNotYouStart => " starts!";
-  String get listThis => "List the following, ";
+  String get listThis => "List the following, go clockwise, ";
   String get listYouStart => "you start!";
+  String get list_expl => "(tap this you're if out of ideas)";
   String get mimeThis => "Pantomime this:";
   String get modeSelector => "Please select the gamemode:";
   String get modeTitle_endless => "Endless";
@@ -67,6 +68,8 @@ class S implements WidgetsLocalizations {
   String get tabooMimeGuessp1 => "What is ";
   String get tabooMimeGuessp2 => " trying to tell us?";
   String get tabooMimeWinStyle1 => "EZ";
+  String get tabooMime_expl => "(first one to guess makes everybody, excluding the actor, drink)";
+  String get tabooMime_failexpl => "(if no one gusses or you just don't wanna, click the beers)";
   String get taboop1 => "Explain \"";
   String get taboop2 => "\" without using the following words:";
   String get timerDoneDialog_title => "You is done!";
@@ -87,6 +90,8 @@ class $de extends S {
   String get pleaseCompleteEntries => "Bitte vervollständige deine Angaben.";
   @override
   String get pleaseEnterValidNumber => "Bitte gib eine korrekte Zahl an.";
+  @override
+  String get tabooMime_expl => "(wer's zuerst errät darf mit dem Akteur alle anderen trinken lassen)";
   @override
   String get sexX => "Divers";
   @override
@@ -164,6 +169,8 @@ class $de extends S {
   @override
   String get wyr_title => "Also ...";
   @override
+  String get tabooMime_failexpl => "(wenns keiner errät oder du keine Lust hast, tippe auf trinken)";
+  @override
   String get or => "oder";
   @override
   String get settings_language => "Sprache:";
@@ -172,13 +179,15 @@ class $de extends S {
   @override
   String get modeTitle_lose => "Punkte loswerden";
   @override
-  String get listThis => "Listet folgendes auf, ";
+  String get listThis => "Listet folgendes auf, geht reihum, ";
   @override
   String get modeTitle_headline => "Bitte wähle eure Spielart aus:";
   @override
   String get hasLeftGame => " hat das Spiel verlassen.";
   @override
   String get createRoom => "Erstelle ein Spiel";
+  @override
+  String get list_expl => "(hier tippen, wenn dir nix mehr einfällt)";
   @override
   String get joinRoom_hintText => "Spielcode";
   @override

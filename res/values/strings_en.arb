@@ -26,7 +26,7 @@
   "taboop2": "\" without using the following words:",
   "tabooMimeWinStyle1": "EZ",
   "tabooMimeFailStyle1": "Nobody knows",
-  "listThis": "List the following, ",
+  "listThis": "List the following, go clockwise, ",
   "compareThis": "Just between you and me (and the others),",
   "yesStyle1": "Ye",
   "noStyle1": "Nope.",
@@ -52,5 +52,8 @@
   "listYouStart": "you start!",
   "listNotYouStart": " starts!",
   "wyr_title": "So ...",
-  "compare_title": "Pull out ... , let's compare!"
+  "compare_title": "Pull out ... , let's compare!",
+  "list_expl": "(tap this you're if out of ideas)",
+  "tabooMime_expl": "(first one to guess makes everybody, excluding the actor, drink)",
+  "tabooMime_failexpl": "(if no one gusses or you just don't wanna, click the beers)"
 }

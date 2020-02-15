@@ -26,7 +26,7 @@
   "taboop2": "\" ohne folgende Wörter zu benutzen:",
   "tabooMimeWinStyle1": "EZ",
   "tabooMimeFailStyle1": "Keiner n Plan",
-  "listThis": "Listet folgendes auf, ",
+  "listThis": "Listet folgendes auf, geht reihum, ",
   "compareThis": "Mal unter uns beiden (und den anderen),",
   "yesStyle1": "Ja",
   "noStyle1": "Nö",
@@ -52,5 +52,8 @@
   "listYouStart": "du fängst an!",
   "listNotYouStart": " fängt an!",
   "wyr_title": "Also ...",
-  "compare_title": "... aufn Tich, jetzt wird verglichen!"
+  "compare_title": "... aufn Tich, jetzt wird verglichen!",
+  "list_expl": "(hier tippen, wenn dir nix mehr einfällt)",
+  "tabooMime_expl": "(wer's zuerst errät darf mit dem Akteur alle anderen trinken lassen)",
+  "tabooMime_failexpl": "(wenns keiner errät oder du keine Lust hast, tippe auf trinken)"
 }
