@@ -96,8 +96,22 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
       }
       break;
     case 7:
+      return Center(
+        child: Text(
+          S.of(context).compare_title,
+          textAlign: TextAlign.center,
+          style: headlineStyle
+        ),
+      );
+      break;
     case 11:
-      return Container();
+    return Center(
+      child: Text(
+        S.of(context).wyr_title,
+        textAlign: TextAlign.center,
+        style: headlineStyle
+      )
+    );
       break;
     case 8:
       return Center(
@@ -112,7 +126,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                   style: headlineStyle
               ),
               TextSpan(
-                text: S.of(context).listYouStart,
+                text: S.of(context).listYouStart
               )
             ]
           )

@@ -70,7 +70,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
           ),
           child: Text(
             "️🤷🏼‍♀️",
-            style: bigStyle,
+            style: bigStyle
           ),
           onPressed: () {
             no();
@@ -109,102 +109,6 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
       );
       break;
   }
-  /*if (type=='isActiveTimer')  {
-    return OutlineButton(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
-      borderSide: BorderSide(
-          width: 3,
-          color: Colors.blue,
-          style: BorderStyle.solid
-      ),
-      child: Text(
-          CustomTimer.activeTimer!=null?
-          CustomTimer.activeTimer.FGTimeLeft:
-          S.of(context).FGTimerGo,
-          style: normalStyle
-      ),
-      onPressed: () async{
-        upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
-        await new Future.delayed(const Duration(milliseconds: 500));
-        Room.renewActiveTimer(context);
-      }
-    );
-  }
-  if (type=='wyr')  {
-    String locale = Localizations.localeOf(context).toString();
-    return OutlineButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-        ),
-        borderSide: BorderSide(
-            width: 3,
-            color: yesOrNo?Colors.green:Colors.red,
-            style: BorderStyle.solid
-        ),
-        child: Text(
-            yesOrNo?Task.getStringByLocale(task, locale, "wyr_a"):
-            Task.getStringByLocale(task, locale, "wyr_b"),
-            style: normalStyle
-        ),
-        onPressed: () {
-          yesOrNo?Player.mePlayer.compareValue = 1:Player.mePlayer.compareValue = 2;
-          upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
-          Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
-        }
-    );
-  }
-  if (type=='list') {
-    return OutlineButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)
-        ),
-        borderSide: BorderSide(
-            width: 3,
-            color: Colors.red,
-            style: BorderStyle.solid
-        ),
-        child: Text(
-            "️🤷🏼‍♀️",
-          style: bigStyle,
-        ),
-        onPressed: () {
-          no();
-        }
-    );
-  }
-  else  {
-    return OutlineButton(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
-      borderSide: BorderSide(
-          width: 3,
-          color: yesOrNo?Colors.green:Colors.red,
-          style: BorderStyle.solid
-      ),
-      child: Text(
-          yesOrNo?S.of(context).yesStyle1:createDrinkText(task),
-          textAlign: TextAlign.center,
-          style: normalStyle
-      ),
-      onPressed: (){
-        switch (type) {
-          case 'normal':
-            yesOrNo?forward():no();
-            break;
-          case 'BGtimed':
-            yesOrNo?startBGTimer():no();
-            break;
-          case 'FGtimed':
-            abortActiveFGTimer();
-            yesOrNo?forward():no();
-            break;
-        }
-      },
-    );
-  }*/
 }
 
 void forward()  {

@@ -28,6 +28,7 @@ class S implements WidgetsLocalizations {
   String get close => "Close";
   String get comingSoon => "Coming soon!™\n( ͡° ͜ʖ ͡°)";
   String get compareThis => "Just between you and me (and the others),";
+  String get compare_title => "Pull out ... , let's compare!";
   String get comparisonDraw => "It's a draw!";
   String get createRoom => "Create a game";
   String get enterName => "Please enter your name and gender:";
@@ -72,6 +73,7 @@ class S implements WidgetsLocalizations {
   String get timerViewDialog_title => "Active timers";
   String get turn => "s turn";
   String get waitingForOthersToInput => "Waiting for the others to input..";
+  String get wyr_title => "So ...";
   String get yesStyle1 => "Ye";
 }
 
@@ -97,6 +99,8 @@ class $de extends S {
   String get noStyle2 => "I mog net";
   @override
   String get noStyle1 => "Nö";
+  @override
+  String get compare_title => "... aufn Tich, jetzt wird verglichen!";
   @override
   String get sexMale => "Männlein";
   @override
@@ -157,6 +161,8 @@ class $de extends S {
   String get timerDoneDialog_title => "Du hast fertig!";
   @override
   String get close => "Schließen";
+  @override
+  String get wyr_title => "Also ...";
   @override
   String get or => "oder";
   @override

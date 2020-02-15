@@ -93,7 +93,7 @@ class taskViewPageState extends State<taskViewPage>{
                           child: Divider(
                               color: Colors.black,
                               thickness: 2
-                          ),
+                          )
                         )
                     ),
                     new Expanded(
@@ -106,17 +106,13 @@ class taskViewPageState extends State<taskViewPage>{
                           child: Divider(
                               color: Colors.black,
                               thickness: 2
-                          ),
+                          )
                         )
                     ),
                     new Expanded(
                         child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
                         flex: 315
-                    ),
-                    /*new Expanded(
-                        child: taskViewFourthRow(context),
-                        flex: 55
-                    )*/
+                    )
                   ]
                 );
               }
@@ -142,7 +138,6 @@ class taskViewPageState extends State<taskViewPage>{
 
   void nextTaskOnThisPage(theContext) async {
     await new Future.delayed(const Duration(milliseconds: 50));
-    //Navigator.push(context, CupertinoPageRoute(builder: (context) => taskViewPage()));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
   }
 

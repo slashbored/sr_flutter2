@@ -32,7 +32,7 @@ class betweenViewPageState extends State<betweenViewPage>{
                       child: Divider(
                           color: Colors.black,
                           thickness: 2
-                      ),
+                      )
                     )
                 ),
                 Expanded(
@@ -45,7 +45,7 @@ class betweenViewPageState extends State<betweenViewPage>{
                       child: Divider(
                           color: Colors.black,
                           thickness: 2
-                      ),
+                      )
                     )
                 ),
                 Expanded(
@@ -53,11 +53,7 @@ class betweenViewPageState extends State<betweenViewPage>{
                     child: betweenViewButton(context),
                   ),
                   flex: 315
-                ),
-                /*Expanded(
-                  child: taskViewFourthRow(context),
-                    flex: 55
-                )*/
+                )
               ]
             );
           }

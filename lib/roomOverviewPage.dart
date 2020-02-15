@@ -4,12 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
-
 import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskViewPage.dart';
-import 'gameModeSelectionPage.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override
@@ -48,8 +46,8 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                   child: Text(
                     Room.activeRoom.id,
                     textAlign: TextAlign.center,
-                    style: bigStyle,
-                  ),
+                    style: bigStyle
+                  )
                 )
               ),
               new Expanded(
@@ -58,7 +56,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                     child: Divider(
                         color: Colors.black,
                         thickness: 2
-                    ),
+                    )
                   )
               ),
               Expanded(
@@ -75,25 +73,39 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                                 style: TextStyle(
                                   fontSize: 18,
                                   color:  currentRoom.playerDB[index].color
-                                ),
+                                )
                               );
                             }
                         )
                       ]
                   )
               ),
-              new Expanded(
+              Expanded(
                   child: Container(
                     margin: EdgeInsets.only(left: 20.0, right: 20.0),
                     child: Divider(
                         color: Colors.black,
                         thickness: 2
-                    ),
+                    )
                   )
               ),
               Expanded(
                 flex: 315,
-                child: startGameFAB(context),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Spacer(
+                      flex: 1
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: startGameFAB(context),
+                    ),
+                    Spacer(
+                      flex: 1
+                    )
+                  ]
+                )
               )
             ]
         )
@@ -115,38 +127,44 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   Widget startGameFAB(BuildContext context)  {
     roomOverviewContext = context;
     if  (currentRoom.gmID==Player.mePlayer.id)  {
-      return FloatingActionButton(
-        heroTag:'fab_continueToCats',
+      return OutlineButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+        ),
+        borderSide: BorderSide(
+            width: 3,
+            color: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
+            style: BorderStyle.solid
+        ),
         child: Icon(
           Icons.arrow_forward_ios,
-          color: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
+          color: Colors.black
         ),
-        backgroundColor: Colors.transparent,
-        onPressed: () {
-          if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
-            upStream.add(json.encode({'type':'randomTask','content':''}));
-            upStream.add(json.encode({'type':'randomPlayers','content':''}));
-            upStream.add(json.encode({'type':'setMode','content':'endless'}));
-            upStream.add(json.encode({'type':'startGame','content':''}));
+          onPressed: () {
+            if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
+              upStream.add(json.encode({'type':'randomTask','content':''}));
+              upStream.add(json.encode({'type':'randomPlayers','content':''}));
+              upStream.add(json.encode({'type':'setMode','content':'endless'}));
+              upStream.add(json.encode({'type':'startGame','content':''}));
+            }
           }
-          //Navigator.of(context).push(CupertinoPageRoute(builder:  (context) =>  modeSelectionPage()));
-        },
-        elevation: 0,
-        highlightElevation: 0,
       );
     }
     else  {
-      return FloatingActionButton(
-        heroTag:'continueToCats_waiting',
-        child: Icon(
-            Icons.hourglass_empty,
-            color: Colors.grey,
+      return OutlineButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
         ),
-        backgroundColor: Colors.transparent,
-        onPressed: () {
-        },
-        elevation: 0,
-        highlightElevation: 0,
+        borderSide: BorderSide(
+            width: 3,
+            color: Colors.grey,
+            style: BorderStyle.solid
+        ),
+          child: Icon(
+            Icons.hourglass_empty,
+            color: Colors.grey
+          ),
+        onPressed: () {},
       );
     }
   }
@@ -155,6 +173,4 @@ class roomOverviewPageState extends State<roomOverviewPage>{
     await new Future.delayed(const Duration(milliseconds: 500));
     Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
   }
-
-
 }

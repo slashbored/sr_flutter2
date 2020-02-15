@@ -48,7 +48,7 @@ class roomSelectionPage extends State<roomSelection>{
                     child: Row(
                       children: <Widget>[
                         Spacer(
-                          flex: 1,
+                          flex: 1
                         ),
                         Expanded(
                           flex: 3,
@@ -58,7 +58,7 @@ class roomSelectionPage extends State<roomSelection>{
                               Text(
                                 S.of(context).createRoom,
                                 textAlign: TextAlign.center,
-                                style: normalStyle,
+                                style: normalStyle
                               ),
                               OutlineButton(
                                 shape: RoundedRectangleBorder(
@@ -78,33 +78,18 @@ class roomSelectionPage extends State<roomSelection>{
                                   Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
                                 }
                               )
-                              /*FloatingActionButton.extended(
-                                heroTag:'fab_createRoom',
-                                label: Icon(
-                                  Icons.add,
-                                  color: Colors.green,
-                                ),
-                                onPressed: () {
-                                  upStream.add(json.encode({'type':'createRoom','content':''}));
-                                  Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                                },
-                                backgroundColor: Colors.transparent,
-                                elevation: 0,
-                                highlightElevation: 0,
-                              )*/
-                            ],
+                            ]
                           )
                         ),
                         Spacer(
-                          flex: 1,
+                          flex: 1
                         )
-                      ],
-                    ),
-                  ),
+                      ]
+                    )
+                  )
                 ),
                 Flexible(
                   flex: 1,
-                  //fit: FlexFit.tight,
                   child: Row(
                     children: <Widget>[
                       Expanded(
@@ -113,8 +98,8 @@ class roomSelectionPage extends State<roomSelection>{
                           child: Divider(
                               color: Colors.black,
                               thickness: 2
-                          ),
-                        ),
+                          )
+                        )
                       ),
                       Text(
                         S.of(context).or,
@@ -126,11 +111,11 @@ class roomSelectionPage extends State<roomSelection>{
                             child: Divider(
                                 color: Colors.black,
                                 thickness: 2
-                            ),
+                            )
                           )
                       )
-                    ],
-                  ),
+                    ]
+                  )
                 ),
                 Flexible(
                   flex: 2,
@@ -140,7 +125,7 @@ class roomSelectionPage extends State<roomSelection>{
                       Row(
                         children: <Widget>[
                           Spacer(
-                            flex: 1,
+                            flex: 1
                           ),
                           Expanded(
                             flex: 3,
@@ -151,7 +136,7 @@ class roomSelectionPage extends State<roomSelection>{
                             )
                           ),
                           Spacer(
-                            flex: 1,
+                            flex: 1
                           )
                         ]
                       ),
@@ -168,13 +153,13 @@ class roomSelectionPage extends State<roomSelection>{
                                     signed: false
                                 ),
                                 decoration: InputDecoration(
-                                  hintText: S.of(context).joinRoom_hintText,
-                                ),
-                              ),
+                                  hintText: S.of(context).joinRoom_hintText
+                                )
+                              )
                             ),
                             Spacer()
-                          ],
-                        ),
+                          ]
+                        )
                       ),
                       Flexible(
                         child: OutlineButton(
@@ -188,7 +173,7 @@ class roomSelectionPage extends State<roomSelection>{
                           ),
                           child: Icon(
                             Icons.arrow_forward_ios,
-                            color: Colors.black,
+                            color: Colors.black
                           ),
                             onPressed: () {
                               if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
@@ -203,31 +188,9 @@ class roomSelectionPage extends State<roomSelection>{
                               }
                             }
                         )
-                        /*FloatingActionButton.extended(
-                            heroTag:'fab_joinRoom',
-                            label:  Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.green,
-                            ),
-                            onPressed: () {
-                              if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
-                                BotToast.showText(
-                                    text: S.of(context).joinRoom_enterNumber,
-                                    duration: Duration(seconds: 5)
-                                );
-                              }
-                              else  {
-                                upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                                joinRoom();
-                              }
-                            },
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            highlightElevation: 0
-                        ),*/
                       )
-                    ],
-                  ),
+                    ]
+                  )
                 )
               ]
             )

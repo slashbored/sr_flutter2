@@ -413,7 +413,38 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               )
             ]
           ),
-          FloatingActionButton.extended(
+          OutlineButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+            ),
+            borderSide: BorderSide(
+                width: 3,
+                color: Colors.green,
+                style: BorderStyle.solid
+            ),
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black,
+            ),
+              onPressed: () {
+                if (comparisonTextController.text==""||comparisonTextController.text==null)  {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                          content: Text(S.of(context).pleaseEnterValidNumber)
+                      )
+                  );
+                }
+                else  {
+                  Player.mePlayer.compareValue=double.parse(comparisonTextController.text);
+                  upStream.add(json.encode({'type':'compareNumber','content':Player.mePlayer.compareValue}));
+                  comparisonTextController.clear();
+                  //Player.mePlayer.compareValue=null;
+                  Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
+                }
+              }
+          )
+          /*FloatingActionButton.extended(
             heroTag: "fab_comparison_submit",
             shape: CircleBorder(),
             label:  Icon(
@@ -439,7 +470,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             backgroundColor: Colors.transparent,
             elevation: 0,
             highlightElevation: 0
-          )
+          )*/
         ]
       );
       break;
