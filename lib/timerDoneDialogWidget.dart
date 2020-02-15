@@ -3,25 +3,59 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'generated/i18n.dart';
 import 'webSocket.dart';
-import 'timerWidget.dart';
-import 'customTimerClass.dart';
-import 'roomClass.dart';
-import 'playerClass.dart';
 import 'taskClass.dart';
-import 'package:quiver/collection.dart';
-import 'package:quiver/collection.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'localizationBloc.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'playerClass.dart';
+import 'customTimerClass.dart';
 
 bool timerDoneDialogOpen;
+bool first;
 BuildContext timerDoneDialogContext;
 String locale = Localizations.localeOf(timerDoneDialogContext).toString();
+String taskString;
+List splitStringList;
+RichText doneText;
+Player otherPlayer;
 
-Widget timerDoneDialog(BuildContext context, Task completedTask)  {
+Widget timerDoneDialog(BuildContext context, Task completedTask, CustomTimer endedTimer)  {
   timerDoneDialogContext  = context;
+  endedTimer.playerID ==  Player.mePlayer.id?first=true:first=false;
+  taskString  = Task.getStringByLocale(completedTask, locale, first?'completeString_active':'completeString_passive');
+  if (endedTimer.secondPlayerID!=null)  {
+    otherPlayer = currentRoom.playerDB.firstWhere((element) => element.id ==  (first?endedTimer.secondPlayerID:endedTimer.playerID));
+    splitStringList = taskString.split("\$placeholder");
+    doneText  =  RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+          style: normalStyle,
+          children: [
+            TextSpan(
+                text: splitStringList[0]
+            ),
+            TextSpan(
+                style: TextStyle(
+                    color: otherPlayer.color,
+                    fontSize: 18
+                ),
+                text: otherPlayer.name
+            ),
+            TextSpan(
+                text: splitStringList[1]
+            )
+
+          ]
+      ),
+    );
+  }
+  else  {
+    doneText  =  RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        style: normalStyle,
+        text: taskString
+      ),
+    );
+  }
+
   return StreamBuilder(
     stream: downStream,
     builder: (context, snapShot)  {
@@ -35,11 +69,7 @@ Widget timerDoneDialog(BuildContext context, Task completedTask)  {
           style: normalStyle
         ),
         children: <Widget>[
-        Text(
-          Task.getStringByLocale(completedTask, locale, 'completeString'),
-          textAlign: TextAlign.center,
-          style: normalStyle
-        ),
+        doneText,
         SimpleDialogOption(
           child: Text(
             "OK",

@@ -77,34 +77,63 @@ class playerEditingState extends State<playerEditing>{
                           },
                         ),
                       ),
-                      Expanded(
+                      Spacer(
                         flex: 1,
-                        child: FloatingActionButton(
-                            onPressed: () {
-                              Player.mePlayer.name = nameTextfieldController.text.toString();
-                              if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
-                                upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
-                                Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
-                              }
-                              else  {
-                                BotToast.showText(
-                                    duration: Duration(seconds: 2),
-                                    text: S.of(context).pleaseCompleteEntries
-                                );
-                              }
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
-                            ),
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            highlightElevation: 0,
-                          ),
                       )
                     ],
                   ),
                 )
+              ),
+              Flexible(
+                child: OutlineButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  borderSide: BorderSide(
+                      width: 3,
+                      color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
+                      style: BorderStyle.solid
+                  ),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.black:Colors.grey,
+                  ),
+                  onPressed: () {
+                    Player.mePlayer.name = nameTextfieldController.text.toString();
+                    if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                      upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
+                    }
+                    else  {
+                      BotToast.showText(
+                          duration: Duration(seconds: 2),
+                          text: S.of(context).pleaseCompleteEntries
+                      );
+                    }
+                  }
+                )
+                /*FloatingActionButton(
+                  onPressed: () {
+                    Player.mePlayer.name = nameTextfieldController.text.toString();
+                    if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                      upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
+                    }
+                    else  {
+                      BotToast.showText(
+                          duration: Duration(seconds: 2),
+                          text: S.of(context).pleaseCompleteEntries
+                      );
+                    }
+                  },
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
+                  ),
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  highlightElevation: 0,
+                ),*/
               ),
               Flexible(
                 fit: FlexFit.tight,

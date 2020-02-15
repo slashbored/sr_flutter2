@@ -40,18 +40,29 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         onWillPop: () =>  null,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Text(
-                  Room.activeRoom.id,
-                  textAlign: TextAlign.center,
-                  style: bigStyle,
+              Expanded(
+                flex: 315,
+                child: Center(
+                  child: Text(
+                    Room.activeRoom.id,
+                    textAlign: TextAlign.center,
+                    style: bigStyle,
+                  ),
                 )
               ),
-              Flexible(
-                  flex: 1,
+              new Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: Divider(
+                        color: Colors.black,
+                        thickness: 2
+                    ),
+                  )
+              ),
+              Expanded(
+                  flex: 315,
                   child:  ListView(
                       children: <Widget>[
                         ListView.builder(
@@ -71,8 +82,17 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                       ]
                   )
               ),
-              Flexible(
-                flex: 1,
+              new Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                    child: Divider(
+                        color: Colors.black,
+                        thickness: 2
+                    ),
+                  )
+              ),
+              Expanded(
+                flex: 315,
                 child: startGameFAB(context),
               )
             ]

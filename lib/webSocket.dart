@@ -90,7 +90,6 @@ void startStreaming() async{
         }
         break;
       case 'timerDone':
-        print("Timer" + packageIn.content +  "done!");
         CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
         if (endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id) {
@@ -98,7 +97,7 @@ void startStreaming() async{
           showDialog(
               context: taskViewPageContext,
               barrierDismissible: false,
-              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask));
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer));
         }
         break;
       case 'isWaiting':

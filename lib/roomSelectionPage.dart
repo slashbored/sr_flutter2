@@ -52,29 +52,52 @@ class roomSelectionPage extends State<roomSelection>{
                         ),
                         Expanded(
                           flex: 3,
-                          child: Text(
-                            S.of(context).createRoom,
-                            textAlign: TextAlign.center,
-                            style: normalStyle,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                S.of(context).createRoom,
+                                textAlign: TextAlign.center,
+                                style: normalStyle,
+                              ),
+                              OutlineButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                borderSide: BorderSide(
+                                    width: 3,
+                                    color: Colors.green,
+                                    style: BorderStyle.solid
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.black,
+                                ),
+                                onPressed: () {
+                                  upStream.add(json.encode({'type':'createRoom','content':''}));
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
+                                }
+                              )
+                              /*FloatingActionButton.extended(
+                                heroTag:'fab_createRoom',
+                                label: Icon(
+                                  Icons.add,
+                                  color: Colors.green,
+                                ),
+                                onPressed: () {
+                                  upStream.add(json.encode({'type':'createRoom','content':''}));
+                                  Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
+                                },
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                highlightElevation: 0,
+                              )*/
+                            ],
                           )
                         ),
-                        Expanded(
+                        Spacer(
                           flex: 1,
-                          child: FloatingActionButton.extended(
-                            heroTag:'fab_createRoom',
-                            label: Icon(
-                              Icons.add,
-                              color: Colors.green,
-                            ),
-                            onPressed: () {
-                              upStream.add(json.encode({'type':'createRoom','content':''}));
-                              Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                            },
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            highlightElevation: 0,
-                          ),
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -127,30 +150,8 @@ class roomSelectionPage extends State<roomSelection>{
                               style: normalStyle
                             )
                           ),
-                          Expanded(
+                          Spacer(
                             flex: 1,
-                            child: FloatingActionButton.extended(
-                              heroTag:'fab_joinRoom',
-                              label:  Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.green,
-                              ),
-                              onPressed: () {
-                                if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
-                                  BotToast.showText(
-                                      text: S.of(context).joinRoom_enterNumber,
-                                      duration: Duration(seconds: 5)
-                                  );
-                                }
-                                else  {
-                                  upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                                  joinRoom();
-                                }
-                              },
-                              backgroundColor: Colors.transparent,
-                              elevation: 0,
-                              highlightElevation: 0
-                            )
                           )
                         ]
                       ),
@@ -174,6 +175,56 @@ class roomSelectionPage extends State<roomSelection>{
                             Spacer()
                           ],
                         ),
+                      ),
+                      Flexible(
+                        child: OutlineButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          borderSide: BorderSide(
+                              width: 3,
+                              color: Colors.blue,
+                              style: BorderStyle.solid
+                          ),
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.black,
+                          ),
+                            onPressed: () {
+                              if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
+                                BotToast.showText(
+                                    text: S.of(context).joinRoom_enterNumber,
+                                    duration: Duration(seconds: 5)
+                                );
+                              }
+                              else  {
+                                upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                                joinRoom();
+                              }
+                            }
+                        )
+                        /*FloatingActionButton.extended(
+                            heroTag:'fab_joinRoom',
+                            label:  Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.green,
+                            ),
+                            onPressed: () {
+                              if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
+                                BotToast.showText(
+                                    text: S.of(context).joinRoom_enterNumber,
+                                    duration: Duration(seconds: 5)
+                                );
+                              }
+                              else  {
+                                upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                                joinRoom();
+                              }
+                            },
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            highlightElevation: 0
+                        ),*/
                       )
                     ],
                   ),
