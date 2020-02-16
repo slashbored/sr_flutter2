@@ -5,6 +5,8 @@ import 'package:sr_flutter2/webSocket.dart';
 import 'generated/i18n.dart';
 import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
+import 'backgroundDecorationWidget.dart';
+import 'fadeTransitionRoute.dart';
 
 
 import 'webSocket.dart';
@@ -34,169 +36,174 @@ class roomSelectionPage extends State<roomSelection>{
   @override
   Widget build(BuildContext context) {
     roomSelectionContext = context;
-    return Scaffold(
-      body: StreamBuilder(
-        stream: downStream,
-        builder: (context, snapShot){
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Flexible(
-                  flex: 2,
-                  child: Center(
-                    child: Row(
-                      children: <Widget>[
-                        Spacer(
-                          flex: 1
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                S.of(context).createRoom,
-                                textAlign: TextAlign.center,
-                                style: normalStyle
-                              ),
-                              OutlineButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
-                                borderSide: BorderSide(
-                                    width: 3,
-                                    color: Colors.green,
-                                    style: BorderStyle.solid
-                                ),
-                                child: Icon(
-                                  Icons.add,
-                                  color: Colors.black,
-                                ),
-                                onPressed: () {
-                                  upStream.add(json.encode({'type':'createRoom','content':''}));
-                                  Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage()));
-                                }
-                              )
-                            ]
-                          )
-                        ),
-                        Spacer(
-                          flex: 1
-                        )
-                      ]
-                    )
-                  )
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: Divider(
-                              color: Colors.black,
-                              thickness: 2
-                          )
-                        )
-                      ),
-                      Text(
-                        S.of(context).or,
-                        style: normalStyle
-                      ),
-                      Expanded(
-                          child: Container(
-                            margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                            child: Divider(
-                                color: Colors.black,
-                                thickness: 2
-                            )
-                          )
-                      )
-                    ]
-                  )
-                ),
-                Flexible(
-                  flex: 2,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Row(
+    return Container(
+      decoration: backGroundDecoration,
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: StreamBuilder(
+              stream: downStream,
+              builder: (context, snapShot){
+                return Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Spacer(
-                            flex: 1
+                          Flexible(
+                              flex: 2,
+                              child: Center(
+                                  child: Row(
+                                      children: <Widget>[
+                                        Spacer(
+                                            flex: 1
+                                        ),
+                                        Expanded(
+                                            flex: 3,
+                                            child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Text(
+                                                      S.of(context).createRoom,
+                                                      textAlign: TextAlign.center,
+                                                      style: normalStyle
+                                                  ),
+                                                  OutlineButton(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(10)
+                                                      ),
+                                                      borderSide: BorderSide(
+                                                          width: 3,
+                                                          color: Colors.green,
+                                                          style: BorderStyle.solid
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.black,
+                                                      ),
+                                                      onPressed: () {
+                                                        upStream.add(json.encode({'type':'createRoom','content':''}));
+                                                        Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+                                                      }
+                                                  )
+                                                ]
+                                            )
+                                        ),
+                                        Spacer(
+                                            flex: 1
+                                        )
+                                      ]
+                                  )
+                              )
                           ),
-                          Expanded(
-                            flex: 3,
-                            child: Text(
-                              S.of(context).joinRoom,
-                              textAlign: TextAlign.center,
-                              style: normalStyle
-                            )
+                          Flexible(
+                              flex: 1,
+                              child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                        child: Container(
+                                            margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                                            child: Divider(
+                                                color: Colors.black,
+                                                thickness: 2
+                                            )
+                                        )
+                                    ),
+                                    Text(
+                                        S.of(context).or,
+                                        style: normalStyle
+                                    ),
+                                    Expanded(
+                                        child: Container(
+                                            margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                                            child: Divider(
+                                                color: Colors.black,
+                                                thickness: 2
+                                            )
+                                        )
+                                    )
+                                  ]
+                              )
                           ),
-                          Spacer(
-                            flex: 1
+                          Flexible(
+                              flex: 2,
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Row(
+                                        children: <Widget>[
+                                          Spacer(
+                                              flex: 1
+                                          ),
+                                          Expanded(
+                                              flex: 3,
+                                              child: Text(
+                                                  S.of(context).joinRoom,
+                                                  textAlign: TextAlign.center,
+                                                  style: normalStyle
+                                              )
+                                          ),
+                                          Spacer(
+                                              flex: 1
+                                          )
+                                        ]
+                                    ),
+                                    Center(
+                                        child: Row(
+                                            children: <Widget>[
+                                              Spacer(),
+                                              Expanded(
+                                                  child: TextField(
+                                                      textAlign: TextAlign.center,
+                                                      controller: joinroomTextfieldController,
+                                                      keyboardType: TextInputType.numberWithOptions(
+                                                          decimal: true,
+                                                          signed: false
+                                                      ),
+                                                      decoration: InputDecoration(
+                                                        hintText: S.of(context).joinRoom_hintText,
+                                                        border: OutlineInputBorder()
+                                                      )
+                                                  )
+                                              ),
+                                              Spacer()
+                                            ]
+                                        )
+                                    ),
+                                    Flexible(
+                                        child: OutlineButton(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10)
+                                            ),
+                                            borderSide: BorderSide(
+                                                width: 3,
+                                                color: Colors.blue,
+                                                style: BorderStyle.solid
+                                            ),
+                                            child: Icon(
+                                                Icons.arrow_forward_ios,
+                                                color: Colors.black
+                                            ),
+                                            onPressed: () {
+                                              if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
+                                                BotToast.showText(
+                                                    text: S.of(context).joinRoom_enterNumber,
+                                                    duration: Duration(seconds: 5)
+                                                );
+                                              }
+                                              else  {
+                                                upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
+                                                joinRoom();
+                                              }
+                                            }
+                                        )
+                                    )
+                                  ]
+                              )
                           )
                         ]
-                      ),
-                      Center(
-                        child: Row(
-                          children: <Widget>[
-                            Spacer(),
-                            Expanded(
-                              child: TextField(
-                                textAlign: TextAlign.center,
-                                controller: joinroomTextfieldController,
-                                keyboardType: TextInputType.numberWithOptions(
-                                    decimal: true,
-                                    signed: false
-                                ),
-                                decoration: InputDecoration(
-                                  hintText: S.of(context).joinRoom_hintText
-                                )
-                              )
-                            ),
-                            Spacer()
-                          ]
-                        )
-                      ),
-                      Flexible(
-                        child: OutlineButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                          borderSide: BorderSide(
-                              width: 3,
-                              color: Colors.blue,
-                              style: BorderStyle.solid
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.black
-                          ),
-                            onPressed: () {
-                              if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
-                                BotToast.showText(
-                                    text: S.of(context).joinRoom_enterNumber,
-                                    duration: Duration(seconds: 5)
-                                );
-                              }
-                              else  {
-                                upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
-                                joinRoom();
-                              }
-                            }
-                        )
-                      )
-                    ]
-                  )
-                )
-              ]
-            )
-          );
-        }
-      )
+                    )
+                );
+              }
+          )
+      ),
     );
   }
 
@@ -206,6 +213,6 @@ class roomSelectionPage extends State<roomSelection>{
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }
-    currentRoom!=null&&i<50?Navigator.push(context, CupertinoPageRoute(builder: (context) => roomOverviewPage())):null;
+    currentRoom!=null&&i<50?Navigator.push(context, fadePageRoute(page: roomOverviewPage())):null;
   }
 }

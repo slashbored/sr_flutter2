@@ -63,7 +63,7 @@ class MyAppState extends State<MyApp>  {
              const Locale("en", "")*/
              ,
              theme: new ThemeData(
-               primaryColor: Colors.black
+               primaryColor: Colors.black,
              ),
              home: new splashScreen()
            )

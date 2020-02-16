@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
 import 'dart:convert';
 import 'webSocket.dart';
+import 'fadeTransitionRoute.dart';
 
 Widget betweenViewButton(BuildContext context)  {
   if  (currentRoom.isWaiting)  {

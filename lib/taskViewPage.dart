@@ -10,6 +10,8 @@ import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'timerViewDialogWidget.dart';
+import 'backgroundDecorationWidget.dart';
+import 'fadeTransitionRoute.dart';
 
 
 class taskViewPage extends StatefulWidget{
@@ -76,47 +78,51 @@ class taskViewPageState extends State<taskViewPage>{
       }
       return WillPopScope(
         onWillPop: () =>  null,
-        child: Scaffold(
-          body: StreamBuilder(
-              stream: downStream,
-              builder:  (context, snapShot) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    new Expanded(
-                        child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                        flex: 315
-                    ),
-                    new Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: Divider(
-                              color: Colors.black,
-                              thickness: 2
+        child: Container(
+          decoration: backGroundDecoration,
+          child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: StreamBuilder(
+                  stream: downStream,
+                  builder:  (context, snapShot) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          new Expanded(
+                              child: taskViewFirstRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                              flex: 315
+                          ),
+                          new Expanded(
+                              child: Container(
+                                  margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                                  child: Divider(
+                                      color: Colors.black,
+                                      thickness: 2
+                                  )
+                              )
+                          ),
+                          new Expanded(
+                              child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                              flex: 315
+                          ),
+                          new Expanded(
+                              child: Container(
+                                  margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                                  child: Divider(
+                                      color: Colors.black,
+                                      thickness: 2
+                                  )
+                              )
+                          ),
+                          new Expanded(
+                              child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
+                              flex: 315
                           )
-                        )
-                    ),
-                    new Expanded(
-                        child: taskViewSecondRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                        flex: 315
-                    ),
-                    new Expanded(
-                        child: Container(
-                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                          child: Divider(
-                              color: Colors.black,
-                              thickness: 2
-                          )
-                        )
-                    ),
-                    new Expanded(
-                        child: taskViewThirdRow(context, currentPlayer, currentSecondPlayer, currentTask),
-                        flex: 315
-                    )
-                  ]
-                );
-              }
-          )
+                        ]
+                    );
+                  }
+              )
+          ),
         )
       );
     }
@@ -138,10 +144,10 @@ class taskViewPageState extends State<taskViewPage>{
 
   void nextTaskOnThisPage(theContext) async {
     await new Future.delayed(const Duration(milliseconds: 50));
-    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+    Navigator.of(theContext).push(fadePageRoute(page: taskViewPage()));
   }
 
   void goHome(theContext) {
-    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => roomSelection()));
+    Navigator.of(theContext).push(fadePageRoute(page: roomSelection()));
   }
 }

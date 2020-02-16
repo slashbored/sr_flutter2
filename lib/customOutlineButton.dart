@@ -9,6 +9,7 @@ import 'customTimerClass.dart';
 import 'taskClass.dart';
 import 'betweenViewPage.dart';
 import 'roomClass.dart';
+import 'fadeTransitionRoute.dart';
 
 Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, String type)  {
   switch  (type)  {
@@ -54,7 +55,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
           onPressed: () {
             yesOrNo?Player.mePlayer.compareValue = 1:Player.mePlayer.compareValue = 2;
             upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
-            Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
+            Navigator.of(context).push(fadePageRoute(page: betweenViewPage()));
           }
       );
       break;

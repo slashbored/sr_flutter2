@@ -14,6 +14,9 @@ import 'customTimerClass.dart';
 import 'betweenViewPage.dart';
 import 'customOutlineButton.dart';
 
+import 'fadeTransitionRoute.dart';
+import 'backgroundDecorationWidget.dart';
+
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
   final TextEditingController comparisonTextController  = new TextEditingController();
@@ -399,6 +402,10 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 flex: 1,
                 child: TextField(
                   controller: comparisonTextController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                    )
+                  ),
                   keyboardType: TextInputType.numberWithOptions(
                     decimal: true,
                     signed: false
@@ -440,7 +447,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'compareNumber','content':Player.mePlayer.compareValue}));
                   comparisonTextController.clear();
                   //Player.mePlayer.compareValue=null;
-                  Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
+                  Navigator.of(context).push(fadePageRoute(page: betweenViewPage()));
                 }
               }
           )

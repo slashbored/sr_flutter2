@@ -1,3 +1,5 @@
+import 'package:sr_flutter2/fadeTransitionRoute.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,8 @@ import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:bot_toast/bot_toast.dart';
-
+import 'backgroundDecorationWidget.dart';
+import 'fadeTransitionRoute.dart';
 import 'webSocket.dart';
 import 'playerClass.dart';
 import 'roomSelectionPage.dart';
@@ -40,78 +43,82 @@ class playerEditingState extends State<playerEditing>{
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Center(
+    return Container(
+      decoration: backGroundDecoration,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        resizeToAvoidBottomInset: false,
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Flexible(
-                child: Text(
-                  S.of(context).enterName,
-                  textAlign: TextAlign.center,
-                  style: bigStyle
-                )
+                  child: Text(
+                      S.of(context).enterName,
+                      textAlign: TextAlign.center,
+                      style: bigStyle
+                  )
               ),
               Flexible(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    children: <Widget>[
-                      Spacer(
-                        flex: 1
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child:  TextField(
-                          style: normalStyle,
-                          autofocus: true,
-                          controller: nameTextfieldController,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder()
-                          ),
-                          onChanged: (value)  {
-                            setState(() {
-                            });
-                          },
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                      children: <Widget>[
+                        Spacer(
+                            flex: 1
                         ),
-                      ),
-                      Spacer(
-                        flex: 1,
-                      )
-                    ],
-                  ),
-                )
+                        Expanded(
+                          flex: 3,
+                          child:  TextField(
+                            style: normalStyle,
+                            autofocus: true,
+                            controller: nameTextfieldController,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                )
+                            ),
+                            onChanged: (value)  {
+                              setState(() {
+                              });
+                            },
+                          ),
+                        ),
+                        Spacer(
+                          flex: 1,
+                        )
+                      ],
+                    ),
+                  )
               ),
               Flexible(
-                child: OutlineButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
-                  ),
-                  borderSide: BorderSide(
-                      width: 3,
-                      color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
-                      style: BorderStyle.solid
-                  ),
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.black:Colors.grey,
-                  ),
-                  onPressed: () {
-                    Player.mePlayer.name = nameTextfieldController.text.toString();
-                    if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
-                      upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
-                    }
-                    else  {
-                      BotToast.showText(
-                          duration: Duration(seconds: 2),
-                          text: S.of(context).pleaseCompleteEntries
-                      );
-                    }
-                  }
-                )
+                  child: OutlineButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      borderSide: BorderSide(
+                          width: 3,
+                          color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
+                          style: BorderStyle.solid
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.black:Colors.grey,
+                      ),
+                      onPressed: () {
+                        Player.mePlayer.name = nameTextfieldController.text.toString();
+                        if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                          upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
+                          Navigator.push(context, fadePageRoute(page: roomSelection()));
+                        }
+                        else  {
+                          BotToast.showText(
+                              duration: Duration(seconds: 2),
+                              text: S.of(context).pleaseCompleteEntries
+                          );
+                        }
+                      }
+                  )
                 /*FloatingActionButton(
                   onPressed: () {
                     Player.mePlayer.name = nameTextfieldController.text.toString();
@@ -138,83 +145,83 @@ class playerEditingState extends State<playerEditing>{
               Flexible(
                 fit: FlexFit.tight,
                 child: Align(
-                  alignment: Alignment.topCenter,
-                  child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Flexible(
-                        fit: FlexFit.tight,
-                        child: Transform.scale(
-                          scale: 0.4,
-                          child: InputChip(
-                            shape: CircleBorder(),
-                            label: Transform.scale(scale: 0.5, child: svg_male),
-                            onPressed: (){
-                              setState(() {
-                                upStream.add(json.encode({'type':'setSex','content':'m'}));
-                                Player.mePlayer.sex = 'm';
-                              });
-                            },
-                            backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
+                    alignment: Alignment.topCenter,
+                    child:  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Transform.scale(
+                            scale: 0.4,
+                            child: InputChip(
+                              shape: CircleBorder(),
+                              label: Transform.scale(scale: 0.5, child: svg_male),
+                              onPressed: (){
+                                setState(() {
+                                  upStream.add(json.encode({'type':'setSex','content':'m'}));
+                                  Player.mePlayer.sex = 'm';
+                                });
+                              },
+                              backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
+                            ),
                           ),
                         ),
-                      ),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        child: Transform.scale(
-                          scale: 0.4,
-                          child: InputChip(
-                            shape: CircleBorder(),
-                            label: Transform.scale(scale: 0.5, child: svg_female),
-                            onPressed: (){
-                              setState(() {
-                                upStream.add(json.encode({'type':'setSex','content':'f'}));
-                                Player.mePlayer.sex = 'f';
-                              });
-                            },
-                            backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Transform.scale(
+                            scale: 0.4,
+                            child: InputChip(
+                              shape: CircleBorder(),
+                              label: Transform.scale(scale: 0.5, child: svg_female),
+                              onPressed: (){
+                                setState(() {
+                                  upStream.add(json.encode({'type':'setSex','content':'f'}));
+                                  Player.mePlayer.sex = 'f';
+                                });
+                              },
+                              backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
+                      ],
+                    )
                 ),
               ),
               Flexible(
-                child: RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10
+                  child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 10
+                        ),
+                        children: [
+                          TextSpan(
+                              text: "Icons used are made by "
+                          ),
+                          TextSpan(
+                              text: "Freepik",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: new TapGestureRecognizer()..onTap=  () {
+                                launch('https://www.flaticon.com/authors/freepik');
+                              }
+                          ),
+                          TextSpan(
+                              text: " from "
+                          ),
+                          TextSpan(
+                              text: "www.flaticon.com",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline
+                              ),
+                              recognizer: new TapGestureRecognizer()..onTap=  () {
+                                launch('https://www.flaticon.com');
+                              }
+                          )
+                        ]
                     ),
-                    children: [
-                      TextSpan(
-                        text: "Icons used are made by "
-                      ),
-                      TextSpan(
-                        text: "Freepik",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                        ),
-                        recognizer: new TapGestureRecognizer()..onTap=  () {
-                          launch('https://www.flaticon.com/authors/freepik');
-                        }
-                      ),
-                      TextSpan(
-                        text: " from "
-                      ),
-                      TextSpan(
-                        text: "www.flaticon.com",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline
-                        ),
-                          recognizer: new TapGestureRecognizer()..onTap=  () {
-                            launch('https://www.flaticon.com');
-                          }
-                      )
-                    ]
-                  ),
-                )
+                  )
                 /*child: Text(
                   "Icons used are made by Freepik from www.flaticon.com",
                   style: TextStyle(
@@ -226,7 +233,8 @@ class playerEditingState extends State<playerEditing>{
             ],
           ),
 
-      ),
+        ),
+      )
     );
   }
 

@@ -8,6 +8,8 @@ import 'webSocket.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'taskViewPage.dart';
+import 'backgroundDecorationWidget.dart';
+import 'fadeTransitionRoute.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override
@@ -18,12 +20,16 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   @override
   Widget build(BuildContext context)  {
-    return Scaffold(
-      body: StreamBuilder(
-        stream: downStream,
-        builder: (context, snapShot)  {
-          return playerListView(context);
-        },
+    return Container(
+      decoration: backGroundDecoration,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: StreamBuilder(
+          stream: downStream,
+          builder: (context, snapShot)  {
+            return playerListView(context);
+          },
+        ),
       ),
     );
   }
@@ -171,6 +177,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   void goToTaskViewPage(theContext) async {
     await new Future.delayed(const Duration(milliseconds: 500));
-    Navigator.of(theContext).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
+    Navigator.of(theContext).push(fadePageRoute(page: taskViewPage()));
   }
 }

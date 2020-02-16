@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'menuDialogWidget.dart';
+import 'backgroundDecorationWidget.dart';
+import 'fadeTransitionRoute.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -26,13 +28,17 @@ class splashScreenState extends State<splashScreen>{
     WidgetsBinding.instance.addPostFrameCallback((_) => _insertOverlay(context));
     return new BlocProvider(
       builder: (BuildContext) =>  localizationBloc,
-      child: Scaffold(
-        body: Center(
-          child: new Text('💩',
-            style: TextStyle(
-              fontSize: 72
-            ),
-            textAlign: TextAlign.center,
+      child: Container(
+        decoration: backGroundDecoration,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Center(
+              child: new Text('💩',
+                style: TextStyle(
+                    fontSize: 72
+                ),
+                textAlign: TextAlign.center,
+              )
           )
         )
       )
@@ -78,6 +84,6 @@ class splashScreenState extends State<splashScreen>{
 
   pushToNetworkOrLanguageSelection(context) async{
     await Future.delayed(const Duration(seconds: 1  ), (){});
-    Navigator.push(context, CupertinoPageRoute(builder: (context) => networkModeSelectionPage()));
+    Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
   }
 }
