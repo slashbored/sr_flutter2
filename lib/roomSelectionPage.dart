@@ -8,9 +8,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 
-
 import 'webSocket.dart';
-import 'roomClass.dart';
 import 'roomOverviewPage.dart';
 
 class roomSelection extends StatefulWidget{
@@ -76,7 +74,7 @@ class roomSelectionPage extends State<roomSelection>{
                                                       ),
                                                       child: Icon(
                                                         Icons.add,
-                                                        color: Colors.black,
+                                                        color: Colors.black
                                                       ),
                                                       onPressed: () {
                                                         upStream.add(json.encode({'type':'createRoom','content':''}));
@@ -203,7 +201,7 @@ class roomSelectionPage extends State<roomSelection>{
                 );
               }
           )
-      ),
+      )
     );
   }
 

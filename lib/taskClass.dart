@@ -94,7 +94,7 @@ class Task{
   }
 
   static String getStringByLocale(Task task, String locale, String stringType)  {
-    if  (locale=="en_") {
+    if  (locale=="en_"||locale=="en") {
       switch  (stringType)  {
         case("n_active"):
           return task.nString_en_active;

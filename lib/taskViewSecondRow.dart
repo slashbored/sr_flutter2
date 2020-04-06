@@ -1,3 +1,5 @@
+import 'package:sr_flutter2/customOutlineButton.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,7 +71,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                 style: normalStyle,
                 children: <TextSpan>[
                   TextSpan(
-                    text: splitStringList[0]
+                    text: splitStringList[0],
+                    style: normalStyle
                   ),
                   TextSpan(
                       style: TextStyle(
@@ -79,7 +82,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                       text: secondPlayer.name
                   ),
                   TextSpan(
-                      text: splitStringList[1]
+                    text: splitStringList[1],
+                    style: normalStyle
                   )
                 ]
             )
@@ -94,7 +98,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                 style: normalStyle,
                 children: <TextSpan>[
                   TextSpan(
-                      text: splitStringList[0]
+                    text: splitStringList[0],
+                    style: normalStyle
                   ),
                   TextSpan(
                       style: TextStyle(
@@ -104,7 +109,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                       text: firstPlayer.name
                   ),
                   TextSpan(
-                      text: splitStringList[1]
+                    text: splitStringList[1],
+                    style: normalStyle
                   )
                 ]
             )
@@ -126,7 +132,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                    text: firstPlayer.name
                  ),
                   TextSpan(
-                    text: splitStringList[0]
+                    text: splitStringList[0],
+                    style: normalStyle
                   ),
                   TextSpan(
                     style: TextStyle(
@@ -136,7 +143,8 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                     text: secondPlayer.name
                   ),
                   TextSpan(
-                    text: splitStringList[1]
+                    text: splitStringList[1],
+                    style: normalStyle
                   )
                 ]
             )

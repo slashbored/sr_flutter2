@@ -69,7 +69,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                     child: RichText(
                       text: TextSpan(
                           style: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.black,
                               fontSize: 10
                           ),
                           children: [

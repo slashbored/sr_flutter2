@@ -1,19 +1,16 @@
-import 'package:sr_flutter2/fadeTransitionRoute.dart';
-
-import 'textStyles.dart';
+import 'dart:convert';
+import 'generated/i18n.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'generated/i18n.dart';
-import 'package:flutter/cupertino.dart';
-import 'dart:convert';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:bot_toast/bot_toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
-import 'webSocket.dart';
 import 'playerClass.dart';
 import 'roomSelectionPage.dart';
+import 'textStyles.dart';
+import 'webSocket.dart';
 
 class playerEditing extends StatefulWidget  {
   @override
@@ -30,7 +27,6 @@ class playerEditingState extends State<playerEditing>{
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     nameTextfieldController.dispose();
     super.dispose();
   }
@@ -191,7 +187,7 @@ class playerEditingState extends State<playerEditing>{
                   child: RichText(
                     text: TextSpan(
                         style: TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 10
                         ),
                         children: [

@@ -76,6 +76,7 @@ class S implements WidgetsLocalizations {
   String get timerViewDialog_title => "Active timers";
   String get turn => "s turn";
   String get waitingForOthersToInput => "Waiting for the others to input..";
+  String get welcome => "Shitroulette!\n(Quarrrrraantine Edition)";
   String get wyr_title => "So ...";
   String get yesStyle1 => "Ye";
 }
@@ -110,6 +111,8 @@ class $de extends S {
   String get sexMale => "Männlein";
   @override
   String get comparisonDraw => "Unentschieden!";
+  @override
+  String get welcome => "Shitroulette!\n(Quarantää Edition)";
   @override
   String get FGTimerGo => "Los!";
   @override

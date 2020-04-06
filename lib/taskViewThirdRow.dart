@@ -15,12 +15,11 @@ import 'betweenViewPage.dart';
 import 'customOutlineButton.dart';
 
 import 'fadeTransitionRoute.dart';
-import 'backgroundDecorationWidget.dart';
 
 Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
 
   final TextEditingController comparisonTextController  = new TextEditingController();
-  String locale;
+  //String locale;
 
   if  (CustomTimer.activeTimer!=null) {
     CustomTimer.activeTimer.FGTimeLeft  = S.of(taskViewPageContext).FGTimerGo;
@@ -62,7 +61,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
               ),*/
             customOutlineButton(context, task, false, 'normal'),
-            customOutlineButton(context, task, true, 'normal'),
+            customOutlineButton(context, task, true, 'normal')
             /*FloatingActionButton.extended(
                 heroTag:  "fab_normal_accepted",
                 backgroundColor: Colors.green,
@@ -314,7 +313,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   startBGTimer(context);
                 }
             ),*/
-            customOutlineButton(context, task, true, 'FGtimed'),
+            customOutlineButton(context, task, true, 'FGtimed')
             /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_accepted",
                 backgroundColor: Colors.green,
@@ -365,7 +364,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               }
           ),*/
           customOutlineButton(context, task, false, 'BGtimed'),
-          customOutlineButton(context, task, true, 'BGtimed'),
+          customOutlineButton(context, task, true, 'BGtimed')
           /*FloatingActionButton.extended(
               heroTag:  "fab_choiceBGTime_accepted",
               backgroundColor: Colors.green,
@@ -396,7 +395,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           Row(
             children: <Widget>[
               Spacer(
-                flex: 1,
+                flex: 1
               ),
               Flexible(
                 flex: 1,
@@ -416,7 +415,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 )
               ),
               Spacer(
-                flex: 1,
+                flex: 1
               )
             ]
           ),
@@ -489,9 +488,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             customOutlineButton(context, task, false, 'list'),
             Text(
               S.of(context).list_expl,
-              style: tinyStyle,
+              style: tinyStyle
             )
-          ],
+          ]
         )
           /*child: FloatingActionButton.extended(
             heroTag:  "fab_listFailed",
@@ -563,7 +562,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 Room.renewActiveTimer(context);
               }
           ),*/
-          customOutlineButton(context, task, true, 'FGtimed'),
+          customOutlineButton(context, task, true, 'FGtimed')
           /*FloatingActionButton.extended(
               heroTag:  "fab_tabooMime_accepted",
               backgroundColor: Colors.green,
@@ -592,13 +591,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return  Center(
         child: Text(
           S.of(context).tabooMime_expl,
-          style: tinyStyle,
-        ),
+          style: tinyStyle
+        )
       );
     }
     break;
     case 11:
-      locale = Localizations.localeOf(context).toString();
+      //locale = Localizations.localeOf(context).toString();
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -654,7 +653,7 @@ Text createDrinkText(Task task) {
   drinkAmountString.trim();
   return Text(
     drinkAmountString,
-    style: normalStyleWhite,
+    style: normalStyleWhite
   );
 }
 

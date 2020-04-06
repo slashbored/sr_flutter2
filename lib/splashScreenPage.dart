@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sr_flutter2/networkModeSelectionPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,8 @@ import 'localizationBloc.dart';
 import 'menuDialogWidget.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
+import 'generated/i18n.dart';
+import 'textStyles.dart';
 
 class splashScreen extends StatefulWidget{
   @override
@@ -33,11 +36,25 @@ class splashScreenState extends State<splashScreen>{
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Center(
-              child: new Text('💩',
-                style: TextStyle(
-                    fontSize: 72
-                ),
-                textAlign: TextAlign.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Spacer(),
+                  Text(
+                    S.of(context).welcome,
+                    style: headlineStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                  Transform.scale(
+                    scale: 0.4,
+                    child: Image(
+                      image: AssetImage(
+                        'assets/coronapoop.png'
+                      )
+                    )
+                  ),
+                  Spacer()
+                ]
               )
           )
         )
@@ -83,7 +100,7 @@ class splashScreenState extends State<splashScreen>{
   }
 
   pushToNetworkOrLanguageSelection(context) async{
-    await Future.delayed(const Duration(seconds: 1  ), (){});
+    await Future.delayed(const Duration(seconds: 5), (){});
     Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
   }
 }
