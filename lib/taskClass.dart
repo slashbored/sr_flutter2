@@ -202,7 +202,7 @@ class Task{
   }
 
   static List getListByLocale(Task task, String locale)  {
-    if  (locale=="en_")  {
+    if  (locale=="en_"||locale=="en")  {
       return task.bannedWords_en;
     }
     else  {

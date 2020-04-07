@@ -84,39 +84,44 @@ Widget timerViewDialog(BuildContext context)  {
                             );
                           }
                       ),
-                      ListView.builder( //multiPlayerView
-                          //physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: sortedMultiPlayerMultimap().keys.length,
-                          itemBuilder: (context, int outterIndex) {
-                            return Column(
-                              children: <Widget>[
-                                Text(
-                                  currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(0, ((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt())).name +
-                                  " & " +
-                                  currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt(), (sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length))).name +
-                                    ":",
-                                  style: smallStyle,
-                                  textAlign: TextAlign.center,
-                                ),
-                                FractionallySizedBox(
-                                  widthFactor: 0.75,
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].length,
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      //itemCount: listForMultiPlayer(sortedMultiPlayerMultimap().keys.elementAt(outterIndex)).length,
-                                      itemBuilder: (context, int innerIndex)  {
-                                        return timerWidget(context, sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].elementAt(innerIndex));
-                                      }),
-                                ),
-                                Container(
-                                  height: 10,
-                                )
-                              ]
-                            );
-                          }
+                      Text(
+                        "Social Distancing!",
+                        style: bigStyle,
+                        textAlign: TextAlign.center,
                       )
+                      /*ListView.builder( //multiPlayerView
+                        //physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: sortedMultiPlayerMultimap().keys.length,
+                        itemBuilder: (context, int outterIndex) {
+                          return Column(
+                            children: <Widget>[
+                              Text(
+                                currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(0, ((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt())).name +
+                                " & " +
+                                currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt(), (sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length))).name +
+                                  ":",
+                                style: smallStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                              FractionallySizedBox(
+                                widthFactor: 0.75,
+                                child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].length,
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    //itemCount: listForMultiPlayer(sortedMultiPlayerMultimap().keys.elementAt(outterIndex)).length,
+                                    itemBuilder: (context, int innerIndex)  {
+                                      return timerWidget(context, sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].elementAt(innerIndex));
+                                    }),
+                              ),
+                              Container(
+                                height: 10,
+                              )
+                            ]
+                          );
+                        }
+                      )*/
                     ]
                   )
                 )

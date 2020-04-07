@@ -43,7 +43,7 @@ class splashScreenState extends State<splashScreen>{
                   Text(
                     S.of(context).welcome,
                     style: headlineStyle,
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.center
                   ),
                   Transform.scale(
                     scale: 0.4,
@@ -89,7 +89,7 @@ class splashScreenState extends State<splashScreen>{
                       );
                     }
                   },
-                  child: Icon(Icons.settings),
+                  child: Icon(Icons.settings)
                 )
               )
             )

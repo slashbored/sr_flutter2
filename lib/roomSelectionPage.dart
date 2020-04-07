@@ -77,8 +77,7 @@ class roomSelectionPage extends State<roomSelection>{
                                                         color: Colors.black
                                                       ),
                                                       onPressed: () {
-                                                        upStream.add(json.encode({'type':'createRoom','content':''}));
-                                                        Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+                                                        createRoom();
                                                       }
                                                   )
                                                 ]
@@ -204,6 +203,12 @@ class roomSelectionPage extends State<roomSelection>{
       )
     );
   }
+
+void createRoom() async{
+  upStream.add(json.encode({'type':'createRoom','content':''}));
+  await new Future.delayed(const Duration(milliseconds: 500));
+  Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+}
 
   void joinRoom() async{
     int i = 0;

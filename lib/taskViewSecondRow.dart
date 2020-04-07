@@ -14,14 +14,14 @@ List bannedWords;
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   locale = Localizations.localeOf(context).toString();
-  if (task.typeID == 1 || task.typeID == 2 || task.typeID == 3) {
+  if (task.typeID==1||task.typeID==2||task.typeID==3) {
     if (firstPlayer.id==Player.mePlayer.id) {
       return Center(
         child: Text(
           Task.getStringByLocale(task, locale, "n_active"),
           textAlign: TextAlign.center,
-          style: normalStyle,
-        ),
+          style: normalStyle
+        )
       );
     }
     else {
@@ -29,30 +29,21 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
         child: Text(
           Task.getStringByLocale(task, locale, "n_spectate"),
           textAlign: TextAlign.center,
-          style: normalStyle,
-        ),
+          style: normalStyle
+        )
       );
     }
   }
-  if (task.typeID == 7 || task.typeID == 8 || task.typeID == 11)  {
+  if (task.typeID==7||task.typeID==8||task.typeID==11)  {
     return Center(
       child: Text(
         Task.getStringByLocale(task, locale, "n_active"),
         textAlign: TextAlign.center,
-        style: normalStyle,
-      ),
+        style: normalStyle
+      )
     );
   }
-  if (task.typeID == 7) {
-    return Center(
-      child: Text(
-        Task.getStringByLocale(task, locale, "n_active"),
-        textAlign: TextAlign.center,
-        style: normalStyle,
-      ),
-    );
-  }
-  if (task.typeID == 4 || task.typeID == 5 || task.typeID == 6) {
+  if (task.typeID==4||task.typeID==5||task.typeID==6) {
     if (firstPlayer.id==Player.mePlayer.id) {
       splitStringList = Task.getStringByLocale(task, locale, "a_active").split("\$placeholder");
     }
@@ -152,7 +143,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
   }
-  if (task.typeID == 9) {
+  if (task.typeID==9) {
     if (firstPlayer.id == Player.mePlayer.id) {
       return Center(
         child: Text(
@@ -172,7 +163,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
         );
     }
   }
-  if (task.typeID == 10) {
+  if (task.typeID==10) {
     if (firstPlayer.id == Player.mePlayer.id) {
       bannedWords = Task.getListByLocale(task, locale);
       return Center(
