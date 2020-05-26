@@ -16,6 +16,7 @@ import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
+import 'drawing.dart';
 
 class networkModeSelectionPage extends StatefulWidget{
   @override
@@ -65,6 +66,14 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                 ),
+                /*new FloatingActionButton.extended(
+                  label: Text(
+                    "Draw"
+                  ),
+                  onPressed: (){
+                    Navigator.push(context, fadePageRoute(page: Draw()));
+                  }
+                ),*/
                 new Flexible(
                     child: RichText(
                       text: TextSpan(

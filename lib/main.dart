@@ -1,8 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:sr_flutter2/languageSelectionPage.dart';
-import 'package:sr_flutter2/playerEditingPage.dart';
+import 'package:flutter/services.dart';
 import 'package:sr_flutter2/splashScreenPage.dart';
 import 'generated/i18n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +36,8 @@ class MyAppState extends State<MyApp>  {
   void initState()  {
     super.initState();
     initLocale(localizationBloc);
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
   }
 
   Widget build(BuildContext context) {

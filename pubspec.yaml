@@ -21,6 +21,7 @@ dependencies:
   web_socket_channel: ^1.0.15
   percent_indicator: ^2.1.1+1
   bot_toast: ^2.2.1
+  flutter_colorpicker: ^0.3.4
   url_launcher: ^5.4.1
   flutter_svg: ^0.17.1
   bloc: ^0.15.0
