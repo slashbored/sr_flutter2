@@ -58,5 +58,7 @@
   "tabooMime_expl": "(first one to guess makes everybody, excluding the actor, drink)",
   "tabooMime_failexpl": "(if no one gusses or you just don't wanna, click the beers)",
   "nounhis": "his",
-  "nounher": "her"
+  "nounher": "her",
+  "nounhe": "he",
+  "nounshe": "she"
 }

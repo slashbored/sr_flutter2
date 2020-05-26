@@ -2,7 +2,7 @@ import 'webSocket.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 import 'customTimerClass.dart';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'package:quiver/collection.dart';
 
 class Room  {

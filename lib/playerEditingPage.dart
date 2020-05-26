@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

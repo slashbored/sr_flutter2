@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:async/async.dart';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package.dart';

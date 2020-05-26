@@ -2,7 +2,7 @@ import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/webSocket.dart';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
 import 'backgroundDecorationWidget.dart';

@@ -7,14 +7,17 @@ import 'package:flutter/cupertino.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
+import 'generated/l10n.dart';
+
 String locale;
 String splitString;
 List splitStringList;
 List bannedWords;
+String nounstring;
 
 Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player secondPlayer, Task task) {
   locale = Localizations.localeOf(context).toString();
-  if (task.typeID==1||task.typeID==2||task.typeID==3) {
+  if (task.typeID==1||task.typeID==2||task.typeID==3) { //normal /-timed /-background
     if (firstPlayer.id==Player.mePlayer.id) {
       return Center(
         child: Text(
@@ -25,9 +28,18 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
     else {
+      if (Task.getStringByLocale(task, locale, "n_spectate").contains("\$nounone")) {
+        nounstring = Task.getStringByLocale(task, locale, "n_spectate").replaceAll("\$nounone", firstPlayer.sex=='m'?S.of(context).nounhe:S.of(context).nounshe);
+      }
+      else if (Task.getStringByLocale(task, locale, "n_spectate").contains("\$nountwo")) {
+        nounstring = Task.getStringByLocale(task, locale, "n_spectate").replaceAll("\$nountwo", firstPlayer.sex=='m'?S.of(context).nounhis:S.of(context).nounher);
+      }
+      else  {
+        nounstring=null;
+      }
       return Center(
         child: Text(
-          Task.getStringByLocale(task, locale, "n_spectate"),
+          nounstring!=null?nounstring:Task.getStringByLocale(task, locale, "n_spectate"),
           textAlign: TextAlign.center,
           style: normalStyle
         )
@@ -43,7 +55,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       )
     );
   }
-  if (task.typeID==4||task.typeID==5||task.typeID==6) {
+  if (task.typeID==4||task.typeID==5||task.typeID==6) { //choice /-timed /-background
     if (firstPlayer.id==Player.mePlayer.id) {
       splitStringList = Task.getStringByLocale(task, locale, "a_active").split("\$placeholder");
     }
@@ -143,7 +155,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
   }
-  if (task.typeID==9) {
+  if (task.typeID==9) { // pantomime
     if (firstPlayer.id == Player.mePlayer.id) {
       return Center(
         child: Text(
@@ -163,7 +175,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
         );
     }
   }
-  if (task.typeID==10) {
+  if (task.typeID==10) { // taboo
     if (firstPlayer.id == Player.mePlayer.id) {
       bannedWords = Task.getListByLocale(task, locale);
       return Center(

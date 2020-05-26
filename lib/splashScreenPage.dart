@@ -7,7 +7,7 @@ import 'localizationBloc.dart';
 import 'menuDialogWidget.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
-import 'generated/i18n.dart';
+import 'generated/l10n.dart';
 import 'textStyles.dart';
 
 class splashScreen extends StatefulWidget{
