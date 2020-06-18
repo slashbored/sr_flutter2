@@ -8,7 +8,6 @@ import 'customTimerClass.dart';
 import 'roomClass.dart';
 import 'playerClass.dart';
 import 'package:quiver/collection.dart';
-import 'package:quiver/collection.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,12 +83,7 @@ Widget timerViewDialog(BuildContext context)  {
                             );
                           }
                       ),
-                      Text(
-                        "Social Distancing!",
-                        style: bigStyle,
-                        textAlign: TextAlign.center,
-                      )
-                      /*ListView.builder( //multiPlayerView
+                      ListView.builder( //multiPlayerView
                         //physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: sortedMultiPlayerMultimap().keys.length,
@@ -121,7 +115,7 @@ Widget timerViewDialog(BuildContext context)  {
                             ]
                           );
                         }
-                      )*/
+                      )
                     ]
                   )
                 )
