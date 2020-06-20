@@ -96,7 +96,7 @@ Widget timerViewDialog(BuildContext context)  {
                                 currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt(), (sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length))).name +
                                   ":",
                                 style: smallStyle,
-                                textAlign: TextAlign.center,
+                                textAlign: TextAlign.center
                               ),
                               FractionallySizedBox(
                                 widthFactor: 0.75,
@@ -110,7 +110,7 @@ Widget timerViewDialog(BuildContext context)  {
                                     }),
                               ),
                               Container(
-                                height: 10,
+                                height: 10
                               )
                             ]
                           );

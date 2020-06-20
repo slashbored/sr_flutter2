@@ -139,7 +139,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         ),
         borderSide: BorderSide(
             width: 3,
-            color: currentRoom!=null&&currentRoom.playerDB.length>1?Colors.green:Colors.grey,
+            color: currentRoom!=null&&currentRoom.playerDB.length>2?Colors.green:Colors.grey,
             style: BorderStyle.solid
         ),
         child: Icon(
