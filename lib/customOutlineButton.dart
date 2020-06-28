@@ -113,8 +113,8 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
 }
 
 void forward()  {
-  upStream.add(json.encode({'type':'randomTask','content':''}));
-  upStream.add(json.encode({'type':'randomPlayers','content':''}));
+  /*upStream.add(json.encode({'type':'randomTask','content':''}));
+  upStream.add(json.encode({'type':'randomPlayers','content':''}));*/
   upStream.add(json.encode({'type':'nextTask','content':''}));
 }
 
