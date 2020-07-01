@@ -82,7 +82,7 @@ Widget timerDoneDialog(BuildContext context, Task completedTask, CustomTimer end
           },
         )
         ]
-      );
+      ) ;
     }
   );
 }

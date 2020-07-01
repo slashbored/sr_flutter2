@@ -18,8 +18,10 @@ import 'playerClass.dart';
 import 'taskClass.dart';
 import 'customTimerClass.dart';
 
+import 'playerEditingPage.dart';
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
+import 'rejoinDialogWidget.dart';
 import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
 
@@ -30,6 +32,7 @@ Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
 Package packageIn;
+BuildContext playerEditingContext;
 BuildContext roomSelectionContext;
 BuildContext roomOverviewContext;
 BuildContext taskViewPageContext;
@@ -78,8 +81,12 @@ void startStreaming() async{
             break;
         }
         break;
-      case 'rejoin':
-
+      case 'rejoinYesNo':
+        showDialog(
+          barrierDismissible: false,
+          context: playerEditingContext,
+          builder: (BuildContext) =>  rejoinDialog(playerEditingContext, packageIn.content.toString())
+        );
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));

@@ -11,6 +11,7 @@ import 'playerClass.dart';
 import 'roomSelectionPage.dart';
 import 'textStyles.dart';
 import 'webSocket.dart';
+import 'rejoinDialogWidget.dart';
 
 class playerEditing extends StatefulWidget  {
   @override
@@ -39,6 +40,7 @@ class playerEditingState extends State<playerEditing>{
 
   @override
   Widget build(BuildContext context){
+    playerEditingContext  = context;
     return Container(
       decoration: backGroundDecoration,
       child: Scaffold(
