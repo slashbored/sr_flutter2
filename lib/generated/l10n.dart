@@ -652,6 +652,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Rejoin?`
+  String get rejoin {
+    return Intl.message(
+      'Rejoin?',
+      name: 'rejoin',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

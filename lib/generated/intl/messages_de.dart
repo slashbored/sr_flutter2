@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ownTurn" : MessageLookupByLibrary.simpleMessage("Du bist am Zug!"),
     "pleaseCompleteEntries" : MessageLookupByLibrary.simpleMessage("Bitte vervollständige deine Angaben."),
     "pleaseEnterValidNumber" : MessageLookupByLibrary.simpleMessage("Bitte gib eine korrekte Zahl an."),
+    "rejoin" : MessageLookupByLibrary.simpleMessage("Wieder rein?"),
     "settings_headline" : MessageLookupByLibrary.simpleMessage("Einstellungen"),
     "settings_language" : MessageLookupByLibrary.simpleMessage("Sprache:"),
     "sexFemale" : MessageLookupByLibrary.simpleMessage("Weiblein"),

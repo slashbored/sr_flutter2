@@ -62,10 +62,6 @@ void startStreaming() async{
         prefs.setString('uuid', packageIn.content.toString());
         Player.mePlayer.id  = prefs.getString('uuid');
         break;
-      case 'room':
-        Room.activeRoom = Room(Map.from(packageIn.content));
-        currentRoom = Room.activeRoom;
-        break;
       case 'error':
         switch (packageIn.content)  {
           case 'roomAlreadyRunning':
@@ -81,6 +77,13 @@ void startStreaming() async{
             );
             break;
         }
+        break;
+      case 'rejoin':
+
+        break;
+      case 'room':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
         break;
       case  'timerUpdate':
         currentRoom.BGTimerDB.clear();
