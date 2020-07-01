@@ -204,7 +204,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                     text: S.of(context).taboop1
                 ),
                 TextSpan(
-                    text: Localizations.localeOf(context).toString()=="en_"?task.nString_en_active:task.nString_de_active
+                    text: Localizations.localeOf(context).toString()=="en_"||Localizations.localeOf(context).toString()=="en"?task.nString_en_active:task.nString_de_active
                 ),
                 TextSpan(
                     text: S.of(context).taboop2

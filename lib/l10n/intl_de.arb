@@ -57,8 +57,8 @@
   "list_expl": "(hier tippen, wenn dir nix mehr einfällt)",
   "tabooMime_expl": "(wer's zuerst errät darf mit dem Akteur alle anderen trinken lassen)",
   "tabooMime_failexpl": "(wenns keiner errät oder du keine Lust hast, tippe auf trinken)",
-  "nounhis": "ihre",
-  "nounher": "seine",
+  "nounhis": "seine",
+  "nounher": "ihre",
   "nounhe": "er",
   "nounshe": "sie"
 }

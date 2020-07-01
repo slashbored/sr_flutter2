@@ -8,8 +8,12 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
   S();
+  
+  static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
@@ -19,7 +23,9 @@ class S {
     final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      S.current = S();
+      
+      return S.current;
     });
   } 
 
@@ -27,6 +33,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Shitroulette!\n(Quarrrrraantine Edition)`
   String get welcome {
     return Intl.message(
       'Shitroulette!\n(Quarrrrraantine Edition)',
@@ -36,6 +43,7 @@ class S {
     );
   }
 
+  /// `Please select the language:`
   String get languageSelector {
     return Intl.message(
       'Please select the language:',
@@ -45,6 +53,7 @@ class S {
     );
   }
 
+  /// `or`
   String get or {
     return Intl.message(
       'or',
@@ -54,6 +63,7 @@ class S {
     );
   }
 
+  /// `Please select the gamemode:`
   String get modeSelector {
     return Intl.message(
       'Please select the gamemode:',
@@ -63,6 +73,7 @@ class S {
     );
   }
 
+  /// `Please enter your name and gender:`
   String get enterName {
     return Intl.message(
       'Please enter your name and gender:',
@@ -72,6 +83,7 @@ class S {
     );
   }
 
+  /// `Please complete your entries.`
   String get pleaseCompleteEntries {
     return Intl.message(
       'Please complete your entries.',
@@ -81,6 +93,7 @@ class S {
     );
   }
 
+  /// `Create a game`
   String get createRoom {
     return Intl.message(
       'Create a game',
@@ -90,6 +103,7 @@ class S {
     );
   }
 
+  /// `Join a game`
   String get joinRoom {
     return Intl.message(
       'Join a game',
@@ -99,6 +113,7 @@ class S {
     );
   }
 
+  /// `Gamecode`
   String get joinRoom_hintText {
     return Intl.message(
       'Gamecode',
@@ -108,6 +123,7 @@ class S {
     );
   }
 
+  /// `Please enter a gamecode.`
   String get joinRoom_enterNumber {
     return Intl.message(
       'Please enter a gamecode.',
@@ -117,6 +133,7 @@ class S {
     );
   }
 
+  /// `Sorry, but there's already a game being played here.`
   String get joinRoom_roomAlreadyRunning {
     return Intl.message(
       'Sorry, but there\'s already a game being played here.',
@@ -126,6 +143,7 @@ class S {
     );
   }
 
+  /// `No game found.`
   String get joinRoom_roomNotFound {
     return Intl.message(
       'No game found.',
@@ -135,6 +153,7 @@ class S {
     );
   }
 
+  /// `Settings`
   String get settings_headline {
     return Intl.message(
       'Settings',
@@ -144,6 +163,7 @@ class S {
     );
   }
 
+  /// `Language:`
   String get settings_language {
     return Intl.message(
       'Language:',
@@ -153,6 +173,7 @@ class S {
     );
   }
 
+  /// `Coming soon!™\n( ͡° ͜ʖ ͡°)`
   String get comingSoon {
     return Intl.message(
       'Coming soon!™\n( ͡° ͜ʖ ͡°)',
@@ -162,6 +183,7 @@ class S {
     );
   }
 
+  /// `Male`
   String get sexMale {
     return Intl.message(
       'Male',
@@ -171,6 +193,7 @@ class S {
     );
   }
 
+  /// `Other`
   String get sexX {
     return Intl.message(
       'Other',
@@ -180,6 +203,7 @@ class S {
     );
   }
 
+  /// `Female`
   String get sexFemale {
     return Intl.message(
       'Female',
@@ -189,6 +213,7 @@ class S {
     );
   }
 
+  /// `No players yet!`
   String get noPlayersYet {
     return Intl.message(
       'No players yet!',
@@ -198,6 +223,7 @@ class S {
     );
   }
 
+  /// `Your turn!`
   String get ownTurn {
     return Intl.message(
       'Your turn!',
@@ -207,6 +233,7 @@ class S {
     );
   }
 
+  /// `s turn`
   String get turn {
     return Intl.message(
       's turn',
@@ -216,6 +243,7 @@ class S {
     );
   }
 
+  /// `Pantomime this:`
   String get mimeThis {
     return Intl.message(
       'Pantomime this:',
@@ -225,6 +253,7 @@ class S {
     );
   }
 
+  /// `What is `
   String get tabooMimeGuessp1 {
     return Intl.message(
       'What is ',
@@ -234,6 +263,7 @@ class S {
     );
   }
 
+  /// ` trying to tell us?`
   String get tabooMimeGuessp2 {
     return Intl.message(
       ' trying to tell us?',
@@ -243,6 +273,7 @@ class S {
     );
   }
 
+  /// `Explain "`
   String get taboop1 {
     return Intl.message(
       'Explain "',
@@ -252,6 +283,7 @@ class S {
     );
   }
 
+  /// `" without using the following words:`
   String get taboop2 {
     return Intl.message(
       '" without using the following words:',
@@ -261,6 +293,7 @@ class S {
     );
   }
 
+  /// `EZ`
   String get tabooMimeWinStyle1 {
     return Intl.message(
       'EZ',
@@ -270,6 +303,7 @@ class S {
     );
   }
 
+  /// `Nobody knows`
   String get tabooMimeFailStyle1 {
     return Intl.message(
       'Nobody knows',
@@ -279,6 +313,7 @@ class S {
     );
   }
 
+  /// `List the following, go clockwise, `
   String get listThis {
     return Intl.message(
       'List the following, go clockwise, ',
@@ -288,6 +323,7 @@ class S {
     );
   }
 
+  /// `Just between you and me (and the others),`
   String get compareThis {
     return Intl.message(
       'Just between you and me (and the others),',
@@ -297,6 +333,7 @@ class S {
     );
   }
 
+  /// `Ye`
   String get yesStyle1 {
     return Intl.message(
       'Ye',
@@ -306,6 +343,7 @@ class S {
     );
   }
 
+  /// `Nope.`
   String get noStyle1 {
     return Intl.message(
       'Nope.',
@@ -315,6 +353,7 @@ class S {
     );
   }
 
+  /// `I don't wanna`
   String get noStyle2 {
     return Intl.message(
       'I don\'t wanna',
@@ -324,6 +363,7 @@ class S {
     );
   }
 
+  /// `Dunno`
   String get listFailedStyle1 {
     return Intl.message(
       'Dunno',
@@ -333,6 +373,7 @@ class S {
     );
   }
 
+  /// `Go!`
   String get FGTimerGo {
     return Intl.message(
       'Go!',
@@ -342,6 +383,7 @@ class S {
     );
   }
 
+  /// `K!`
   String get BGTimerGo {
     return Intl.message(
       'K!',
@@ -351,6 +393,7 @@ class S {
     );
   }
 
+  /// `👍🏻`
   String get FGTimerDone {
     return Intl.message(
       '👍🏻',
@@ -360,6 +403,7 @@ class S {
     );
   }
 
+  /// `Please enter a valid number.`
   String get pleaseEnterValidNumber {
     return Intl.message(
       'Please enter a valid number.',
@@ -369,6 +413,7 @@ class S {
     );
   }
 
+  /// `Waiting for the others to input..`
   String get waitingForOthersToInput {
     return Intl.message(
       'Waiting for the others to input..',
@@ -378,6 +423,7 @@ class S {
     );
   }
 
+  /// `It's a draw!`
   String get comparisonDraw {
     return Intl.message(
       'It\'s a draw!',
@@ -387,6 +433,7 @@ class S {
     );
   }
 
+  /// `Please select your gamemode:`
   String get networkMode_headline {
     return Intl.message(
       'Please select your gamemode:',
@@ -396,6 +443,7 @@ class S {
     );
   }
 
+  /// `Please select your gamestyle:`
   String get modeTitle_headline {
     return Intl.message(
       'Please select your gamestyle:',
@@ -405,6 +453,7 @@ class S {
     );
   }
 
+  /// `Endless`
   String get modeTitle_endless {
     return Intl.message(
       'Endless',
@@ -414,6 +463,7 @@ class S {
     );
   }
 
+  /// `Gather points`
   String get modeTitle_reach {
     return Intl.message(
       'Gather points',
@@ -423,6 +473,7 @@ class S {
     );
   }
 
+  /// `Lose points`
   String get modeTitle_lose {
     return Intl.message(
       'Lose points',
@@ -432,6 +483,7 @@ class S {
     );
   }
 
+  /// ` has left the game.`
   String get hasLeftGame {
     return Intl.message(
       ' has left the game.',
@@ -441,6 +493,7 @@ class S {
     );
   }
 
+  /// ` is the new GM.`
   String get isNewGM {
     return Intl.message(
       ' is the new GM.',
@@ -450,6 +503,7 @@ class S {
     );
   }
 
+  /// ` chose to drink instead.`
   String get choseToDrink {
     return Intl.message(
       ' chose to drink instead.',
@@ -459,6 +513,7 @@ class S {
     );
   }
 
+  /// `Active timers`
   String get timerViewDialog_title {
     return Intl.message(
       'Active timers',
@@ -468,6 +523,7 @@ class S {
     );
   }
 
+  /// `You is done!`
   String get timerDoneDialog_title {
     return Intl.message(
       'You is done!',
@@ -477,6 +533,7 @@ class S {
     );
   }
 
+  /// `Close`
   String get close {
     return Intl.message(
       'Close',
@@ -486,6 +543,7 @@ class S {
     );
   }
 
+  /// `you start!`
   String get listYouStart {
     return Intl.message(
       'you start!',
@@ -495,6 +553,7 @@ class S {
     );
   }
 
+  /// ` starts!`
   String get listNotYouStart {
     return Intl.message(
       ' starts!',
@@ -504,6 +563,7 @@ class S {
     );
   }
 
+  /// `So ...`
   String get wyr_title {
     return Intl.message(
       'So ...',
@@ -513,6 +573,7 @@ class S {
     );
   }
 
+  /// `Pull out ... , let's compare!`
   String get compare_title {
     return Intl.message(
       'Pull out ... , let\'s compare!',
@@ -522,6 +583,7 @@ class S {
     );
   }
 
+  /// `(tap this you're if out of ideas)`
   String get list_expl {
     return Intl.message(
       '(tap this you\'re if out of ideas)',
@@ -531,6 +593,7 @@ class S {
     );
   }
 
+  /// `(first one to guess makes everybody, excluding the actor, drink)`
   String get tabooMime_expl {
     return Intl.message(
       '(first one to guess makes everybody, excluding the actor, drink)',
@@ -540,6 +603,7 @@ class S {
     );
   }
 
+  /// `(if no one gusses or you just don't wanna, click the beers)`
   String get tabooMime_failexpl {
     return Intl.message(
       '(if no one gusses or you just don\'t wanna, click the beers)',
@@ -549,6 +613,7 @@ class S {
     );
   }
 
+  /// `his`
   String get nounhis {
     return Intl.message(
       'his',
@@ -558,6 +623,7 @@ class S {
     );
   }
 
+  /// `her`
   String get nounher {
     return Intl.message(
       'her',
@@ -567,6 +633,7 @@ class S {
     );
   }
 
+  /// `he`
   String get nounhe {
     return Intl.message(
       'he',
@@ -576,6 +643,7 @@ class S {
     );
   }
 
+  /// `she`
   String get nounshe {
     return Intl.message(
       'she',
