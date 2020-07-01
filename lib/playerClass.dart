@@ -32,10 +32,10 @@ class Player  {
         return Colors.red;
         break;
       case 3:
-        return Colors.deepOrange;
+        return Colors.purple;
         break;
       case 4:
-        return Colors.purple;
+        return Colors.deepOrange;
         break;
       case 5:
         return Colors.brown;

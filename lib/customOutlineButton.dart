@@ -89,7 +89,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
             style: BorderStyle.solid
         ),
         child: Text(
-            yesOrNo?S.of(context).yesStyle1:createDrinkText(task),
+            yesOrNo?"👍🏻":createDrinkText(task),
             textAlign: TextAlign.center,
             style: normalStyle
         ),

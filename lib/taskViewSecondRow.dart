@@ -180,6 +180,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       bannedWords = Task.getListByLocale(task, locale);
       return Center(
         child: ListView(
+          shrinkWrap: true,
             children: <Widget>[
               ListView.builder(
                   shrinkWrap: true,
