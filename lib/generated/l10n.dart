@@ -523,10 +523,10 @@ class S {
     );
   }
 
-  /// `You is done!`
+  /// `You are done!`
   String get timerDoneDialog_title {
     return Intl.message(
-      'You is done!',
+      'You are done!',
       name: 'timerDoneDialog_title',
       desc: '',
       args: [],

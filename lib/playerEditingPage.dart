@@ -253,6 +253,7 @@ class playerEditingPageState extends State<playerEditing>{
   }
 
   void goToWaitingPage(theContext) async {
+    await new Future.delayed(const Duration(milliseconds: 500));
     Navigator.of(theContext).push(fadePageRoute(page: waitingPage()));
   }
 

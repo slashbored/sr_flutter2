@@ -38,12 +38,10 @@ class Room  {
     }
     if (data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, CustomTimer(timerPlaceHolder))));
+      print("BGTIMERDB IN HERE IS:" + BGTimerDB.toString());
       if  (BGTimerDB.length>0)  {
         CustomTimer.updateStateMap();
       }
-    }
-    else  {
-      BGTimerDB=null;
     }
     isWaiting = data['isWaiting'];
     if (data['winnerIDArray']!=null)  {

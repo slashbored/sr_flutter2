@@ -80,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabooMime_failexpl" : MessageLookupByLibrary.simpleMessage("(if no one gusses or you just don\'t wanna, click the beers)"),
     "taboop1" : MessageLookupByLibrary.simpleMessage("Explain \""),
     "taboop2" : MessageLookupByLibrary.simpleMessage("\" without using the following words:"),
-    "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("You is done!"),
+    "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("You are done!"),
     "timerViewDialog_title" : MessageLookupByLibrary.simpleMessage("Active timers"),
     "turn" : MessageLookupByLibrary.simpleMessage("s turn"),
     "waitingForOthersToInput" : MessageLookupByLibrary.simpleMessage("Waiting for the others to input.."),

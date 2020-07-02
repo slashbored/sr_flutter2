@@ -70,7 +70,7 @@ class taskViewPageState extends State<taskViewPage>{
 
   Widget mainBody(BuildContext context)  {
     taskViewPageContext = context;
-    if (Room.activeRoom.playerDB.any((player)=> player.color==null))  {
+    if (Room.activeRoom.playerDB.any((player)=> player.color==null))  { //dirty way
       Room.activeRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
     }
     if  (isWorkingAtAll()) {

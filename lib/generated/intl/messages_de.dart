@@ -80,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "tabooMime_failexpl" : MessageLookupByLibrary.simpleMessage("(wenns keiner errät oder du keine Lust hast, tippe auf trinken)"),
     "taboop1" : MessageLookupByLibrary.simpleMessage("Beschreibe \""),
     "taboop2" : MessageLookupByLibrary.simpleMessage("\" ohne folgende Wörter zu benutzen:"),
-    "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("Du hast fertig!"),
+    "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("Du bist fertig!"),
     "timerViewDialog_title" : MessageLookupByLibrary.simpleMessage("Aktive Timer"),
     "turn" : MessageLookupByLibrary.simpleMessage(" ist am Zug"),
     "waitingForOthersToInput" : MessageLookupByLibrary.simpleMessage("Warte auf Eingaben der anderen Spieler.."),

@@ -91,26 +91,28 @@ void startStreaming() async{
         );
         break;
       case 'rejoin':
+        //print(packageIn.content);
         Room.activeRoom = Room(Map.from(packageIn.content));
-        //Room.activeRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
+        print("Room mapped?1");
         Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
         currentRoom=Room.activeRoom;
-        /*for (int i=0;i<currentRoom.playerDB.length;i++) {
-          currentRoom.playerDB[i].color = Player.setPlayerColor(i);
-        }*/
         playerEditingPageState().goToTaskViewPage(playerEditingContext);
         break;
       case 'room':
+        print("Room mapped?2");
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
         break;
       case  'timerUpdate':
-        if (currentRoom.BGTimerDB!=null)  {
-          currentRoom.BGTimerDB.clear();
-        }
-        List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
-        if  (currentRoom.BGTimerDB.length>0)  {
-          CustomTimer.updateStateMap();
+
+        if (currentRoom!=null)  {
+          if (currentRoom.BGTimerDB!=null)  {
+            currentRoom.BGTimerDB.clear();
+          }
+          List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
+          if  (currentRoom.BGTimerDB.length>0)  {
+            CustomTimer.updateStateMap();
+          }
         }
         break;
       case 'timerDone':
@@ -159,7 +161,9 @@ void startStreaming() async{
         break;
       case  'nextTask':
         heartBeatTimer.reset();
-        currentRoom.winnerIDArray.clear();
+        if (currentRoom.winnerIDArray!=null)  {
+          currentRoom.winnerIDArray.clear();
+        }
         currentRoom.compareWinnerSide = null;
         Player.mePlayer.compareValue  = null;
         if (timerViewDialogOpen)  {
