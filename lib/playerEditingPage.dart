@@ -12,13 +12,15 @@ import 'roomSelectionPage.dart';
 import 'textStyles.dart';
 import 'webSocket.dart';
 import 'rejoinDialogWidget.dart';
+import 'waitingPage.dart';
+import 'taskViewPage.dart';
 
 class playerEditing extends StatefulWidget  {
   @override
-  playerEditingState createState() => new playerEditingState();
+  playerEditingPageState createState() => new playerEditingPageState();
 }
 
-class playerEditingState extends State<playerEditing>{
+class playerEditingPageState extends State<playerEditing>{
   final TextEditingController nameTextfieldController = TextEditingController();
   final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
   final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
@@ -249,4 +251,14 @@ class playerEditingState extends State<playerEditing>{
         break;
     }
   }
+
+  void goToWaitingPage(theContext) async {
+    Navigator.of(theContext).push(fadePageRoute(page: waitingPage()));
+  }
+
+  void goToTaskViewPage(theContext) async {
+    await new Future.delayed(const Duration(milliseconds: 500));
+    Navigator.of(theContext).push(fadePageRoute(page: taskViewPage()));
+  }
+
 }

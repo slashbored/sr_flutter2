@@ -70,6 +70,9 @@ class taskViewPageState extends State<taskViewPage>{
 
   Widget mainBody(BuildContext context)  {
     taskViewPageContext = context;
+    if (Room.activeRoom.playerDB.any((player)=> player.color==null))  {
+      Room.activeRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
+    }
     if  (isWorkingAtAll()) {
       currentTask   = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID);
       currentPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activePlayerID);

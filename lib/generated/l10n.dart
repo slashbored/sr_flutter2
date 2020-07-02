@@ -654,10 +654,40 @@ class S {
   }
 
   /// `Rejoin?`
-  String get rejoin {
+  String get rejoinQ {
     return Intl.message(
       'Rejoin?',
-      name: 'rejoin',
+      name: 'rejoinQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejoin game "`
+  String get rejoin1 {
+    return Intl.message(
+      'Rejoin game "',
+      name: 'rejoin1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `" as "`
+  String get rejoin2 {
+    return Intl.message(
+      '" as "',
+      name: 'rejoin2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hold on a sec...`
+  String get pleaseWait {
+    return Intl.message(
+      'Hold on a sec...',
+      name: 'pleaseWait',
       desc: '',
       args: [],
     );

@@ -36,9 +36,10 @@ class roomOverviewPageState extends State<roomOverviewPage>{
 
   Widget playerListView(BuildContext context) {
     if (currentRoom!=null) {
-      for (int i=0;i<currentRoom.playerDB.length;i++) {
+      /*for (int i=0;i<currentRoom.playerDB.length;i++) {
         currentRoom.playerDB[i].color = Player.setPlayerColor(i);
-      }
+      }*/
+      currentRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
       Player.mePlayer = currentRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
       return  WillPopScope(
         onWillPop: () =>  null,

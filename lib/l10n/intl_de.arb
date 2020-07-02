@@ -61,5 +61,8 @@
   "nounher": "ihre",
   "nounhe": "er",
   "nounshe": "sie",
-  "rejoin": "Wieder rein?"
+  "rejoinQ": "Wieder rein?",
+  "rejoin1": "Wieder rein ins Spiel \"",
+  "rejoin2": "\" als \"",
+  "pleaseWait": "Bitte warte kurz..."
 }

@@ -19,6 +19,7 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 import 'playerEditingPage.dart';
+import 'waitingPage.dart';
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
 import 'rejoinDialogWidget.dart';
@@ -82,18 +83,31 @@ void startStreaming() async{
         }
         break;
       case 'rejoinYesNo':
+        Package cachedPackage = packageIn;
         showDialog(
           barrierDismissible: false,
           context: playerEditingContext,
-          builder: (BuildContext) =>  rejoinDialog(playerEditingContext, packageIn.content.toString())
+          builder: (BuildContext) =>  rejoinDialog(playerEditingContext, cachedPackage.content.toString())
         );
+        break;
+      case 'rejoin':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        //Room.activeRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
+        Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
+        currentRoom=Room.activeRoom;
+        /*for (int i=0;i<currentRoom.playerDB.length;i++) {
+          currentRoom.playerDB[i].color = Player.setPlayerColor(i);
+        }*/
+        playerEditingPageState().goToTaskViewPage(playerEditingContext);
         break;
       case 'room':
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
         break;
       case  'timerUpdate':
-        currentRoom.BGTimerDB.clear();
+        if (currentRoom.BGTimerDB!=null)  {
+          currentRoom.BGTimerDB.clear();
+        }
         List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
         if  (currentRoom.BGTimerDB.length>0)  {
           CustomTimer.updateStateMap();

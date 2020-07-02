@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Player  {
   String id;
+  int originalPositionInDB;
   String name;
   String sex;
   MaterialColor color;
@@ -13,6 +14,7 @@ class Player  {
 
   Player(Map data) {
     id    = data['id'];
+    originalPositionInDB  = data['originalPositionInDB'];
     name  = data['name'];
     sex   = data['sex'];
     points  = data['points'];
@@ -21,6 +23,7 @@ class Player  {
   }
 
   static MaterialColor setPlayerColor(int positionInDB)  {
+    print("Colour changed for player " + positionInDB.toString());
     switch (positionInDB)  {
       case 0:
         return Colors.blue;
@@ -70,7 +73,9 @@ class Player  {
       case 15:
         return Colors.grey;
         break;
-
+      /*default:
+        return Colors.black;
+        break;*/
     }
   }
 }

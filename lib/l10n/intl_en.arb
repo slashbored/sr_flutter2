@@ -61,5 +61,8 @@
   "nounher": "her",
   "nounhe": "he",
   "nounshe": "she",
-  "rejoin": "Rejoin?"
+  "rejoinQ": "Rejoin?",
+  "rejoin1": "Rejoin game \"",
+  "rejoin2": "\" as \"",
+  "pleaseWait": "Hold on a sec..."
 }
