@@ -51,7 +51,7 @@ void startStreaming() async{
   downStream = downStreamController.stream;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if(prefs.getString('uuid')==null)  {
-    upStream.add(json.encode({'type':'get','content':'uuid'}));
+    upStream.add(json.encode({'type':'getUUID','content':''}));
   }
   else  {
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
@@ -93,13 +93,11 @@ void startStreaming() async{
       case 'rejoin':
         //print(packageIn.content);
         Room.activeRoom = Room(Map.from(packageIn.content));
-        print("Room mapped?1");
         Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
         currentRoom=Room.activeRoom;
         playerEditingPageState().goToTaskViewPage(playerEditingContext);
         break;
       case 'room':
-        print("Room mapped?2");
         Room.activeRoom = Room(Map.from(packageIn.content));
         currentRoom = Room.activeRoom;
         break;

@@ -23,7 +23,6 @@ class Player  {
   }
 
   static MaterialColor setPlayerColor(int positionInDB)  {
-    print("Colour changed for player " + positionInDB.toString());
     switch (positionInDB)  {
       case 0:
         return Colors.blue;
