@@ -42,11 +42,16 @@ final TextStyle smallStyleWhite = new TextStyle(
 );
 
 final TextStyle tinyStyle  = new TextStyle(
-    fontSize: 9,
-    color: Colors.black
+  fontSize: 9,
+  color: Colors.black
 );
 
 final TextStyle tinyStyleWhite = new TextStyle(
-    fontSize: 9,
-    color: Colors.white
+  fontSize: 9,
+  color: Colors.white
+);
+
+final TextStyle touchyTitleStyle  = new TextStyle(
+  fontSize: 18,
+  color: Colors.purpleAccent
 );

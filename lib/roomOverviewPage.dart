@@ -10,6 +10,7 @@ import 'playerClass.dart';
 import 'taskViewPage.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
+import 'textStyles.dart';
 
 class roomOverviewPage extends StatefulWidget{
   @override
@@ -101,8 +102,40 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Spacer(
-                      flex: 1
+                    Flexible(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+
+                        children: <Widget>[
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Touchy" + (currentRoom.isTouchy?"!":"?"),
+                                  style: normalStyle
+                                ),
+                                Switch(
+                                  activeColor: Player.mePlayer.id==currentRoom.gmID?Colors.green:Colors.green[200],
+                                  inactiveThumbColor: Player.mePlayer.id==currentRoom.gmID?Colors.white:Colors.white,
+                                  activeTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.lightGreen:Colors.lightGreen.withOpacity(0.38),
+                                  inactiveTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.grey:Colors.grey.withOpacity(0.38),
+                                  value: currentRoom.isTouchy,
+                                  onChanged: (touchytouch) {
+                                    Player.mePlayer.id==currentRoom.gmID?upStream.add(json.encode({'type':'touchy','content':touchytouch?true:false})):null;
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Spacer(
+                            flex: 1,
+                          )
+                        ],
+                      ),
                     ),
                     Flexible(
                       flex: 1,

@@ -127,6 +127,9 @@ void startStreaming() async{
       case 'isWaiting':
         currentRoom.isWaiting = packageIn.content;
         break;
+      case 'isTouchy':
+        currentRoom.isTouchy  = packageIn.content;
+        break;
       case  'winnerIDArrayUpdate':
         currentRoom.winnerIDArray.clear();
         List.from(packageIn.content).forEach((playerplaceholder)  =>(currentRoom.winnerIDArray.insert(currentRoom.winnerIDArray.length, Player(playerplaceholder))));

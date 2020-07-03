@@ -18,6 +18,7 @@ class Room  {
   bool  isWaiting = true;
   List winnerIDArray = new List();
   int compareWinnerSide;
+  bool isTouchy;
   static Room activeRoom;
 
   Room(Map<String, dynamic> data) {
@@ -50,6 +51,7 @@ class Room  {
       winnerIDArray = null;
     }
     compareWinnerSide = data['compareWinnerSide'];
+    isTouchy = data['isTouchy'];
   }
 
   static void renewActiveTimer(context) {

@@ -64,7 +64,7 @@ Widget timerViewDialog(BuildContext context)  {
                               children: <Widget>[
                                 Text(
                                   currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).name + ":",
-                                  style: smallStyle,
+                                  style: normalStyle,
                                   textAlign: TextAlign.center,
                                 ),
                                 FractionallySizedBox(
@@ -95,7 +95,7 @@ Widget timerViewDialog(BuildContext context)  {
                                 " & " +
                                 currentRoom.playerDB.firstWhere((element) => element.id ==  sortedMultiPlayerMultimap().keys.elementAt(outterIndex).toString().substring(((sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length)/2).toInt(), (sortedMultiPlayerMultimap().keys.elementAt(outterIndex).length))).name +
                                   ":",
-                                style: smallStyle,
+                                style: normalStyle,
                                 textAlign: TextAlign.center
                               ),
                               FractionallySizedBox(
