@@ -28,14 +28,13 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
     else {
-      if (Task.getStringByLocale(task, locale, "n_spectate").contains("\$nounone")) {
-        nounstring = Task.getStringByLocale(task, locale, "n_spectate").replaceAll("\$nounone", firstPlayer.sex=='m'?S.of(context).nounhe:S.of(context).nounshe);
-      }
-      else if (Task.getStringByLocale(task, locale, "n_spectate").contains("\$nountwo")) {
-        nounstring = Task.getStringByLocale(task, locale, "n_spectate").replaceAll("\$nountwo", firstPlayer.sex=='m'?S.of(context).nounhis:S.of(context).nounher);
-      }
-      else  {
+      if (!(Task.getStringByLocale(task, locale, "n_spectate").contains("\$nounone")||Task.getStringByLocale(task, locale, "n_spectate").contains("\$nountwo"))) {
         nounstring=null;
+      }
+      else {
+        nounstring = Task.getStringByLocale(task, locale, "n_spectate");
+        nounstring = nounstring.replaceAll("\$nounone", firstPlayer.sex == 'm' ? S.of(context).nounhe : S.of(context).nounshe);
+        nounstring = nounstring.replaceAll("\$nountwo", firstPlayer.sex == 'm' ? S.of(context).nounhis : S.of(context).nounher);
       }
       return Center(
         child: Text(
