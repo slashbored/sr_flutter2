@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Shitroulette QE"
+        android:label="SR QE"
         android:icon="@mipmap/corpoo">
         <activity
             android:name=".MainActivity"
