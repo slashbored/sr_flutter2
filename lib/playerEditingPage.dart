@@ -53,10 +53,22 @@ class playerEditingPageState extends State<playerEditing>{
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Flexible(
-                  child: Text(
-                      S.of(context).enterName,
-                      textAlign: TextAlign.center,
-                      style: bigStyle
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                        S.of(context).enterName,
+                        textAlign: TextAlign.center,
+                        style: bigStyle
+                    ),
+                  )
+              ),
+              Flexible(
+                  child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Divider(
+                          color: Colors.black,
+                          thickness: 2
+                      )
                   )
               ),
               Flexible(
@@ -188,38 +200,50 @@ class playerEditingPageState extends State<playerEditing>{
                 ),
               ),
               Flexible(
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10
-                        ),
-                        children: [
-                          TextSpan(
-                              text: "Icons used are made by "
+                  child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Divider(
+                          color: Colors.black,
+                          thickness: 2
+                      )
+                  )
+              ),
+              Flexible(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: RichText(
+                      text: TextSpan(
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10
                           ),
-                          TextSpan(
-                              text: "Freepik",
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: new TapGestureRecognizer()..onTap=  () {
-                                launch('https://www.flaticon.com/authors/freepik');
-                              }
-                          ),
-                          TextSpan(
-                              text: " from "
-                          ),
-                          TextSpan(
-                              text: "www.flaticon.com",
-                              style: TextStyle(
-                                  decoration: TextDecoration.underline
-                              ),
-                              recognizer: new TapGestureRecognizer()..onTap=  () {
-                                launch('https://www.flaticon.com');
-                              }
-                          )
-                        ]
+                          children: [
+                            TextSpan(
+                                text: "Icons used are made by "
+                            ),
+                            TextSpan(
+                                text: "Freepik",
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: new TapGestureRecognizer()..onTap=  () {
+                                  launch('https://www.flaticon.com/authors/freepik');
+                                }
+                            ),
+                            TextSpan(
+                                text: " from "
+                            ),
+                            TextSpan(
+                                text: "www.flaticon.com",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline
+                                ),
+                                recognizer: new TapGestureRecognizer()..onTap=  () {
+                                  launch('https://www.flaticon.com');
+                                }
+                            )
+                          ]
+                      ),
                     ),
                   )
                 /*child: Text(

@@ -12,6 +12,8 @@ import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 import 'textStyles.dart';
 
+List<Widget> playerWidgetList = new List();
+
 class roomOverviewPage extends StatefulWidget{
   @override
   roomOverviewPageState createState() => new roomOverviewPageState();
@@ -29,18 +31,31 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           stream: downStream,
           builder: (context, snapShot)  {
             return playerListView(context);
-          },
-        ),
-      ),
+          }
+        )
+      )
     );
   }
 
   Widget playerListView(BuildContext context) {
     if (currentRoom!=null) {
-      /*for (int i=0;i<currentRoom.playerDB.length;i++) {
-        currentRoom.playerDB[i].color = Player.setPlayerColor(i);
-      }*/
       currentRoom.playerDB.forEach((player) {player.color = Player.setPlayerColor(player.originalPositionInDB); });
+      playerWidgetList.clear();
+      currentRoom.playerDB.forEach((player) {playerWidgetList.add(
+          InputChip(
+            backgroundColor: player.color,
+            isEnabled: true,
+            onPressed: () {null;},
+            label: Text(
+              player.id==currentRoom.gmID?player.name + " 👑":player.name,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 18,
+                  color:  Colors.white
+              ),
+            )
+          )
+      );});
       Player.mePlayer = currentRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
       return  WillPopScope(
         onWillPop: () =>  null,
@@ -68,24 +83,43 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                   )
               ),
               Expanded(
-                  flex: 315,
-                  child:  ListView(
-                      children: <Widget>[
-                        ListView.builder(
+                  flex: 265,
+                  child:  Wrap(
+                    direction: Axis.horizontal,
+                      alignment: WrapAlignment.center,
+                      spacing: 20,
+                      runSpacing: 10,
+                      children:
+                        playerWidgetList
+                         /*ListView.builder(
                             shrinkWrap: true,
                             itemCount: currentRoom.playerDB.length,
                             itemBuilder: (context, int index){
-                              return Text(
+                              return InputChip(
+                                label: Text(
+                                  currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color:  Colors.white
+                                  ),
+                                ),
+                                backgroundColor: currentRoom.playerDB[index].color,
+                                isEnabled: true,
+                                onPressed: () {
+                                  null;
+                                },
+                              );
+                              /*return Text(
                                 currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 18,
                                   color:  currentRoom.playerDB[index].color
-                                )
-                              );
+                                );*/
                             }
-                        )
-                      ]
+                        )*/
+
                   )
               ),
               Expanded(
@@ -98,7 +132,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                   )
               ),
               Expanded(
-                flex: 315,
+                flex: 365,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -106,7 +140,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                       flex: 1,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-
                         children: <Widget>[
                           Flexible(
                             flex: 1,
@@ -126,20 +159,23 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                                   value: currentRoom.isTouchy,
                                   onChanged: (touchytouch) {
                                     Player.mePlayer.id==currentRoom.gmID?upStream.add(json.encode({'type':'touchy','content':touchytouch?true:false})):null;
-                                  },
+                                  }
                                 )
-                              ],
-                            ),
+                              ]
+                            )
                           ),
                           Spacer(
-                            flex: 1,
+                            flex: 1
                           )
-                        ],
-                      ),
+                        ]
+                      )
                     ),
                     Flexible(
                       flex: 1,
-                      child: startGameFAB(context),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: startGameFAB(context),
+                      )
                     ),
                     Spacer(
                       flex: 1
@@ -157,7 +193,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
         child: Center(
           child: Text(
             S.of(context).noPlayersYet,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.center
           )
         )
       );
@@ -204,7 +240,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
             Icons.hourglass_empty,
             color: Colors.grey
           ),
-        onPressed: () {},
+        onPressed: () {}
       );
     }
   }

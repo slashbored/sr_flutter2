@@ -37,7 +37,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                     textAlign: TextAlign.center,
                     style: headlineStyle
                 ),
-                new FloatingActionButton.extended(
+                /*new FloatingActionButton.extended(
                   heroTag: "fab_online",
                   label: Text(
                       "⚡ Online",
@@ -49,9 +49,49 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   highlightElevation: 0,
+                ),*/
+                new OutlineButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    borderSide: BorderSide(
+                        width: 3,
+                        color: Colors.green,
+                        style: BorderStyle.solid
+                    ),
+                    child: Text(
+                        "⚡ Online",
+                        style: bigStyle
+                    ),
+                    onPressed: () {
+                      pushToPlayerEditing(context);
+                    }
                 ),
-                new FloatingActionButton.extended(
+                new OutlineButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    borderSide: BorderSide(
+                        width: 3,
+                        color: Colors.red,
+                        style: BorderStyle.solid
+                    ),
+                    child: Text(
+                        "💤 Offline",
+                        style: bigStyle
+                    ),
+                    onPressed: () {
+                      BotToast.showText(
+                          text: S.of(context).comingSoon,
+                          duration: Duration(seconds: 5)
+                      );
+                    }
+                ),
+                /*new FloatingActionButton.extended(
                   heroTag: "fab_offline",
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   label: Text(
                       "💤 Offline",
                       style: bigStyle
@@ -64,7 +104,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                   },
                   backgroundColor: Colors.transparent,
                   elevation: 0,
-                ),
+                ),*/
                 /*new FloatingActionButton.extended(
                   label: Text(
                     "Draw"
@@ -82,7 +122,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                           ),
                           children: [
                             TextSpan(
-                                text: "Background vector created by "
+                                text: "Background vectors created by "
                             ),
                             TextSpan(
                                 text: "macrovector",
@@ -91,6 +131,18 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                                 ),
                                 recognizer: new TapGestureRecognizer()..onTap=  () {
                                   launch('https://www.freepik.com/macrovector');
+                                }
+                            ),
+                            TextSpan(
+                              text: " and "
+                            ),
+                            TextSpan(
+                                text: "freepik",
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: new TapGestureRecognizer()..onTap=  () {
+                                  launch('https://www.freepik.com/freepik');
                                 }
                             ),
                             TextSpan(
