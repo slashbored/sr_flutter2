@@ -192,12 +192,12 @@ class playerEditingPageState extends State<playerEditing>{
                                 });
                               },
                               backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
-                            ),
-                          ),
-                        ),
-                      ],
+                            )
+                          )
+                        )
+                      ]
                     )
-                ),
+                )
               ),
               Flexible(
                   child: Container(
@@ -243,8 +243,8 @@ class playerEditingPageState extends State<playerEditing>{
                                 }
                             )
                           ]
-                      ),
-                    ),
+                      )
+                    )
                   )
                 /*child: Text(
                   "Icons used are made by Freepik from www.flaticon.com",
@@ -254,10 +254,9 @@ class playerEditingPageState extends State<playerEditing>{
                   ),
                 ),*/
               )
-            ],
-          ),
-
-        ),
+            ]
+          )
+        )
       )
     );
   }

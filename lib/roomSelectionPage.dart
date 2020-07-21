@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:bot_toast/bot_toast.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
+import 'dart:io';
 
 import 'webSocket.dart';
 import 'roomOverviewPage.dart';
@@ -207,7 +208,13 @@ class roomSelectionPage extends State<roomSelection>{
 void createRoom() async{
   upStream.add(json.encode({'type':'createRoom','content':''}));
   await new Future.delayed(const Duration(milliseconds: 500));
-  Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+  if (Platform.isIOS) {
+    print("it ios!");
+    Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage()));
+  }
+  else  {
+    Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+  }
 }
 
   void joinRoom() async{
@@ -216,6 +223,12 @@ void createRoom() async{
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }
-    currentRoom!=null&&i<50?Navigator.push(context, fadePageRoute(page: roomOverviewPage())):null;
+    if (Platform.isIOS) {
+      print("its ios!");
+      currentRoom!=null&&i<50?Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage())):null;
+    }
+    else  {
+      currentRoom!=null&&i<50?Navigator.push(context, fadePageRoute(page: roomOverviewPage())):null;
+    }
   }
 }

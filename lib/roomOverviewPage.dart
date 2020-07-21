@@ -57,41 +57,39 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           )
       );});
       Player.mePlayer = currentRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
-      return  WillPopScope(
-        onWillPop: () =>  null,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
+      return  Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
                 flex: 315,
                 child: Center(
-                  child: Text(
-                    Room.activeRoom.id,
-                    textAlign: TextAlign.center,
-                    style: bigStyle
-                  )
+                    child: Text(
+                        Room.activeRoom.id,
+                        textAlign: TextAlign.center,
+                        style: bigStyle
+                    )
                 )
-              ),
-              new Expanded(
-                  child: Container(
+            ),
+            new Expanded(
+                child: Container(
                     margin: EdgeInsets.only(left: 20.0, right: 20.0),
                     child: Divider(
                         color: Colors.black,
                         thickness: 2
                     )
-                  )
-              ),
-              Expanded(
-                  flex: 265,
-                  child:  Wrap(
+                )
+            ),
+            Expanded(
+                flex: 265,
+                child:  Wrap(
                     direction: Axis.horizontal,
-                      alignment: WrapAlignment.center,
-                      spacing: 20,
-                      runSpacing: 10,
-                      children:
-                        playerWidgetList
-                         /*ListView.builder(
+                    alignment: WrapAlignment.center,
+                    spacing: 20,
+                    runSpacing: 10,
+                    children:
+                    playerWidgetList
+                  /*ListView.builder(
                             shrinkWrap: true,
                             itemCount: currentRoom.playerDB.length,
                             itemBuilder: (context, int index){
@@ -120,82 +118,78 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                             }
                         )*/
 
-                  )
-              ),
-              Expanded(
-                  child: Container(
+                )
+            ),
+            Expanded(
+                child: Container(
                     margin: EdgeInsets.only(left: 20.0, right: 20.0),
                     child: Divider(
                         color: Colors.black,
                         thickness: 2
                     )
-                  )
-              ),
-              Expanded(
+                )
+            ),
+            Expanded(
                 flex: 365,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Flexible(
-                      flex: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Flexible(
-                            flex: 1,
-                            fit: FlexFit.tight,
-                            child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                          flex: 1,
+                          child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text(
-                                  "Touchy" + (currentRoom.isTouchy?"!":"?"),
-                                  style: normalStyle
+                                Flexible(
+                                    flex: 1,
+                                    fit: FlexFit.tight,
+                                    child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                              "Touchy" + (currentRoom.isTouchy?"!":"?"),
+                                              style: normalStyle
+                                          ),
+                                          Switch(
+                                              activeColor: Player.mePlayer.id==currentRoom.gmID?Colors.green:Colors.green[200],
+                                              inactiveThumbColor: Player.mePlayer.id==currentRoom.gmID?Colors.white:Colors.white,
+                                              activeTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.lightGreen:Colors.lightGreen.withOpacity(0.38),
+                                              inactiveTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.grey:Colors.grey.withOpacity(0.38),
+                                              value: currentRoom.isTouchy,
+                                              onChanged: (touchytouch) {
+                                                Player.mePlayer.id==currentRoom.gmID?upStream.add(json.encode({'type':'touchy','content':touchytouch?true:false})):null;
+                                              }
+                                          )
+                                        ]
+                                    )
                                 ),
-                                Switch(
-                                  activeColor: Player.mePlayer.id==currentRoom.gmID?Colors.green:Colors.green[200],
-                                  inactiveThumbColor: Player.mePlayer.id==currentRoom.gmID?Colors.white:Colors.white,
-                                  activeTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.lightGreen:Colors.lightGreen.withOpacity(0.38),
-                                  inactiveTrackColor: Player.mePlayer.id==currentRoom.gmID?Colors.grey:Colors.grey.withOpacity(0.38),
-                                  value: currentRoom.isTouchy,
-                                  onChanged: (touchytouch) {
-                                    Player.mePlayer.id==currentRoom.gmID?upStream.add(json.encode({'type':'touchy','content':touchytouch?true:false})):null;
-                                  }
+                                Spacer(
+                                    flex: 1
                                 )
                               ]
-                            )
-                          ),
-                          Spacer(
-                            flex: 1
                           )
-                        ]
+                      ),
+                      Flexible(
+                          flex: 1,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: startGameFAB(context),
+                          )
+                      ),
+                      Spacer(
+                          flex: 1
                       )
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: startGameFAB(context),
-                      )
-                    ),
-                    Spacer(
-                      flex: 1
-                    )
-                  ]
+                    ]
                 )
-              )
-            ]
-        )
+            )
+          ]
       );
     }
     else  {
-      return WillPopScope(
-        onWillPop: () =>  null,
-        child: Center(
+      return Center(
           child: Text(
-            S.of(context).noPlayersYet,
-            textAlign: TextAlign.center
+              S.of(context).noPlayersYet,
+              textAlign: TextAlign.center
           )
-        )
       );
     }
   }
