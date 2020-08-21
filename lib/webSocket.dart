@@ -319,6 +319,8 @@ void startStreaming() async{
                   onPressed: () {
                     taskViewPageState().goHome(taskViewPageContext);
                     currentRoom = null;
+                    Player.mePlayer.points=0;
+                    Player.mePlayer.weightModifier=0;
                   }
                 )
               ]
