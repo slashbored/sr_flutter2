@@ -35,7 +35,7 @@
   "listFailedStyle1": "Dunno",
   "FGTimerGo": "Go!",
   "BGTimerGo": "K!",
-  "FGTimerDone": "\uD83D\uDC4D\uD83C\uDFFB",
+  "FGTimerDone": "Done!\uD83D\uDC4D\uD83C\uDFFB",
   "pleaseEnterValidNumber": "Please enter a valid number.",
   "waitingForOthersToInput": "Waiting for the others to input..",
   "comparisonDraw": "It's a draw!",

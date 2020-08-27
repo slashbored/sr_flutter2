@@ -393,10 +393,10 @@ class S {
     );
   }
 
-  /// `👍🏻`
+  /// `Done!👍🏻`
   String get FGTimerDone {
     return Intl.message(
-      '👍🏻',
+      'Done!👍🏻',
       name: 'FGTimerDone',
       desc: '',
       args: [],

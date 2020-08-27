@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "BGTimerGo" : MessageLookupByLibrary.simpleMessage("K!"),
-    "FGTimerDone" : MessageLookupByLibrary.simpleMessage("👍🏻"),
+    "FGTimerDone" : MessageLookupByLibrary.simpleMessage("Done!👍🏻"),
     "FGTimerGo" : MessageLookupByLibrary.simpleMessage("Go!"),
     "choseToDrink" : MessageLookupByLibrary.simpleMessage(" chose to drink instead."),
     "close" : MessageLookupByLibrary.simpleMessage("Close"),

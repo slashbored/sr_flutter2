@@ -89,7 +89,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
             style: BorderStyle.solid
         ),
         child: Text(
-            yesOrNo?"👍🏻":createDrinkText(task),
+            yesOrNo?(type=='BGtimed'?S.of(context).BGTimerGo:S.of(context).FGTimerDone):createDrinkText(task),
             textAlign: TextAlign.center,
             style: normalStyle
         ),

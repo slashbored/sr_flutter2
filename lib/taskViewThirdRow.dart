@@ -85,8 +85,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       }
       break;
     case 2:
+      Room.renewActiveTimer(context);
       if  (firstPlayer.id==Player.mePlayer.id)  {
-        Room.renewActiveTimer(context);
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -122,7 +122,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            customOutlineButton(context, task, true, 'isActiveTimer'),
+
             /*FloatingActionButton.extended(
                 heroTag:  "fab_normalFGTime_startTimer",
                 shape: CircleBorder(),
@@ -162,7 +162,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         );
       }
       else  {
-        return Container();
+        return Center(
+          child: customOutlineButton(context, task, true, 'isActiveTimer'),
+        );
       }
       break;
     case 3:
@@ -270,8 +272,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       }
       break;
     case 5:
+      Room.renewActiveTimer(context);
       if  (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
-        Room.renewActiveTimer(context);
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -299,7 +301,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   upStream.add(json.encode({'type':'nextTask','content':''}));
                 }
             ),*/
-            customOutlineButton(context, task, true, 'isActiveTimer'),
+
             /*FloatingActionButton.extended(
                 heroTag:  "fab_choiceFGTime_startTimer",
                 shape: CircleBorder(),
@@ -332,7 +334,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         );
       }
       else  {
-        return Container();
+        return Center(
+          child: customOutlineButton(context, task, true, 'isActiveTimer'),
+        );
       }
       break;
     case 6:
