@@ -60,6 +60,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
       );
       break;
     case 'list':
+    case 'globalNormal':
       return OutlineButton(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)

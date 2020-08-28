@@ -64,5 +64,7 @@
   "rejoinQ": "Wieder rein?",
   "rejoin1": "Wieder rein ins Spiel \"",
   "rejoin2": "\" als \"",
-  "pleaseWait": "Bitte warte kurz..."
+  "pleaseWait": "Bitte warte kurz...",
+  "globalTitle": "Alle jetzt!",
+  "globalFail": "(hier tippen, wenn du's verkackt hast)"
 }

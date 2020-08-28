@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "comparisonDraw" : MessageLookupByLibrary.simpleMessage("It\'s a draw!"),
     "createRoom" : MessageLookupByLibrary.simpleMessage("Create a game"),
     "enterName" : MessageLookupByLibrary.simpleMessage("Please enter your name and gender:"),
+    "globalFail" : MessageLookupByLibrary.simpleMessage("(tap this if you\'re the one who failed)"),
+    "globalTitle" : MessageLookupByLibrary.simpleMessage("Everyone!"),
     "hasLeftGame" : MessageLookupByLibrary.simpleMessage(" has left the game."),
     "isNewGM" : MessageLookupByLibrary.simpleMessage(" is the new GM."),
     "joinRoom" : MessageLookupByLibrary.simpleMessage("Join a game"),

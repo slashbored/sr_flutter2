@@ -45,7 +45,10 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
   }
-  if (task.typeID==7||task.typeID==8||task.typeID==11)  {
+  if (task.typeID==7||task.typeID==8||task.typeID==11||task.typeID==12)  {
+    if (task.typeID==12) {
+      print("halthere");
+    }
     return Center(
       child: Text(
         Task.getStringByLocale(task, locale, "n_active"),

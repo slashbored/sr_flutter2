@@ -692,6 +692,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Everyone!`
+  String get globalTitle {
+    return Intl.message(
+      'Everyone!',
+      name: 'globalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(tap this if you're the one who failed)`
+  String get globalFail {
+    return Intl.message(
+      '(tap this if you\'re the one who failed)',
+      name: 'globalFail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

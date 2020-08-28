@@ -36,47 +36,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normal_denied",
-                label: Text(S.of(context).noStyle1),
-                onPressed: (){
-                  //firstPlayer.points++;
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
-            /*FloatingActionButton.extended(
-              heroTag:  "fab_normal_drink",
-              backgroundColor: Colors.red,
-              shape: CircleBorder(),
-              label: createDrinkText(task),
-              onPressed: ()  {
-                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-              ),*/
             customOutlineButton(context, task, false, 'normal'),
             customOutlineButton(context, task, true, 'normal')
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normal_accepted",
-                backgroundColor: Colors.green,
-                shape: CircleBorder(),
-                label: Text(
-                  S.of(context).yesStyle1,
-                  style: normalStyleWhite
-                  ),
-                onPressed: (){
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                  //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
-                }
-            )*/
           ]
         );
       }
@@ -90,74 +51,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalFGTime_denied",
-                label: Text(S.of(context).noStyle1),
-                onPressed: (){
-                  if (customTimer.activeTimer!=null)  {
-                    if (customTimer.activeTimer.isRunning==true)  {
-                      upStream.add(json.encode({'type':'cancelTimer','content':customTimer.activeTimer.id}));
-                      currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  customTimer.activeTimer.id);
-                    }
-                    customTimer.activeTimer.isRunning=false;
-                  }
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                  //Navigator.of(context).push(CupertinoPageRoute(builder: (context) => taskViewPage()));
-                }
-            ),*/
             customOutlineButton(context, task, false, 'FGtimed'),
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalFGTime_drink",
-                backgroundColor: Colors.red,
-                shape: CircleBorder(),
-                label: createDrinkText(task),
-                onPressed: ()  {
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
-
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalFGTime_startTimer",
-                shape: CircleBorder(),
-                label: Text(
-                  CustomTimer.activeTimer!=null?
-                  CustomTimer.activeTimer.FGTimeLeft:
-                  S.of(context).FGTimerGo,
-                  style: normalStyleWhite
-                ),
-                onPressed:  ()  {
-                  startBGTimer(context);
-                  Room.renewActiveTimer(context);
-                }
-            ),*/
             customOutlineButton(context, task, true, 'FGtimed')
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalFGTime_accepted",
-                backgroundColor: Colors.green,
-                shape: CircleBorder(),
-                label: Text(
-                  S.of(context).yesStyle1,
-                  style: normalStyleWhite),
-                onPressed: (){
-                  if (CustomTimer.activeTimer!=null)  {
-                    if (CustomTimer.activeTimer.isRunning==true)  {
-                      upStream.add(json.encode({'type':'cancelTimer','content':CustomTimer.activeTimer.id}));
-                      currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  CustomTimer.activeTimer.id);
-                    }
-                    CustomTimer.activeTimer.isRunning=false;
-                  }
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            )*/
           ]
         );
       }
@@ -172,46 +67,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalBGTime_denied",
-                label: Text(S.of(context).noStyle1),
-                onPressed: (){
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
             customOutlineButton(context, task, false, 'BGtimed'),
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalBGTime_drink",
-                backgroundColor: Colors.red,
-                shape: CircleBorder(),
-                label: createDrinkText(task),
-                onPressed: ()  {
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
             customOutlineButton(context, task, true, 'BGtimed')
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_normalBGTime_accepted",
-                backgroundColor: Colors.green,
-                shape: CircleBorder(),
-                label: Text(
-                  S.of(context).BGTimerGo,
-                  style: normalStyleWhite
-                ),
-                onPressed: (){
-                  startBGTimer(context);
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            )*/
           ]
         );
       }
@@ -224,46 +81,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choice_denied",
-                label: Text(S.of(context).noStyle2),
-                onPressed: (){
-                  //firstPlayer.id==Player.mePlayer.id?firstPlayer.points++:secondPlayer.points++;
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
             customOutlineButton(context, task, false, 'normal'),
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choice_drink",
-                backgroundColor: Colors.red,
-                shape: CircleBorder(),
-                label: createDrinkText(task),
-                onPressed: ()  {
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
             customOutlineButton(context, task, true, 'normal')
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choice_accepted",
-                backgroundColor: Colors.green,
-                shape: CircleBorder(),
-                label: Text(
-                  S.of(context).yesStyle1,
-                  style: normalStyleWhite
-                ),
-                onPressed: (){
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            )*/
           ]
         );
       }
@@ -278,58 +97,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             customOutlineButton(context, task, false, 'FGtimed'),
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choiceFGTime_denied",
-                label: Text(S.of(context).noStyle2),
-                onPressed: (){
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choiceFGTime_drink",
-                backgroundColor: Colors.red,
-                shape: CircleBorder(),
-                label: createDrinkText(task),
-                onPressed: ()  {
-                  upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            ),*/
-
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choiceFGTime_startTimer",
-                shape: CircleBorder(),
-                label: Text(
-                  CustomTimer.activeTimer!=null?
-                  CustomTimer.activeTimer.FGTimeLeft:
-                  S.of(context).FGTimerGo,
-                  style: normalStyleWhite
-                ),
-                onPressed:  ()  {
-                  startBGTimer(context);
-                }
-            ),*/
             customOutlineButton(context, task, true, 'FGtimed')
-            /*FloatingActionButton.extended(
-                heroTag:  "fab_choiceFGTime_accepted",
-                backgroundColor: Colors.green,
-                shape: CircleBorder(),
-                label: Text(
-                  S.of(context).yesStyle1,
-                  style: normalStyleWhite
-                ),
-                onPressed: (){
-                  upStream.add(json.encode({'type':'randomTask','content':''}));
-                  upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                  upStream.add(json.encode({'type':'nextTask','content':''}));
-                }
-            )*/
           ]
         );
       }
@@ -344,47 +112,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_choiceBGTime_denied",
-              label: Text(S.of(context).noStyle2),
-              onPressed: (){
-                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          ),*/
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_choiceBGTime_drink",
-              backgroundColor: Colors.red,
-              shape: CircleBorder(),
-              label: createDrinkText(task),
-              onPressed: ()  {
-                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          ),*/
           customOutlineButton(context, task, false, 'BGtimed'),
           customOutlineButton(context, task, true, 'BGtimed')
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_choiceBGTime_accepted",
-              backgroundColor: Colors.green,
-              //shape: CircleBorder(),
-              label: Text(
-                  S.of(context).yesStyle1,
-                  textAlign: TextAlign.center,
-                  style: normalStyleWhite
-              ),
-              onPressed: (){
-                startBGTimer(context);
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          )*/
         ]
       );
     }
@@ -454,33 +183,6 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                 }
               }
           )
-          /*FloatingActionButton.extended(
-            heroTag: "fab_comparison_submit",
-            shape: CircleBorder(),
-            label:  Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.green,),
-            onPressed: () {
-              if (comparisonTextController.text==""||comparisonTextController.text==null)  {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => CupertinoAlertDialog(
-                        content: Text(S.of(context).pleaseEnterValidNumber)
-                    )
-                );
-              }
-              else  {
-                Player.mePlayer.compareValue=double.parse(comparisonTextController.text);
-                upStream.add(json.encode({'type':'compareNumber','content':Player.mePlayer.compareValue}));
-                comparisonTextController.clear();
-                //Player.mePlayer.compareValue=null;
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
-              }
-            },
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            highlightElevation: 0
-          )*/
         ]
       );
       break;
@@ -496,21 +198,6 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             )
           ]
         )
-          /*child: FloatingActionButton.extended(
-            heroTag:  "fab_listFailed",
-            backgroundColor: Colors.red,
-            shape: CircleBorder(),
-            label:  Text(
-              "️🤷🏼‍♀️",
-              style: normalStyleWhite,
-            ),
-            onPressed:  ()  {
-              upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-              upStream.add(json.encode({'type':'randomTask','content':''}));
-              upStream.add(json.encode({'type':'randomPlayers','content':''}));
-              upStream.add(json.encode({'type':'nextTask','content':''}));
-            },
-          )*/
       );
       break;
     case 9:
@@ -520,74 +207,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_tabooMime_denied",
-              label: Text(S.of(context).tabooMimeFailStyle1),
-              onPressed: () {
-                if (customTimer.activeTimer!=null)  {
-                  if (customTimer.activeTimer.isRunning==true)  {
-                    upStream.add(json.encode({'type':'cancelTimer','content':customTimer.activeTimer.id}));
-                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  customTimer.activeTimer.id);
-                  }
-                  customTimer.activeTimer.isRunning=false;
-                }
-                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          ),*/
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_tabooMime_drink",
-              backgroundColor: Colors.red,
-              shape: CircleBorder(),
-              label: createDrinkText(task),
-              onPressed: ()  {
-                upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          ),*/
           customOutlineButton(context, task, false, 'FGtimed'),
           //customOutlineButton(context, task, true, 'isActiveTimer'),
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_tabooMime_startTimer",
-              shape: CircleBorder(),
-              label: Text(
-                CustomTimer.activeTimer!=null?
-                CustomTimer.activeTimer.FGTimeLeft:
-                S.of(context).FGTimerGo,
-                style: normalStyleWhite
-              ),
-              onPressed:  ()  {
-                startBGTimer(context);
-                Room.renewActiveTimer(context);
-              }
-          ),*/
           customOutlineButton(context, task, true, 'FGtimed')
-          /*FloatingActionButton.extended(
-              heroTag:  "fab_tabooMime_accepted",
-              backgroundColor: Colors.green,
-              shape: CircleBorder(),
-              label: Text(
-                S.of(context).tabooMimeWinStyle1,
-                style: normalStyleWhite
-              ),
-              onPressed: () {
-                if (CustomTimer.activeTimer!=null)  {
-                  if (CustomTimer.activeTimer.isRunning==true)  {
-                    upStream.add(json.encode({'type':'cancelTimer','content':CustomTimer.activeTimer.id}));
-                    currentRoom.BGTimerDB.removeWhere((timerPlaceholder)  =>  timerPlaceholder.id ==  CustomTimer.activeTimer.id);
-                  }
-                  CustomTimer.activeTimer.isRunning=false;
-                }
-                upStream.add(json.encode({'type':'randomTask','content':''}));
-                upStream.add(json.encode({'type':'randomPlayers','content':''}));
-                upStream.add(json.encode({'type':'nextTask','content':''}));
-              }
-          )*/
         ]
       );
     }
@@ -607,40 +229,26 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         children: <Widget>[
           customOutlineButton(context, task, false, 'wyr'),
           customOutlineButton(context, task, true, 'wyr')
-          /*FloatingActionButton.extended(
-            heroTag: "fab_wyr_a_submit",
-            backgroundColor: Colors.green,
-            shape: CircleBorder(),
-            label: Text(
-              Task.getStringByLocale(task, locale, "wyr_a"),
-              style: normalStyleWhite
-            ),
-            onPressed: () {
-              Player.mePlayer.compareValue = 1;
-              upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
-              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
-            },
-          ),
-          FloatingActionButton.extended(
-            heroTag: "fab_wyr_b_submit",
-            backgroundColor: Colors.red,
-            label: Text(
-              Task.getStringByLocale(task, locale, "wyr_b"),
-              style: normalStyleWhite
-            ),
-            onPressed: () {
-              Player.mePlayer.compareValue = 2;
-              upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
-              Navigator.of(context).push(CupertinoPageRoute(builder: (context) => betweenViewPage()));
-            }
-          )*/
         ]
       );
     break;
+    case 12:
+      return Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                customOutlineButton(context, task, false, 'globalNormal'),
+                Text(
+                    S.of(context).globalFail,
+                    style: tinyStyle
+                )
+              ]
+          )
+      );
+      break;
     default:
       return Container();
       break;
-
   }
 }
 
