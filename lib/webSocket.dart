@@ -45,117 +45,34 @@ void heartBeat()  {
 }
 
 void startStreaming() async{
+  //start the stream/sink and create a sharedprefs instance
   WSChannel.stream.asBroadcastStream();
   downStreamController.addStream(WSChannel.stream);
   upStream = WSChannel.sink;
   downStream = downStreamController.stream;
   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  // if UUID is missing, get one, else, send it to the server
   if(prefs.getString('uuid')==null)  {
     upStream.add(json.encode({'type':'getUUID','content':''}));
   }
   else  {
     upStream.add(json.encode({'type':'setUUID','content':prefs.getString('uuid').toString()}));
   }
+
+  //heartBeatTimer (really just a ping every 20 seconds)
   upStream.add(json.encode({'type':'createPlayer','content':''}));
   heartBeatTimer = RestartableTimer(Duration(seconds:20), () => heartBeat());
 
+  //listen for incoming packages
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
     switch(packageIn.type)  {
-      case 'uuid':
-        prefs.setString('uuid', packageIn.content.toString());
-        Player.mePlayer.id  = prefs.getString('uuid');
-        break;
-      case 'error':
-        switch (packageIn.content)  {
-          case 'roomAlreadyRunning':
-            BotToast.showText(
-              text: S.of(roomSelectionContext).joinRoom_roomAlreadyRunning,
-              duration: Duration(seconds: 5)
-            );
-            break;
-          case 'roomNotFound':
-            BotToast.showText(
-                text: S.of(roomSelectionContext).joinRoom_roomNotFound,
-                duration: Duration(seconds: 5)
-            );
-            break;
-        }
-        break;
-      case 'rejoinYesNo':
-        Package cachedPackage = packageIn;
-        showDialog(
-          barrierDismissible: false,
-          context: playerEditingContext,
-          builder: (BuildContext) =>  rejoinDialog(playerEditingContext, cachedPackage.content.toString())
-        );
-        break;
-      case 'rejoin':
-        //print(packageIn.content);
-        Room.activeRoom = Room(Map.from(packageIn.content));
-        Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
-        currentRoom=Room.activeRoom;
-        playerEditingPageState().goToTaskViewPage(playerEditingContext);
-        break;
-      case 'room':
-        Room.activeRoom = Room(Map.from(packageIn.content));
-        currentRoom = Room.activeRoom;
-        break;
-      case  'timerUpdate':
 
-        if (currentRoom!=null)  {
-          if (currentRoom.BGTimerDB!=null)  {
-            currentRoom.BGTimerDB.clear();
-          }
-          List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
-          if  (currentRoom.BGTimerDB.length>0)  {
-            CustomTimer.updateStateMap();
-          }
-        }
-        break;
-      case 'timerDone':
-        CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
-        Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
-        if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
-          timerDoneDialogOpen = true;
-          showDialog(
-              context: taskViewPageContext,
-              barrierDismissible: false,
-              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer));
-        }
-        break;
-      case 'isWaiting':
-        currentRoom.isWaiting = packageIn.content;
-        break;
+
+      //Updates
       case 'isTouchy':
         currentRoom.isTouchy  = packageIn.content;
-        break;
-      case  'winnerIDArrayUpdate':
-        currentRoom.winnerIDArray.clear();
-        List.from(packageIn.content).forEach((playerplaceholder)  =>(currentRoom.winnerIDArray.insert(currentRoom.winnerIDArray.length, Player(playerplaceholder))));
-        break;
-      case  'compareWinnerSideUpdate':
-        currentRoom.compareWinnerSide = packageIn.content;
-        break;
-      case 'playerDB':
-        currentRoom.playerDB.clear();
-        List.from(packageIn.content).forEach((playerPlaceHolder) => (currentRoom.playerDB.insert(currentRoom.playerDB.length, Player(playerPlaceHolder))));
-        break;
-      case 'taskDB':
-        currentRoom.taskDB.clear();
-        List.from(packageIn.content).forEach((taskPlaceHolder) => (currentRoom.taskDB.insert(currentRoom.taskDB.length, Task(taskPlaceHolder))));
-        break;
-      case 'activeTaskID':
-        currentRoom.activeTaskID  = packageIn.content;
-        break;
-      case 'activePlayerID':
-        currentRoom.activePlayerID  = packageIn.content;
-        break;
-      case 'activeSecondPlayerID':
-        currentRoom.activeSecondPlayerID  = packageIn.content;
-        break;
-      case  'yourPlayer':
-        Player.mePlayer = Player(packageIn.content);
         break;
       case  'startGame':
         roomOverviewPageState().goToTaskViewPage(roomOverviewContext);
@@ -183,6 +100,28 @@ void startStreaming() async{
         }
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;
+      case 'timerDone':
+        CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
+        Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
+        if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
+          timerDoneDialogOpen = true;
+          showDialog(
+              context: taskViewPageContext,
+              barrierDismissible: false,
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer));
+        }
+        break;
+      case 'isWaiting':
+        currentRoom.isWaiting = packageIn.content;
+        break;
+      case  'winnerIDArrayUpdate':
+        currentRoom.winnerIDArray.clear();
+        List.from(packageIn.content).forEach((playerplaceholder)  =>(currentRoom.winnerIDArray.insert(currentRoom.winnerIDArray.length, Player(playerplaceholder))));
+        break;
+      case  'compareWinnerSideUpdate':
+        currentRoom.compareWinnerSide = packageIn.content;
+        break;
+
       case 'choseToDrink':
         Player drinkingPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
         if (drinkingPlayer.id!=Player.mePlayer.id)  {
@@ -190,37 +129,37 @@ void startStreaming() async{
               duration: Duration(seconds: 5),
               backgroundColor: Colors.transparent,
               toastBuilder: (_) => LayoutBuilder(
-                builder: (BuildContext context,  BoxConstraints constraints)  {
-                  return Container(
-                    padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                        text: TextSpan(
-                            style: normalStyle,
-                            children:[
-                              TextSpan(
-                                  text: drinkingPlayer.name,
-                                  style: TextStyle(
-                                      color: drinkingPlayer.color
+                  builder: (BuildContext context,  BoxConstraints constraints)  {
+                    return Container(
+                        padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+                        child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                                style: normalStyle,
+                                children:[
+                                  TextSpan(
+                                      text: drinkingPlayer.name,
+                                      style: TextStyle(
+                                          color: drinkingPlayer.color
+                                      )
+                                  ),
+                                  TextSpan(
+                                      text: S.of(context).choseToDrink
                                   )
-                              ),
-                              TextSpan(
-                                text: S.of(context).choseToDrink
-                              )
-                            ]
+                                ]
+                            )
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(8)
+                            )
+                        ),
+                        constraints: constraints.copyWith(
+                            maxWidth: constraints.biggest.width * 0.6
                         )
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(8)
-                      )
-                    ),
-                    constraints: constraints.copyWith(
-                        maxWidth: constraints.biggest.width * 0.6
-                    )
-                  );
-                }
+                    );
+                  }
               )
           );
         }
@@ -228,40 +167,40 @@ void startStreaming() async{
       case 'playerLeft':
         Player leftPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
         BotToast.showCustomText(
-          duration: Duration(seconds: 5),
-          backgroundColor: Colors.transparent,
-          toastBuilder: (_) => LayoutBuilder(
-            builder: (BuildContext context,  BoxConstraints constraints)  {
-              return Container(
-                padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
-                child: RichText(
-                  text: TextSpan(
-                    style: normalStyle,
-                    children:[
-                      TextSpan(
-                        text: leftPlayer.name,
-                        style: TextStyle(
-                          color: leftPlayer.color
-                        )
+            duration: Duration(seconds: 5),
+            backgroundColor: Colors.transparent,
+            toastBuilder: (_) => LayoutBuilder(
+                builder: (BuildContext context,  BoxConstraints constraints)  {
+                  return Container(
+                      padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+                      child: RichText(
+                          text: TextSpan(
+                              style: normalStyle,
+                              children:[
+                                TextSpan(
+                                    text: leftPlayer.name,
+                                    style: TextStyle(
+                                        color: leftPlayer.color
+                                    )
+                                ),
+                                TextSpan(
+                                    text: S.of(context).hasLeftGame
+                                )
+                              ]
+                          )
                       ),
-                      TextSpan(
-                        text: S.of(context).hasLeftGame
+                      decoration: BoxDecoration(
+                          color: Colors.black54,
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(8)
+                          )
+                      ),
+                      constraints: constraints.copyWith(
+                          maxWidth: constraints.biggest.width * 0.6
                       )
-                    ]
-                  )
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.black54,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(8)
-                  )
-                ),
-                constraints: constraints.copyWith(
-                  maxWidth: constraints.biggest.width * 0.6
-                )
-              );
-            }
-          )
+                  );
+                }
+            )
         );
         break;
       case 'newGM':
@@ -272,58 +211,123 @@ void startStreaming() async{
               duration: Duration(seconds: 5),
               backgroundColor: Colors.transparent,
               toastBuilder: (_) => LayoutBuilder(
-                builder: (BuildContext context,  BoxConstraints constraints)  {
-                  return Container(
-                    padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
-                    child: RichText(
-                        text: TextSpan(
-                          style: normalStyle,
-                          children:[
-                              TextSpan(
-                                  text: newGM.name,
-                                  style: TextStyle(
-                                      color: newGM.color
+                  builder: (BuildContext context,  BoxConstraints constraints)  {
+                    return Container(
+                        padding: EdgeInsets.only(left: 14, right: 14, top: 5, bottom: 7),
+                        child: RichText(
+                            text: TextSpan(
+                                style: normalStyle,
+                                children:[
+                                  TextSpan(
+                                      text: newGM.name,
+                                      style: TextStyle(
+                                          color: newGM.color
+                                      )
+                                  ),
+                                  TextSpan(
+                                      text: S.of(context).isNewGM
                                   )
-                              ),
-                              TextSpan(
-                                text: S.of(context).isNewGM
-                              )
-                            ]
+                                ]
+                            )
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(8)
+                            )
+                        ),
+                        constraints: constraints.copyWith(
+                            maxWidth: constraints.biggest.width * 0.6
                         )
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.all(
-                          Radius.circular(8)
-                      )
-                    ),
-                    constraints: constraints.copyWith(
-                        maxWidth: constraints.biggest.width * 0.6
-                    )
-                  );
-                }
+                    );
+                  }
               )
           );
         });
         break;
+
+
+      //Data packages in general
+      case 'uuid':
+        prefs.setString('uuid', packageIn.content.toString());
+        Player.mePlayer.id  = prefs.getString('uuid');
+        break;
+      case  'yourPlayer':
+        Player.mePlayer = Player(packageIn.content);
+        break;
+      case 'room':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        currentRoom = Room.activeRoom;
+        break;
+
+      //ID packages
+      case 'activeTaskID':
+        currentRoom.activeTaskID  = packageIn.content;
+        break;
+      case 'activePlayerID':
+        currentRoom.activePlayerID  = packageIn.content;
+        break;
+      case 'activeSecondPlayerID':
+        currentRoom.activeSecondPlayerID  = packageIn.content;
+        break;
+
+
+      //DB packages
+      case 'playerDB':
+        currentRoom.playerDB.clear();
+        List.from(packageIn.content).forEach((playerPlaceHolder) => (currentRoom.playerDB.insert(currentRoom.playerDB.length, Player(playerPlaceHolder))));
+        break;
+      case 'taskDB':
+        currentRoom.taskDB.clear();
+        List.from(packageIn.content).forEach((taskPlaceHolder) => (currentRoom.taskDB.insert(currentRoom.taskDB.length, Task(taskPlaceHolder))));
+        break;
+      case  'BGTimerDB':
+        if (currentRoom!=null)  {
+          if (currentRoom.BGTimerDB!=null)  {
+            currentRoom.BGTimerDB.clear();
+          }
+          List.from(packageIn.content).forEach((timerPlaceHolder) => (currentRoom.BGTimerDB.insert(currentRoom.BGTimerDB.length, CustomTimer(timerPlaceHolder))));
+          if  (currentRoom.BGTimerDB.length>0)  {
+            CustomTimer.updateStateMap();
+          }
+        }
+        break;
+
+
+      //Misc
+      case 'askForRejoin':
+        Package cachedPackage = packageIn;
+        showDialog(
+            barrierDismissible: false,
+            context: playerEditingContext,
+            builder: (BuildContext) =>  rejoinDialog(playerEditingContext, cachedPackage.content.toString())
+        );
+        break;
+      case 'rejoin':
+        Room.activeRoom = Room(Map.from(packageIn.content));
+        Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
+        currentRoom=Room.activeRoom;
+        playerEditingPageState().goToTaskViewPage(playerEditingContext);
+        break;
       case 'youWon':
         showDialog(
-          context: taskViewPageContext,
+            context: taskViewPageContext,
             builder: (BuildContext context) => CupertinoAlertDialog(
                 content: Text("You won, yay."),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text(
-                    "K"
-                  ),
-                  onPressed: () {
-                    taskViewPageState().goHome(taskViewPageContext);
-                    currentRoom = null;
-                  }
-                )
-              ]
+                actions: <Widget>[
+                  FlatButton(
+                      child: Text(
+                          "K"
+                      ),
+                      onPressed: () {
+                        taskViewPageState().goHome(taskViewPageContext);
+                        currentRoom = null;
+                      }
+                  )
+                ]
             )
         );
+        break;
     }
   });
 }
