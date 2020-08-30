@@ -176,6 +176,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
 
   pushToPlayerEditing(context) async{
     //SharedPreferences prefs = await SharedPreferences.getInstance();
+    startStreaming();
     BotToast.showLoading(
       duration: Duration(seconds: 1)
     );

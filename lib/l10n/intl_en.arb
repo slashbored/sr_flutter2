@@ -35,7 +35,7 @@
   "listFailedStyle1": "Dunno",
   "FGTimerGo": "Go!",
   "BGTimerGo": "K!",
-  "FGTimerDone": "\uD83D\uDC4D\uD83C\uDFFB",
+  "FGTimerDone": "Done!\uD83D\uDC4D\uD83C\uDFFB",
   "pleaseEnterValidNumber": "Please enter a valid number.",
   "waitingForOthersToInput": "Waiting for the others to input..",
   "comparisonDraw": "It's a draw!",
@@ -64,5 +64,7 @@
   "rejoinQ": "Rejoin?",
   "rejoin1": "Rejoin game \"",
   "rejoin2": "\" as \"",
-  "pleaseWait": "Hold on a sec..."
+  "pleaseWait": "Hold on a sec...",
+  "globalTitle": "Everyone!",
+  "globalFail": "(tap this if you're the one who failed)"
 }

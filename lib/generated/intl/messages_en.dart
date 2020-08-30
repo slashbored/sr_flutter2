@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "BGTimerGo" : MessageLookupByLibrary.simpleMessage("K!"),
-    "FGTimerDone" : MessageLookupByLibrary.simpleMessage("👍🏻"),
+    "FGTimerDone" : MessageLookupByLibrary.simpleMessage("Done!👍🏻"),
     "FGTimerGo" : MessageLookupByLibrary.simpleMessage("Go!"),
     "choseToDrink" : MessageLookupByLibrary.simpleMessage(" chose to drink instead."),
     "close" : MessageLookupByLibrary.simpleMessage("Close"),
@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "comparisonDraw" : MessageLookupByLibrary.simpleMessage("It\'s a draw!"),
     "createRoom" : MessageLookupByLibrary.simpleMessage("Create a game"),
     "enterName" : MessageLookupByLibrary.simpleMessage("Please enter your name and gender:"),
+    "globalFail" : MessageLookupByLibrary.simpleMessage("(tap this if you\'re the one who failed)"),
+    "globalTitle" : MessageLookupByLibrary.simpleMessage("Everyone!"),
     "hasLeftGame" : MessageLookupByLibrary.simpleMessage(" has left the game."),
     "isNewGM" : MessageLookupByLibrary.simpleMessage(" is the new GM."),
     "joinRoom" : MessageLookupByLibrary.simpleMessage("Join a game"),

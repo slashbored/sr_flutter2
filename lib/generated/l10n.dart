@@ -393,10 +393,10 @@ class S {
     );
   }
 
-  /// `👍🏻`
+  /// `Done!👍🏻`
   String get FGTimerDone {
     return Intl.message(
-      '👍🏻',
+      'Done!👍🏻',
       name: 'FGTimerDone',
       desc: '',
       args: [],
@@ -688,6 +688,26 @@ class S {
     return Intl.message(
       'Hold on a sec...',
       name: 'pleaseWait',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Everyone!`
+  String get globalTitle {
+    return Intl.message(
+      'Everyone!',
+      name: 'globalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(tap this if you're the one who failed)`
+  String get globalFail {
+    return Intl.message(
+      '(tap this if you\'re the one who failed)',
+      name: 'globalFail',
       desc: '',
       args: [],
     );

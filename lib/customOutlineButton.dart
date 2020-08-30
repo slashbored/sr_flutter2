@@ -60,6 +60,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
       );
       break;
     case 'list':
+    case 'globalNormal':
       return OutlineButton(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
@@ -89,7 +90,7 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
             style: BorderStyle.solid
         ),
         child: Text(
-            yesOrNo?"👍🏻":createDrinkText(task),
+            yesOrNo?(type=='BGtimed'?S.of(context).BGTimerGo:S.of(context).FGTimerDone):createDrinkText(task),
             textAlign: TextAlign.center,
             style: normalStyle
         ),
@@ -106,14 +107,14 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
               yesOrNo?forward():no();
               break;
           }
-        },
+        }
       );
       break;
   }
 }
 
 void forward()  {
-  /*upStream.add(json.encode({'type':'randomTask','content':''}));
+  /*upStream.add(json.encode({'type':'randomTask','content':''})); //keeping for future usage maybe?
   upStream.add(json.encode({'type':'randomPlayers','content':''}));*/
   upStream.add(json.encode({'type':'nextTask','content':''}));
 }

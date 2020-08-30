@@ -35,7 +35,7 @@
   "listFailedStyle1": "Kein Plan",
   "FGTimerGo": "Los!",
   "BGTimerGo": "Auffi!",
-  "FGTimerDone": "\uD83D\uDC4D\uD83C\uDFFB",
+  "FGTimerDone": "Fertig!\uD83D\uDC4D\uD83C\uDFFB",
   "pleaseEnterValidNumber": "Bitte gib eine korrekte Zahl an.",
   "waitingForOthersToInput": "Warte auf Eingaben der anderen Spieler..",
   "comparisonDraw": "Unentschieden!",
@@ -64,5 +64,7 @@
   "rejoinQ": "Wieder rein?",
   "rejoin1": "Wieder rein ins Spiel \"",
   "rejoin2": "\" als \"",
-  "pleaseWait": "Bitte warte kurz..."
+  "pleaseWait": "Bitte warte kurz...",
+  "globalTitle": "Alle jetzt!",
+  "globalFail": "(hier tippen, wenn du's verkackt hast)"
 }

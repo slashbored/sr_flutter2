@@ -104,15 +104,6 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
         ),
       );
       break;
-    case 11:
-    return Center(
-      child: Text(
-        S.of(context).wyr_title,
-        textAlign: TextAlign.center,
-        style: headlineStyle
-      )
-    );
-      break;
     case 8:
       return Center(
         child: firstPlayer.id==Player.mePlayer.id?
@@ -239,6 +230,24 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
           )
         );
       }
+      break;
+    case 11:
+      return Center(
+          child: Text(
+              S.of(context).wyr_title,
+              textAlign: TextAlign.center,
+              style: headlineStyle
+          )
+      );
+      break;
+    case 12:
+      return Center(
+        child: Text(
+            S.of(context).globalTitle,
+            textAlign: TextAlign.center,
+            style: headlineStyle
+        )
+      );
       break;
     default:
       return Spacer();
