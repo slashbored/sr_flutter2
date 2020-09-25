@@ -151,7 +151,7 @@ Multimap sortedSinglePlayerMultimap() {
 
 List listForSinglePlayer(String foreignKey) {
   List listPlaceholder  = new List();
-  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey));
+  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey&&(element.secondPlayerID==""||element.secondplayerID==null)));
   return listPlaceholder;
 }
 
