@@ -12,46 +12,46 @@ final TextStyle bigStyle = new TextStyle(
 );
 
 final TextStyle normalStyle = new TextStyle(
-  fontSize: 18,
+  fontSize: 20,
   color: Colors.black
 );
 
 final TextStyle normalStyleGreen = new TextStyle(
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.green
 );
 
 final TextStyle normalStyleRed = new TextStyle(
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.red
 );
 
 final TextStyle normalStyleWhite  = new TextStyle(
-  fontSize: 18,
+  fontSize: 20,
   color: Colors.white
 );
 
+final TextStyle normalStylePurple  = new TextStyle(
+    fontSize: 20,
+    color: Colors.purpleAccent
+);
+
 final TextStyle smallStyle  = new TextStyle(
-  fontSize: 12,
+  fontSize: 14,
   color: Colors.black
 );
 
 final TextStyle smallStyleWhite = new TextStyle(
-  fontSize: 12,
+  fontSize: 14,
   color: Colors.white
 );
 
 final TextStyle tinyStyle  = new TextStyle(
-  fontSize: 9,
+  fontSize: 11,
   color: Colors.black
 );
 
 final TextStyle tinyStyleWhite = new TextStyle(
-  fontSize: 9,
+  fontSize: 11,
   color: Colors.white
-);
-
-final TextStyle touchyTitleStyle  = new TextStyle(
-  fontSize: 18,
-  color: Colors.purpleAccent
 );
