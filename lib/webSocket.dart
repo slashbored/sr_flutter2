@@ -19,7 +19,6 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 import 'playerEditingPage.dart';
-import 'waitingPage.dart';
 import 'roomOverviewPage.dart';
 import 'taskViewPage.dart';
 import 'rejoinDialogWidget.dart';
