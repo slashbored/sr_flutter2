@@ -64,7 +64,10 @@
   "rejoinQ": "Wieder rein?",
   "rejoin1": "Wieder rein ins Spiel \"",
   "rejoin2": "\" als \"",
+  "joinExistingGameAsking": "Frage nach Erlaubnis zum Beitritt...",
+  "joinExistingGameDenied": "Abgelehnt!",
   "pleaseWait": "Bitte warte kurz...",
   "globalTitle": "Alle jetzt!",
-  "globalFail": "(hier tippen, wenn du's verkackt hast)"
+  "globalFail": "(hier tippen, wenn du's verkackt hast)",
+  "cancel": "Abbrechen"
 }
