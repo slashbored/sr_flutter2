@@ -32,10 +32,12 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
           body: new Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                new Text(
-                    S.of(context).networkMode_headline,
-                    textAlign: TextAlign.center,
-                    style: headlineStyle
+                new Center(
+                  child: Text(
+                      S.of(context).networkMode_headline,
+                      textAlign: TextAlign.center,
+                      style: headlineStyle
+                  ),
                 ),
                 /*new FloatingActionButton.extended(
                   heroTag: "fab_online",
@@ -176,7 +178,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
 
   pushToPlayerEditing(context) async{
     //SharedPreferences prefs = await SharedPreferences.getInstance();
-    startStreaming();
+    //startStreaming();
     BotToast.showLoading(
       duration: Duration(seconds: 1)
     );

@@ -101,13 +101,20 @@ void startStreaming() async{
         break;
       case 'timerDone':
         CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
+        List endedTaskList = new List();
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
+        if (endedTaskList.contains(endedTask)==false)  {
+          endedTaskList.add(endedTask);
+          print(endedTaskList.toString());
+        }
         if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
           timerDoneDialogOpen = true;
           showDialog(
               context: taskViewPageContext,
               barrierDismissible: false,
-              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer));
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
+          );
+          endedTaskList.removeAt(0);
         }
         break;
       case 'isWaiting':
@@ -294,7 +301,7 @@ void startStreaming() async{
 
 
       //Misc
-      case 'askForRejoin':
+      case 'rejoinYesNo':
         Package cachedPackage = packageIn;
         showDialog(
             barrierDismissible: false,

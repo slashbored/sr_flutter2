@@ -103,7 +103,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
       },
     );*/
   return LinearPercentIndicator(
-    lineHeight: 36.0,
+    lineHeight: 42.0,
     animationDuration: 2000,
     percent: calculatePercent(correspondingTask, correspondingTimer),
     center: Column(
@@ -121,7 +121,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
               ),
             ),
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Text(
                   convertTime(correspondingTimer.BGTimeLeft),
                   textAlign: TextAlign.right,

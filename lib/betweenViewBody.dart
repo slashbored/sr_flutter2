@@ -112,7 +112,8 @@ Widget betweenViewBody(BuildContext context){
     return Center(
       child: Text(
         S.of(context).waitingForOthersToInput,
-        style: normalStyle
+        style: normalStyle,
+        textAlign: TextAlign.center,
       )
     );
   }

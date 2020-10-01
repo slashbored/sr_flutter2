@@ -34,7 +34,7 @@ Widget timerDoneDialog(BuildContext context, Task completedTask, CustomTimer end
             TextSpan(
                 style: TextStyle(
                     color: otherPlayer.color,
-                    fontSize: 18
+                    fontSize: 24
                 ),
                 text: otherPlayer.name
             ),

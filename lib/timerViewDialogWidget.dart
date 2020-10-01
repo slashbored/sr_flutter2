@@ -73,11 +73,18 @@ Widget timerViewDialog(BuildContext context)  {
                                       shrinkWrap: true,
                                       itemCount: listForSinglePlayer(currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id).length,
                                       itemBuilder: (context, int innerIndex)  {
-                                        return timerWidget(context, listForSinglePlayer(currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id)[innerIndex]);
+                                        return Column(
+                                          children: [
+                                            timerWidget(context, listForSinglePlayer(currentRoom.playerDB.firstWhere((element) => element.id ==  sortedSinglePlayerMultimap().keys.elementAt(outterIndex).toString()).id)[innerIndex]),
+                                            Container(
+                                              height: 10,
+                                            )
+                                          ],
+                                        );
                                       }),
                                 ),
                                 Container(
-                                  height: 10
+                                  height: 20
                                 )
                               ]
                             );
@@ -106,11 +113,18 @@ Widget timerViewDialog(BuildContext context)  {
                                     physics: const NeverScrollableScrollPhysics(),
                                     //itemCount: listForMultiPlayer(sortedMultiPlayerMultimap().keys.elementAt(outterIndex)).length,
                                     itemBuilder: (context, int innerIndex)  {
-                                      return timerWidget(context, sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].elementAt(innerIndex));
+                                      return Column(
+                                        children: [
+                                          timerWidget(context, sortedMultiPlayerMultimap()[sortedMultiPlayerMultimap().keys.elementAt(outterIndex)].elementAt(innerIndex)),
+                                          Container(
+                                            height: 10,
+                                          )
+                                        ],
+                                      );
                                     }),
                               ),
                               Container(
-                                height: 10
+                                height: 20
                               )
                             ]
                           );
@@ -151,7 +165,7 @@ Multimap sortedSinglePlayerMultimap() {
 
 List listForSinglePlayer(String foreignKey) {
   List listPlaceholder  = new List();
-  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey&&(element.secondPlayerID==""||element.secondplayerID==null)));
+  listPlaceholder.addAll(currentRoom.BGTimerDB.where((element) => element.playerID==foreignKey&&(element.secondPlayerID==""||element.secondplayerID==null))); // fix on serverside, line 596+ ?
   return listPlaceholder;
 }
 

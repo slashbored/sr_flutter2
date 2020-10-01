@@ -683,6 +683,26 @@ class S {
     );
   }
 
+  /// `Asking for permission to join...`
+  String get joinExistingGameAsking {
+    return Intl.message(
+      'Asking for permission to join...',
+      name: 'joinExistingGameAsking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DENIED!`
+  String get joinExistingGameDenied {
+    return Intl.message(
+      'DENIED!',
+      name: 'joinExistingGameDenied',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hold on a sec...`
   String get pleaseWait {
     return Intl.message(
@@ -708,6 +728,16 @@ class S {
     return Intl.message(
       '(tap this if you\'re the one who failed)',
       name: 'globalFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
       desc: '',
       args: [],
     );

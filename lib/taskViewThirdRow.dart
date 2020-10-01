@@ -194,7 +194,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
             customOutlineButton(context, task, false, 'list'),
             Text(
               S.of(context).list_expl,
-              style: tinyStyle
+              style: tinyStyle,
+              textAlign: TextAlign.center,
             )
           ]
         )
@@ -217,20 +218,28 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return  Center(
         child: Text(
           S.of(context).tabooMime_expl,
-          style: tinyStyle
+          style: tinyStyle,
+          textAlign: TextAlign.center,
         )
       );
     }
     break;
     case 11:
       //locale = Localizations.localeOf(context).toString();
-      return Row(
+    return Wrap(
+        alignment: WrapAlignment.spaceEvenly,
+        children: <Widget>[
+        customOutlineButton(context, task, false, 'wyr'),
+        Container(),
+        customOutlineButton(context, task, true, 'wyr')]
+    );
+      /*return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           customOutlineButton(context, task, false, 'wyr'),
           customOutlineButton(context, task, true, 'wyr')
         ]
-      );
+      );*/
     break;
     case 12:
       return Center(

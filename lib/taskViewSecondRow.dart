@@ -47,7 +47,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
   }
   if (task.typeID==7||task.typeID==8||task.typeID==11||task.typeID==12)  {
     if (task.typeID==12) {
-      print("halthere");
+      //print("halthere");
     }
     return Center(
       child: Text(
@@ -82,7 +82,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                   TextSpan(
                       style: TextStyle(
                         color: secondPlayer.color,
-                        fontSize: 18
+                        fontSize: 22
                       ),
                       text: secondPlayer.name
                   ),
@@ -109,7 +109,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                   TextSpan(
                       style: TextStyle(
                           color: firstPlayer.color,
-                          fontSize: 18
+                          fontSize: 22
                       ),
                       text: firstPlayer.name
                   ),
@@ -132,7 +132,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                  TextSpan(
                    style: TextStyle(
                      color: firstPlayer.color,
-                     fontSize: 18
+                     fontSize: 22
                    ),
                    text: firstPlayer.name
                  ),
@@ -143,7 +143,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
                   TextSpan(
                     style: TextStyle(
                       color: secondPlayer.color,
-                      fontSize: 18
+                      fontSize: 22
                     ),
                     text: secondPlayer.name
                   ),

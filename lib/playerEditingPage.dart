@@ -37,7 +37,7 @@ class playerEditingPageState extends State<playerEditing>{
   @override
   void initState() {
     super.initState();
-    //startStreaming();
+    startStreaming();
   }
 
   @override
