@@ -20,7 +20,7 @@ Widget timerDoneDialog(BuildContext context, Task completedTask, CustomTimer end
   timerDoneDialogContext  = context;
   endedTimer.playerID ==  Player.mePlayer.id?first=true:first=false;
   taskString  = Task.getStringByLocale(completedTask, locale, first?'completeString_active':'completeString_passive');
-  if (endedTimer.secondPlayerID!=null)  {
+  if (endedTimer.secondPlayerID!=null&&endedTimer.secondPlayerID!="")  {
     otherPlayer = currentRoom.playerDB.firstWhere((element) => element.id ==  (first?endedTimer.secondPlayerID:endedTimer.playerID));
     splitStringList = taskString.split("\$placeholder");
     doneText  =  RichText(

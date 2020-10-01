@@ -22,12 +22,14 @@ class CustomTimer{
     taskID      = data['taskID'];
     BGTimeLeft  = data['BGTimeLeft'];
     isRunning   = data['isRunning'];
+    secondPlayerID  = data['activeSecondPlayerID']; //should be "" at least anyway
+    /*
     if (data['activeSecondPlayerID']!=null) {
       secondPlayerID  = data['activeSecondPlayerID'];
     }
     else  {
       secondPlayerID  = null;
-    }
+    }*/
   }
 
   static void updateStateMap()  {

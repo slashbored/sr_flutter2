@@ -31,12 +31,13 @@ class Room  {
     mode  = data['mode'];
     activeTaskID  = data['activeTaskID'];
     activePlayerID  = data['activePlayerID'];
-    if (data['activeSecondPlayerID']!=null)  {
+    activeSecondPlayerID  = data['activeSecondPlayerID']; //should work, as secondPlayerID is "" if empty
+    /*if (data['activeSecondPlayerID']!=null)  {
       activeSecondPlayerID  = data['activeSecondPlayerID'];
     }
     else  {
       activeSecondPlayerID=null;
-    }
+    }*/
     if (data['BGTimerDB']!=null) {
       List.from(data['BGTimerDB']).forEach((timerPlaceHolder) => (BGTimerDB.insert(BGTimerDB.length, CustomTimer(timerPlaceHolder))));
       if  (BGTimerDB.length>0)  {

@@ -21,7 +21,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
   Player correspondingFirstPlayer  = currentRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
   Player correspondingSecondPlayer;
   Task correspondingTask      = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == correspondingTimer.taskID);
-  if (correspondingTimer.secondPlayerID!=null)  {
+  if (correspondingTimer.secondPlayerID!=null&&correspondingTimer.secondPlayerID!="")  {
     correspondingSecondPlayer  = currentRoom.playerDB.firstWhere((player)  =>  player.id == correspondingTimer.secondPlayerID);
     }
     /*return Container(

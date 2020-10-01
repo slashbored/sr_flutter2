@@ -76,7 +76,7 @@ class taskViewPageState extends State<taskViewPage>{
     if  (isWorkingAtAll()) {
       currentTask   = currentRoom.taskDB.firstWhere((taskPlaceholder) =>  taskPlaceholder.id == currentRoom.activeTaskID);
       currentPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activePlayerID);
-      if  (currentRoom.activeSecondPlayerID!=null)  {
+      if  (currentRoom.activeSecondPlayerID!=null&&currentRoom.activeSecondPlayerID!="")  {
         currentSecondPlayer = Room.activeRoom.playerDB.firstWhere((player) =>  player.id == currentRoom.activeSecondPlayerID);
       }
       return WillPopScope(
