@@ -77,3 +77,5 @@ Widget rejoinDialog(BuildContext context, String jsonstring)  {
       ]
   );
 }
+
+// TODO: freeze game when player wants to (re-)join, implement rejoin first, join afterwards, ask GM
