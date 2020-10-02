@@ -37,6 +37,7 @@ BuildContext roomSelectionContext;
 BuildContext roomOverviewContext;
 BuildContext taskViewPageContext;
 Room currentRoom;
+List endedTaskList = new List();
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
@@ -100,11 +101,12 @@ void startStreaming() async{
         taskViewPageState().nextTaskOnThisPage(taskViewPageContext);
         break;
       case 'timerDone':
+        // TODO: create stack/db (?) of done timers for specific player to show dialogs accordingly
         CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
-        List endedTaskList = new List();
+        //make endedTask work from list/stack, gets overwritten oterhwise
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
         if (endedTaskList.contains(endedTask)==false)  {
-          endedTaskList.add(endedTask);
+          endedTaskList.add(endedTask); //check here if its being added and persists after deletion, work from there
           print(endedTaskList.toString());
         }
         if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
@@ -114,7 +116,7 @@ void startStreaming() async{
               barrierDismissible: false,
               builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
           );
-          endedTaskList.removeAt(0);
+          //endedTaskList.removeAt(0);
         }
         break;
       case 'isWaiting':

@@ -77,6 +77,7 @@ Widget timerDoneDialog(BuildContext context, Task completedTask, CustomTimer end
             style: normalStyle,
           ),
           onPressed: () {
+            endedTaskList.removeWhere((element) => element.id==endedTimer.id);
             timerDoneDialogOpen = false;
             Navigator.pop(context);
           },
