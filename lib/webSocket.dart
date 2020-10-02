@@ -37,7 +37,7 @@ BuildContext roomSelectionContext;
 BuildContext roomOverviewContext;
 BuildContext taskViewPageContext;
 Room currentRoom;
-List endedTaskList = new List();
+List<Task> endedTaskList = new List();
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
@@ -115,6 +115,7 @@ void startStreaming() async{
               context: taskViewPageContext,
               barrierDismissible: false,
               builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
+              // should be: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList.first, endedTimer)
           );
           //endedTaskList.removeAt(0);
         }
