@@ -74,3 +74,5 @@ class MyAppState extends State<MyApp>  {
    );
   }
 }
+
+// TODO: make it work via bloc, not streambuilder, possibly preventing rebuilds

@@ -6,7 +6,7 @@ import 'webSocket.dart';
 import 'dart:convert';
 import 'playerClass.dart';
 
-Widget rejoinDialog(BuildContext context, String jsonstring)  {
+Widget AFPTJDialog(BuildContext context, String jsonstring)  {
   return SimpleDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20))

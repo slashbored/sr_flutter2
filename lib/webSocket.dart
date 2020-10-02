@@ -117,7 +117,6 @@ void startStreaming() async{
               builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
               // should be: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList.first, endedTimer)
           );
-          //endedTaskList.removeAt(0);
         }
         break;
       case 'isWaiting':
