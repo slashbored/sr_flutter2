@@ -115,7 +115,7 @@ void startStreaming() async{
               context: taskViewPageContext,
               barrierDismissible: false,
               builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
-              // should be: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList.first, endedTimer)
+              // should be: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList[endedTaskList.length-1], endedTimer)
           );
         }
         break;
