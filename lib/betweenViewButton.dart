@@ -7,43 +7,35 @@ import 'fadeTransitionRoute.dart';
 
 Widget betweenViewButton(BuildContext context)  {
   if  (currentRoom.isWaiting)  {
-    return OutlineButton(
+    return FlatButton(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10)
       ),
-        borderSide: BorderSide(
-            width: 3,
-            color: Colors.grey,
-            style: BorderStyle.solid
-        ),
         child: Icon(
             Icons.hourglass_empty,
-            color: Colors.black
+            color: Colors.white
         ),
         onPressed: () {
-        }
+        },
+      color: Colors.grey,
     );
   }
   else  {
-    return OutlineButton(
+    return FlatButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
         ),
-        borderSide: BorderSide(
-            width: 3,
-            color: Colors.green,
-            style: BorderStyle.solid
-        ),
         child: Icon(
             Icons.arrow_forward_ios,
-            color: Colors.black
+            color: Colors.white
         ),
         onPressed: () {
           upStream.add(json.encode({'type':'clearComparison','content':''}));
           upStream.add(json.encode({'type':'randomTask','content':''}));
           upStream.add(json.encode({'type':'randomPlayers','content':''}));
           upStream.add(json.encode({'type':'nextTask','content':''}));
-        }
+        },
+      color: Colors.green,
     );
   }
 }

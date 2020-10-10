@@ -11,6 +11,11 @@ final TextStyle bigStyle = new TextStyle(
   color: Colors.black
 );
 
+final TextStyle bigStyleWhite = new TextStyle(
+    fontSize: 31,
+    color: Colors.white
+);
+
 final TextStyle normalStyle = new TextStyle(
   fontSize: 24,
   color: Colors.black

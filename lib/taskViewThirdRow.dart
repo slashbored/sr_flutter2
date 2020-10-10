@@ -12,7 +12,7 @@ import 'taskClass.dart';
 import 'customTimerClass.dart';
 
 import 'betweenViewPage.dart';
-import 'customOutlineButton.dart';
+import 'customFlatButton.dart';
 
 import 'fadeTransitionRoute.dart';
 
@@ -36,8 +36,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'normal'),
-            customOutlineButton(context, task, true, 'normal')
+            customFlatButton(context, task, false, 'normal'),
+            customFlatButton(context, task, true, 'normal')
           ]
         );
       }
@@ -51,14 +51,14 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'FGtimed'),
-            customOutlineButton(context, task, true, 'FGtimed')
+            customFlatButton(context, task, false, 'FGtimed'),
+            customFlatButton(context, task, true, 'FGtimed')
           ]
         );
       }
       else  {
         return Center(
-          child: customOutlineButton(context, task, true, 'isActiveTimer'),
+          child: customFlatButton(context, task, true, 'isActiveTimer'),
         );
       }
       break;
@@ -67,8 +67,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'BGtimed'),
-            customOutlineButton(context, task, true, 'BGtimed')
+            customFlatButton(context, task, false, 'BGtimed'),
+            customFlatButton(context, task, true, 'BGtimed')
           ]
         );
       }
@@ -81,8 +81,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'normal'),
-            customOutlineButton(context, task, true, 'normal')
+            customFlatButton(context, task, false, 'normal'),
+            customFlatButton(context, task, true, 'normal')
           ]
         );
       }
@@ -96,14 +96,14 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'FGtimed'),
-            customOutlineButton(context, task, true, 'FGtimed')
+            customFlatButton(context, task, false, 'FGtimed'),
+            customFlatButton(context, task, true, 'FGtimed')
           ]
         );
       }
       else  {
         return Center(
-          child: customOutlineButton(context, task, true, 'isActiveTimer'),
+          child: customFlatButton(context, task, true, 'isActiveTimer'),
         );
       }
       break;
@@ -112,8 +112,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          customOutlineButton(context, task, false, 'BGtimed'),
-          customOutlineButton(context, task, true, 'BGtimed')
+          customFlatButton(context, task, false, 'BGtimed'),
+          customFlatButton(context, task, true, 'BGtimed')
         ]
       );
     }
@@ -152,18 +152,13 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               )
             ]
           ),
-          OutlineButton(
+          FlatButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)
             ),
-            borderSide: BorderSide(
-                width: 3,
-                color: Colors.green,
-                style: BorderStyle.solid
-            ),
             child: Icon(
               Icons.arrow_forward_ios,
-              color: Colors.black,
+              color: Colors.white,
             ),
               onPressed: () {
                 if (comparisonTextController.text==""||comparisonTextController.text==null)  {
@@ -181,7 +176,8 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
                   //Player.mePlayer.compareValue=null;
                   Navigator.of(context).push(fadePageRoute(page: betweenViewPage()));
                 }
-              }
+              },
+            color: Colors.green,
           )
         ]
       );
@@ -191,7 +187,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            customOutlineButton(context, task, false, 'list'),
+            customFlatButton(context, task, false, 'list'),
             Text(
               S.of(context).list_expl,
               style: tinyStyle,
@@ -208,9 +204,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          customOutlineButton(context, task, false, 'FGtimed'),
+          customFlatButton(context, task, false, 'FGtimed'),
           //customOutlineButton(context, task, true, 'isActiveTimer'),
-          customOutlineButton(context, task, true, 'FGtimed')
+          customFlatButton(context, task, true, 'FGtimed')
         ]
       );
     }
@@ -229,9 +225,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
     return Wrap(
         alignment: WrapAlignment.spaceEvenly,
         children: <Widget>[
-        customOutlineButton(context, task, false, 'wyr'),
+        customFlatButton(context, task, false, 'wyr'),
         Container(),
-        customOutlineButton(context, task, true, 'wyr')]
+        customFlatButton(context, task, true, 'wyr')]
     );
       /*return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -246,7 +242,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                customOutlineButton(context, task, false, 'globalNormal'),
+                customFlatButton(context, task, false, 'globalNormal'),
                 Text(
                     S.of(context).globalFail,
                     style: tinyStyle

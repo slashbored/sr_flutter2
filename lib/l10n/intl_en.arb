@@ -1,5 +1,5 @@
 {
-  "welcome": "Shitroulette!\n(Quarrrrraantine Edition)",
+  "welcome": "Shitroulette",
   "languageSelector": "Please select the language:",
   "or": "or",
   "modeSelector": "Please select the gamemode:",
@@ -69,5 +69,7 @@
   "pleaseWait": "Hold on a sec...",
   "globalTitle": "Everyone!",
   "globalFail": "(tap this if you're the one who failed)",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "results": "Results:",
+  "waiting": "Wait for it.."
 }

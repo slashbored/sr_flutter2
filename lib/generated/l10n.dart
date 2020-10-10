@@ -33,10 +33,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Shitroulette!\n(Quarrrrraantine Edition)`
+  /// `Shitroulette`
   String get welcome {
     return Intl.message(
-      'Shitroulette!\n(Quarrrrraantine Edition)',
+      'Shitroulette',
       name: 'welcome',
       desc: '',
       args: [],
@@ -738,6 +738,26 @@ class S {
     return Intl.message(
       'Cancel',
       name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Results:`
+  String get results {
+    return Intl.message(
+      'Results:',
+      name: 'results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wait for it..`
+  String get waiting {
+    return Intl.message(
+      'Wait for it..',
+      name: 'waiting',
       desc: '',
       args: [],
     );

@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rejoin1" : MessageLookupByLibrary.simpleMessage("Wieder rein ins Spiel \""),
     "rejoin2" : MessageLookupByLibrary.simpleMessage("\" als \""),
     "rejoinQ" : MessageLookupByLibrary.simpleMessage("Wieder rein?"),
+    "results" : MessageLookupByLibrary.simpleMessage("Ergebnis:"),
     "settings_headline" : MessageLookupByLibrary.simpleMessage("Einstellungen"),
     "settings_language" : MessageLookupByLibrary.simpleMessage("Sprache:"),
     "sexFemale" : MessageLookupByLibrary.simpleMessage("Weiblein"),
@@ -88,8 +89,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("Du bist fertig!"),
     "timerViewDialog_title" : MessageLookupByLibrary.simpleMessage("Aktive Timer"),
     "turn" : MessageLookupByLibrary.simpleMessage(" ist am Zug"),
+    "waiting" : MessageLookupByLibrary.simpleMessage("Warte, es kommt gleich.."),
     "waitingForOthersToInput" : MessageLookupByLibrary.simpleMessage("Warte auf Eingaben der anderen Spieler.."),
-    "welcome" : MessageLookupByLibrary.simpleMessage("Shitroulette!\n(Quarantää Edition)"),
+    "welcome" : MessageLookupByLibrary.simpleMessage("Shitroulette"),
     "wyr_title" : MessageLookupByLibrary.simpleMessage("Also ..."),
     "yesStyle1" : MessageLookupByLibrary.simpleMessage("Ja")
   };

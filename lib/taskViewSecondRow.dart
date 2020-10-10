@@ -1,4 +1,4 @@
-import 'package:sr_flutter2/customOutlineButton.dart';
+import 'package:sr_flutter2/customFlatButton.dart';
 
 import 'textStyles.dart';
 import 'package:flutter/material.dart';

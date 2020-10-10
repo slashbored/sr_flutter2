@@ -64,22 +64,18 @@ class roomSelectionPage extends State<roomSelection>{
                                                       textAlign: TextAlign.center,
                                                       style: normalStyle
                                                   ),
-                                                  OutlineButton(
+                                                  FlatButton(
                                                       shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(10)
                                                       ),
-                                                      borderSide: BorderSide(
-                                                          width: 3,
-                                                          color: Colors.green,
-                                                          style: BorderStyle.solid
-                                                      ),
                                                       child: Icon(
                                                         Icons.add,
-                                                        color: Colors.black
+                                                        color: Colors.white
                                                       ),
                                                       onPressed: () {
                                                         createRoom();
                                                       }
+                                                      ,color: Colors.green,
                                                   )
                                                 ]
                                             )
@@ -113,7 +109,7 @@ class roomSelectionPage extends State<roomSelection>{
                                             margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                             child: Divider(
                                                 color: Colors.black,
-                                                thickness: 2
+                                                thickness: 4
                                             )
                                         )
                                     )
@@ -149,6 +145,9 @@ class roomSelectionPage extends State<roomSelection>{
                                               Spacer(),
                                               Expanded(
                                                   child: TextField(
+                                                      onChanged: (text) {
+                                                        setState(() {}); //dirty way
+                                                      },
                                                       textAlign: TextAlign.center,
                                                       controller: joinroomTextfieldController,
                                                       keyboardType: TextInputType.numberWithOptions(
@@ -157,7 +156,14 @@ class roomSelectionPage extends State<roomSelection>{
                                                       ),
                                                       decoration: InputDecoration(
                                                         hintText: S.of(context).joinRoom_hintText,
-                                                        border: OutlineInputBorder()
+                                                        border: OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                            width: 10,
+                                                            color: joinroomTextfieldController.text==""||joinroomTextfieldController.text==null?
+                                                                Colors.grey:
+                                                                Colors.black
+                                                          )
+                                                        )
                                                       )
                                                   )
                                               ),
@@ -166,18 +172,13 @@ class roomSelectionPage extends State<roomSelection>{
                                         )
                                     ),
                                     Flexible(
-                                        child: OutlineButton(
+                                        child: FlatButton(
                                             shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10)
                                             ),
-                                            borderSide: BorderSide(
-                                                width: 3,
-                                                color: Colors.blue,
-                                                style: BorderStyle.solid
-                                            ),
                                             child: Icon(
                                                 Icons.arrow_forward_ios,
-                                                color: Colors.black
+                                                color: Colors.white
                                             ),
                                             onPressed: () {
                                               if (joinroomTextfieldController.text==""||joinroomTextfieldController.text==null)  {
@@ -190,7 +191,8 @@ class roomSelectionPage extends State<roomSelection>{
                                                 upStream.add(json.encode({'type':'joinRoom','content':joinroomTextfieldController.text.toString()}));
                                                 joinRoom();
                                               }
-                                            }
+                                            },
+                                          color: joinroomTextfieldController.text==""?Colors.grey:Colors.blue,
                                         )
                                     )
                                   ]

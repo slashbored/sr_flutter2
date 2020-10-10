@@ -100,7 +100,7 @@ class taskViewPageState extends State<taskViewPage>{
                                   margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                   child: Divider(
                                       color: Colors.black,
-                                      thickness: 2
+                                      thickness: 4
                                   )
                               )
                           ),
@@ -113,7 +113,7 @@ class taskViewPageState extends State<taskViewPage>{
                                   margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                   child: Divider(
                                       color: Colors.black,
-                                      thickness: 2
+                                      thickness: 4
                                   )
                               )
                           ),

@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "rejoin1" : MessageLookupByLibrary.simpleMessage("Rejoin game \""),
     "rejoin2" : MessageLookupByLibrary.simpleMessage("\" as \""),
     "rejoinQ" : MessageLookupByLibrary.simpleMessage("Rejoin?"),
+    "results" : MessageLookupByLibrary.simpleMessage("Results:"),
     "settings_headline" : MessageLookupByLibrary.simpleMessage("Settings"),
     "settings_language" : MessageLookupByLibrary.simpleMessage("Language:"),
     "sexFemale" : MessageLookupByLibrary.simpleMessage("Female"),
@@ -88,8 +89,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "timerDoneDialog_title" : MessageLookupByLibrary.simpleMessage("You are done!"),
     "timerViewDialog_title" : MessageLookupByLibrary.simpleMessage("Active timers"),
     "turn" : MessageLookupByLibrary.simpleMessage("s turn"),
+    "waiting" : MessageLookupByLibrary.simpleMessage("Wait for it.."),
     "waitingForOthersToInput" : MessageLookupByLibrary.simpleMessage("Waiting for the others to input.."),
-    "welcome" : MessageLookupByLibrary.simpleMessage("Shitroulette!\n(Quarrrrraantine Edition)"),
+    "welcome" : MessageLookupByLibrary.simpleMessage("Shitroulette"),
     "wyr_title" : MessageLookupByLibrary.simpleMessage("So ..."),
     "yesStyle1" : MessageLookupByLibrary.simpleMessage("Ye")
   };

@@ -11,88 +11,71 @@ import 'betweenViewPage.dart';
 import 'roomClass.dart';
 import 'fadeTransitionRoute.dart';
 
-Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, String type)  {
+Widget  customFlatButton(BuildContext context, Task task, bool yesOrNo, String type)  {
   switch  (type)  {
     case 'isActiveTimer':
-      return OutlineButton(
+      return FlatButton(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
-          ),
-          borderSide: BorderSide(
-              width: 3,
-              color: Colors.blue,
-              style: BorderStyle.solid
           ),
           child: Text(
               CustomTimer.activeTimer!=null?
               CustomTimer.activeTimer.FGTimeLeft:
               S.of(context).FGTimerGo,
-              style: normalStyle
+              style: normalStyleWhite
           ),
           onPressed: () async{
             upStream.add(jsonEncode({'type':'startBGTimer','content':''}));
             await new Future.delayed(const Duration(milliseconds: 500));
             Room.renewActiveTimer(context);
-          }
+          },
+        color: Colors.blue
       );
       break;
     case 'wyr':
       String locale = Localizations.localeOf(context).toString();
-      return OutlineButton(
+      return FlatButton(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
-          ),
-          borderSide: BorderSide(
-              width: 3,
-              color: yesOrNo?Colors.green:Colors.red,
-              style: BorderStyle.solid
           ),
           child: Text(
               yesOrNo?Task.getStringByLocale(task, locale, "wyr_a"):
               Task.getStringByLocale(task, locale, "wyr_b"),
-              style: normalStyle
+              style: normalStyleWhite
           ),
           onPressed: () {
             yesOrNo?Player.mePlayer.compareValue = 1:Player.mePlayer.compareValue = 2;
             upStream.add(json.encode({'type':'compareVote','content':Player.mePlayer.compareValue}));
             Navigator.of(context).push(fadePageRoute(page: betweenViewPage()));
-          }
+          },
+        color: yesOrNo?Colors.green:Colors.red,
       );
       break;
     case 'list':
     case 'globalNormal':
-      return OutlineButton(
+      return FlatButton(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
           ),
-          borderSide: BorderSide(
-              width: 3,
-              color: Colors.red,
-              style: BorderStyle.solid
-          ),
           child: Text(
             "️🤷🏼‍♀️",
-            style: bigStyle
+            style: bigStyleWhite
           ),
           onPressed: () {
             no();
-          }
+          },
+        color: Colors.red,
       );
       break;
     default:
-      return OutlineButton(
+      return FlatButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
-        ),
-        borderSide: BorderSide(
-            width: 3,
-            color: yesOrNo?Colors.green:Colors.red,
-            style: BorderStyle.solid
         ),
         child: Text(
             yesOrNo?(type=='BGtimed'?S.of(context).BGTimerGo:S.of(context).FGTimerDone):createDrinkText(task),
             textAlign: TextAlign.center,
-            style: normalStyle
+            style: normalStyleWhite
         ),
         onPressed: (){
           switch (type) {
@@ -107,7 +90,8 @@ Widget  customOutlineButton(BuildContext context, Task task, bool yesOrNo, Strin
               yesOrNo?forward():no();
               break;
           }
-        }
+        },
+        color: yesOrNo?Colors.green:Colors.red,
       );
       break;
   }

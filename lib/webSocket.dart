@@ -107,15 +107,15 @@ void startStreaming() async{
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
         if (endedTaskList.contains(endedTask)==false)  {
           endedTaskList.add(endedTask); //check here if its being added and persists after deletion, work from there
-          print(endedTaskList.toString());
+          print(endedTask);
         }
         if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
           timerDoneDialogOpen = true;
           showDialog(
               context: taskViewPageContext,
               barrierDismissible: false,
-              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
-              // should be: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList[endedTaskList.length-1], endedTimer)
+              //before: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
+              builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList[endedTaskList.length-1], endedTimer)
           );
         }
         break;

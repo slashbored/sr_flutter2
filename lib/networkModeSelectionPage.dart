@@ -52,42 +52,34 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                   elevation: 0,
                   highlightElevation: 0,
                 ),*/
-                new OutlineButton(
+                new FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                     ),
-                    borderSide: BorderSide(
-                        width: 3,
-                        color: Colors.green,
-                        style: BorderStyle.solid
-                    ),
                     child: Text(
-                        "⚡ Online",
-                        style: bigStyle
+                        "⚡ Online  ",
+                        style: bigStyleWhite
                     ),
                     onPressed: () {
                       pushToPlayerEditing(context);
-                    }
+                    },
+                    color: Colors.green
                 ),
-                new OutlineButton(
+                new FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                     ),
-                    borderSide: BorderSide(
-                        width: 3,
-                        color: Colors.red,
-                        style: BorderStyle.solid
-                    ),
                     child: Text(
-                        "💤 Offline",
-                        style: bigStyle
+                        "💤 Offline  ",
+                        style: bigStyleWhite
                     ),
                     onPressed: () {
                       BotToast.showText(
                           text: S.of(context).comingSoon,
                           duration: Duration(seconds: 5)
                       );
-                    }
+                    },
+                  color: Colors.red,
                 ),
                 /*new FloatingActionButton.extended(
                   heroTag: "fab_offline",
@@ -120,7 +112,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       text: TextSpan(
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 10
+                              fontSize: 12,
                           ),
                           children: [
                             TextSpan(
@@ -159,8 +151,9 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                                   launch('https://www.freepik.com');
                                 }
                             )
-                          ]
+                          ],
                       ),
+                      textAlign: TextAlign.center,
                     )
                   /*child: Text(
                   "Icons used are made by Freepik from www.flaticon.com",

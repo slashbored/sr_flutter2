@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/taskViewFourthRow.dart';
+import 'package:sr_flutter2/textStyles.dart';
+import 'generated/l10n.dart';
 
 import 'package:sr_flutter2/betweenViewBody.dart';
 import 'package:sr_flutter2/betweenViewButton.dart';
@@ -29,7 +31,15 @@ class betweenViewPageState extends State<betweenViewPage>{
                   return Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Spacer(
+                        Flexible(
+                          child: Center(
+                            child: Text(
+                              //TODO: "waiting" instead of "results"
+                              currentRoom.isWaiting?S.of(context).waiting:S.of(context).results,
+                              textAlign: TextAlign.center,
+                              style: headlineStyle,
+                            ),
+                          ),
                             flex: 315
                         ),
                         Expanded(
@@ -37,7 +47,7 @@ class betweenViewPageState extends State<betweenViewPage>{
                                 margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                 child: Divider(
                                     color: Colors.black,
-                                    thickness: 2
+                                    thickness: 4
                                 )
                             )
                         ),
@@ -50,7 +60,7 @@ class betweenViewPageState extends State<betweenViewPage>{
                                 margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                 child: Divider(
                                     color: Colors.black,
-                                    thickness: 2
+                                    thickness: 4
                                 )
                             )
                         ),

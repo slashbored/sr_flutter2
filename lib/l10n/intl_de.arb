@@ -1,5 +1,5 @@
 {
-  "welcome": "Shitroulette!\n(Quarantää Edition)",
+  "welcome": "Shitroulette",
   "languageSelector": "Bitte wähle die Sprache:",
   "or": "oder",
   "modeSelector": "Bitte wähle den Spielmodus:",
@@ -69,5 +69,7 @@
   "pleaseWait": "Bitte warte kurz...",
   "globalTitle": "Alle jetzt!",
   "globalFail": "(hier tippen, wenn du's verkackt hast)",
-  "cancel": "Abbrechen"
+  "cancel": "Abbrechen",
+  "results": "Ergebnis:",
+  "waiting": "Warte, es kommt gleich.."
 }

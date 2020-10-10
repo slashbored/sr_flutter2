@@ -50,7 +50,7 @@ class roomOverviewPageState extends State<roomOverviewPage>{
               player.id==currentRoom.gmID?player.name + " 👑":player.name,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 24,
                   color:  Colors.white
               ),
             )
@@ -197,18 +197,13 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   Widget startGameFAB(BuildContext context)  {
     roomOverviewContext = context;
     if  (currentRoom.gmID==Player.mePlayer.id)  {
-      return OutlineButton(
+      return FlatButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
         ),
-        borderSide: BorderSide(
-            width: 3,
-            color: currentRoom!=null&&currentRoom.playerDB.length>2?Colors.green:Colors.grey,
-            style: BorderStyle.solid
-        ),
         child: Icon(
           Icons.arrow_forward_ios,
-          color: Colors.black
+          color: Colors.white
         ),
           onPressed: () {
             if  (currentRoom!=null&&currentRoom.playerDB.length>1)  {
@@ -217,24 +212,21 @@ class roomOverviewPageState extends State<roomOverviewPage>{
               upStream.add(json.encode({'type':'setMode','content':'endless'}));
               upStream.add(json.encode({'type':'startGame','content':''}));
             }
-          }
+          },
+          color: currentRoom!=null&&currentRoom.playerDB.length>2?Colors.green:Colors.grey
       );
     }
     else  {
-      return OutlineButton(
+      return FlatButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
         ),
-        borderSide: BorderSide(
-            width: 3,
-            color: Colors.grey,
-            style: BorderStyle.solid
-        ),
           child: Icon(
             Icons.hourglass_empty,
-            color: Colors.grey
+            color: Colors.white
           ),
-        onPressed: () {}
+        onPressed: () {},
+        color: Colors.grey,
       );
     }
   }

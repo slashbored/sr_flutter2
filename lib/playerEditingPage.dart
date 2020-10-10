@@ -104,18 +104,13 @@ class playerEditingPageState extends State<playerEditing>{
                   )
               ),
               Flexible(
-                  child: OutlineButton(
+                  child: FlatButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)
                       ),
-                      borderSide: BorderSide(
-                          width: 3,
-                          color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
-                          style: BorderStyle.solid
-                      ),
                       child: Icon(
                         Icons.arrow_forward_ios,
-                        color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.black:Colors.grey,
+                        color: Colors.white
                       ),
                       onPressed: () {
                         Player.mePlayer.name = nameTextfieldController.text.toString();
@@ -129,7 +124,8 @@ class playerEditingPageState extends State<playerEditing>{
                               text: S.of(context).pleaseCompleteEntries
                           );
                         }
-                      }
+                      },
+                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
                   )
                 /*FloatingActionButton(
                   onPressed: () {
@@ -166,7 +162,16 @@ class playerEditingPageState extends State<playerEditing>{
                           child: Transform.scale(
                             scale: 0.4,
                             child: InputChip(
-                              shape: CircleBorder(),
+                              shape: CircleBorder(
+                                side: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?BorderSide(
+                                    width: 0,
+                                    color: Colors.transparent
+                                ):
+                                    BorderSide(
+                                      width: 10,
+                                      color: Colors.grey
+                                    )
+                              ),
                               label: Transform.scale(scale: 0.5, child: svg_male),
                               onPressed: (){
                                 setState(() {
@@ -183,7 +188,16 @@ class playerEditingPageState extends State<playerEditing>{
                           child: Transform.scale(
                             scale: 0.4,
                             child: InputChip(
-                              shape: CircleBorder(),
+                              shape: CircleBorder(
+                                  side: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?BorderSide(
+                                      width: 0,
+                                      color: Colors.transparent
+                                  ):
+                                  BorderSide(
+                                      width: 10,
+                                      color: Colors.grey
+                                  )
+                              ),
                               label: Transform.scale(scale: 0.5, child: svg_female),
                               onPressed: (){
                                 setState(() {
@@ -215,7 +229,7 @@ class playerEditingPageState extends State<playerEditing>{
                       text: TextSpan(
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 10
+                              fontSize: 12
                           ),
                           children: [
                             TextSpan(
