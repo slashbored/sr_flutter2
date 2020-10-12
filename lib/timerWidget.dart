@@ -117,7 +117,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
               child: Text(
                   Task.getStringByLocale(correspondingTask, Localizations.localeOf(context).toString(), 'timerDescr'),
                   textAlign: TextAlign.center,
-                  style: smallStyleWhite
+                  style: tinyStyleWhite
               ),
             ),
             Flexible(
@@ -125,7 +125,7 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
               child: Text(
                   convertTime(correspondingTimer.BGTimeLeft),
                   textAlign: TextAlign.right,
-                  style: smallStyleWhite
+                  style: tinyStyleWhite
               ),
             ),
           ],
@@ -133,8 +133,8 @@ Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
       ],
     ),
     linearStrokeCap: LinearStrokeCap.roundAll,
-    progressColor: Colors.green,
-    backgroundColor: Colors.red,
+    progressColor: Colors.blue,
+    backgroundColor: Colors.green,
   );
 }
 

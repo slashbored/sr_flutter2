@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'webSocket.dart';
-import 'package:web_socket_channel/io.dart';
 import 'dart:convert';
+import 'drawingPointsClass.dart';
+
 
 class Draw extends StatefulWidget {
   @override
-  _DrawState createState() => _DrawState();
+  DrawState createState() => DrawState();
 }
 
-class _DrawState extends State<Draw> {
+class DrawState extends State<Draw> {
   Color selectedColor = Colors.black;
   Color pickerColor = Colors.black;
   double strokeWidth = 3.0;
-  List<DrawingPoints> points = List();
+  static List<DrawingPoints> points = List();
   bool showBottomList = false;
   double opacity = 1.0;
   StrokeCap strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round;
@@ -102,9 +103,13 @@ class _DrawState extends State<Draw> {
                         onChanged: (val) {
                           setState(() {
                             if (selectedMode == SelectedMode.StrokeWidth)
-                              strokeWidth = val;
+                              {strokeWidth = val;
+                              //upStream.add(json.encode({'type':'paintingStrokeWidth','content':val.toString()}));
+                              }
                             else
-                              opacity = val;
+                              {opacity = val;
+                              //upStream.add(json.encode({'type':'paintingOpacity','content':val.toString()}));
+                              }
                           });
                         }),
                     visible: showBottomList,
@@ -118,13 +123,18 @@ class _DrawState extends State<Draw> {
           setState(() {
             RenderBox renderBox = context.findRenderObject();
             points.add(DrawingPoints(
+              json.encode({renderBox.globalToLocal(details.globalPosition).toString()})
+              /*
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
-                  ..strokeWidth = strokeWidth));
+                  ..strokeWidth = strokeWidth)
+            */);
           });
+          upStream.add(json.encode({'type':'paintingOffsets','content':points[points.length-1].points.dx.toString()+";"+points[points.length-1].points.dy.toString()}));
+          print(points[points.length-1].points.dx.toString() + ";" + points[points.length-1].points.dy.toString());
         },
         onPanStart: (details) {
           setState(() {
@@ -137,7 +147,8 @@ class _DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));
           });
-          upStream.add(json.encode({'type':'paint','content':points}));
+          //upStream.add(json.encode({'type':'paintingOffsets','content':points.toString()}));
+          print(points[points.length-1].points.dx.toString() + ", " + points[points.length-1].points.dx.toString());
         },
         onPanEnd: (details) {
           setState(() {
@@ -210,6 +221,7 @@ class _DrawState extends State<Draw> {
       onTap: () {
         setState(() {
           selectedColor = color;
+          upStream.add(json.encode({'type':'color','content':color.toString()}));
         });
       },
       child: ClipOval(
@@ -248,10 +260,6 @@ class DrawingPainter extends CustomPainter {
   bool shouldRepaint(DrawingPainter oldDelegate) => true;
 }
 
-class DrawingPoints {
-  Paint paint;
-  Offset points;
-  DrawingPoints({this.points, this.paint});
-}
+
 
 enum SelectedMode { StrokeWidth, Opacity, Color }

@@ -24,6 +24,7 @@ import 'taskViewPage.dart';
 import 'rejoinDialogWidget.dart';
 import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
+import 'drawing.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -71,6 +72,9 @@ void startStreaming() async{
 
 
       //Updates
+      case 'drawing':
+        DrawState.points=data;
+        break;
       case 'isTouchy':
         currentRoom.isTouchy  = packageIn.content;
         break;
@@ -103,20 +107,80 @@ void startStreaming() async{
       case 'timerDone':
         // TODO: create stack/db (?) of done timers for specific player to show dialogs accordingly
         CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
-        //make endedTask work from list/stack, gets overwritten oterhwise
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
-        if (endedTaskList.contains(endedTask)==false)  {
+        if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
+          endedTimer.playerID ==  Player.mePlayer.id?first=true:first=false;
+          taskString  = Task.getStringByLocale(endedTask, Localizations.localeOf(taskViewPageContext).toString(), first?'completeString_active':'completeString_passive');
+          if (endedTimer.secondPlayerID!=null&&endedTimer.secondPlayerID!="")  {
+            otherPlayer = currentRoom.playerDB.firstWhere((element) => element.id ==  (first?endedTimer.secondPlayerID:endedTimer.playerID));
+            List splitStringList = taskString.split("\$placeholder");
+            doneText  =  RichText(
+              //textAlign: TextAlign.center,
+              text: TextSpan(
+                  style: normalStyle,
+                  children: [
+                    TextSpan(
+                        text: splitStringList[0]
+                    ),
+                    TextSpan(
+                        style: TextStyle(
+                            color: otherPlayer.color,
+                            fontSize: 24
+                        ),
+                        text: otherPlayer.name
+                    ),
+                    TextSpan(
+                        text: splitStringList[1]
+                    )
+
+                  ]
+              ),
+            );
+          }
+          else  {
+            doneText  =  RichText(
+              //textAlign: TextAlign.center,
+              text: TextSpan(
+                  style: normalStyle,
+                  text: taskString
+              ),
+            );
+          }
+          /*if (endedTaskList.contains(endedTask)==false)  {
           endedTaskList.add(endedTask); //check here if its being added and persists after deletion, work from there
           print(endedTask);
-        }
-        if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
-          timerDoneDialogOpen = true;
+        }*/
+          BotToast.showNotification(
+              leading: (cancel) => SizedBox.fromSize(
+                  size: const Size(40, 40),
+                  child: Text("👍🏻",
+                  style: TextStyle(
+                    fontSize: 40
+                  ),)
+              ),
+              title: (_) => Text(
+                S.of(taskViewPageContext).justDone,
+                style: normalStyle,
+              ),
+              subtitle: (_) => doneText,
+              trailing: (cancel) => IconButton(
+                icon: Icon(Icons.cancel),
+                onPressed: cancel,
+              ),
+              enableSlideOff: true,
+              crossPage: false,
+              contentPadding: EdgeInsets.all(1),
+              onlyOne: false,
+              animationDuration: Duration(milliseconds: 200),
+              animationReverseDuration: Duration(milliseconds: 200),
+              duration: Duration(seconds: 20));
+          /*timerDoneDialogOpen = true;
           showDialog(
               context: taskViewPageContext,
               barrierDismissible: false,
               //before: builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTask, endedTimer)
               builder: (BuildContext) =>  timerDoneDialog(taskViewPageContext, endedTaskList[endedTaskList.length-1], endedTimer)
-          );
+          );*/
         }
         break;
       case 'isWaiting':

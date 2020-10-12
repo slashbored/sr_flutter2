@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "joinRoom_hintText" : MessageLookupByLibrary.simpleMessage("Gamecode"),
     "joinRoom_roomAlreadyRunning" : MessageLookupByLibrary.simpleMessage("Sorry, but there\'s already a game being played here."),
     "joinRoom_roomNotFound" : MessageLookupByLibrary.simpleMessage("No game found."),
+    "justDone" : MessageLookupByLibrary.simpleMessage("Done!"),
     "languageSelector" : MessageLookupByLibrary.simpleMessage("Please select the language:"),
     "listFailedStyle1" : MessageLookupByLibrary.simpleMessage("Dunno"),
     "listNotYouStart" : MessageLookupByLibrary.simpleMessage(" starts!"),

@@ -71,5 +71,6 @@
   "globalFail": "(tap this if you're the one who failed)",
   "cancel": "Cancel",
   "results": "Results:",
-  "waiting": "Wait for it.."
+  "waiting": "Wait for it..",
+  "justDone": "Done!"
 }

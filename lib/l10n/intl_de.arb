@@ -71,5 +71,6 @@
   "globalFail": "(hier tippen, wenn du's verkackt hast)",
   "cancel": "Abbrechen",
   "results": "Ergebnis:",
-  "waiting": "Warte, es kommt gleich.."
+  "waiting": "Warte, es kommt gleich..",
+  "justDone!": "Fertig!"
 }
