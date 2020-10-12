@@ -4,6 +4,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+import 'webSocket.dart';
+import 'package:web_socket_channel/io.dart';
+import 'dart:convert';
+
 class Draw extends StatefulWidget {
   @override
   _DrawState createState() => _DrawState();
@@ -133,6 +137,7 @@ class _DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));
           });
+          upStream.add(json.encode({'type':'paint','content':points}));
         },
         onPanEnd: (details) {
           setState(() {
