@@ -99,14 +99,6 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                 ),*/
-                new FloatingActionButton.extended(
-                  label: Text(
-                    "Draw"
-                  ),
-                  onPressed: (){
-                    Navigator.push(context, fadePageRoute(page: Draw()));
-                  }
-                ),
                 new Flexible(
                     child: RichText(
                       text: TextSpan(

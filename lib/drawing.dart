@@ -123,8 +123,6 @@ class DrawState extends State<Draw> {
           setState(() {
             RenderBox renderBox = context.findRenderObject();
             /*points.add(DrawingPoints(
-              json.encode({renderBox.globalToLocal(details.globalPosition).toString()})*/
-              /*
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
@@ -139,26 +137,26 @@ class DrawState extends State<Draw> {
         onPanStart: (details) {
           setState(() {
             RenderBox renderBox = context.findRenderObject();
-            points.add(DrawingPoints(
+            /*points.add(DrawingPoints(
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
-                  ..strokeWidth = strokeWidth));
+                  ..strokeWidth = strokeWidth));*/
+            upStream.add(json.encode({'type':'paintingOffsets','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+            print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
           });
-          //upStream.add(json.encode({'type':'paintingOffsets','content':points.toString()}));
-          print(points[points.length-1].points.dx.toString() + ", " + points[points.length-1].points.dx.toString());
         },
         onPanEnd: (details) {
           setState(() {
-            points.add(null);
+            DrawingPoints.pointList.add(null);
           });
         },
         child: CustomPaint(
           size: Size.infinite,
           painter: DrawingPainter(
-            pointsList: points,
+            pointsList: DrawingPoints.pointList,
           ),
         ),
       ),
@@ -259,7 +257,5 @@ class DrawingPainter extends CustomPainter {
   @override
   bool shouldRepaint(DrawingPainter oldDelegate) => true;
 }
-
-
 
 enum SelectedMode { StrokeWidth, Opacity, Color }

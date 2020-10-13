@@ -11,6 +11,7 @@ import 'taskViewPage.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 import 'textStyles.dart';
+import 'drawing.dart';
 
 List<Widget> playerWidgetList = new List();
 
@@ -170,9 +171,13 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                       ),
                       Flexible(
                           flex: 1,
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: startGameFAB(context),
+                          child:
+                          /**/
+                          Row(
+                            children: [
+                              startGameFAB(context),
+                              startDrawFAB(context)
+                            ],
                           )
                       ),
                       Spacer(
@@ -192,6 +197,17 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           )
       );
     }
+  }
+
+  Widget startDrawFAB(BuildContext context) {
+    return new FloatingActionButton.extended(
+        label: Text(
+            "Draw"
+        ),
+        onPressed: (){
+          Navigator.push(context, fadePageRoute(page: Draw()));
+        }
+    );
   }
 
   Widget startGameFAB(BuildContext context)  {
