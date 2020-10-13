@@ -122,8 +122,8 @@ class DrawState extends State<Draw> {
         onPanUpdate: (details) {
           setState(() {
             RenderBox renderBox = context.findRenderObject();
-            points.add(DrawingPoints(
-              json.encode({renderBox.globalToLocal(details.globalPosition).toString()})
+            /*points.add(DrawingPoints(
+              json.encode({renderBox.globalToLocal(details.globalPosition).toString()})*/
               /*
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
@@ -131,10 +131,10 @@ class DrawState extends State<Draw> {
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth)
-            */);
+            );*/
+            upStream.add(json.encode({'type':'paintingOffsets','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+            print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
           });
-          upStream.add(json.encode({'type':'paintingOffsets','content':points[points.length-1].points.dx.toString()+";"+points[points.length-1].points.dy.toString()}));
-          print(points[points.length-1].points.dx.toString() + ";" + points[points.length-1].points.dy.toString());
         },
         onPanStart: (details) {
           setState(() {
