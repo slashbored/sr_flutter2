@@ -130,7 +130,7 @@ class DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth)
             );*/
-            upStream.add(json.encode({'type':'paintingOffsets','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+            upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
             print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
           });
         },
@@ -144,7 +144,7 @@ class DrawState extends State<Draw> {
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));*/
-            upStream.add(json.encode({'type':'paintingOffsets','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+            upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
             print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
           });
         },

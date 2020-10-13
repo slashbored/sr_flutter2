@@ -1,3 +1,4 @@
+import 'package:sr_flutter2/drawingPointsClass.dart';
 import 'package:sr_flutter2/menuDialogWidget.dart';
 
 import 'textStyles.dart';
@@ -25,6 +26,7 @@ import 'rejoinDialogWidget.dart';
 import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
 import 'drawing.dart';
+import 'drawingPointsClass.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -70,10 +72,10 @@ void startStreaming() async{
     packageIn = Package(jsonDecode(data));
     switch(packageIn.type)  {
 
-
       //Updates
-      case 'drawing':
-        DrawState.points=data;
+      //send points to WS server
+      case 'paintingOffsetsAdd':
+        DrawingPoints.pointList.add(DrawingPoints(data));
         break;
       case 'isTouchy':
         currentRoom.isTouchy  = packageIn.content;

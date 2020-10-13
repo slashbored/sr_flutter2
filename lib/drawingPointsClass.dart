@@ -27,6 +27,5 @@ class DrawingPoints {
       ..strokeWidth = 10;*/
     List<String> tempStringList=data.toString().split(";");
     points=Offset(double.parse(tempStringList[1]),double.parse(tempStringList[2]));
-    pointList.add(this);
   }
 }
