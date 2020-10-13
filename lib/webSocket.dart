@@ -41,6 +41,7 @@ BuildContext roomOverviewContext;
 BuildContext taskViewPageContext;
 Room currentRoom;
 List<Task> endedTaskList = new List();
+List<DrawingPoints> pointList = new List();
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
@@ -75,7 +76,13 @@ void startStreaming() async{
       //Updates
       //send points to WS server
       case 'paintingOffsetsAdd':
-        DrawingPoints.pointList.add(DrawingPoints(data));
+        print(packageIn.content);
+        if (packageIn.content==null)  {
+          pointList.add(null);
+        }
+        else  {
+          pointList.add(DrawingPoints(packageIn.content));
+        }
         break;
       case 'isTouchy':
         currentRoom.isTouchy  = packageIn.content;

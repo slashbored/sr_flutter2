@@ -33,32 +33,43 @@ class DrawState extends State<Draw> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50.0),
-                color: Colors.grey),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StreamBuilder(
+      stream: downStream,
+      builder: (context, snapShot)  {
+        return Scaffold(
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50.0),
+                    color: Colors.grey),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      IconButton(
-                          icon: Icon(Icons.album),
-                          onPressed: () {
-                            setState(() {
-                              if (selectedMode == SelectedMode.StrokeWidth)
-                                showBottomList = !showBottomList;
-                              selectedMode = SelectedMode.StrokeWidth;
-                            });
-                          }),
-                      /*IconButton(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(Icons.album),
+                              onPressed: () {
+                                setState(() {
+                                  if (selectedMode == SelectedMode.StrokeWidth)
+                                    showBottomList = !showBottomList;
+                                  selectedMode = SelectedMode.StrokeWidth;
+                                });
+                              }),
+                          IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                setState(() {
+                                  showBottomList = false;
+                                  pointList.clear();
+                                });
+                              }),
+                          /*IconButton(
                           icon: Icon(Icons.opacity),
                           onPressed: () {
                             setState(() {
@@ -67,62 +78,55 @@ class DrawState extends State<Draw> {
                               selectedMode = SelectedMode.Opacity;
                             });
                           }),*/
-                      IconButton(
-                          icon: Icon(Icons.color_lens),
-                          onPressed: () {
-                            setState(() {
-                              if (selectedMode == SelectedMode.Color)
-                                showBottomList = !showBottomList;
-                              selectedMode = SelectedMode.Color;
-                            });
-                          }),
-                      IconButton(
-                          icon: Icon(Icons.clear),
-                          onPressed: () {
-                            setState(() {
-                              showBottomList = false;
-                              points.clear();
-                            });
-                          }),
+                          IconButton(
+                              icon: Icon(Icons.color_lens),
+                              onPressed: () {
+                                setState(() {
+                                  if (selectedMode == SelectedMode.Color)
+                                    showBottomList = !showBottomList;
+                                  selectedMode = SelectedMode.Color;
+                                });
+                              }),
+
+                        ]
+                      ),
+                      Visibility(
+                        child: (selectedMode == SelectedMode.Color)
+                            ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: getColorList(),
+                        )
+                            : Slider(
+                            value: (selectedMode == SelectedMode.StrokeWidth)
+                                ? strokeWidth
+                                : opacity,
+                            max: (selectedMode == SelectedMode.StrokeWidth)
+                                ? 50.0
+                                : 1.0,
+                            min: 0.0,
+                            onChanged: (val) {
+                              setState(() {
+                                if (selectedMode == SelectedMode.StrokeWidth)
+                                {strokeWidth = val;
+                                  //upStream.add(json.encode({'type':'paintingStrokeWidth','content':val.toString()}));
+                                }
+                                else
+                                {opacity = val;
+                                  //upStream.add(json.encode({'type':'paintingOpacity','content':val.toString()}));
+                                }
+                              });
+                            }),
+                        visible: showBottomList,
+                      ),
                     ],
                   ),
-                  Visibility(
-                    child: (selectedMode == SelectedMode.Color)
-                        ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: getColorList(),
-                    )
-                        : Slider(
-                        value: (selectedMode == SelectedMode.StrokeWidth)
-                            ? strokeWidth
-                            : opacity,
-                        max: (selectedMode == SelectedMode.StrokeWidth)
-                            ? 50.0
-                            : 1.0,
-                        min: 0.0,
-                        onChanged: (val) {
-                          setState(() {
-                            if (selectedMode == SelectedMode.StrokeWidth)
-                              {strokeWidth = val;
-                              //upStream.add(json.encode({'type':'paintingStrokeWidth','content':val.toString()}));
-                              }
-                            else
-                              {opacity = val;
-                              //upStream.add(json.encode({'type':'paintingOpacity','content':val.toString()}));
-                              }
-                          });
-                        }),
-                    visible: showBottomList,
-                  ),
-                ],
-              ),
-            )),
-      ),
-      body: GestureDetector(
-        onPanUpdate: (details) {
-          setState(() {
-            RenderBox renderBox = context.findRenderObject();
-            /*points.add(DrawingPoints(
+                )),
+          ),
+          body: GestureDetector(
+            onPanUpdate: (details) {
+              setState(() {
+                RenderBox renderBox = context.findRenderObject();
+                /*points.add(DrawingPoints(
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
@@ -130,36 +134,38 @@ class DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth)
             );*/
-            upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
-            print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
-          });
-        },
-        onPanStart: (details) {
-          setState(() {
-            RenderBox renderBox = context.findRenderObject();
-            /*points.add(DrawingPoints(
+                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
+              });
+            },
+            onPanStart: (details) {
+              setState(() {
+                RenderBox renderBox = context.findRenderObject();
+                /*points.add(DrawingPoints(
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));*/
-            upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
-            print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
-          });
-        },
-        onPanEnd: (details) {
-          setState(() {
-            DrawingPoints.pointList.add(null);
-          });
-        },
-        child: CustomPaint(
-          size: Size.infinite,
-          painter: DrawingPainter(
-            pointsList: DrawingPoints.pointList,
+                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
+              });
+            },
+            onPanEnd: (details) {
+              setState(() {
+                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':'0;0'}));
+              });
+            },
+            child: CustomPaint(
+              size: Size.infinite,
+              painter: DrawingPainter(
+                pointsList: pointList,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

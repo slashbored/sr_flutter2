@@ -10,22 +10,23 @@ import 'package:quiver/collection.dart';
 
 
 class DrawingPoints {
-  static List<DrawingPoints> pointList;
   Paint paint = Paint()
     ..strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round
     ..isAntiAlias = true
-    ..color = Colors.black.withOpacity(0)
+    ..color = Colors.black
     ..strokeWidth = 10;
   Offset points;
   //DrawingPoints({this.points, this.paint});
 
-  DrawingPoints(Map<String, dynamic> data)  {
+  DrawingPoints(String data)  {
     /*paint = Paint()
       ..strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round
       ..isAntiAlias = true
       ..color = Colors.black.withOpacity(0)
       ..strokeWidth = 10;*/
-    List<String> tempStringList=data.toString().split(";");
-    points=Offset(double.parse(tempStringList[1]),double.parse(tempStringList[2]));
+    if (data!=null) {
+      List<String> tempStringList=data.split(";");
+      points=Offset(double.parse(tempStringList[0]),double.parse(tempStringList[1]));
+    }
   }
 }
