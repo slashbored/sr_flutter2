@@ -42,6 +42,8 @@ BuildContext taskViewPageContext;
 Room currentRoom;
 List<Task> endedTaskList = new List();
 List<DrawingPoints> pointList = new List();
+double strokeWidth = 3.0;
+Color color = Colors.black;
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
@@ -71,20 +73,50 @@ void startStreaming() async{
   //listen for incoming packages
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
+    print(packageIn.content);
     switch(packageIn.type)  {
 
       //Updates
       //send points to WS server
-      case 'paintingOffsetsAdd':
-        print(packageIn.content);
-        if (packageIn.content==null)  {
-          pointList.add(null);
+      case 'paintingData':
+        switch(packageIn.content) {
+          case 'nullPoint':
+            pointList.add(null);
+            break;
+          case 'clear':
+            pointList.clear();
+            break;
+          default:
+            pointList.add(DrawingPoints(packageIn.content));
+            break;
         }
-        if (packageIn.content=='clear') {
-          pointList.clear();
-        }
-        else  {
-          pointList.add(DrawingPoints(packageIn.content));
+        break;
+      case 'paintingWidth':
+        strokeWidth=double.parse(packageIn.content);
+        break;
+      case 'paintingColor':
+        switch (packageIn.content)  {
+          case 'Colors.red':
+            color = Colors.red;
+            break;
+          case 'Colors.green':
+            color = Colors.green;
+            break;
+          case 'Colors.blue':
+            color = Colors.blue;
+            break;
+          case 'Colors.yellow':
+            color = Colors.yellow;
+            break;
+          case 'Colors.black':
+            color = Colors.black;
+            break;
+          case 'Colors.white':
+            color = Colors.white;
+            break;
+          default:
+            color = Colors.black;
+            break;
         }
         break;
       case 'isTouchy':

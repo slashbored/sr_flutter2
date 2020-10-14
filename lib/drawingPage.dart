@@ -17,7 +17,7 @@ class Draw extends StatefulWidget {
 class DrawState extends State<Draw> {
   Color selectedColor = Colors.black;
   Color pickerColor = Colors.black;
-  double strokeWidth = 3.0;
+  //double strokeWidth = 3.0;
   static List<DrawingPoints> points = List();
   bool showBottomList = false;
   double opacity = 1.0;
@@ -66,8 +66,7 @@ class DrawState extends State<Draw> {
                               onPressed: () {
                                 setState(() {
                                   showBottomList = false;
-                                  upStream.add(json.encode({'type':'paintingOffsetsAdd','content':'clear'}));
-                                  //pointList.clear();
+                                  upStream.add(json.encode({'type':'paintingData','content':'clear'}));
                                 });
                               }),
                           /*IconButton(
@@ -88,7 +87,7 @@ class DrawState extends State<Draw> {
                                   selectedMode = SelectedMode.Color;
                                 });
                               }),
-
+                          Spacer()
                         ]
                       ),
                       Visibility(
@@ -108,8 +107,8 @@ class DrawState extends State<Draw> {
                             onChanged: (val) {
                               setState(() {
                                 if (selectedMode == SelectedMode.StrokeWidth)
-                                {strokeWidth = val;
-                                  //upStream.add(json.encode({'type':'paintingStrokeWidth','content':val.toString()}));
+                                {//strokeWidth = val;
+                                  upStream.add(json.encode({'type':'paintingWidth','content':val.toString()}));
                                 }
                                 else
                                 {opacity = val;
@@ -135,7 +134,7 @@ class DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth)
             );*/
-                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
                 //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
               });
             },
@@ -149,13 +148,13 @@ class DrawState extends State<Draw> {
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));*/
-                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
                 //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
               });
             },
             onPanEnd: (details) {
               setState(() {
-                upStream.add(json.encode({'type':'paintingOffsetsAdd','content':'0;0'}));
+                upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
               });
             },
             child: CustomPaint(
@@ -172,8 +171,8 @@ class DrawState extends State<Draw> {
 
   getColorList() {
     List<Widget> listWidget = List();
-    for (Color color in colors) {
-      listWidget.add(colorCircle(color));
+    for (Color colorPlaceholder in colors) {
+      listWidget.add(colorCircle(colorPlaceholder));
     }
     /*Widget colorPicker = GestureDetector(
       onTap: () {
@@ -203,7 +202,7 @@ class DrawState extends State<Draw> {
           ),
         );
       },
-      child: ClipOval(
+      /*child: ClipOval(
         child: Container(
           padding: const EdgeInsets.only(bottom: 16.0),
           height: 36,
@@ -215,18 +214,35 @@ class DrawState extends State<Draw> {
                 end: Alignment.bottomRight,
               )),
         ),
-      ),
-    );
-    //listWidget.add(colorPicker);*/
+      ),*/
+    );*/
+    //listWidget.add(colorPicker);
     return listWidget;
   }
 
-  Widget colorCircle(Color color) {
+  Widget colorCircle(Color colorPlaceholder) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedColor = color;
-          upStream.add(json.encode({'type':'color','content':color.toString()}));
+          if (colorPlaceholder == Colors.red) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.red'}));
+          }
+          else if (colorPlaceholder == Colors.green) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.green'}));
+          }
+          else if (colorPlaceholder == Colors.blue) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.blue'}));
+          }
+          else if (colorPlaceholder == Colors.yellow) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.yellow'}));
+          }
+          else if (colorPlaceholder == Colors.black) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.black'}));
+          }
+          else if (colorPlaceholder == Colors.white) {
+            upStream.add(json.encode({'type':'paintingColor','content':'Colors.white'}));
+          }
+          //color = colorPlaceholder;
         });
       },
       child: ClipOval(
@@ -234,7 +250,7 @@ class DrawState extends State<Draw> {
           padding: const EdgeInsets.only(bottom: 16.0),
           height: 36,
           width: 36,
-          color: color,
+          color: colorPlaceholder,
         ),
       ),
     );
