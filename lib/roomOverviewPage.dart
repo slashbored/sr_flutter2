@@ -11,7 +11,7 @@ import 'taskViewPage.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 import 'textStyles.dart';
-import 'drawing.dart';
+import 'drawingPage.dart';
 
 List<Widget> playerWidgetList = new List();
 

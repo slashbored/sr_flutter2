@@ -25,7 +25,7 @@ import 'taskViewPage.dart';
 import 'rejoinDialogWidget.dart';
 import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
-import 'drawing.dart';
+import 'drawingPage.dart';
 import 'drawingPointsClass.dart';
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
@@ -79,6 +79,9 @@ void startStreaming() async{
         print(packageIn.content);
         if (packageIn.content==null)  {
           pointList.add(null);
+        }
+        if (packageIn.content=='clear') {
+          pointList.clear();
         }
         else  {
           pointList.add(DrawingPoints(packageIn.content));

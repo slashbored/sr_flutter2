@@ -66,7 +66,8 @@ class DrawState extends State<Draw> {
                               onPressed: () {
                                 setState(() {
                                   showBottomList = false;
-                                  pointList.clear();
+                                  upStream.add(json.encode({'type':'paintingOffsetsAdd','content':'clear'}));
+                                  //pointList.clear();
                                 });
                               }),
                           /*IconButton(
