@@ -122,11 +122,16 @@ class DrawState extends State<Draw> {
                   ),
                 )),
           ),
-          body: GestureDetector(
-            onPanUpdate: (details) {
-              setState(() {
-                RenderBox renderBox = context.findRenderObject();
-                /*points.add(DrawingPoints(
+          body: Center(
+            child: FractionallySizedBox(
+              alignment: Alignment.center,
+              heightFactor: 400,
+              widthFactor: 400,
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  setState(() {
+                    RenderBox renderBox = context.findRenderObject();
+                    /*points.add(DrawingPoints(
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
@@ -134,33 +139,35 @@ class DrawState extends State<Draw> {
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth)
             );*/
-                upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
-                //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
-              });
-            },
-            onPanStart: (details) {
-              setState(() {
-                RenderBox renderBox = context.findRenderObject();
-                /*points.add(DrawingPoints(
+                    upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                    //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
+                  });
+                },
+                onPanStart: (details) {
+                  setState(() {
+                    RenderBox renderBox = context.findRenderObject();
+                    /*points.add(DrawingPoints(
                 points: renderBox.globalToLocal(details.globalPosition),
                 paint: Paint()
                   ..strokeCap = strokeCap
                   ..isAntiAlias = true
                   ..color = selectedColor.withOpacity(opacity)
                   ..strokeWidth = strokeWidth));*/
-                upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
-                //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
-              });
-            },
-            onPanEnd: (details) {
-              setState(() {
-                upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
-              });
-            },
-            child: CustomPaint(
-              size: Size.infinite,
-              painter: DrawingPainter(
-                pointsList: pointList,
+                    upStream.add(json.encode({'type':'paintingData','content':renderBox.globalToLocal(details.globalPosition).dx.toString()+";"+renderBox.globalToLocal(details.globalPosition).dy.toString()}));
+                    //print(renderBox.globalToLocal(details.globalPosition).dx.toString() + ";" + renderBox.globalToLocal(details.globalPosition).dy.toString());
+                  });
+                },
+                onPanEnd: (details) {
+                  setState(() {
+                    upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
+                  });
+                },
+                child: CustomPaint(
+                  size: Size.infinite,
+                  painter: DrawingPainter(
+                    pointsList: pointList,
+                  ),
+                ),
               ),
             ),
           ),
