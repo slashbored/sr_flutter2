@@ -208,6 +208,9 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
       );
     }
   }
+  if (task.typeID==13)  {
+
+  }
   else {
     return Text("Ok, what?!");
   }

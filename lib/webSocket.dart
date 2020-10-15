@@ -73,7 +73,6 @@ void startStreaming() async{
   //listen for incoming packages
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
-    print(packageIn.content);
     switch(packageIn.type)  {
 
       //Updates
