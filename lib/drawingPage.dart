@@ -30,12 +30,14 @@ class DrawState extends State<Draw> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                  child: picassosWidget(300, 300)
+                  child: picassosWidget(300, 300, true)
               ),
               paintingMenuBarWidget(),
+              Center(
+                  child: picassosWidget(300, 300, false)
+              ),
             ],
           ),
-
         );
       }
     );

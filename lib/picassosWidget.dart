@@ -24,7 +24,7 @@ import 'colorCircleWidget.dart';
 //enum SelectedMode { StrokeWidth, Opacity, Color }
 
 
-Widget picassosWidget(double maxHeight, double maxWidth) {
+Widget picassosWidget(double maxHeight, double maxWidth, bool interactive) {
   double xx;
   double yy;
 
@@ -47,34 +47,35 @@ Widget picassosWidget(double maxHeight, double maxWidth) {
     height: maxHeight,
     width: maxWidth,
     child: ClipRect(
-      child: GestureDetector(
-        onPanUpdate: (details) {
-          xx=details.localPosition.dx;
-          yy=details.localPosition.dy;
-          checkXY();
-          upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
-
-        },
-        onPanStart: (details) {
-          xx=details.localPosition.dx;
-          yy=details.localPosition.dy;
-          checkXY();
-          upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
-
-        },
-        onPanEnd: (details) {
-
-          upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
-        },
-        child: CustomPaint(
-          size: Size.infinite,
-          painter: DrawingPainter(
-            pointsList: pointList,
-          ),
-        ),
-      ),
+      child: interactive
+        ?GestureDetector(
+          onPanUpdate: (details) {
+              xx=details.localPosition.dx;
+              yy=details.localPosition.dy;
+              checkXY();
+              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
+          },
+          onPanStart: (details) {
+              xx=details.localPosition.dx;
+              yy=details.localPosition.dy;
+              checkXY();
+              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
+          },
+          onPanEnd: (details) {
+              upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
+          },
+          child: theCustompaint(),
+        )
+        :theCustompaint()
     ),
   );
+}
 
-
+Widget theCustompaint() {
+  return CustomPaint(
+    size: Size.infinite,
+    painter: DrawingPainter(
+      pointsList: pointList,
+    ),
+  );
 }

@@ -39,19 +39,6 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       style: headlineStyle
                   ),
                 ),
-                /*new FloatingActionButton.extended(
-                  heroTag: "fab_online",
-                  label: Text(
-                      "⚡ Online",
-                      style: bigStyle
-                  ),
-                  onPressed: () {
-                    pushToPlayerEditing(context);
-                  },
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  highlightElevation: 0,
-                ),*/
                 new FlatButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
@@ -81,24 +68,6 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                     },
                   color: Colors.red,
                 ),
-                /*new FloatingActionButton.extended(
-                  heroTag: "fab_offline",
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  label: Text(
-                      "💤 Offline",
-                      style: bigStyle
-                  ),
-                  onPressed: () {
-                    BotToast.showText(
-                        text: S.of(context).comingSoon,
-                        duration: Duration(seconds: 5)
-                    );
-                  },
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                ),*/
                 new Flexible(
                     child: RichText(
                       text: TextSpan(
@@ -147,13 +116,6 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       ),
                       textAlign: TextAlign.center,
                     )
-                  /*child: Text(
-                  "Icons used are made by Freepik from www.flaticon.com",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12
-                  ),
-                ),*/
                 )
               ]
           )
