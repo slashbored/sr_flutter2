@@ -165,7 +165,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                 style: headlineStyle,
                 children: <TextSpan>[
                   TextSpan(
-                    text: S.of(context).tabooMimeGuessp1
+                    text: S.of(context).tabooMimePaintGuessp1
                   ),
                   TextSpan(
                     text: firstPlayer.name,
@@ -175,7 +175,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                     )
                   ),
                   TextSpan(
-                      text: S.of(context).tabooMimeGuessp2
+                      text: S.of(context).tabooMimePaintGuessp2
                   )
                 ]
             )
@@ -213,7 +213,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                 style: headlineStyle,
                 children: <TextSpan>[
                   TextSpan(
-                      text: S.of(context).tabooMimeGuessp1
+                      text: S.of(context).tabooMimePaintGuessp1
                   ),
                   TextSpan(
                       text: firstPlayer.name,
@@ -223,7 +223,7 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
                       )
                   ),
                   TextSpan(
-                      text: S.of(context).tabooMimeGuessp2
+                      text: S.of(context).tabooMimePaintGuessp2
                   )
                 ]
             )
@@ -248,6 +248,54 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
             style: headlineStyle
         )
       );
+      break;
+    case 13:
+      if (firstPlayer.id==Player.mePlayer.id) {
+        return Center(
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    style: headlineStyle,
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: S.of(context).draw
+                      ),
+                      TextSpan(
+                          text: Localizations.localeOf(context).toString()=="en_"||Localizations.localeOf(context).toString()=="en"?task.nString_en_active:task.nString_de_active
+                      ),
+                      TextSpan(
+                          text: "!"
+                      )
+                    ]
+                )
+            )
+        );
+      }
+      else  {
+        return Center(
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    style: headlineStyle,
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: S.of(context).tabooMimePaintGuessp1
+                      ),
+                      TextSpan(
+                          text: firstPlayer.name,
+                          style: TextStyle(
+                              color: firstPlayer.color,
+                              fontSize: 36
+                          )
+                      ),
+                      TextSpan(
+                          text: S.of(context).tabooMimePaintGuessp2
+                      )
+                    ]
+                )
+            )
+        );
+      }
       break;
     default:
       return Spacer();

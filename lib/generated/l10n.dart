@@ -254,20 +254,20 @@ class S {
   }
 
   /// `What is `
-  String get tabooMimeGuessp1 {
+  String get tabooMimePaintGuessp1 {
     return Intl.message(
       'What is ',
-      name: 'tabooMimeGuessp1',
+      name: 'tabooMimePaintGuessp1',
       desc: '',
       args: [],
     );
   }
 
   /// ` trying to tell us?`
-  String get tabooMimeGuessp2 {
+  String get tabooMimePaintGuessp2 {
     return Intl.message(
       ' trying to tell us?',
-      name: 'tabooMimeGuessp2',
+      name: 'tabooMimePaintGuessp2',
       desc: '',
       args: [],
     );
@@ -768,6 +768,16 @@ class S {
     return Intl.message(
       'Done!',
       name: 'justDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Draw `
+  String get draw {
+    return Intl.message(
+      'Draw ',
+      name: 'draw',
       desc: '',
       args: [],
     );

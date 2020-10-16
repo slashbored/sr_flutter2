@@ -21,8 +21,8 @@
   "ownTurn": "Du bist am Zug!",
   "turn": " ist am Zug",
   "mimeThis": "Pantomimimi folgendes:",
-  "tabooMimeGuessp1": "Was will ",
-  "tabooMimeGuessp2": " uns sagen?",
+  "tabooMimePaintGuessp1": "Was will ",
+  "tabooMimePaintGuessp2": " uns sagen?",
   "taboop1": "Beschreibe \"",
   "taboop2": "\" ohne folgende Wörter zu benutzen:",
   "tabooMimeWinStyle1": "EZ",
@@ -72,5 +72,6 @@
   "cancel": "Abbrechen",
   "results": "Ergebnis:",
   "waiting": "Warte, es kommt gleich..",
-  "justDone!": "Fertig!"
+  "justDone!": "Fertig!",
+  "draw": "Male "
 }

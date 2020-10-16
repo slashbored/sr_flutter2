@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'playerClass.dart';
 import 'taskClass.dart';
 
+import 'picassosWidget.dart';
+
 import 'generated/l10n.dart';
 
 String locale;
@@ -209,7 +211,9 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
     }
   }
   if (task.typeID==13)  {
-
+    return Center(
+      child: picassosWidget(300, 300, firstPlayer.id==Player.mePlayer.id?true:false),
+    );
   }
   else {
     return Text("Ok, what?!");

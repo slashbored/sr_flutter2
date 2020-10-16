@@ -21,8 +21,8 @@
   "ownTurn": "Your turn!",
   "turn": "s turn",
   "mimeThis": "Pantomime this:",
-  "tabooMimeGuessp1": "What is ",
-  "tabooMimeGuessp2": " trying to tell us?",
+  "tabooMimePaintGuessp1": "What is ",
+  "tabooMimePaintGuessp2": " trying to tell us?",
   "taboop1": "Explain \"",
   "taboop2": "\" without using the following words:",
   "tabooMimeWinStyle1": "EZ",
@@ -72,5 +72,6 @@
   "cancel": "Cancel",
   "results": "Results:",
   "waiting": "Wait for it..",
-  "justDone": "Done!"
+  "justDone": "Done!",
+  "draw": "Draw "
 }
