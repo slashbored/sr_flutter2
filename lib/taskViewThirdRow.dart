@@ -199,6 +199,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
       break;
     case 9:
     case 10:
+    case 13:
     if  (firstPlayer.id==Player.mePlayer.id)  {
       Room.renewActiveTimer(context);
       return Row(
