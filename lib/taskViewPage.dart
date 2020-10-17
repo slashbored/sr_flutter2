@@ -99,7 +99,7 @@ class taskViewPageState extends State<taskViewPage>{
                               child: Container(
                                   margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                   child: Divider(
-                                      color: Colors.black,
+                                      color: currentTask.typeID!=13?Colors.black:Colors.transparent,
                                       thickness: 4
                                   )
                               )
@@ -112,7 +112,7 @@ class taskViewPageState extends State<taskViewPage>{
                               child: Container(
                                   margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                   child: Divider(
-                                      color: Colors.black,
+                                      color: currentTask.typeID!=13?Colors.black:Colors.transparent,
                                       thickness: 4
                                   )
                               )

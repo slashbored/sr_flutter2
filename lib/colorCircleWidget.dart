@@ -25,6 +25,9 @@ Widget colorCircle(Color colorPlaceholder) {
       else if (colorPlaceholder == Colors.yellow) {
         upStream.add(json.encode({'type':'paintingColor','content':'Colors.yellow'}));
       }
+      else if (colorPlaceholder == Colors.pink) {
+        upStream.add(json.encode({'type':'paintingColor','content':'Colors.pink'}));
+      }
       else if (colorPlaceholder == Colors.black) {
         upStream.add(json.encode({'type':'paintingColor','content':'Colors.black'}));
       }
@@ -34,10 +37,17 @@ Widget colorCircle(Color colorPlaceholder) {
     },
     child: ClipOval(
       child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: colorPlaceholder,
+          border: Border.all(
+            color: Colors.black,
+            width: 3
+          )
+        ),
         padding: const EdgeInsets.only(bottom: 16.0),
-        height: 36,
-        width: 36,
-        color: colorPlaceholder,
+        height: 25,
+        width: 25,
       )
     )
   );

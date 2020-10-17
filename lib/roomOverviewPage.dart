@@ -174,9 +174,10 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                           child:
                           /**/
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               startGameFAB(context),
-                              startDrawFAB(context)
+                              //startDrawFAB(context)
                             ],
                           )
                       ),

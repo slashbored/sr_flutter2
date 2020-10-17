@@ -583,30 +583,30 @@ class S {
     );
   }
 
-  /// `(tap this you're if out of ideas)`
+  /// `(tap this and drink a sip you're if out of ideas)`
   String get list_expl {
     return Intl.message(
-      '(tap this you\'re if out of ideas)',
+      '(tap this and drink a sip you\'re if out of ideas)',
       name: 'list_expl',
       desc: '',
       args: [],
     );
   }
 
-  /// `(first one to guess makes everybody, excluding the actor, drink)`
+  /// `(first one to guess makes everybody, excluding you and the actor, drink)`
   String get tabooMime_expl {
     return Intl.message(
-      '(first one to guess makes everybody, excluding the actor, drink)',
+      '(first one to guess makes everybody, excluding you and the actor, drink)',
       name: 'tabooMime_expl',
       desc: '',
       args: [],
     );
   }
 
-  /// `(if no one gusses or you just don't wanna, click the beers)`
+  /// `(if no one gusses or you just don't wanna, click the beers and drink accordingly)`
   String get tabooMime_failexpl {
     return Intl.message(
-      '(if no one gusses or you just don\'t wanna, click the beers)',
+      '(if no one gusses or you just don\'t wanna, click the beers and drink accordingly)',
       name: 'tabooMime_failexpl',
       desc: '',
       args: [],
@@ -723,10 +723,10 @@ class S {
     );
   }
 
-  /// `(tap this if you're the one who failed)`
+  /// `(tap this and drink a sip, if you're the one who failed)`
   String get globalFail {
     return Intl.message(
-      '(tap this if you\'re the one who failed)',
+      '(tap this and drink a sip, if you\'re the one who failed)',
       name: 'globalFail',
       desc: '',
       args: [],

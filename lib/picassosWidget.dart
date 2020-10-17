@@ -46,27 +46,35 @@ Widget picassosWidget(double maxHeight, double maxWidth, bool interactive) {
   return SizedBox(
     height: maxHeight,
     width: maxWidth,
-    child: ClipRect(
-      child: interactive
-        ?GestureDetector(
-          onPanUpdate: (details) {
-              xx=details.localPosition.dx;
-              yy=details.localPosition.dy;
-              checkXY();
-              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
-          },
-          onPanStart: (details) {
-              xx=details.localPosition.dx;
-              yy=details.localPosition.dy;
-              checkXY();
-              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
-          },
-          onPanEnd: (details) {
-              upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
-          },
-          child: theCustompaint(),
+    child: Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black,
+          width: 5
         )
-        :theCustompaint()
+      ),
+      child: ClipRect(
+          child: interactive
+              ?GestureDetector(
+            onPanUpdate: (details) {
+              xx=details.localPosition.dx;
+              yy=details.localPosition.dy;
+              checkXY();
+              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
+            },
+            onPanStart: (details) {
+              xx=details.localPosition.dx;
+              yy=details.localPosition.dy;
+              checkXY();
+              upStream.add(json.encode({'type':'paintingData','content':xx.toString()+";"+yy.toString()}));
+            },
+            onPanEnd: (details) {
+              upStream.add(json.encode({'type':'paintingData','content':'nullPoint'}));
+            },
+            child: theCustompaint(),
+          )
+              :theCustompaint()
+      ),
     ),
   );
 }

@@ -202,22 +202,31 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
     case 13:
     if  (firstPlayer.id==Player.mePlayer.id)  {
       Room.renewActiveTimer(context);
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          customFlatButton(context, task, false, 'FGtimed'),
+          customFlatButton(context, task, false, 'normal'),
+          Text(
+            S.of(context).tabooMime_failexpl,
+            style: tinyStyle,
+            textAlign: TextAlign.center,
+          )
           //customOutlineButton(context, task, true, 'isActiveTimer'), //for when these activities should be timed
-          customFlatButton(context, task, true, 'FGtimed')
+          //customFlatButton(context, task, true, 'FGtimed')
         ]
       );
     }
     else  {
-      return  Center(
-        child: Text(
-          S.of(context).tabooMime_expl,
-          style: tinyStyle,
-          textAlign: TextAlign.center,
-        )
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          customFlatButton(context, task, true, 'inverted'),
+          Text(
+            S.of(context).tabooMime_expl,
+            style: tinyStyle,
+            textAlign: TextAlign.center,
+          )
+        ]
       );
     }
     break;
@@ -245,8 +254,9 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
               children: <Widget>[
                 customFlatButton(context, task, false, 'globalNormal'),
                 Text(
-                    S.of(context).globalFail,
-                    style: tinyStyle
+                  S.of(context).globalFail,
+                  style: tinyStyle,
+                  textAlign: TextAlign.center,
                 )
               ]
           )

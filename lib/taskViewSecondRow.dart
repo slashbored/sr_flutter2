@@ -1,4 +1,5 @@
 import 'package:sr_flutter2/customFlatButton.dart';
+import 'package:sr_flutter2/paintingMenuBarWidget.dart';
 
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
@@ -212,7 +213,19 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
   }
   if (task.typeID==13)  {
     return Center(
-      child: picassosWidget(200, 200, firstPlayer.id==Player.mePlayer.id?true:false),
+      child: paintingMenuBarWidget()
+      /*Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Expanded(
+            child: Container(),
+          ),
+          picassosWidget(200, 200, firstPlayer.id==Player.mePlayer.id?true:false),
+          Expanded(
+            child: paintingMenuBarWidget(),
+          )
+        ],
+      ),*/
     );
   }
   else {

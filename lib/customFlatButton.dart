@@ -58,13 +58,28 @@ Widget  customFlatButton(BuildContext context, Task task, bool yesOrNo, String t
               borderRadius: BorderRadius.circular(10)
           ),
           child: Text(
-            "️🤷🏼‍♀️",
+            "️🤷🏽🍺️",
             style: bigStyleWhite
           ),
           onPressed: () {
             no();
           },
         color: Colors.red,
+      );
+      break;
+    case 'inverted':
+      return FlatButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+        ),
+        child: Text(
+            "️🙋🏽",
+            style: bigStyleWhite
+        ),
+        onPressed: () {
+          invert();
+        },
+        color: Colors.green,
       );
       break;
     default:
@@ -100,12 +115,22 @@ Widget  customFlatButton(BuildContext context, Task task, bool yesOrNo, String t
 void forward()  {
   /*upStream.add(json.encode({'type':'randomTask','content':''})); //keeping for future usage maybe?
   upStream.add(json.encode({'type':'randomPlayers','content':''}));*/
+  upStream.add(json.encode({'type': 'paintingData', 'content': 'clear'}));
   upStream.add(json.encode({'type':'nextTask','content':''}));
 }
 
 void no() {
   upStream.add(json.encode({'type':'pointsInc','content':Player.mePlayer.id.toString()}));
   upStream.add(json.encode({'type':'choseToDrink','content':Player.mePlayer.id.toString()}));
+  forward();
+}
+
+void invert() {
+  for (Player playerplaceholder in currentRoom.playerDB)  {
+    if (playerplaceholder.id!=Player.mePlayer.id&&playerplaceholder.id!=currentRoom.activePlayerID) {
+      upStream.add(json.encode({'type':'pointsInc','content':playerplaceholder.id.toString()}));
+    }
+  }
   forward();
 }
 
