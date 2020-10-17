@@ -1,10 +1,10 @@
-import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'generated/l10n.dart';
 import 'dart:convert';
 
-import'webSocket.dart';
+import 'webSocket.dart';
+import 'textStyles.dart';
 
 import 'roomClass.dart';
 import 'playerClass.dart';
@@ -206,7 +206,7 @@ Widget taskViewThirdRow(BuildContext context, Player firstPlayer, Player secondP
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           customFlatButton(context, task, false, 'FGtimed'),
-          //customOutlineButton(context, task, true, 'isActiveTimer'),
+          //customOutlineButton(context, task, true, 'isActiveTimer'), //for when these activities should be timed
           customFlatButton(context, task, true, 'FGtimed')
         ]
       );

@@ -212,7 +212,7 @@ Widget taskViewSecondRow(BuildContext context, Player firstPlayer, Player second
   }
   if (task.typeID==13)  {
     return Center(
-      child: picassosWidget(300, 300, firstPlayer.id==Player.mePlayer.id?true:false),
+      child: picassosWidget(200, 200, firstPlayer.id==Player.mePlayer.id?true:false),
     );
   }
   else {

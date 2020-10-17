@@ -198,8 +198,10 @@ void startStreaming() async{
                   size: const Size(40, 40),
                   child: Text("👍🏻",
                   style: TextStyle(
-                    fontSize: 40
-                  ),)
+                    fontSize: 32
+                  ),
+                    textAlign: TextAlign.center,
+                  )
               ),
               title: (_) => Text(
                 S.of(taskViewPageContext).justDone,
@@ -238,7 +240,7 @@ void startStreaming() async{
         break;
 
       case 'choseToDrink':
-        Player drinkingPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
+        /*Player drinkingPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
         if (drinkingPlayer.id!=Player.mePlayer.id)  {
           BotToast.showCustomText(
               duration: Duration(seconds: 5),
@@ -277,7 +279,7 @@ void startStreaming() async{
                   }
               )
           );
-        }
+        }*/
         break;
       case 'playerLeft':
         Player leftPlayer=currentRoom.playerDB.firstWhere((player) => player.id==packageIn.content);
