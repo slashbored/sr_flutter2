@@ -40,6 +40,8 @@ class playerEditingPageState extends State<playerEditing>{
     startStreaming();
   }
 
+  //TODO: edit players once, better before network, make them as profiles
+
   @override
   Widget build(BuildContext context){
     playerEditingContext  = context;

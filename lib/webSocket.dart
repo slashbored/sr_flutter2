@@ -27,6 +27,8 @@ import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
 import 'drawingPage.dart';
 import 'drawingPointsClass.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
@@ -152,6 +154,7 @@ void startStreaming() async{
         break;
       case 'timerDone':
         // TODO: create stack/db (?) of done timers for specific player to show dialogs accordingly
+        // TODO: Native notifications via flutter_local_notifications 2.0.1+1, should also resolve todo above
         CustomTimer endedTimer  = currentRoom.BGTimerDB.firstWhere((element) => element.id  ==  packageIn.content);
         Task endedTask  = currentRoom.taskDB.firstWhere((element) => element.id  ==  endedTimer.taskID);
         if ((endedTimer.playerID==Player.mePlayer.id||endedTimer.secondPlayerID==Player.mePlayer.id)&&(endedTask.typeID==3||endedTask.typeID==6)) {
@@ -166,19 +169,20 @@ void startStreaming() async{
                   style: normalStyle,
                   children: [
                     TextSpan(
-                        text: splitStringList[0]
+                      text: splitStringList[0],
+                      style: smallStyle
                     ),
                     TextSpan(
                         style: TextStyle(
                             color: otherPlayer.color,
-                            fontSize: 24
+                            fontSize: 18
                         ),
                         text: otherPlayer.name
                     ),
                     TextSpan(
-                        text: splitStringList[1]
+                      text: splitStringList[1],
+                      style: smallStyle
                     )
-
                   ]
               ),
             );

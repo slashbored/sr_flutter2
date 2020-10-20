@@ -90,35 +90,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                     runSpacing: 10,
                     children:
                     playerWidgetList
-                  /*ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: currentRoom.playerDB.length,
-                            itemBuilder: (context, int index){
-                              return InputChip(
-                                label: Text(
-                                  currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color:  Colors.white
-                                  ),
-                                ),
-                                backgroundColor: currentRoom.playerDB[index].color,
-                                isEnabled: true,
-                                onPressed: () {
-                                  null;
-                                },
-                              );
-                              /*return Text(
-                                currentRoom.playerDB[index].id==currentRoom.gmID?currentRoom.playerDB[index].name + " 👑":currentRoom.playerDB[index].name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color:  currentRoom.playerDB[index].color
-                                );*/
-                            }
-                        )*/
-
                 )
             ),
             Expanded(

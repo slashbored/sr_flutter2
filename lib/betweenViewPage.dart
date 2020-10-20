@@ -34,7 +34,6 @@ class betweenViewPageState extends State<betweenViewPage>{
                         Flexible(
                           child: Center(
                             child: Text(
-                              //TODO: "waiting" instead of "results"
                               currentRoom.isWaiting?S.of(context).waiting:S.of(context).results,
                               textAlign: TextAlign.center,
                               style: headlineStyle,
