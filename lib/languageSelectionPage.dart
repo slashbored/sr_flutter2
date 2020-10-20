@@ -63,7 +63,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                               _setLoc('en');
                               localizationBloc.dispatch(switchEvent.switchToEn);
                               S.delegate.load(Locale("en", ""),);
-                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditingPage()));
                             }
                           )
                         ),
@@ -76,7 +76,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                               _setLoc('de');
                               localizationBloc.dispatch(switchEvent.switchToDe);
                               S.delegate.load(Locale("de", ""));
-                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditing()));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditingPage()));
                             }
                           )
                         ),
@@ -100,7 +100,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                         new Spacer(
                           flex: 1
                         )
-                      ],
+                      ]
                     ),
                     flex: 1
                   )

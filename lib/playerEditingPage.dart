@@ -15,12 +15,12 @@ import 'rejoinDialogWidget.dart';
 import 'waitingPage.dart';
 import 'taskViewPage.dart';
 
-class playerEditing extends StatefulWidget  {
+class playerEditingPage extends StatefulWidget  {
   @override
   playerEditingPageState createState() => new playerEditingPageState();
 }
 
-class playerEditingPageState extends State<playerEditing>{
+class playerEditingPageState extends State<playerEditingPage>{
   final TextEditingController nameTextfieldController = TextEditingController();
   final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
   final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
@@ -37,6 +37,7 @@ class playerEditingPageState extends State<playerEditing>{
   @override
   void initState() {
     super.initState();
+    startPrefs();
     startStreaming();
   }
 
@@ -94,6 +95,7 @@ class playerEditingPageState extends State<playerEditing>{
                             ),
                             onChanged: (value)  {
                               setState(() {
+                                Player.mePlayer.name=nameTextfieldController.text;
                               });
                             },
                           ),
@@ -115,9 +117,11 @@ class playerEditingPageState extends State<playerEditing>{
                         color: Colors.white
                       ),
                       onPressed: () {
-                        Player.mePlayer.name = nameTextfieldController.text.toString();
+                        Player.mePlayer.name = nameTextfieldController.text;
                         if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                          //TODO: invert-comment upstream out
                           upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
+                          upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
                           Navigator.push(context, fadePageRoute(page: roomSelection()));
                         }
                         else  {
@@ -177,8 +181,8 @@ class playerEditingPageState extends State<playerEditing>{
                               label: Transform.scale(scale: 0.5, child: svg_male),
                               onPressed: (){
                                 setState(() {
-                                  upStream.add(json.encode({'type':'setSex','content':'m'}));
                                   Player.mePlayer.sex = 'm';
+                                  //upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
                                 });
                               },
                               backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
@@ -203,8 +207,8 @@ class playerEditingPageState extends State<playerEditing>{
                               label: Transform.scale(scale: 0.5, child: svg_female),
                               onPressed: (){
                                 setState(() {
-                                  upStream.add(json.encode({'type':'setSex','content':'f'}));
                                   Player.mePlayer.sex = 'f';
+                                  //upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
                                 });
                               },
                               backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
@@ -262,13 +266,6 @@ class playerEditingPageState extends State<playerEditing>{
                       )
                     )
                   )
-                /*child: Text(
-                  "Icons used are made by Freepik from www.flaticon.com",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12
-                  ),
-                ),*/
               )
             ]
           )

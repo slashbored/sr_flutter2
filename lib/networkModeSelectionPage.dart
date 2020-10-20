@@ -130,6 +130,6 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
       duration: Duration(seconds: 1)
     );
     await Future.delayed(Duration(seconds: 1  ),  ()  {});
-    Navigator.push(context, fadePageRoute(page: playerEditing()));
+    Navigator.push(context, fadePageRoute(page: playerEditingPage()));
   }
 }

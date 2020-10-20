@@ -33,6 +33,7 @@ import 'drawingPointsClass.dart';
 final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
 final StreamController downStreamController = new StreamController.broadcast();
 
+SharedPreferences prefs;
 Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
@@ -52,13 +53,17 @@ void heartBeat()  {
   heartBeatTimer.reset();
 }
 
+void startPrefs()  async{
+  prefs = await SharedPreferences.getInstance();
+}
+
 void startStreaming() async{
   //start the stream/sink and create a sharedprefs instance
   WSChannel.stream.asBroadcastStream();
   downStreamController.addStream(WSChannel.stream);
   upStream = WSChannel.sink;
   downStream = downStreamController.stream;
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+
 
   // if UUID is present, send it to the server, else get one
   if(prefs.getString('uuid')==null)  {

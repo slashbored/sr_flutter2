@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:sr_flutter2/networkModeSelectionPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sr_flutter2/playerEditingPage.dart';
 import 'localizationBloc.dart';
 import 'menuDialogWidget.dart';
 import 'backgroundDecorationWidget.dart';
@@ -22,7 +23,8 @@ class splashScreenState extends State<splashScreen>{
   @override
   void initState()  {
     super.initState();
-    pushToNetworkOrLanguageSelection(context);
+    pushToNetworkModeSelectionOrLanguageSelection(context);
+    //pushToNetworkModeSelectionOrPlayerEditing(context);
   }
 
   @override
@@ -99,8 +101,13 @@ class splashScreenState extends State<splashScreen>{
     );
   }
 
-  pushToNetworkOrLanguageSelection(context) async{
+  pushToNetworkModeSelectionOrLanguageSelection(context) async{
     await Future.delayed(const Duration(seconds: 5), (){});
     Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
+  }
+
+  pushToNetworkModeSelectionOrPlayerEditing(context) async{
+    await Future.delayed(const Duration(seconds: 5), (){});
+    Navigator.push(context, fadePageRoute(page: playerEditingPage()));
   }
 }
