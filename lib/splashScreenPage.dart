@@ -10,21 +10,27 @@ import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
 import 'generated/l10n.dart';
 import 'textStyles.dart';
+import 'webSocket.dart';
 
-class splashScreen extends StatefulWidget{
+class splashScreenPage extends StatefulWidget{
   @override
-  splashScreenState createState() => new splashScreenState();
+  splashScreenPageState createState() => new splashScreenPageState();
 }
 
-class splashScreenState extends State<splashScreen>{
+class splashScreenPageState extends State<splashScreenPage>{
 
   static LocalizationBloc localizationBloc;
 
   @override
   void initState()  {
     super.initState();
-    pushToNetworkModeSelectionOrLanguageSelection(context);
-    //pushToNetworkModeSelectionOrPlayerEditing(context);
+    setupPrefs();
+    if (checkPrefs()) {
+      pushDelayed5Sec(context, networkModeSelectionPage()); 
+    }
+    else {
+      pushDelayed5Sec(context, playerEditingPage());
+    }
   }
 
   @override
@@ -101,13 +107,18 @@ class splashScreenState extends State<splashScreen>{
     );
   }
 
-  pushToNetworkModeSelectionOrLanguageSelection(context) async{
+  pushDelayed5Sec(context, destinationPage) async{
     await Future.delayed(const Duration(seconds: 5), (){});
-    Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
+    Navigator.push(context, fadePageRoute(page: destinationPage));
   }
 
-  pushToNetworkModeSelectionOrPlayerEditing(context) async{
-    await Future.delayed(const Duration(seconds: 5), (){});
-    Navigator.push(context, fadePageRoute(page: playerEditingPage()));
+  bool checkPrefs() {
+    if (prefs.getString('playerName')!=""&&prefs.getString('playerName')!=null
+        &&prefs.getString('playerSex')!=""&&prefs.getString('playerSex')!=null) {
+      return true;
+    }
+    else  {
+      return false;
+    }
   }
 }

@@ -73,9 +73,9 @@ class Player  {
       case 15:
         return Colors.grey;
         break;
-      /*default:
+      default:
         return Colors.black;
-        break;*/
+        break;
     }
   }
 }

@@ -16,6 +16,7 @@ import 'fadeTransitionRoute.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 import 'drawingPage.dart';
+import 'roomSelectionPage.dart';
 
 class networkModeSelectionPage extends StatefulWidget{
   @override
@@ -48,7 +49,11 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                         style: bigStyleWhite
                     ),
                     onPressed: () {
-                      pushToPlayerEditing(context);
+                      startStreaming();
+                      upStream.add(json.encode({'type':'createPlayer','content':''}));
+                      upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
+                      upStream.add(json.encode({'type':'setSex','content':prefs.getString('playerSex')}));
+                      pushDelayed1secWithLoadingToast(context, roomSelectionPage());
                     },
                     color: Colors.green
                 ),
@@ -123,13 +128,11 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
     );
   }
 
-  pushToPlayerEditing(context) async{
-    //SharedPreferences prefs = await SharedPreferences.getInstance();
-    //startStreaming();
+  pushDelayed1secWithLoadingToast(context, destinationPage) async{
     BotToast.showLoading(
       duration: Duration(seconds: 1)
     );
     await Future.delayed(Duration(seconds: 1  ),  ()  {});
-    Navigator.push(context, fadePageRoute(page: playerEditingPage()));
+    Navigator.push(context, fadePageRoute(page: destinationPage));
   }
 }

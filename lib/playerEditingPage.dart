@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:sr_flutter2/networkModeSelectionPage.dart';
+
 import 'generated/l10n.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/gestures.dart';
@@ -37,7 +39,7 @@ class playerEditingPageState extends State<playerEditingPage>{
   @override
   void initState() {
     super.initState();
-    startPrefs();
+    setupPrefs();
     startStreaming();
   }
 
@@ -62,7 +64,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                         S.of(context).enterName,
                         textAlign: TextAlign.center,
                         style: bigStyle
-                    ),
+                    )
                   )
               ),
               Flexible(
@@ -93,18 +95,18 @@ class playerEditingPageState extends State<playerEditingPage>{
                                 border: OutlineInputBorder(
                                 )
                             ),
-                            onChanged: (value)  {
+                            onEditingComplete: ()  {
                               setState(() {
                                 prefs.setString('playerName', nameTextfieldController.text);
                               });
-                            },
-                          ),
+                            }
+                          )
                         ),
                         Spacer(
                           flex: 1,
                         )
-                      ],
-                    ),
+                      ]
+                    )
                   )
               ),
               Flexible(
@@ -119,10 +121,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                       onPressed: () {
                         if  (prefs.getString('playerSex')!=""&&prefs.getString('playerName')!=""){
                           //TODO: invert-comment upstream out
-                          upStream.add(json.encode({'type':'createPlayer','content':''}));
-                          upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
-                          upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
-                          Navigator.push(context, fadePageRoute(page: roomSelection()));
+                          Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
                         }
                         else  {
                           BotToast.showText(
@@ -147,7 +146,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                             scale: 0.4,
                             child: InputChip(
                               shape: CircleBorder(
-                                side: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?BorderSide(
+                                side: prefs.getString('playerSex')=='m'?BorderSide(
                                     width: 0,
                                     color: Colors.transparent
                                 ):
@@ -162,9 +161,9 @@ class playerEditingPageState extends State<playerEditingPage>{
                                   prefs.setString('playerSex', 'm');
                                 });
                               },
-                              backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
-                            ),
-                          ),
+                              backgroundColor: prefs.getString('playerSex')=='m'?getSexcolor(prefs.getString('playerSex')):Colors.transparent,
+                            )
+                          )
                         ),
                         Flexible(
                           fit: FlexFit.tight,
@@ -172,7 +171,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                             scale: 0.4,
                             child: InputChip(
                               shape: CircleBorder(
-                                  side: Player.mePlayer!=null&&Player.mePlayer.sex=='f'
+                                  side: prefs.getString('playerSex')=='f'
                                       ?BorderSide(
                                         width: 0,
                                         color: Colors.transparent
@@ -185,11 +184,11 @@ class playerEditingPageState extends State<playerEditingPage>{
                               label: Transform.scale(scale: 0.5, child: svg_female),
                               onPressed: (){
                                 setState(() {
-                                  Player.mePlayer.sex = 'f';
+                                  prefs.setString('playerSex', 'f');
                                   //upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
                                 });
                               },
-                              backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
+                              backgroundColor: prefs.getString('playerSex')=='f'?getSexcolor(prefs.getString('playerSex')):Colors.transparent,
                             )
                           )
                         )

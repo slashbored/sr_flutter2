@@ -50,10 +50,10 @@ Color color = Colors.black;
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
-  heartBeatTimer.reset();key
+  heartBeatTimer.reset();
 }
 
-void startPrefs()  async{
+void setupPrefs()  async{
   prefs = await SharedPreferences.getInstance();
   if (prefs.getString('playerSex')==null) {
     prefs.setString('playerSex',"");

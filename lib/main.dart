@@ -66,7 +66,7 @@ class MyAppState extends State<MyApp>  {
              theme: new ThemeData(
                primaryColor: Colors.black,
              ),
-             home: new splashScreen()
+             home: new splashScreenPage()
            )
          );
        }
