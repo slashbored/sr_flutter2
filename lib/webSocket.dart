@@ -34,6 +34,8 @@ final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka
 final StreamController downStreamController = new StreamController.broadcast();
 
 SharedPreferences prefs;
+bool isLoaded = false;
+final TextEditingController nameTextfieldController = TextEditingController();
 Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
@@ -53,15 +55,17 @@ void heartBeat()  {
   heartBeatTimer.reset();
 }
 
-void setupPrefs()  async{
-  prefs = await SharedPreferences.getInstance();
-  if (prefs.getString('playerSex')==null) {
-    prefs.setString('playerSex',"");
+bool checkPrefs() {
+  if ((prefs.getString('playerName') == "") ||
+      (prefs.getString('playerSex') == "")) {
+    return false;
   }
-  if (prefs.getString('playerName')==null) {
-    prefs.setString('playerSex',"");
+  else  {
+    return true;
   }
 }
+
+
 
 void startStreaming() async{
   //start the stream/sink and create a sharedprefs instance

@@ -6,7 +6,7 @@ import 'package:sr_flutter2/splashScreenPage.dart';
 import 'generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'webSocket.dart';
 import 'localizationBloc.dart';
 
 
@@ -25,11 +25,21 @@ class MyAppState extends State<MyApp>  {
   LocalizationBloc localizationBloc = LocalizationBloc();
 
   static initLocale(LocalizationBloc blocHolder) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
     if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
       await prefs.setString('loc', "en");
     }
     await prefs.get('loc')=="en"?blocHolder.dispatch(switchEvent.switchToEn):blocHolder.dispatch(switchEvent.switchToDe);
+    if (!prefs.containsKey('playerName')) {
+      if (prefs.getString('playerName')==null)  {
+        await prefs.setString('playerName',"");
+      }
+    }if (!prefs.containsKey('playerSex')) {
+      if (prefs.getString('playerSex')==null)  {
+        await prefs.setString('playerSex',"");
+      }
+    }
+    isLoaded=true;
   }
 
   @override

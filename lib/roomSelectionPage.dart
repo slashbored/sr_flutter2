@@ -12,12 +12,12 @@ import 'dart:io';
 import 'webSocket.dart';
 import 'roomOverviewPage.dart';
 
-class roomSelection extends StatefulWidget{
+class roomSelectionPage extends StatefulWidget{
   @override
-  roomSelectionPage createState() => new roomSelectionPage();
+  roomSelectionPageState createState() => new roomSelectionPageState();
 }
 
-class roomSelectionPage extends State<roomSelection>{
+class roomSelectionPageState extends State<roomSelectionPage>{
 
   final TextEditingController joinroomTextfieldController = TextEditingController();
 

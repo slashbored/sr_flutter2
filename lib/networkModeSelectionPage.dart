@@ -53,7 +53,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       upStream.add(json.encode({'type':'createPlayer','content':''}));
                       upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
                       upStream.add(json.encode({'type':'setSex','content':prefs.getString('playerSex')}));
-                      pushDelayed1secWithLoadingToast(context, roomSelectionPage());
+                      Navigator.of(context).push(fadePageRoute(page: roomSelectionPage()));
                     },
                     color: Colors.green
                 ),

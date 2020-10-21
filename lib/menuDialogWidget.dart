@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
+import 'webSocket.dart';
+import 'dart:convert';
 
 final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
 final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
@@ -55,18 +57,51 @@ Widget menuDialog(BuildContext context) {
             )
           )
         ]
-  ),
-      SimpleDialogOption(
-        child: Text(
-          "OK",
-          textAlign: TextAlign.center,
-          style: normalStyle,
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Flexible(
+          child: Text(
+            "Name:",
+            textAlign: TextAlign.center,
+            style: normalStyle,
+          ),
         ),
-        onPressed: () {
-          settingsMenuOpen=false;
-          Navigator.pop(context);
+        Flexible(
+          child: TextField(
+              style: normalStyle,
+              autofocus: false,
+              autocorrect: false,
+              enableSuggestions: false,
+              controller: nameTextfieldController,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                  )
+              ),
+              onChanged: (value)  {
+                //nameTextfieldController.text=value;
+                prefs.setString('playerName', nameTextfieldController.text);
+              },
+          ),
+        )
+      ],
+    ),
+    SimpleDialogOption(
+      child: Text(
+        "OK",
+        textAlign: TextAlign.center,
+        style: normalStyle,
+      ),
+      onPressed: () {
+        settingsMenuOpen=false;
+        Navigator.pop(context);
+        if (upStream!=null) {
+          upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
         }
-      )
+      }
+    )
     ]
   );
 }

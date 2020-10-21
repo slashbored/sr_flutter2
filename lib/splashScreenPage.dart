@@ -11,6 +11,7 @@ import 'fadeTransitionRoute.dart';
 import 'generated/l10n.dart';
 import 'textStyles.dart';
 import 'webSocket.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class splashScreenPage extends StatefulWidget{
   @override
@@ -24,13 +25,8 @@ class splashScreenPageState extends State<splashScreenPage>{
   @override
   void initState()  {
     super.initState();
-    setupPrefs();
-    if (checkPrefs()) {
-      pushDelayed5Sec(context, networkModeSelectionPage()); 
-    }
-    else {
-      pushDelayed5Sec(context, playerEditingPage());
-    }
+    pushDelayed5Sec(context);
+
   }
 
   @override
@@ -38,36 +34,36 @@ class splashScreenPageState extends State<splashScreenPage>{
     localizationBloc= BlocProvider.of<LocalizationBloc>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) => _insertOverlay(context));
     return new BlocProvider(
-      builder: (BuildContext) =>  localizationBloc,
-      child: Container(
-        decoration: backGroundDecoration,
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Spacer(),
-                  Text(
-                    S.of(context).welcome,
-                    style: headlineStyle,
-                    textAlign: TextAlign.center
-                  ),
-                  Transform.scale(
-                    scale: 0.4,
-                    child: Image(
-                      image: AssetImage(
-                        'assets/coronapoop.png'
+          builder: (BuildContext) =>  localizationBloc,
+          child: Container(
+              decoration: backGroundDecoration,
+              child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Spacer(),
+                            Text(
+                                S.of(context).welcome,
+                                style: headlineStyle,
+                                textAlign: TextAlign.center
+                            ),
+                            Transform.scale(
+                                scale: 0.4,
+                                child: Image(
+                                    image: AssetImage(
+                                        'assets/coronapoop.png'
+                                    )
+                                )
+                            ),
+                            Spacer()
+                          ]
                       )
-                    )
-                  ),
-                  Spacer()
-                ]
+                  )
               )
           )
-        )
-      )
-    );
+      );
   }
 
   void _insertOverlay(BuildContext context) {
@@ -107,18 +103,20 @@ class splashScreenPageState extends State<splashScreenPage>{
     );
   }
 
-  pushDelayed5Sec(context, destinationPage) async{
-    await Future.delayed(const Duration(seconds: 5), (){});
-    Navigator.push(context, fadePageRoute(page: destinationPage));
+  pushDelayed5Sec(context) async{
+    int i=0;
+    while (prefs==null&&i<50){
+      await new Future.delayed(const Duration(milliseconds: 100));
+      i++;
+    }
+    await new Future.delayed(const Duration(milliseconds: 1000));
+    if (checkPrefs()) {
+      Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
+    }
+    else {
+      Navigator.push(context, fadePageRoute(page: playerEditingPage()));
+    }
+
   }
 
-  bool checkPrefs() {
-    if (prefs.getString('playerName')!=""&&prefs.getString('playerName')!=null
-        &&prefs.getString('playerSex')!=""&&prefs.getString('playerSex')!=null) {
-      return true;
-    }
-    else  {
-      return false;
-    }
-  }
 }

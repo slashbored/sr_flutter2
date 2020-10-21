@@ -23,7 +23,7 @@ class playerEditingPage extends StatefulWidget  {
 }
 
 class playerEditingPageState extends State<playerEditingPage>{
-  final TextEditingController nameTextfieldController = TextEditingController();
+  //final TextEditingController nameTextfieldController = TextEditingController();
   final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
   final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
   final Widget svg_male = SvgPicture.asset('assets/man.svg');
@@ -39,8 +39,6 @@ class playerEditingPageState extends State<playerEditingPage>{
   @override
   void initState() {
     super.initState();
-    setupPrefs();
-    startStreaming();
   }
 
   //TODO: edit players once, better before network, make them as profiles
@@ -89,14 +87,17 @@ class playerEditingPageState extends State<playerEditingPage>{
                           child:  TextField(
                             style: normalStyle,
                             autofocus: true,
+                            autocorrect: false,
+                            enableSuggestions: false,
                             controller: nameTextfieldController,
                             textAlign: TextAlign.center,
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                 )
                             ),
-                            onEditingComplete: ()  {
+                            onChanged: (value)  {
                               setState(() {
+                                //nameTextfieldController.text=value;
                                 prefs.setString('playerName', nameTextfieldController.text);
                               });
                             }

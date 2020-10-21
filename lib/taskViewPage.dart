@@ -151,6 +151,6 @@ class taskViewPageState extends State<taskViewPage>{
   }
 
   void goHome(theContext) {
-    Navigator.of(theContext).push(fadePageRoute(page: roomSelection()));
+    Navigator.of(theContext).push(fadePageRoute(page: roomSelectionPage()));
   }
 }
