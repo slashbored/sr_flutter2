@@ -50,11 +50,17 @@ Color color = Colors.black;
 
 void heartBeat()  {
   upStream.add(json.encode({'type':'hb','content':''}));
-  heartBeatTimer.reset();
+  heartBeatTimer.reset();key
 }
 
 void startPrefs()  async{
   prefs = await SharedPreferences.getInstance();
+  if (prefs.getString('playerSex')==null) {
+    prefs.setString('playerSex',"");
+  }
+  if (prefs.getString('playerName')==null) {
+    prefs.setString('playerSex',"");
+  }
 }
 
 void startStreaming() async{
@@ -74,7 +80,7 @@ void startStreaming() async{
   }
 
   //heartBeatTimer (really just a ping every 20 seconds)
-  upStream.add(json.encode({'type':'createPlayer','content':''}));
+  //upStream.add(json.encode({'type':'createPlayer','content':''}));
   heartBeatTimer = RestartableTimer(Duration(seconds:20), () => heartBeat());
 
   //listen for incoming packages

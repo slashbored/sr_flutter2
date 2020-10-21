@@ -95,7 +95,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                             ),
                             onChanged: (value)  {
                               setState(() {
-                                Player.mePlayer.name=nameTextfieldController.text;
+                                prefs.setString('playerName', nameTextfieldController.text);
                               });
                             },
                           ),
@@ -117,9 +117,9 @@ class playerEditingPageState extends State<playerEditingPage>{
                         color: Colors.white
                       ),
                       onPressed: () {
-                        Player.mePlayer.name = nameTextfieldController.text;
-                        if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
+                        if  (prefs.getString('playerSex')!=""&&prefs.getString('playerName')!=""){
                           //TODO: invert-comment upstream out
+                          upStream.add(json.encode({'type':'createPlayer','content':''}));
                           upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
                           upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
                           Navigator.push(context, fadePageRoute(page: roomSelection()));
@@ -131,30 +131,8 @@ class playerEditingPageState extends State<playerEditingPage>{
                           );
                         }
                       },
-                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
+                    color: nameTextfieldController.text!=""&&prefs.getString('playerName')!=""&&prefs.getString('playerSex')!=""?Colors.green:Colors.grey,
                   )
-                /*FloatingActionButton(
-                  onPressed: () {
-                    Player.mePlayer.name = nameTextfieldController.text.toString();
-                    if  (Player.mePlayer.name!=""&&Player.mePlayer.sex!="") {
-                      upStream.add(json.encode({'type':'setName','content':Player.mePlayer.name}));
-                      Navigator.push(context, CupertinoPageRoute(builder: (context) => roomSelection()));
-                    }
-                    else  {
-                      BotToast.showText(
-                          duration: Duration(seconds: 2),
-                          text: S.of(context).pleaseCompleteEntries
-                      );
-                    }
-                  },
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    color: nameTextfieldController.text!=""&&Player.mePlayer.sex!=""?Colors.green:Colors.grey,
-                  ),
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  highlightElevation: 0,
-                ),*/
               ),
               Flexible(
                 fit: FlexFit.tight,
@@ -181,8 +159,7 @@ class playerEditingPageState extends State<playerEditingPage>{
                               label: Transform.scale(scale: 0.5, child: svg_male),
                               onPressed: (){
                                 setState(() {
-                                  Player.mePlayer.sex = 'm';
-                                  //upStream.add(json.encode({'type':'setSex','content':Player.mePlayer.sex}));
+                                  prefs.setString('playerSex', 'm');
                                 });
                               },
                               backgroundColor: Player.mePlayer!=null&&Player.mePlayer.sex=='m'?getSexcolor(Player.mePlayer.sex):Colors.transparent,
@@ -195,13 +172,14 @@ class playerEditingPageState extends State<playerEditingPage>{
                             scale: 0.4,
                             child: InputChip(
                               shape: CircleBorder(
-                                  side: Player.mePlayer!=null&&Player.mePlayer.sex=='f'?BorderSide(
-                                      width: 0,
-                                      color: Colors.transparent
-                                  ):
-                                  BorderSide(
-                                      width: 10,
-                                      color: Colors.grey
+                                  side: Player.mePlayer!=null&&Player.mePlayer.sex=='f'
+                                      ?BorderSide(
+                                        width: 0,
+                                        color: Colors.transparent
+                                        )
+                                      :BorderSide(
+                                        width: 10,
+                                        color: Colors.grey
                                   )
                               ),
                               label: Transform.scale(scale: 0.5, child: svg_female),
