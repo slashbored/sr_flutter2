@@ -98,7 +98,7 @@ Widget menuDialog(BuildContext context) {
         settingsMenuOpen=false;
         Navigator.pop(context);
         if (upStream!=null) {
-          upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
+          upStream.add(json.encode({'type':'updateName','content':prefs.getString('playerName')}));
         }
       }
     )

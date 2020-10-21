@@ -39,6 +39,7 @@ class MyAppState extends State<MyApp>  {
         await prefs.setString('playerSex',"");
       }
     }
+    nameTextfieldController.text= prefs.getString('playerName');
     isLoaded=true;
   }
 
