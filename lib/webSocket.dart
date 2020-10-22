@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/status.dart';
 import 'package:async/async.dart';
 import 'generated/l10n.dart';
 import 'dart:async';
@@ -34,7 +35,6 @@ final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka
 final StreamController downStreamController = new StreamController.broadcast();
 
 SharedPreferences prefs;
-bool isLoaded = false;
 final TextEditingController nameTextfieldController = TextEditingController();
 Sink upStream;
 Stream downStream;

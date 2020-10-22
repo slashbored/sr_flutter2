@@ -128,11 +128,18 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
     );
   }
 
-  pushDelayed1secWithLoadingToast(context, destinationPage) async{
-    BotToast.showLoading(
-      duration: Duration(seconds: 1)
-    );
-    await Future.delayed(Duration(seconds: 1  ),  ()  {});
-    Navigator.push(context, fadePageRoute(page: destinationPage));
+  pushDelayedWithLoadingToast(context, destinationPage) async{
+    int i=0;
+    while ((prefs==null||upStream==null||downStream==null)&&i<50){
+      BotToast.showLoading();
+      await new Future.delayed(const Duration(milliseconds: 100));
+      i++;
+    }
+    if (i==50){
+      print("Offline!");
+    }
+    else  {
+      Navigator.push(context, fadePageRoute(page: destinationPage));
+    }
   }
 }

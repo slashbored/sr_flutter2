@@ -40,7 +40,6 @@ class MyAppState extends State<MyApp>  {
       }
     }
     nameTextfieldController.text= prefs.getString('playerName');
-    isLoaded=true;
   }
 
   @override
