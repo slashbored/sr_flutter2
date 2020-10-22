@@ -41,8 +41,6 @@ class playerEditingPageState extends State<playerEditingPage>{
     super.initState();
   }
 
-  //TODO: edit players once, better before network, make them as profiles
-
   @override
   Widget build(BuildContext context){
     playerEditingContext  = context;
@@ -121,7 +119,6 @@ class playerEditingPageState extends State<playerEditingPage>{
                       ),
                       onPressed: () {
                         if  (prefs.getString('playerSex')!=""&&prefs.getString('playerName')!=""){
-                          //TODO: invert-comment upstream out
                           Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
                         }
                         else  {

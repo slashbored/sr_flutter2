@@ -25,7 +25,7 @@ class splashScreenPageState extends State<splashScreenPage>{
   @override
   void initState()  {
     super.initState();
-    pushDelayed5Sec(context);
+    pushDelayed1Sec(context);
 
   }
 
@@ -103,13 +103,13 @@ class splashScreenPageState extends State<splashScreenPage>{
     );
   }
 
-  pushDelayed5Sec(context) async{
+  pushDelayed1Sec(context) async{
     int i=0;
     while (prefs==null&&i<50){
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }
-    await new Future.delayed(const Duration(milliseconds: 1000));
+    await new Future.delayed(const Duration(milliseconds: 2000));
     if (checkPrefs()) {
       Navigator.push(context, fadePageRoute(page: networkModeSelectionPage()));
     }

@@ -153,7 +153,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
         isConnecting=false;
       BotToast.showText(
         text: "Offline!",
-        duration: Duration(seconds: 5);
+        duration: Duration(seconds: 5)
       );
     }
     else  {
