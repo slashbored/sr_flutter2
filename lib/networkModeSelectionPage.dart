@@ -53,7 +53,7 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       upStream.add(json.encode({'type':'createPlayer','content':''}));
                       upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
                       upStream.add(json.encode({'type':'setSex','content':prefs.getString('playerSex')}));
-                      Navigator.of(context).push(fadePageRoute(page: roomSelectionPage()));
+                      pushDelayedWithLoadingToast(context, roomSelectionPage());
                     },
                     color: Colors.green
                 ),
@@ -130,8 +130,8 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
 
   pushDelayedWithLoadingToast(context, destinationPage) async{
     int i=0;
-    while ((prefs==null||upStream==null||downStream==null)&&i<50){
-      BotToast.showLoading();
+    while ((!isConnected)&&i<50){
+      //BotToast.showLoading();
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }

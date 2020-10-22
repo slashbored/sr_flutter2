@@ -36,6 +36,7 @@ final StreamController downStreamController = new StreamController.broadcast();
 
 SharedPreferences prefs;
 final TextEditingController nameTextfieldController = TextEditingController();
+bool isConnected = false;
 Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
@@ -91,6 +92,10 @@ void startStreaming() async{
   downStream.listen((data)  {
     packageIn = Package(jsonDecode(data));
     switch(packageIn.type)  {
+
+      case 'connected':
+        isConnected=true;
+        break;
 
       //Updates
       //send points to WS server
