@@ -30,7 +30,8 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
       decoration: backGroundDecoration,
       child: Scaffold(
         backgroundColor: Colors.transparent,
-          body: new Column(
+          body: !isConnecting
+          ?new Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 new Center(
@@ -53,92 +54,110 @@ class networkModeSelectionPageState extends State<networkModeSelectionPage> {
                       upStream.add(json.encode({'type':'createPlayer','content':''}));
                       upStream.add(json.encode({'type':'setName','content':prefs.getString('playerName')}));
                       upStream.add(json.encode({'type':'setSex','content':prefs.getString('playerSex')}));
-                      pushDelayedWithLoadingToast(context, roomSelectionPage());
+                      setState(() {
+                        pushDelayedWithLoadingToast(context, roomSelectionPage());
+                      });
                     },
                     color: Colors.green
                 ),
                 new FlatButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: Text(
-                        "💤 Offline  ",
-                        style: bigStyleWhite
-                    ),
-                    onPressed: () {
-                      BotToast.showText(
-                          text: S.of(context).comingSoon,
-                          duration: Duration(seconds: 5)
-                      );
-                    },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Text(
+                      "💤 Offline  ",
+                      style: bigStyleWhite
+                  ),
+                  onPressed: () {
+                    BotToast.showText(
+                        text: S.of(context).comingSoon,
+                        duration: Duration(seconds: 5)
+                    );
+                  },
                   color: Colors.red,
                 ),
                 new Flexible(
                     child: RichText(
                       text: TextSpan(
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                        children: [
+                          TextSpan(
+                              text: "Background vectors created by "
                           ),
-                          children: [
-                            TextSpan(
-                                text: "Background vectors created by "
-                            ),
-                            TextSpan(
-                                text: "macrovector",
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                ),
-                                recognizer: new TapGestureRecognizer()..onTap=  () {
-                                  launch('https://www.freepik.com/macrovector');
-                                }
-                            ),
-                            TextSpan(
+                          TextSpan(
+                              text: "macrovector",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: new TapGestureRecognizer()..onTap=  () {
+                                launch('https://www.freepik.com/macrovector');
+                              }
+                          ),
+                          TextSpan(
                               text: " and "
-                            ),
-                            TextSpan(
-                                text: "freepik",
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                ),
-                                recognizer: new TapGestureRecognizer()..onTap=  () {
-                                  launch('https://www.freepik.com/freepik');
-                                }
-                            ),
-                            TextSpan(
-                                text: " from "
-                            ),
-                            TextSpan(
-                                text: "www.freepik.com",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline
-                                ),
-                                recognizer: new TapGestureRecognizer()..onTap=  () {
-                                  launch('https://www.freepik.com');
-                                }
-                            )
-                          ],
+                          ),
+                          TextSpan(
+                              text: "freepik",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: new TapGestureRecognizer()..onTap=  () {
+                                launch('https://www.freepik.com/freepik');
+                              }
+                          ),
+                          TextSpan(
+                              text: " from "
+                          ),
+                          TextSpan(
+                              text: "www.freepik.com",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline
+                              ),
+                              recognizer: new TapGestureRecognizer()..onTap=  () {
+                                launch('https://www.freepik.com');
+                              }
+                          )
+                        ],
                       ),
                       textAlign: TextAlign.center,
                     )
                 )
               ]
           )
+          :Center(
+            child: SizedBox(
+              width: 100,
+              height: 100,
+              child: CircularProgressIndicator(),
+            ),
+          )
       )
     );
   }
 
   pushDelayedWithLoadingToast(context, destinationPage) async{
+    isConnecting = true;
     int i=0;
     while ((!isConnected)&&i<50){
       //BotToast.showLoading();
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }
+    setState(() {
+      isConnecting=false;
+    });
     if (i==50){
-      print("Offline!");
+        isConnecting=false;
+      BotToast.showText(
+        text: "Offline!",
+        duration: Duration(seconds: 5);
+      );
     }
     else  {
+        isConnecting=false;
       Navigator.push(context, fadePageRoute(page: destinationPage));
     }
   }

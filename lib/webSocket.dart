@@ -36,6 +36,7 @@ final StreamController downStreamController = new StreamController.broadcast();
 
 SharedPreferences prefs;
 final TextEditingController nameTextfieldController = TextEditingController();
+bool isConnecting = false;
 bool isConnected = false;
 Sink upStream;
 Stream downStream;
