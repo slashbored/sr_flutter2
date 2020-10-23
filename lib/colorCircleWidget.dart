@@ -28,6 +28,9 @@ Widget colorCircle(Color colorPlaceholder) {
       else if (colorPlaceholder == Colors.pink) {
         upStream.add(json.encode({'type':'paintingColor','content':'Colors.pink'}));
       }
+      else if (colorPlaceholder == Colors.brown) {
+        upStream.add(json.encode({'type':'paintingColor','content':'Colors.brown'}));
+      }
       else if (colorPlaceholder == Colors.black) {
         upStream.add(json.encode({'type':'paintingColor','content':'Colors.black'}));
       }

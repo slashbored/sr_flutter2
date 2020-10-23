@@ -28,6 +28,7 @@ class paintingMenuBarWidgetState extends State<paintingMenuBarWidget> {
     Colors.blue,
     Colors.yellow,
     Colors.pink,
+    Colors.brown,
     Colors.black,
     Colors.white
   ];

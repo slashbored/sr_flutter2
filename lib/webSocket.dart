@@ -133,6 +133,9 @@ void startStreaming() async{
           case 'Colors.pink':
             color = Colors.pink;
             break;
+          case 'Colors.brown':
+            color = Colors.brown;
+            break;
           case 'Colors.black':
             color = Colors.black;
             break;
