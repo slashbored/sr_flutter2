@@ -81,6 +81,7 @@ class taskViewPageState extends State<taskViewPage>{
       }
       return WillPopScope(
         onWillPop: () =>  null,
+        // TODO: push container into StreamBuilder, backgroundeco in there, listen to packets for changes, color filter accordingly to category, maybe even different transitions?
         child: Container(
           decoration: backGroundDecoration,
           child: Scaffold(

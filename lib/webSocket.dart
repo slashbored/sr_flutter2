@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:sr_flutter2/drawingPointsClass.dart';
 import 'package:sr_flutter2/menuDialogWidget.dart';
 
@@ -28,6 +29,7 @@ import 'timerViewDialogWidget.dart';
 import 'timerDoneDialogWidget.dart';
 import 'drawingPage.dart';
 import 'drawingPointsClass.dart';
+import 'backgroundDecorationWidget.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
@@ -67,7 +69,17 @@ bool checkPrefs() {
   }
 }
 
-
+void changeBGColor(int categoryIDPlaceholder)  {
+  // TODO: change BGcolor according to category
+  switch (categoryIDPlaceholder)  {
+    case 1:
+      break;
+    case 1:
+      break;
+    case 1:
+      break;
+  }
+}
 
 void startStreaming() async{
   //start the stream/sink and create a sharedprefs instance
