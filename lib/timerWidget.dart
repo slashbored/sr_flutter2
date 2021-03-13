@@ -16,7 +16,7 @@ import 'customTimerClass.dart';
 Widget timerWidget(BuildContext context, CustomTimer correspondingTimer) {
 
   /*TimerWidgetBloc timerWidgetBloc = TimerWidgetBloc(correspondingTimer);
-  timerWidgetBloc.dispatch(switchEvent('playerNames',correspondingTimer));*/
+  timerWidgetBloc.add(switchEvent('playerNames',correspondingTimer));*/
   //changeView(correspondingTimer, '');
   Player correspondingFirstPlayer  = currentRoom.playerDB.firstWhere((player) =>  player.id == correspondingTimer.playerID);
   Player correspondingSecondPlayer;

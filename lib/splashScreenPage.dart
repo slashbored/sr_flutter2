@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sr_flutter2/playerEditingPage.dart';
 import 'localizationBloc.dart';
+import 'localizationBloc.dart';
 import 'menuDialogWidget.dart';
 import 'backgroundDecorationWidget.dart';
 import 'fadeTransitionRoute.dart';
@@ -12,6 +13,7 @@ import 'generated/l10n.dart';
 import 'textStyles.dart';
 import 'webSocket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'localizationCubit.dart';
 
 class splashScreenPage extends StatefulWidget{
   @override
@@ -20,7 +22,7 @@ class splashScreenPage extends StatefulWidget{
 
 class splashScreenPageState extends State<splashScreenPage>{
 
-  static LocalizationBloc localizationBloc;
+  static LocalizationCubit localizationCubit;
 
   @override
   void initState()  {
@@ -31,10 +33,10 @@ class splashScreenPageState extends State<splashScreenPage>{
 
   @override
   Widget build(BuildContext context) {
-    localizationBloc= BlocProvider.of<LocalizationBloc>(context);
+    localizationCubit= BlocProvider.of<LocalizationCubit>(context);
     WidgetsBinding.instance.addPostFrameCallback((_) => _insertOverlay(context));
-    return new BlocProvider(
-          builder: (BuildContext) =>  localizationBloc,
+    return new BlocProvider<LocalizationCubit>(
+          create: (BuildContext) =>  LocalizationCubit(),
           child: Container(
               decoration: backGroundDecoration,
               child: Scaffold(

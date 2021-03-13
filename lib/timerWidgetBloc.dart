@@ -13,14 +13,21 @@ import 'timerViewDialogWidget.dart';
 
 class TimerWidgetBloc extends Bloc<switchEvent, Container>  {
 
-  @override
+  /**@override
   Container get initialState  {
     return Container(
         child: Text(
             "Hi"
         )
     );
-  }
+  }**/
+  TimerWidgetBloc():super(
+    Container(
+      child: Text(
+        "Hi"
+      )
+    )
+  );
 
   @override
   Stream<Container> mapEventToState(switchEvent event) async*{
@@ -42,7 +49,7 @@ class TimerWidgetBloc extends Bloc<switchEvent, Container>  {
                 style: normalStyleWhite,
               ),
               onTap: () {
-                this.dispatch(switchEvent('taskName',correspondingTimer));
+                this.add(switchEvent('taskName',correspondingTimer));
               },
             ),
           );
@@ -56,7 +63,7 @@ class TimerWidgetBloc extends Bloc<switchEvent, Container>  {
                 style: normalStyleWhite,
               ),
               onTap: () {
-                this.dispatch(switchEvent('taskName',correspondingTimer));
+                this.add(switchEvent('taskName',correspondingTimer));
               },
             ),
           );
@@ -71,7 +78,7 @@ class TimerWidgetBloc extends Bloc<switchEvent, Container>  {
               style: normalStyleWhite,
             ),
             onTap: () {
-              this.dispatch(switchEvent('timeLeft',correspondingTimer));
+              this.add(switchEvent('timeLeft',correspondingTimer));
             },
           )
         );
@@ -85,7 +92,7 @@ class TimerWidgetBloc extends Bloc<switchEvent, Container>  {
               style: normalStyleWhite,
             ),
             onTap: () {
-              this.dispatch(switchEvent('playerNames',correspondingTimer));
+              this.add(switchEvent('playerNames',correspondingTimer));
             },
           )
         );

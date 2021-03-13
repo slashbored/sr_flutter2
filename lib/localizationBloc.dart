@@ -3,8 +3,9 @@ import 'package:bloc/bloc.dart';
 enum switchEvent  {switchToDe, switchToEn}
 
 class LocalizationBloc extends Bloc<switchEvent, String>  {
-  @override
-  String get initialState => "en";
+  /**@override
+  String get initialState => "en";**/
+  LocalizationBloc():super("en");
 
   @override
   Stream<String> mapEventToState(switchEvent event) async* {

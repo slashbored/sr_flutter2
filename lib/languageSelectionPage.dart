@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'localizationCubit.dart';
 
 import 'playerEditingPage.dart';
 
@@ -16,7 +17,7 @@ class languageSelectionPage extends StatefulWidget{
 
 class languageSelectionPageState extends State<languageSelectionPage>{
 
-  static LocalizationBloc localizationBloc;
+  static LocalizationCubit localizationCubit;
 
   @override
   void initState()  {
@@ -33,9 +34,9 @@ class languageSelectionPageState extends State<languageSelectionPage>{
 
   @override
   Widget build(BuildContext context) {
-    localizationBloc= BlocProvider.of<LocalizationBloc>(context);
-    return new BlocProvider<LocalizationBloc>(
-      builder: (BuildContext) => localizationBloc,
+    localizationCubit= BlocProvider.of<LocalizationCubit>(context);
+    return new BlocProvider<LocalizationCubit>(
+      create: (BuildContext) => LocalizationCubit(),
       child: Scaffold(
         body: Builder(
           builder: (BuildContext context) {
@@ -61,7 +62,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                             label: Text("english"),
                             onPressed: () {
                               _setLoc('en');
-                              localizationBloc.dispatch(switchEvent.switchToEn);
+                              localizationCubit.switchToEn();
                               S.delegate.load(Locale("en", ""),);
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditingPage()));
                             }
@@ -74,7 +75,7 @@ class languageSelectionPageState extends State<languageSelectionPage>{
                             label: Text("deutsch"),
                             onPressed: () {
                               _setLoc('de');
-                              localizationBloc.dispatch(switchEvent.switchToDe);
+                              localizationCubit.switchToDe();
                               S.delegate.load(Locale("de", ""));
                               Navigator.push(context, CupertinoPageRoute(builder: (context) => playerEditingPage()));
                             }

@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'localizationBloc.dart';
 import 'webSocket.dart';
 import 'dart:convert';
+import 'localizationCubit.dart';
 
 final Widget svg_germanFlag = SvgPicture.asset('assets/germany.svg');
 final Widget svg_britishFlag = SvgPicture.asset('assets/united-kingdom.svg');
@@ -19,7 +22,7 @@ BuildContext menuDialogContext;
 
 Widget menuDialog(BuildContext context) {
   menuDialogContext = context;
-  final LocalizationBloc localizationBloc= BlocProvider.of<LocalizationBloc>(context);
+  final LocalizationCubit localizationCubit= BlocProvider.of<LocalizationCubit>(context);
   return SimpleDialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(20))
@@ -49,7 +52,7 @@ Widget menuDialog(BuildContext context) {
                   child: Material(
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () => switchLanguage(context, localizationBloc),
+                        onTap: () => switchLanguage(context, localizationCubit),
                         child: otherFlag(context),
                       )
                   )
@@ -109,29 +112,33 @@ Widget menuDialog(BuildContext context) {
 Container otherFlag(BuildContext context) {
   if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
     return Container(
-        child: svg_britishFlag
+        child: Transform.scale(
+          scale: 1.5,
+        child: svg_britishFlag,)
     );
   }
   else  {
     return Container(
-        child: svg_germanFlag
+        child: Transform.scale(
+          scale: 1.5,
+          child: svg_germanFlag,)
     );
   }
 }
 
-void switchLanguage(BuildContext context, LocalizationBloc localizationBloc) async{
+void switchLanguage(BuildContext context, LocalizationCubit localizationCubit) async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if(prefs.getBool('locSet')==null||prefs.getBool('locSet')==false)  {
     await prefs.setString('loc', "en");
     await prefs.setBool('locSet', true);
   }
-  await prefs.get('loc')=="en"?localizationBloc.dispatch(switchEvent.switchToEn):localizationBloc.dispatch(switchEvent.switchToDe);
+  await prefs.get('loc')=="en"?localizationCubit.switchToEn():localizationCubit.switchToDe();
   if (Localizations.localeOf(context).toString()=='en_'||Localizations.localeOf(context).toString()=='en')  {
-    localizationBloc.dispatch(switchEvent.switchToDe);
+    localizationCubit.switchToDe();
     prefs.setString('loc', 'de');
   }
   else  {
-    localizationBloc.dispatch(switchEvent.switchToEn);
+    localizationCubit.switchToEn();
     prefs.setString('loc', 'en');
   }
 }
