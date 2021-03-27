@@ -44,6 +44,7 @@ Sink upStream;
 Stream downStream;
 RestartableTimer heartBeatTimer;
 Package packageIn;
+BuildContext networkEditingContext;
 BuildContext playerEditingContext;
 BuildContext roomSelectionContext;
 BuildContext roomOverviewContext;
@@ -459,15 +460,15 @@ void startStreaming() async{
         Package cachedPackage = packageIn;
         showDialog(
             barrierDismissible: false,
-            context: playerEditingContext,
-            builder: (BuildContext) =>  rejoinDialog(playerEditingContext, cachedPackage.content.toString())
+            context: playerEditingContext==null?networkEditingContext:playerEditingContext,
+            builder: (BuildContext) =>  rejoinDialog(playerEditingContext==null?networkEditingContext:playerEditingContext, cachedPackage.content.toString())
         );
         break;
       case 'rejoin':
         Room.activeRoom = Room(Map.from(packageIn.content));
         Player.mePlayer = Room.activeRoom.playerDB.firstWhere((player) => Player.mePlayer.id  ==  player.id);
         currentRoom=Room.activeRoom;
-        playerEditingPageState().goToTaskViewPage(playerEditingContext);
+        playerEditingPageState().goToTaskViewPage(playerEditingContext==null?networkEditingContext:playerEditingContext);
         break;
       case 'youWon':
         showDialog(

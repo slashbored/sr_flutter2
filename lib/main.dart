@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'webSocket.dart';
 import 'localizationBloc.dart';
 import 'localizationCubit.dart';
+import 'package:flutter/services.dart';
 
 
 void main() {
@@ -46,13 +47,12 @@ class MyAppState extends State<MyApp>  {
   @override
   void initState()  {
     super.initState();
-    initLocale(localizationCubit);
     SystemChrome.setEnabledSystemUIOverlays([]);
-
+    initLocale(localizationCubit);
   }
 
   Widget build(BuildContext context) {
-   return BlocProvider(
+    return BlocProvider(
      create: (BuildContext context) => LocalizationCubit(),
      child: BlocBuilder<LocalizationCubit, String>(
        builder: (context, localizationCubit)  {

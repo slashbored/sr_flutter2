@@ -96,7 +96,7 @@ class roomSelectionPageState extends State<roomSelectionPage>{
                                             margin: EdgeInsets.only(left: 20.0, right: 20.0),
                                             child: Divider(
                                                 color: Colors.black,
-                                                thickness: 2
+                                                thickness: 4
                                             )
                                         )
                                     ),

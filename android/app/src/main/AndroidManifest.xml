@@ -10,6 +10,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="SR QE"
         android:icon="@mipmap/corpoo">
+        android:theme=
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

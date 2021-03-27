@@ -17,6 +17,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 import 'drawingPage.dart';
 import 'roomSelectionPage.dart';
+import 'package:flutter/services.dart';
+
+import 'webSocket.dart';
 
 class networkModeSelectionPage extends StatefulWidget{
   @override
@@ -26,9 +29,12 @@ class networkModeSelectionPage extends StatefulWidget{
 class networkModeSelectionPageState extends State<networkModeSelectionPage> {
   @override
   Widget build(BuildContext context) {
+    networkEditingContext = context;
+    //SystemChrome.setEnabledSystemUIOverlays([]);
     return Container(
       decoration: backGroundDecoration,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
           body: !isConnecting
           ?new Column(

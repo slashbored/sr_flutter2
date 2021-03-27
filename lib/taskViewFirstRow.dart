@@ -41,24 +41,26 @@ Widget taskViewFirstRow(BuildContext context, Player firstPlayer, Player secondP
     case 6:
       if (firstPlayer.id==Player.mePlayer.id||secondPlayer.id==Player.mePlayer.id) {
         return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: RichText(
-                text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          style: TextStyle(
-                              color: Player.mePlayer.color,
-                              fontSize: 36
-                          ),
-                          text: Player.mePlayer.name
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                  child: RichText(
+                      text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                                style: firstPlayer.id!=Player.mePlayer.id?
+                                TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 36
+                                ):
+                                headlineStyle,
+                                text: S.of(context).ownTurn
+                            )
+                          ]
                       )
-                    ]
-                )
+                  )
               )
-            )
-          ]
+            ]
         );
       }
       else  {
