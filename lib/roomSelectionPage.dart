@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -210,9 +212,14 @@ class roomSelectionPageState extends State<roomSelectionPage>{
 void createRoom() async{
   upStream.add(json.encode({'type':'createRoom','content':''}));
   await new Future.delayed(const Duration(milliseconds: 500));
-  if (Platform.isIOS) {
-    print("it ios!");
-    Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage()));
+  if (!kIsWeb) {
+    if (Platform.isIOS) {
+      print("it ios!");
+      Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage()));
+    }
+    else  {
+      Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
+    }
   }
   else  {
     Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
