@@ -794,6 +794,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Share this number, so that your mates can participate!`
+  String get shareRoomNumber {
+    return Intl.message(
+      'Share this number, so that your mates can participate!',
+      name: 'shareRoomNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

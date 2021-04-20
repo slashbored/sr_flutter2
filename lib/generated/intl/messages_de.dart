@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sexFemale" : MessageLookupByLibrary.simpleMessage("Weiblein"),
     "sexMale" : MessageLookupByLibrary.simpleMessage("Männlein"),
     "sexX" : MessageLookupByLibrary.simpleMessage("Divers"),
+    "shareRoomNumber" : MessageLookupByLibrary.simpleMessage("Teile diese Nummer mit den anderen, damit sie mitspielen können!"),
     "tabooMimeFailStyle1" : MessageLookupByLibrary.simpleMessage("Keiner n Plan"),
     "tabooMimePaintGuessp1" : MessageLookupByLibrary.simpleMessage("Was will "),
     "tabooMimePaintGuessp2" : MessageLookupByLibrary.simpleMessage(" uns sagen?"),

@@ -14,6 +14,7 @@ import 'textStyles.dart';
 import 'webSocket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'localizationCubit.dart';
+import 'package:highlighter_coachmark/highlighter_coachmark.dart';
 
 class splashScreenPage extends StatefulWidget{
   @override
@@ -61,7 +62,7 @@ class splashScreenPageState extends State<splashScreenPage>{
                             ),
                             Text(
                               S.of(context).firstStart,
-                              style: smallStyle,
+                              style: tinyStyle,
                               textAlign: TextAlign.center,
                             ),
                             Spacer()

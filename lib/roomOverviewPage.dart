@@ -67,12 +67,28 @@ class roomOverviewPageState extends State<roomOverviewPage>{
           children: <Widget>[
             Expanded(
                 flex: 315,
-                child: Center(
-                    child: Text(
-                        Room.activeRoom.id,
-                        textAlign: TextAlign.center,
-                        style: bigStyle
-                    )
+                child: Column(
+                  children: [
+                    Spacer(
+                      flex: 1,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Center(
+                          child: Text(
+                              Room.activeRoom.id,
+                              textAlign: TextAlign.center,
+                              style: bigStyle
+                          )
+                      ),
+                    ),
+                    Expanded(flex: 1,
+                        child: Text(
+                      S.of(context).shareRoomNumber,
+                      textAlign: TextAlign.center,
+                      style: tinyStyle,
+                    ))
+                  ],
                 )
             ),
             new Expanded(
@@ -180,9 +196,6 @@ class roomOverviewPageState extends State<roomOverviewPage>{
   Widget goBackForWebFAB(BuildContext context)  {
     return FloatingActionButton(
       elevation: 0,
-      hoverElevation: 0,
-      splashColor: Colors.transparent,
-      hoverColor: Colors.transparent,
       backgroundColor: Colors.transparent,
       child: Icon(
         Icons.arrow_back_ios,

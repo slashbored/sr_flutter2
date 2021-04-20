@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sexFemale" : MessageLookupByLibrary.simpleMessage("Female"),
     "sexMale" : MessageLookupByLibrary.simpleMessage("Male"),
     "sexX" : MessageLookupByLibrary.simpleMessage("Other"),
+    "shareRoomNumber" : MessageLookupByLibrary.simpleMessage("Share this number, so that your mates can participate!"),
     "tabooMimeFailStyle1" : MessageLookupByLibrary.simpleMessage("Nobody knows"),
     "tabooMimePaintGuessp1" : MessageLookupByLibrary.simpleMessage("What is "),
     "tabooMimePaintGuessp2" : MessageLookupByLibrary.simpleMessage(" trying to tell us?"),

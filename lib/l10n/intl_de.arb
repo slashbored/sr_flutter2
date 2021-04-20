@@ -74,5 +74,6 @@
   "waiting": "Warte, es kommt gleich..",
   "justDone!": "Fertig!",
   "draw": "Male ",
-  "firstStart": "Beim ersten Start kann es etwas dauern, bis alles geladen ist, Alpha halt..."
+  "firstStart": "Beim ersten Start kann es etwas dauern, bis alles geladen ist, Alpha halt...",
+  "shareRoomNumber": "Teile diese Nummer mit den anderen, damit sie mitspielen können!"
 }
