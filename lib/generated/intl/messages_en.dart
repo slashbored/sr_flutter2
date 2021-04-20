@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createRoom" : MessageLookupByLibrary.simpleMessage("Create a game"),
     "draw" : MessageLookupByLibrary.simpleMessage("Draw "),
     "enterName" : MessageLookupByLibrary.simpleMessage("Please enter your name and gender:"),
+    "firstStart" : MessageLookupByLibrary.simpleMessage("First start can take a while for stuff to load, you know, it\'s an Alpha..."),
     "globalFail" : MessageLookupByLibrary.simpleMessage("(tap this and drink a sip, if you\'re the one who failed)"),
     "globalTitle" : MessageLookupByLibrary.simpleMessage("Everyone!"),
     "hasLeftGame" : MessageLookupByLibrary.simpleMessage(" has left the game."),

@@ -59,6 +59,11 @@ class splashScreenPageState extends State<splashScreenPage>{
                                     )
                                 )
                             ),
+                            Text(
+                              S.of(context).firstStart,
+                              style: smallStyle,
+                              textAlign: TextAlign.center,
+                            ),
                             Spacer()
                           ]
                       )

@@ -784,6 +784,16 @@ class S {
       args: [],
     );
   }
+
+  /// `First start can take a while for stuff to load, you know, it's an Alpha...`
+  String get firstStart {
+    return Intl.message(
+      'First start can take a while for stuff to load, you know, it\'s an Alpha...',
+      name: 'firstStart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

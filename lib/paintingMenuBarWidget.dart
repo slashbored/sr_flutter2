@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -20,7 +21,7 @@ class paintingMenuBarWidget extends StatefulWidget {
 
 class paintingMenuBarWidgetState extends State<paintingMenuBarWidget> {
   bool showBottomList = true;
-  StrokeCap strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round;
+  StrokeCap strokeCap = (kIsWeb) ? StrokeCap.butt : (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round;
   SelectedMode selectedMode = SelectedMode.StrokeWidth;
   List<Color> colors = [
     Colors.red,

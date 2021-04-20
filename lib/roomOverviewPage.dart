@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:sr_flutter2/roomSelectionPage.dart';
+
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -152,9 +155,12 @@ class roomOverviewPageState extends State<roomOverviewPage>{
                             ],
                           )
                       ),
-                      Spacer(
-                          flex: 1
-                      )
+                      Flexible(
+                          flex: 1,
+                          child: (kIsWeb)? Align(
+                            alignment: Alignment.bottomCenter,
+                            child: goBackForWebFAB(context),
+                          ):Spacer())
                     ]
                 )
             )
@@ -171,16 +177,22 @@ class roomOverviewPageState extends State<roomOverviewPage>{
     }
   }
 
-  Widget startDrawFAB(BuildContext context) {
-    return new FloatingActionButton.extended(
-        label: Text(
-            "Draw"
-        ),
-        onPressed: (){
-          Navigator.push(context, fadePageRoute(page: Draw()));
-        }
-    );
+  Widget goBackForWebFAB(BuildContext context)  {
+    return FloatingActionButton(
+      elevation: 0,
+      hoverElevation: 0,
+      splashColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      child: Icon(
+        Icons.arrow_back_ios,
+        color: Colors.black
+      ),
+      onPressed: () {
+        Navigator.of(context).push(fadePageRoute(page: roomSelectionPage()));
+      });
   }
+
 
   Widget startGameFAB(BuildContext context)  {
     roomOverviewContext = context;

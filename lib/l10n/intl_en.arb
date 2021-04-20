@@ -73,5 +73,6 @@
   "results": "Results:",
   "waiting": "Wait for it..",
   "justDone": "Done!",
-  "draw": "Draw "
+  "draw": "Draw ",
+  "firstStart": "First start can take a while for stuff to load, you know, it's an Alpha..."
 }

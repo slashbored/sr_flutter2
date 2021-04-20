@@ -73,5 +73,6 @@
   "results": "Ergebnis:",
   "waiting": "Warte, es kommt gleich..",
   "justDone!": "Fertig!",
-  "draw": "Male "
+  "draw": "Male ",
+  "firstStart": "Beim ersten Start kann es etwas dauern, bis alles geladen ist, Alpha halt..."
 }

@@ -214,7 +214,7 @@ void createRoom() async{
   await new Future.delayed(const Duration(milliseconds: 500));
   if (!kIsWeb) {
     if (Platform.isIOS) {
-      print("it ios!");
+      print("its ios!");
       Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage()));
     }
     else  {
@@ -222,6 +222,7 @@ void createRoom() async{
     }
   }
   else  {
+    print("its web!");
     Navigator.push(context, fadePageRoute(page: roomOverviewPage()));
   }
 }
@@ -232,9 +233,14 @@ void createRoom() async{
       await new Future.delayed(const Duration(milliseconds: 100));
       i++;
     }
-    if (Platform.isIOS) {
-      print("its ios!");
-      currentRoom!=null&&i<50?Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage())):null;
+    if (!kIsWeb)  {
+      if (Platform.isIOS) {
+        print("its ios!");
+        currentRoom!=null&&i<50?Navigator.push(context, CupertinoPageRoute(builder: (context)  => roomOverviewPage())):null;
+      }
+      else  {
+        currentRoom!=null&&i<50?Navigator.push(context, fadePageRoute(page: roomOverviewPage())):null;
+      }
     }
     else  {
       currentRoom!=null&&i<50?Navigator.push(context, fadePageRoute(page: roomOverviewPage())):null;

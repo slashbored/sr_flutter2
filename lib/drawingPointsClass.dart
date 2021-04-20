@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -11,7 +12,7 @@ import 'package:quiver/collection.dart';
 
 class DrawingPoints {
   Paint paint = Paint()
-    ..strokeCap = (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round
+    ..strokeCap = (kIsWeb) ? StrokeCap.butt : (Platform.isAndroid) ? StrokeCap.butt : StrokeCap.round
     ..isAntiAlias = true
     ..color = color
     ..strokeWidth = strokeWidth;

@@ -1,14 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:sr_flutter2/drawingPointsClass.dart';
 import 'package:sr_flutter2/menuDialogWidget.dart';
-import 'package:web_socket_channel/html.dart';
 
 import 'textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sr_flutter2/roomOverviewPage.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/status.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:async/async.dart';
 import 'generated/l10n.dart';
 import 'dart:async';
@@ -33,8 +31,7 @@ import 'drawingPointsClass.dart';
 import 'backgroundDecorationWidget.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-final IOWebSocketChannel WSChannel = IOWebSocketChannel.connect('wss://lucarybka.de/nodenode');
-//final HtmlWebSocketChannel HTMLWSChannel = HtmlWebSocketChannel.connect('wss://lucarybka.de/nodenode');
+final WebSocketChannel WSChannel = WebSocketChannel.connect(Uri.parse('wss://lucarybka.de/nodenode'));
 final StreamController downStreamController = new StreamController.broadcast();
 
 SharedPreferences prefs;
@@ -84,19 +81,12 @@ void changeBGColor(int categoryIDPlaceholder)  {
 }
 
 void startStreaming() async{
-  if (kIsWeb) {
-    /*HTMLWSChannel.stream.asBroadcastStream();
-    downStreamController.addStream(HTMLWSChannel.stream);
-    upStream = HTMLWSChannel.sink;
-    downStream = downStreamController.stream;*/
-  }
-  else  {
+  //start the stream/sink and create a sharedprefs instance
     WSChannel.stream.asBroadcastStream();
     downStreamController.addStream(WSChannel.stream);
     upStream = WSChannel.sink;
     downStream = downStreamController.stream;
-  }
-  //start the stream/sink and create a sharedprefs instance
+
 
   // if UUID is present, send it to the server, else get one
   if(prefs.getString('uuid')==null)  {
